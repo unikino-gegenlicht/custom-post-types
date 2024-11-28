@@ -16,10 +16,12 @@ jobs:
                 path: LICENSE
 
             - name: Create Directory Structure and Archive
+              shell: bash
               run: |
                 rm LICENSE
                 rm README.md
                 mkdir ggl-post-types
+                shopt -s extglob
                 mv !(ggl-post-types) ggl-post-types/
                 mv ggl-post-types/loader.php ggl-post-type.loader.php
                 zip -r ${{ github.event.repository.name }}-${{ github.ref_name }}.zip .
