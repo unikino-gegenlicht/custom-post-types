@@ -26,3 +26,8 @@
  * License URI:       https://joinup.ec.europa.eu/sites/default/files/custom-page/attachment/2020-03/EUPL-1.2%20EN.txt
  * Update URI:        false
  */
+
+ require_once 'post-types/supporters.php';
+
+ add_action('init', 'ggl_post_type_supporter');
+ add_filter( 'rwmb_meta_boxes', 'supporter_register_meta_boxes' );
