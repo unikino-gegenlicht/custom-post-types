@@ -20,7 +20,7 @@ jobs:
                 rm LICENSE
                 rm README.md
                 mkdir ggl-post-types
-                mv * ggl-post-types/
+                mv !(ggl-post-types) ggl-post-types/
                 mv ggl-post-types/loader.php ggl-post-type.loader.php
                 zip -r ${{ github.event.repository.name }}-${{ github.ref_name }}.zip .
             
