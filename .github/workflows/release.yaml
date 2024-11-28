@@ -22,18 +22,16 @@ jobs:
                 rm README.md
                 mkdir ggl-post-types
                 shopt -s extglob
-                mv !(ggl-post-types) ggl-post-types/
+                mv !(ggl-post-types|.git|.github) ggl-post-types/
                 mv ggl-post-types/loader.php ggl-post-type.loader.php
-                zip -r ${{ github.event.repository.name }}-${{ github.ref_name }}.zip .
+                zip -r custom-post-types.zip ggl-post-type.loader.php ggl-post-types/*
             
             - name: Create Release Artifact
               if: startsWith(github.ref, 'refs/tags/')
               uses: actions/upload-artifact@v4
               with:
                 name: release-artifacts
-                path: |
-                    ${{ github.event.repository.name }}-${{ github.ref_name }}.zip
-                    LICENSE
+                path: custom-post-types.zip
                 retention-days: 1
                 
             - name: Create Artifact
@@ -41,7 +39,7 @@ jobs:
               uses: actions/upload-artifact@v4
               with:
                 name: debug-artifacts
-                path: ${{ github.event.repository.name }}-${{ github.sha }}.zip
+                path: custom-post-types.zip
                 retention-days: 7
     
     release-archive:
@@ -58,6 +56,10 @@ jobs:
               uses: actions/download-artifact@v4
               with:
                 merge-multiple: true
+
+            - name: Add Tag to Archive
+              run: |
+                mv custom-post-types.zip  custom-post-types.${{ github.ref_name }}.zip
             
             - name: Create Release
               uses: softprops/action-gh-release@v2
@@ -66,5 +68,5 @@ jobs:
                 generate_release_notes: true
                 draft: true
                 files: |
-                  ${{ github.event.repository.name }}-${{ github.sha }}.zip
+                  custom-post-types.${{ github.ref_name }}.zip
                   LICENSE
