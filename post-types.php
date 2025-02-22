@@ -27,7 +27,15 @@
  * Update URI:        false
  */
 
- require_once 'post-types/supporters.php';
+require_once 'post-types/supporters.php';
 
- add_action('init', 'ggl_post_type_supporter');
- add_filter( 'rwmb_meta_boxes', 'supporter_register_meta_boxes' );
+add_action('init', 'ggl_post_type_supporter');
+add_filter( 'rwmb_meta_boxes', 'supporter_register_meta_boxes' );
+
+
+require_once 'post-types/movie.php';
+ 
+add_action('init', 'ggl_post_type_movie');
+add_filter('wp_insert_post_data', 'movie_check_name_leaking', 10, 3);
+add_filter('rwmb_meta_boxes', 'movie_extended_info_meta_boxes');
+add_filter('rwmb_meta_boxes', 'movie_screening_info_meta_boxes');
