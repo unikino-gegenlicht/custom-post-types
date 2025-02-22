@@ -36,7 +36,7 @@ function ggl_post_type_supporter(): void {
 			'menu_icon'           => 'dashicons-superhero-alt',
 			'supports'            => [ 'title', 'thumbnail', 'editor' ],
 			'rewrite'             => [
-				'slug'       => 'supporter',
+				'slug'       => 'supporters',
 				'with_front' => false,
 				'pages'      => false,
 			]
