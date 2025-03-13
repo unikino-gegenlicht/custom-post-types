@@ -30,7 +30,7 @@ jobs:
               uses: actions/upload-artifact@v4
               with:
                 name: release-artifacts
-                path: custom-post-types.zip
+                path: ggl-post-types.zip
                 retention-days: 1
                 
             - name: Create Artifact
@@ -38,7 +38,7 @@ jobs:
               uses: actions/upload-artifact@v4
               with:
                 name: debug-artifacts
-                path: custom-post-types.zip
+                path: ggl-post-types.zip
                 retention-days: 7
     
     release-archive:
