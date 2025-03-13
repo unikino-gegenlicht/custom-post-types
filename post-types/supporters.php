@@ -8,20 +8,20 @@
 function ggl_post_type_supporter(): void {
 	register_post_type( 'supporter',
 		[
-			'label'               => __( 'Supporters' ),
+			'label'               => __( 'Supporters', 'ggl-post-types' ),
 			'labels'              => [
-				'menu_name'             => __( 'Supporters' ),
-				'name_admin_bar'        => __( 'Supporter' ),
-				'singular_name'         => __( 'Supporter' ),
-				'add_new_item'          => __( 'Add Supporter' ),
-				'add_new'               => __( 'Add Supporter' ),
-				'edit_item'             => __( 'Edit Supporter' ),
-				'view_item'             => __( 'View Supporter' ),
-				'all_items'             => __( 'All Supporters' ),
-				'featured_image'        => __( 'Logo' ),
-				'set_featured_image'    => __( 'Set Logo' ),
-				'remove_featured_image' => __( 'Remove Logo' ),
-				'upload_featured_image' => __( 'Upload Logo' ),
+				'menu_name'             => __( 'Supporters', 'ggl-post-types' ),
+				'name_admin_bar'        => __( 'Supporter', 'ggl-post-types' ),
+				'singular_name'         => __( 'Supporter' , 'ggl-post-types'),
+				'add_new_item'          => __( 'Add Supporter' , 'ggl-post-types'),
+				'add_new'               => __( 'Add Supporter' , 'ggl-post-types'),
+				'edit_item'             => __( 'Edit Supporter' , 'ggl-post-types'),
+				'view_item'             => __( 'View Supporter' , 'ggl-post-types'),
+				'all_items'             => __( 'All Supporters', 'ggl-post-types' ),
+				'featured_image'        => __( 'Logo' , 'ggl-post-types'),
+				'set_featured_image'    => __( 'Set Logo', 'ggl-post-types' ),
+				'remove_featured_image' => __( 'Remove Logo' , 'ggl-post-types'),
+				'upload_featured_image' => __( 'Upload Logo' , 'ggl-post-types'),
 			],
 			'public'              => true,
 			'has_archive'         => 'supporters',
@@ -32,7 +32,7 @@ function ggl_post_type_supporter(): void {
 			'can_export'          => true,
 			'show_ui'             => true,
 			'show_in_rest'        => true,
-			'menu_position'       => 16,
+			'menu_position'       => 9,
 			'menu_icon'           => 'dashicons-superhero-alt',
 			'supports'            => [ 'title', 'thumbnail', 'editor' ],
 			'rewrite'             => [
@@ -47,14 +47,14 @@ function supporter_register_meta_boxes( $meta_boxes ) {
     $prefix = 'supporter';
 
     $meta_boxes[] = [
-        'title'   => esc_html__( 'Further Information' ),
+        'title'   => esc_html__( 'Further Information', 'ggl-post-types' ),
         'id'      => 'supporter',
         'context' => 'side',
         'post_types' => ['supporter'],
         'fields'  => [
             [
                 'type' => 'url',
-                'name' => esc_html__( 'Website' ),
+                'name' => esc_html__( 'Website', 'ggl-post-types' ),
                 'id'   => $prefix . 'website',
             ],
         ],
