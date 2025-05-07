@@ -43,17 +43,18 @@ function ggl_post_type_event(): void
 	);
 }
 
-function event_check_name_leaking($data, $postarr)
-{
-	if ($data['post_type'] !== 'event') {
-		return $data;
-	}
+function generate_numerical_event_id($post_id): void {
+	$parent_id = wp_is_post_revision( $post_id );
 
-	if (!in_array($data['post_status'], array('draft', 'pending', 'auto-draft'))) {
-		return $data;
-	}
-
-	return $data;
+    if ( false !== $parent_id ) {
+        $post_id = $parent_id;
+    } 
+	remove_action( 'save_post_event', 'generate_numerical_event_id' );
+	wp_update_post( array(
+		'ID' => $post_id,
+		'post_name' => $post_id
+	));
+	add_action('save_post_event', 'generate_numerical_event_id');
 }
 
 function event_extended_info_meta_boxes($meta_boxes)

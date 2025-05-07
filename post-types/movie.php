@@ -43,17 +43,18 @@ function ggl_post_type_movie(): void
 	);
 }
 
-function movie_check_name_leaking($data, $postarr)
-{
-	if ($data['post_type'] !== 'movie') {
-		return $data;
-	}
+function ensure_numerical_movie_link($post_id): void {
+	$parent_id = wp_is_post_revision( $post_id );
 
-	if (!in_array($data['post_status'], array('draft', 'pending', 'auto-draft'))) {
-		return $data;
+    if ( false !== $parent_id ) {
+        $post_id = $parent_id;
 	}
-
-	return $data;
+	remove_action( 'save_post_movie', 'ensure_numerical_movie_link' );
+	wp_update_post( array(
+		'ID' => $post_id,
+		'post_name' => $post_id
+	));
+	add_action('save_post_movie', 'ensure_numerical_movie_link');
 }
 
 function movie_extended_info_meta_boxes($meta_boxes)
