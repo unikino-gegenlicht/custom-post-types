@@ -48,7 +48,7 @@ function ensure_numerical_movie_link($post_id): void {
 
     if ( false !== $parent_id ) {
         $post_id = $parent_id;
-	}
+    } 
 	remove_action( 'save_post_movie', 'ensure_numerical_movie_link' );
 	wp_update_post( array(
 		'ID' => $post_id,
@@ -97,12 +97,10 @@ function movie_extended_info_meta_boxes($meta_boxes)
 			],
 			
 			[
-				'type' => 'number',
-				'name' => esc_html__('Release Year', 'ggl-post-types'),
-				'id' => $prefix . 'released_in',
+				'type' => 'date',
+				'name' => esc_html__('Release Date', 'ggl-post-types'),
+				'id' => $prefix . 'release_date',
 				'required' => true,
-				'std' => 1970,
-				'step' => 1,
 				'min' => 0,
 			],
 			[
