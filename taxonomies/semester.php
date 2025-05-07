@@ -44,12 +44,6 @@ function ggl_taxonomy_semester_meta_boxes($meta_boxes): mixed {
 					'dateFormat' => 'dd.mm.yy',
 				],
 			],
-			[
-				'type' => 'single_image',
-				'name' => esc_html__( 'Semester Banner', 'ggl-post-types' ),
-				'id'   => $prefix . 'banner',
-				'desc' => esc_html__( 'This banner will be shown on the release countdown and if no more movies will be screened during that semester', 'ggl-post-types' ),
-			],
 		],
 	];
 
