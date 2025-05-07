@@ -51,30 +51,6 @@ function team_member_register_meta_boxes($meta_boxes)
 	$prefix = 'team-member';
 
 	$meta_boxes[] = [
-		'title' => esc_html__('Social Media Information', 'ggl-post-types'),
-		'id' => 'social_links',
-		'context' => 'side',
-		'post_types' => ['team-member'],
-		'fields' => [
-			[
-				'type' => 'url',
-				'name' => esc_html__('Instagram Profile', 'ggl-post-types'),
-				'id' => $prefix . 'instagram_link',
-			],
-			[
-				'type' => 'url',
-				'name' => esc_html__('Letterboxd Profile', 'ggl-post-types'),
-				'id' => $prefix . 'letterboxd_link',
-			],
-			[
-				'type' => 'url',
-				'name' => esc_html__('Mastodon Profile', 'ggl-post-types'),
-				'id' => $prefix . 'mastodon_link',
-			],
-		],
-	];
-
-	$meta_boxes[] = [
 		'title' => esc_html__('Membership Type', 'ggl-post-types'),
 		'id' => 'membership_information',
 		'context' => 'before_permalink',
