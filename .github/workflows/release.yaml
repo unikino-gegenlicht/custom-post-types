@@ -58,7 +58,7 @@ jobs:
 
             - name: Add Tag to Archive
               run: |
-                mv custom-post-types.zip  ggl-post-types.${{ github.ref_name }}.zip
+                mv ggl-post-types.zip  ggl-post-types.${{ github.ref_name }}.zip
             
             - name: Create Release
               uses: softprops/action-gh-release@v2
