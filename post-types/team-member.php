@@ -38,7 +38,7 @@ function ggl_post_type_team_member(): void
 			'menu_icon' => 'dashicons-groups',
 			'supports' => ['title', 'thumbnail', 'editor'],
 			'rewrite' => [
-				'slug' => 'team-members',
+				'slug' => 'team',
 				'with_front' => true,
 				'pages' => false,
 			]
