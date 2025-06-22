@@ -213,6 +213,21 @@ function movie_extended_info_meta_boxes($meta_boxes)
 				'visible' => [$prefix . 'program_type', '=', 'special_program'],
 				'ajax' => false
 			],
+			[
+				'type' => 'taxonomy',
+				'name' => esc_html__('Starring', 'ggl-post-types'),
+				'id' => $prefix . 'genres',
+				'taxonomy' => 'genre',
+				'required' => true,
+				'field_type' => 'select_advanced',
+				'add_new' => false,
+				'multiple' => true,
+				'placeholder' => __('Select Genres', 'ggl-post-types'),
+				'query_args' => [
+					'number' => -1,
+				],
+				'ajax' => false
+			],
 		],
 	];
 
