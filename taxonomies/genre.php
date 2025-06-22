@@ -13,7 +13,7 @@ function ggl_taxonomy_genre(): void {
             'new_item_name' => __( 'New Genre' , 'ggl-post-types'),
         ],
         'public' => true,
-        'show_in_menu' => false,
+        'show_in_menu' => true,
         'meta_box_cb' => false,
         'show_tag_cloud' => false,
         'query_var' => 'genre',
