@@ -141,7 +141,7 @@ function movie_extended_info_meta_boxes($meta_boxes)
 					'number' => 10,
 				],
 				'js_options' => [
-					'maximumSelectionLength' => 3
+					'maximumSelectionLength' => 2
 				],
 				'ajax' => false
 			],
@@ -245,7 +245,7 @@ function movie_licensing_and_age_rating_meta_boxes($meta_boxes): mixed {
 				'type' => 'select',
 				'name' => esc_html__('Age Rating', 'ggl-post-types'),
 				'id' => $prefix . 'age_rating',
-				'desc' => '<a href="https://www.fsk.de/?seitid=70&tid=70" target="_blank">'. __('FSK Title Lookup', 'ggl-post-types') . '</a>',
+				'desc' => '<a href="https://www.fsk.de/freigabensuche/" target="_blank">'. __('FSK Title Lookup', 'ggl-post-types') . '</a>',
 				'options' => [
 					-2 => esc_html__('unknown', 'ggl-post-types'),
 					-1 => esc_html__('Not rated', 'ggl-post-types'),
