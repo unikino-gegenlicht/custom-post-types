@@ -73,7 +73,7 @@ function generate_language_mapping(): array {
 function generate_country_mapping(): array {
   $output = array();
   foreach (GGL_COUNTRIES as $code => $name) {
-    $translatedName = __($name, 'ggl_post_types');
+    $translatedName = __($name, 'ggl-post-types');
     $output[$code] = $translatedName;
   }
   return $output;
