@@ -62,9 +62,8 @@ function reorder_menu() {
 
 function generate_language_mapping(): array {
 	$output = array();
-	foreach (GGL_LANGUAGES as $languageKey => $language) {
-		//global $output;
-		$translatedLanguage = __($language, 'ggl-post-types');
+	foreach (GGL_LANGUAGES as $languageKey) {
+		$translatedLanguage = __($languageKey, 'ggl-post-types');
 		$output[$languageKey] = $translatedLanguage;
 	}
 	return $output;
@@ -72,8 +71,8 @@ function generate_language_mapping(): array {
 
 function generate_country_mapping(): array {
   $output = array();
-  foreach (GGL_COUNTRIES as $code => $name) {
-    $translatedName = __($name, 'ggl-post-types');
+  foreach (GGL_COUNTRIES as $code) {
+    $translatedName = __($code, 'ggl-post-types');
     $output[$code] = $translatedName;
   }
   return $output;

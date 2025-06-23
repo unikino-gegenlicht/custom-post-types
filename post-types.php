@@ -39,7 +39,7 @@ add_action('init', 'ggl_taxonomy_semester');
 add_filter('rwmb_meta_boxes', 'ggl_taxonomy_semester_meta_boxes');
 
 
-require_once 'taxonomies/program.php';
+require_once 'taxonomies/special-program.php';
 unregister_taxonomy('program-type');
 add_action('init', 'ggl_taxonomy_program_type');
 add_filter('rwmb_meta_boxes', 'ggl_taxonomy_program_type_meta_boxes');
