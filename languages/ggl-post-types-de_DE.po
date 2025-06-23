@@ -2993,5 +2993,5 @@ msgid "Select Genres"
 msgstr "Genre auswählen"
 
 #: post-types/event.php:93
-msgid "Please select the best fitting category for this event. If you are unsure, read the <a href=\"https://wiki.gegenlicht.net/doku.php/lexikon/lizensierung\">following entry</a>."
+msgid "Please select the best fitting category for this event. If you are unsure, read the <a href=\"https://wiki.gegenlicht.net/doku.php/lexikon/lizensierung\" target=\"_blank\">following entry</a>."
 msgstr "Bitte wähle die am besten passende Lizensierungsart für das Event aus. Falls du dir unsicher bist, lese den <a href=\"https://wiki.gegenlicht.net/doku.php/lexikon/lizensierung\" target=\"_blank\">folgenden Artikel</a>"
