@@ -411,12 +411,12 @@ function movie_text_boxes( $meta_boxes ) {
 		'fields'     => [
 			[
 				'type' => 'heading',
-				'name' => esc_html__( "The Content", 'ggl-post-types' ),
+				'name' => esc_html__( "Content Summary", 'ggl-post-types' ),
 			],
 			[
 				'type'                  => 'wysiwyg',
-				'id'                    => $prefix . 'the_content',
-				'required'              => false,
+				'id'                    => $prefix . 'summary',
+				'required'              => true,
 				'add_to_wpseo_analysis' => true
 			],
 			[
@@ -426,9 +426,26 @@ function movie_text_boxes( $meta_boxes ) {
 			[
 				'type'                  => 'wysiwyg',
 				'id'                    => $prefix . 'worth_to_see',
-				'required'              => false,
+				'required'              => true,
 				'add_to_wpseo_analysis' => true
-			]
+			],
+			[
+				'type' => 'heading',
+				'name' => esc_html__( "Content Notice", 'ggl-post-types' ),
+			],
+			[
+				'type' => 'checkbox',
+				'name' => esc_html__( 'Show Content Notice', 'ggl-post-types' ),
+				'id'   => $prefix . 'show_content_notice',
+				'std'  => 0,
+			],
+			[
+				'type'                  => 'wysiwyg',
+				'id'                    => $prefix . 'worth_to_see',
+				'required'              => true,
+				'add_to_wpseo_analysis' => true,
+				'visible' => [ $prefix . 'show_content_notice', true ]
+			],
 		],
 	];
 
