@@ -442,7 +442,7 @@ function movie_text_boxes( $meta_boxes ) {
 			[
 				'type'                  => 'wysiwyg',
 				'id'                    => $prefix . 'content_notice',
-				'required'              => true,
+				'required'              => false,
 				'add_to_wpseo_analysis' => false,
 				'visible' => [ $prefix . 'show_content_notice', true ]
 			],
