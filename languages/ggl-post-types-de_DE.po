@@ -120,8 +120,8 @@ msgid "Original Title"
 msgstr "Originaler Titel"
 
 #: post-types/movie.php:87
-msgid "Please enter the original title here"
-msgstr "Bitte gebe den originalen Titel des Films ein"
+msgid "Please enter the original title here. For Japanese/Chinese/etc. titles, please input the logographics and the romanized versions seperated by an em dash (<code>—</code>) surrounded by spaces"
+msgstr "Bitte gebe den originalen Titel des Films ein. Bei japanischen/chinesischen Titeln, gebe bitte die Schriftzeichen und die Transkription, getrennt von einem Geviertstrich (<code>—</code>) der von Leerzeichen umgeben ist"
 
 #: post-types/event.php:96 post-types/movie.php:261
 msgid "Age Rating"

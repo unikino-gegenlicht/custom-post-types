@@ -52,7 +52,8 @@ function generate_numerical_event_id($post_id): void {
 	remove_action( 'save_post_event', 'generate_numerical_event_id' );
 	wp_update_post( array(
 		'ID' => $post_id,
-		'post_name' => $post_id
+		'post_name' => $post_id,
+		'post_title' => get_post_meta( $post_id, 'event_english_title', true ),
 	));
 	add_action('save_post_event', 'generate_numerical_event_id');
 }
@@ -71,6 +72,13 @@ function event_extended_info_meta_boxes($meta_boxes)
 			[
 				'type' => 'heading',
 				'name' => esc_html__('Event Information', 'ggl-post-types'),
+			],
+			[
+				'type' => 'text',
+				'name' => esc_html__('German Title', 'ggl-post-types'),
+				'id' => $metaboxPrefix . 'german_title',
+				'desc' => esc_html__('Please enter the German title of the event here', 'ggl-post-types'),
+				'required' => true
 			],
 			[
 				'type' => 'text',
