@@ -404,7 +404,7 @@ function movie_text_boxes( $meta_boxes ) {
 	$meta_boxes[] = [
 		'title'      => esc_html__( 'Movie Texts', 'ggl-post-types' ),
 		'id'         => 'additional_information',
-		'context'    => 'normal',
+		'context'    => 'after_editor',
 		'post_types' => [ 'movie' ],
 		'style'      => 'seamless',
 		'autosave'   => true,
@@ -417,7 +417,11 @@ function movie_text_boxes( $meta_boxes ) {
 				'type'                  => 'wysiwyg',
 				'id'                    => $prefix . 'summary',
 				'required'              => true,
-				'add_to_wpseo_analysis' => true
+				'add_to_wpseo_analysis' => true,
+				'options'               => [
+					'teeny' => true,
+					'media_buttons' => false,
+				]
 			],
 			[
 				'type' => 'heading',
@@ -427,7 +431,11 @@ function movie_text_boxes( $meta_boxes ) {
 				'type'                  => 'wysiwyg',
 				'id'                    => $prefix . 'worth_to_see',
 				'required'              => true,
-				'add_to_wpseo_analysis' => true
+				'add_to_wpseo_analysis' => true,
+				'options'               => [
+					'teeny' => true,
+					'media_buttons' => false,
+				]
 			],
 			[
 				'type' => 'heading',
@@ -444,7 +452,13 @@ function movie_text_boxes( $meta_boxes ) {
 				'id'                    => $prefix . 'content_notice',
 				'required'              => false,
 				'add_to_wpseo_analysis' => false,
-				'visible' => [ $prefix . 'show_content_notice', true ]
+				'dfw'                   => false,
+				'visible'               => [ $prefix . 'show_content_notice', true ],
+				'desc'                  => esc_html__( 'The content notice will be displayed above the content summary', 'ggl-post-types' ),
+				'options'               => [
+					'teeny' => true,
+					'media_buttons' => false,
+				]
 			],
 		],
 	];
