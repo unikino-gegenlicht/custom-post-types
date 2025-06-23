@@ -63,7 +63,7 @@ function movie_extended_info_meta_boxes( $meta_boxes ) {
 	$meta_boxes[] = [
 		'title'      => esc_html__( 'Movie Information', 'ggl-post-types' ),
 		'id'         => 'movie_information',
-		'context'    => 'before_permalink',
+		'context'    => 'form_top',
 		'style'      => 'seamless',
 		'post_types' => [ 'movie' ],
 		'autosave'   => true,

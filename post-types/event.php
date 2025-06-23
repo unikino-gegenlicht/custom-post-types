@@ -32,7 +32,7 @@ function ggl_post_type_event(): void {
 			'delete_with_user'    => false,
 			'menu_position'       => 7,
 			'menu_icon'           => 'dashicons-schedule',
-			'supports'            => [ 'title', 'editor', 'thumbnail' ],
+			'supports'            => [ 'editor', 'thumbnail' ],
 			'taxonomies'          => [ 'semester', 'special-program' ],
 			'rewrite'             => [
 				'with_front' => true,
@@ -62,7 +62,7 @@ function event_extended_info_meta_boxes( $meta_boxes ) {
 	$meta_boxes[] = [
 		'title'      => esc_html__( 'Event Information', 'ggl-post-types' ),
 		'id'         => 'movie_information',
-		'context'    => 'before_permalink',
+		'context'    => 'form_top',
 		'style'      => 'seamless',
 		'post_types' => [ 'event' ],
 		'autosave'   => true,
