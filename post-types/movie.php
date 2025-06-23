@@ -215,7 +215,7 @@ function movie_extended_info_meta_boxes($meta_boxes)
 			],
 			[
 				'type' => 'taxonomy',
-				'name' => esc_html__('Starring', 'ggl-post-types'),
+				'name' => esc_html__('Select Genres', 'ggl-post-types'),
 				'id' => $prefix . 'genres',
 				'taxonomy' => 'genre',
 				'required' => true,

@@ -5,6 +5,13 @@ jobs:
     create-archive:
         runs-on: ubuntu-latest
         steps:
+
+            - name: Setup PHP
+              uses: shivammathur/setup-php@v2
+              with:
+                  php-version: '8.4'
+                  tools: wp-cli
+
             - name: Checkout Sources
               uses: actions/checkout@v4
 
@@ -23,6 +30,7 @@ jobs:
                 mkdir ggl-post-types
                 shopt -s extglob
                 mv !(ggl-post-types|.git|.github) ggl-post-types/
+                wp i18n ggl-post-types/languages/ ggl-post-types/languages/
                 zip -r ggl-post-types.zip ggl-post-types/*
             
             - name: Create Release Artifact
