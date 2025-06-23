@@ -2,78 +2,78 @@ name: Release Plugin
 on: push
 
 jobs:
-    create-archive:
-        runs-on: ubuntu-latest
-        steps:
+  create-archive:
+    runs-on: ubuntu-latest
+    steps:
 
-            - name: Setup PHP
-              uses: shivammathur/setup-php@v2
-              with:
-                  php-version: '8.4'
-                  tools: wp-cli
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.4'
+          tools: wp-cli
 
-            - name: Checkout Sources
-              uses: actions/checkout@v4
+      - name: Checkout Sources
+        uses: actions/checkout@v4
 
-            - name: Create License Artifact
-              if: startsWith(github.ref, 'refs/tags/')
-              uses: actions/upload-artifact@v4
-              with:
-                name: licensing-info
-                path: LICENSE
-
-            - name: Create Directory Structure and Archive
-              shell: bash
-              run: |
-                rm LICENSE
-                rm README.md
-                mkdir ggl-post-types
-                shopt -s extglob
-                mv !(ggl-post-types|.git|.github) ggl-post-types/
-                wp i18n make-mo ggl-post-types/languages/ ggl-post-types/languages/
-                zip -r ggl-post-types.zip ggl-post-types/*
-            
-            - name: Create Release Artifact
-              if: startsWith(github.ref, 'refs/tags/')
-              uses: actions/upload-artifact@v4
-              with:
-                name: release-artifacts
-                path: ggl-post-types.zip
-                retention-days: 1
-                
-            - name: Create Artifact
-              if: startsWith(github.ref, 'refs/heads/')
-              uses: actions/upload-artifact@v4
-              with:
-                name: debug-artifacts
-                path: ggl-post-types.zip
-                retention-days: 7
-    
-    release-archive:
-
-        permissions:
-            contents: write
-
+      - name: Create License Artifact
         if: startsWith(github.ref, 'refs/tags/')
-        needs:
-            - create-archive
-        runs-on: ubuntu-latest
-        steps:
-            - name: Download Artifact
-              uses: actions/download-artifact@v4
-              with:
-                merge-multiple: true
+        uses: actions/upload-artifact@v4
+        with:
+          name: licensing-info
+          path: LICENSE
 
-            - name: Add Tag to Archive
-              run: |
-                mv ggl-post-types.zip  ggl-post-types.${{ github.ref_name }}.zip
-            
-            - name: Create Release
-              uses: softprops/action-gh-release@v2
-              with:
-                token: ${{ secrets.GITHUB_TOKEN }}
-                generate_release_notes: true
-                draft: true
-                files: |
-                  custom-post-types.${{ github.ref_name }}.zip
-                  LICENSE
+      - name: Create Directory Structure and Archive
+        shell: bash
+        run: |
+          rm LICENSE
+          rm README.md
+          mkdir ggl-post-types
+          shopt -s extglob
+          mv !(ggl-post-types|.git|.github) ggl-post-types/
+          wp i18n make-mo ggl-post-types/languages/ ggl-post-types/languages/
+          zip -r ggl-post-types.zip ggl-post-types/*
+
+      - name: Create Release Artifact
+        if: startsWith(github.ref, 'refs/tags/')
+        uses: actions/upload-artifact@v4
+        with:
+          name: release-artifacts
+          path: ggl-post-types.zip
+          retention-days: 1
+
+      - name: Create Artifact
+        if: startsWith(github.ref, 'refs/heads/')
+        uses: actions/upload-artifact@v4
+        with:
+          name: debug-artifacts
+          path: ggl-post-types.zip
+          retention-days: 7
+
+  release-archive:
+
+    permissions:
+      contents: write
+
+    if: startsWith(github.ref, 'refs/tags/')
+    needs:
+      - create-archive
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download Artifact
+        uses: actions/download-artifact@v4
+        with:
+          merge-multiple: true
+
+      - name: Add Tag to Archive
+        run: |
+          mv ggl-post-types.zip  ggl-post-types.${{ github.ref_name }}.zip
+
+      - name: Create Release
+        uses: softprops/action-gh-release@v2
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          generate_release_notes: true
+          draft: true
+          files: |
+            custom-post-types.${{ github.ref_name }}.zip
+            LICENSE

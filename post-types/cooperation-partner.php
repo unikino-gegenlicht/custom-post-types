@@ -5,7 +5,7 @@
  * Please see the LICENSE file for your rights.
  */
 
-require_once plugin_dir_path(__FILE__) . '../inc/icons.php';
+require_once plugin_dir_path( __FILE__ ) . '../inc/icons.php';
 
 function ggl_post_type_cooperation_partner(): void {
 	register_post_type( 'cooperation-partner',
@@ -46,23 +46,23 @@ function ggl_post_type_cooperation_partner(): void {
 }
 
 function cooperation_partner_register_meta_boxes( $meta_boxes ) {
-    $prefix = 'cooperation-partner';
+	$prefix = 'cooperation-partner';
 
-    $meta_boxes[] = [
-        'title'   => esc_html__( 'Further Information' ),
-        'id'      => 'supporter',
-        'context' => 'side',
-        'post_types' => ['cooperation-partner'],
-        'fields'  => [
-            [
-                'type' => 'url',
-                'name' => esc_html__( 'Website' ),
-                'id'   => $prefix . 'website',
-            ],
-        ],
-    ];
+	$meta_boxes[] = [
+		'title'      => esc_html__( 'Further Information' ),
+		'id'         => 'supporter',
+		'context'    => 'side',
+		'post_types' => [ 'cooperation-partner' ],
+		'fields'     => [
+			[
+				'type' => 'url',
+				'name' => esc_html__( 'Website' ),
+				'id'   => $prefix . 'website',
+			],
+		],
+	];
 
-    return $meta_boxes;
+	return $meta_boxes;
 }
 
 

@@ -50,9 +50,9 @@ function ensure_numerical_movie_link( $post_id ): void {
 	}
 	remove_action( 'save_post_movie', 'ensure_numerical_movie_link' );
 	wp_update_post( array(
-		'ID'        => $post_id,
-		'post_name' => $post_id,
-		'post_title' => get_post_meta( $post_id, 'movie_english_title', true ),
+		'ID'         => $post_id,
+		'post_name'  => $post_id,
+		'post_title' => $_POST['movie_english_title'],
 	) );
 	add_action( 'save_post_movie', 'ensure_numerical_movie_link' );
 }
@@ -90,7 +90,7 @@ function movie_extended_info_meta_boxes( $meta_boxes ) {
 				'type'     => 'text',
 				'name'     => esc_html__( 'Original Title', 'ggl-post-types' ),
 				'id'       => $prefix . 'original_title',
-				'desc'     => esc_html__( 'Please enter the original title here. For Japanese/Chinese/etc. titles, please input the logographics and the romanized versions seperated by an em dash (<code>—</code>) surrounded by spaces', 'ggl-post-types' ),
+				'desc'     => __( 'Please enter the original title here. For Japanese/Chinese/etc. titles, please input the logographics and the romanized versions seperated by an em dash (<code>—</code>) surrounded by spaces', 'ggl-post-types' ),
 				'required' => true
 			],
 			[

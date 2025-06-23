@@ -8,8 +8,10 @@
 
 > [!WARNING]
 > This WordPress plugin does not support automatic updates as it is supposed to used as a [must-use plugin].
-> 
-> [must-use plugin]: https://developer.wordpress.org/advanced-administration/plugins/mu-plugins/
+>
+>
+
+[must-use plugin]: https://developer.wordpress.org/advanced-administration/plugins/mu-plugins/
 
 ## Installation
 
