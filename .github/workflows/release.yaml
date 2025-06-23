@@ -30,7 +30,7 @@ jobs:
                 mkdir ggl-post-types
                 shopt -s extglob
                 mv !(ggl-post-types|.git|.github) ggl-post-types/
-                wp i18n ggl-post-types/languages/ ggl-post-types/languages/
+                wp i18n make-mo ggl-post-types/languages/ ggl-post-types/languages/
                 zip -r ggl-post-types.zip ggl-post-types/*
             
             - name: Create Release Artifact
