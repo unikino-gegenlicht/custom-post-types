@@ -75,6 +75,5 @@ function generate_country_mapping(): array {
     $translatedName = __($code, 'ggl-post-types');
     $output[$code] = $translatedName;
   }
-  wp_die($output);
   return $output;
 }
