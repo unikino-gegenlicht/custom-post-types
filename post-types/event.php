@@ -310,11 +310,13 @@ function event_screening_info_meta_boxes( $meta_boxes ) {
 	return $meta_boxes;
 }
 
+
+
 function event_additional_information_box( $meta_boxes ) {
 	global $metaboxPrefix;
 
 	$meta_boxes[] = [
-		'title'      => esc_html__( 'Additional Information', 'ggl-post-types' ),
+		'title'      => esc_html__( "Why it's worth seeing", 'ggl-post-types' ),
 		'id'         => 'additional_information',
 		'context'    => 'normal',
 		'post_types' => [ 'event' ],
@@ -323,12 +325,11 @@ function event_additional_information_box( $meta_boxes ) {
 		'fields'     => [
 			[
 				'type' => 'heading',
-				'name' => esc_html__( 'Additional Information', 'ggl-post-types' ),
+				'title'      => esc_html__( "Why it's worth seeing", 'ggl-post-types' ),
 			],
 			[
 				'type'     => 'wysiwyg',
-				'desc'     => esc_html__( 'This text will be shown underneath the movies description text', 'ggl-post-types' ),
-				'id'       => $metaboxPrefix . 'additional_information',
+				'id'       => $metaboxPrefix . 'worth_seeing_since',
 				'required' => false
 			]
 		],

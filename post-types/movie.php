@@ -32,7 +32,7 @@ function ggl_post_type_movie(): void {
 			'delete_with_user'    => false,
 			'menu_position'       => 6,
 			'menu_icon'           => 'dashicons-editor-video',
-			'supports'            => [ 'editor', 'thumbnail' ],
+			'supports'            => [ 'thumbnail' ],
 			'taxonomies'          => [ 'semester', 'special-program', 'director', 'actor', 'genre' ],
 			'rewrite'             => [
 				'with_front' => true,
@@ -398,11 +398,11 @@ function movie_screening_info_meta_boxes( $meta_boxes ) {
 	return $meta_boxes;
 }
 
-function movie_additional_information_box( $meta_boxes ) {
+function movie_text_boxes( $meta_boxes ) {
 	$prefix = 'movie_';
 
 	$meta_boxes[] = [
-		'title'      => esc_html__( 'Additional Information', 'ggl-post-types' ),
+		'title'      => esc_html__( 'Movie Texts', 'ggl-post-types' ),
 		'id'         => 'additional_information',
 		'context'    => 'normal',
 		'post_types' => [ 'movie' ],
@@ -411,12 +411,21 @@ function movie_additional_information_box( $meta_boxes ) {
 		'fields'     => [
 			[
 				'type' => 'heading',
-				'name' => esc_html__( 'Additional Information', 'ggl-post-types' ),
+				'name' => esc_html__( "The Content", 'ggl-post-types' ),
 			],
 			[
 				'type'                  => 'wysiwyg',
-				'desc'                  => esc_html__( 'This text will be shown underneath the movies description text', 'ggl-post-types' ),
-				'id'                    => $prefix . 'additional_information',
+				'id'                    => $prefix . 'the_content',
+				'required'              => false,
+				'add_to_wpseo_analysis' => true
+			],
+			[
+				'type' => 'heading',
+				'name' => esc_html__( "Why it's worth seeing", 'ggl-post-types' ),
+			],
+			[
+				'type'                  => 'wysiwyg',
+				'id'                    => $prefix . 'worth_to_see',
 				'required'              => false,
 				'add_to_wpseo_analysis' => true
 			]

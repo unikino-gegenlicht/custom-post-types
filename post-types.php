@@ -61,7 +61,7 @@ add_filter( 'rwmb_meta_boxes', 'movie_extended_info_meta_boxes' );
 add_filter( 'rwmb_meta_boxes', 'movie_licensing_and_age_rating_meta_boxes' );
 add_filter( 'rwmb_meta_boxes', 'movie_sound_information_meta_boxes' );
 add_filter( 'rwmb_meta_boxes', 'movie_screening_info_meta_boxes' );
-add_filter( 'rwmb_meta_boxes', 'movie_additional_information_box' );
+add_filter( 'rwmb_meta_boxes', 'movie_text_boxes' );
 add_filter( 'rwmb_meta_boxes', 'movie_short_movie_box' );
 add_action( 'save_post_movie', 'ensure_numerical_movie_link' );
 
