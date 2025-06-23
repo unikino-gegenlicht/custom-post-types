@@ -90,7 +90,7 @@ function event_extended_info_meta_boxes($meta_boxes)
 					'none' => esc_html__('No License', 'ggl-post-types'),
 					'n/a' => esc_html__('Not Applicable', 'ggl-post-types')
 				],
-				'desc' => esc_html__('Please select the best fitting category for this event. If you are unsure, read the <a href="https://wiki.gegenlicht.net/doku.php/lexikon/lizensierung">following entry</a>.', 'ggl-post-types')
+				'desc' => __('Please select the best fitting category for this event. If you are unsure, read the <a href="https://wiki.gegenlicht.net/doku.php/lexikon/lizensierung" target="_blank">following entry</a>.', 'ggl-post-types')
 			],
 			[
 				'type' => 'select',
