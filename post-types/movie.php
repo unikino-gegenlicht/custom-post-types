@@ -131,7 +131,7 @@ function movie_extended_info_meta_boxes( $meta_boxes ) {
 				'query_args'  => [
 					'number' => 10,
 				],
-				'ajax'        => false
+				'ajax'        => true
 			],
 			[
 				'type'        => 'taxonomy',
@@ -149,7 +149,7 @@ function movie_extended_info_meta_boxes( $meta_boxes ) {
 				'js_options'  => [
 					'maximumSelectionLength' => 2
 				],
-				'ajax'        => false
+				'ajax'        => true
 			],
 			[
 				'type'     => 'radio',
@@ -217,21 +217,6 @@ function movie_extended_info_meta_boxes( $meta_boxes ) {
 					'number' => 10,
 				],
 				'visible'     => [ $prefix . 'program_type', '=', 'special_program' ],
-				'ajax'        => true
-			],
-			[
-				'type'        => 'taxonomy',
-				'name'        => esc_html__( 'Genres', 'ggl-post-types' ),
-				'id'          => $prefix . 'genres',
-				'taxonomy'    => 'genre',
-				'required'    => true,
-				'field_type'  => 'select_advanced',
-				'add_new'     => false,
-				'multiple'    => true,
-				'placeholder' => __( 'Select Genres', 'ggl-post-types' ),
-				'query_args'  => [
-					'number' => - 1,
-				],
 				'ajax'        => true
 			],
 		],

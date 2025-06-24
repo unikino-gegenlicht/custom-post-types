@@ -50,14 +50,18 @@ function cooperation_partner_register_meta_boxes( $meta_boxes ) {
 
 	$meta_boxes[] = [
 		'title'      => esc_html__( 'Further Information' ),
-		'id'         => 'supporter',
-		'context'    => 'before_permalink',
+		'id'         => $prefix . 'additional_info',
+		'context'    => 'after_title',
 		'style'      => 'seamless',
 		'post_types' => [ 'cooperation-partner' ],
 		'fields'     => [
 			[
+				'type' => 'heading',
+				'name' => esc_html__( 'Further Details', 'ggl-post-types' ),
+			],
+			[
 				'type' => 'url',
-				'name' => esc_html__( 'Website' ),
+				'name' => esc_html__( 'Website' , 'ggl-post-types' ),
 				'id'   => $prefix . 'website',
 			],
 		],

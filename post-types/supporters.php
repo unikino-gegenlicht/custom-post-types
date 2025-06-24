@@ -47,11 +47,16 @@ function supporter_register_meta_boxes( $meta_boxes ) {
 	$prefix = 'supporter_';
 
 	$meta_boxes[] = [
-		'title'      => esc_html__( 'Further Information', 'ggl-post-types' ),
-		'id'         => 'supporter',
-		'context'    => 'side',
+		'title'      => esc_html__( 'Further Information' ),
+		'id'         => $prefix . 'additional_info',
+		'context'    => 'after_title',
+		'style'      => 'seamless',
 		'post_types' => [ 'supporter' ],
 		'fields'     => [
+			[
+				'type' => 'heading',
+				'name' => esc_html__( 'Further Details', 'ggl-post-types' ),
+			],
 			[
 				'type' => 'url',
 				'name' => esc_html__( 'Website', 'ggl-post-types' ),
