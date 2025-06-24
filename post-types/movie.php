@@ -52,7 +52,7 @@ function ensure_numerical_movie_link( $post_id ): void {
 	wp_update_post( array(
 		'ID'         => $post_id,
 		'post_name'  => $post_id,
-		'post_title' => (array_key_exists('movie_german_title', $_POST) && array_key_exists('movie_english_title', $_POST)) ? $_POST['movie_german_title'] . "(" . $_POST['movie_english_title'] . ")" : "TBA" ,
+		'post_title' => (array_key_exists('movie_german_title', $_POST) && array_key_exists('movie_english_title', $_POST)) ? $_POST['movie_german_title'] . " (" . $_POST['movie_english_title'] . ")" : "TBA" ,
 	) );
 	add_action( 'save_post_movie', 'ensure_numerical_movie_link' );
 }
