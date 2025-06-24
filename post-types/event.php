@@ -52,7 +52,7 @@ function generate_numerical_event_id( $post_id ): void {
 	wp_update_post( array(
 		'ID'         => $post_id,
 		'post_name'  => $post_id,
-		'post_title' => $_POST['event_english_title'],
+		'post_title' => (array_key_exists('event_german_title', $_POST) && array_key_exists('event_english_title', $_POST)) ? $_POST['event_german_title'] . "(" . $_POST['event_english_title'] . ")" : "TBA" ,
 	) );
 	add_action( 'save_post_event', 'generate_numerical_event_id' );
 }
