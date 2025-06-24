@@ -50,10 +50,6 @@ add_action( 'init', 'ggl_taxonomy_director' );
 require_once 'taxonomies/actor.php';
 add_action( 'init', 'ggl_taxonomy_actor' );
 
-require_once 'taxonomies/genre.php';
-add_action( 'init', 'ggl_taxonomy_genre' );
-
-
 /* Register the post types */
 require_once 'post-types/movie.php';
 add_action( 'init', 'ggl_post_type_movie' );

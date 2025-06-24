@@ -44,7 +44,7 @@ function ggl_post_type_supporter(): void {
 }
 
 function supporter_register_meta_boxes( $meta_boxes ) {
-	$prefix = 'supporter';
+	$prefix = 'supporter_';
 
 	$meta_boxes[] = [
 		'title'      => esc_html__( 'Further Information', 'ggl-post-types' ),

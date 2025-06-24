@@ -21,7 +21,7 @@ function ggl_post_type_event(): void {
 				'all_items'          => __( 'All Events', 'ggl-post-types' ),
 			],
 			'public'              => true,
-			'has_archive'         => false,
+			'has_archive'         => 'event-archive',
 			'exclude_from_search' => false,
 			'publicly_queryable'  => true,
 			'capability_type'     => 'post',

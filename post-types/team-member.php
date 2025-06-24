@@ -35,7 +35,7 @@ function ggl_post_type_team_member(): void {
 			'show_in_rest'        => true,
 			'menu_position'       => 7,
 			'menu_icon'           => 'dashicons-groups',
-			'supports'            => [ 'title', 'thumbnail', 'editor' ],
+			'supports'            => [ 'title', 'thumbnail' ],
 			'rewrite'             => [
 				'slug'       => 'team',
 				'with_front' => true,
@@ -46,7 +46,7 @@ function ggl_post_type_team_member(): void {
 }
 
 function team_member_register_meta_boxes( $meta_boxes ) {
-	$prefix = 'team-member';
+	$prefix = 'team-member_';
 
 	$meta_boxes[] = [
 		'title'      => esc_html__( 'Membership Type', 'ggl-post-types' ),
@@ -68,6 +68,27 @@ function team_member_register_meta_boxes( $meta_boxes ) {
 					'active'       => esc_html__( 'Active', 'ggl-post-types' ),
 					'former'       => esc_html__( 'Former', 'ggl-post-types' ),
 				]
+			]
+		],
+	];
+
+	$meta_boxes[] = [
+		'title'      => esc_html__( 'Membership Type', 'ggl-post-types' ),
+		'id'         => 'membership_information',
+		'context'    => 'before_permalink',
+		'style'      => 'seamless',
+		'post_types' => [ 'team-member' ],
+		'fields'     => [
+			[
+				'type' => 'heading',
+				'name' => esc_html__( 'Introduction', 'ggl-post-types' ),
+			],
+			[
+				'type'   => 'text',
+				'id'     => $prefix . 'introduction',
+				'inline' => true,
+				'title'  => esc_html__( 'Introduction', 'ggl-post-types' ),
+				'desc'   => esc_html__( 'This short introduction will appear on the team page below your photo' )
 			]
 		],
 	];

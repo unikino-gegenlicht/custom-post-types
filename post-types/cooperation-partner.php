@@ -46,12 +46,13 @@ function ggl_post_type_cooperation_partner(): void {
 }
 
 function cooperation_partner_register_meta_boxes( $meta_boxes ) {
-	$prefix = 'cooperation-partner';
+	$prefix = 'cooperation-partner_';
 
 	$meta_boxes[] = [
 		'title'      => esc_html__( 'Further Information' ),
 		'id'         => 'supporter',
-		'context'    => 'side',
+		'context'    => 'before_permalink',
+		'style'      => 'seamless',
 		'post_types' => [ 'cooperation-partner' ],
 		'fields'     => [
 			[

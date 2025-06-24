@@ -21,7 +21,7 @@ function ggl_post_type_movie(): void {
 				'archives'           => __( 'Old Movies', 'ggl-post-types' ),
 			],
 			'public'              => true,
-			'has_archive'         => 'archiv',
+			'has_archive'         => 'archive',
 			'exclude_from_search' => false,
 			'publicly_queryable'  => true,
 			'capability_type'     => 'post',
@@ -33,7 +33,7 @@ function ggl_post_type_movie(): void {
 			'menu_position'       => 6,
 			'menu_icon'           => 'dashicons-editor-video',
 			'supports'            => [ 'thumbnail' ],
-			'taxonomies'          => [ 'semester', 'special-program', 'director', 'actor', 'genre' ],
+			'taxonomies'          => [ 'semester', 'special-program', 'director', 'actor' ],
 			'rewrite'             => [
 				'with_front' => true,
 				'pages'      => false,
@@ -52,7 +52,7 @@ function ensure_numerical_movie_link( $post_id ): void {
 	wp_update_post( array(
 		'ID'         => $post_id,
 		'post_name'  => $post_id,
-		'post_title' => (array_key_exists('movie_german_title', $_POST) && array_key_exists('movie_english_title', $_POST)) ? $_POST['movie_german_title'] . " (" . $_POST['movie_english_title'] . ")" : "TBA" ,
+		'post_title' => ( array_key_exists( 'movie_german_title', $_POST ) && array_key_exists( 'movie_english_title', $_POST ) ) ? $_POST['movie_german_title'] . " (" . $_POST['movie_english_title'] . ")" : "TBA",
 	) );
 	add_action( 'save_post_movie', 'ensure_numerical_movie_link' );
 }
@@ -419,7 +419,7 @@ function movie_text_boxes( $meta_boxes ) {
 				'required'              => true,
 				'add_to_wpseo_analysis' => true,
 				'options'               => [
-					'teeny' => true,
+					'teeny'         => true,
 					'media_buttons' => false,
 				]
 			],
@@ -433,7 +433,7 @@ function movie_text_boxes( $meta_boxes ) {
 				'required'              => true,
 				'add_to_wpseo_analysis' => true,
 				'options'               => [
-					'teeny' => true,
+					'teeny'         => true,
 					'media_buttons' => false,
 				]
 			],
@@ -456,7 +456,7 @@ function movie_text_boxes( $meta_boxes ) {
 				'visible'               => [ $prefix . 'show_content_notice', true ],
 				'desc'                  => esc_html__( 'The content notice will be displayed above the content summary', 'ggl-post-types' ),
 				'options'               => [
-					'teeny' => true,
+					'teeny'         => true,
 					'media_buttons' => false,
 				]
 			],

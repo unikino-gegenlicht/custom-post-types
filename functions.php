@@ -35,7 +35,7 @@ function add_admin_menu_separator( int $atPosition ) {
 }
 
 function refresh_permalinks() {
-	flush_rewrite_rules();
+	flush_rewrite_rules(false);
 }
 
 function unregister_taxonomies() {
