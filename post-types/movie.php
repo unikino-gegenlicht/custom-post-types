@@ -2,44 +2,41 @@
 
 
 function ggl_post_type_movie(): void {
-	register_post_type(
-		'movie',
-		[
-			'label'               => __( 'Movies', 'ggl-post-types' ),
-			'labels'              => [
-				'menu_name'          => __( 'Movies', 'ggl-post-types' ),
-				'name_admin_bar'     => __( 'Movie', 'ggl-post-types' ),
-				'singular_name'      => __( 'Movie', 'ggl-post-types' ),
-				'add_new_item'       => __( 'Add Movie', 'ggl-post-types' ),
-				'add_new'            => __( 'Add Movie', 'ggl-post-types' ),
-				'edit_item'          => __( 'Edit Movie', 'ggl-post-types' ),
-				'view_item'          => __( 'Show Movie', 'ggl-post-types' ),
-				'search_items'       => __( 'Search Movies', 'ggl-post-types' ),
-				'not_found'          => __( 'No Movies found', 'ggl-post-types' ),
-				'not_found_in_trash' => __( 'No Movies found in Trash', 'ggl-post-types' ),
-				'all_items'          => __( 'All Movies', 'ggl-post-types' ),
-				'archives'           => __( 'Old Movies', 'ggl-post-types' ),
-			],
-			'public'              => true,
-			'has_archive'         => 'archive',
-			'exclude_from_search' => false,
-			'publicly_queryable'  => true,
-			'capability_type'     => 'post',
-			'hierarchical'        => false,
-			'can_export'          => true,
-			'show_ui'             => true, // implies show_in_menu, show_in_nav_menus, show_in_admin_bar
-			'show_in_rest'        => true,
-			'delete_with_user'    => false,
-			'menu_position'       => 6,
-			'menu_icon'           => 'dashicons-editor-video',
-			'supports'            => [ 'thumbnail' ],
-			'taxonomies'          => [ 'semester', 'special-program', 'director', 'actor' ],
-			'rewrite'             => [
-				'with_front' => true,
-				'pages'      => false,
-			]
+	register_post_type( 'movie', [
+		'label'               => __( 'Movies', 'ggl-post-types' ),
+		'labels'              => [
+			'menu_name'          => __( 'Movies', 'ggl-post-types' ),
+			'name_admin_bar'     => __( 'Movie', 'ggl-post-types' ),
+			'singular_name'      => __( 'Movie', 'ggl-post-types' ),
+			'add_new_item'       => __( 'Add Movie', 'ggl-post-types' ),
+			'add_new'            => __( 'Add Movie', 'ggl-post-types' ),
+			'edit_item'          => __( 'Edit Movie', 'ggl-post-types' ),
+			'view_item'          => __( 'Show Movie', 'ggl-post-types' ),
+			'search_items'       => __( 'Search Movies', 'ggl-post-types' ),
+			'not_found'          => __( 'No Movies found', 'ggl-post-types' ),
+			'not_found_in_trash' => __( 'No Movies found in Trash', 'ggl-post-types' ),
+			'all_items'          => __( 'All Movies', 'ggl-post-types' ),
+			'archives'           => __( 'Old Movies', 'ggl-post-types' ),
+		],
+		'public'              => true,
+		'has_archive'         => 'archive',
+		'exclude_from_search' => false,
+		'publicly_queryable'  => true,
+		'capability_type'     => 'post',
+		'hierarchical'        => false,
+		'can_export'          => true,
+		'show_ui'             => true, // implies show_in_menu, show_in_nav_menus, show_in_admin_bar
+		'show_in_rest'        => true,
+		'delete_with_user'    => false,
+		'menu_position'       => 6,
+		'menu_icon'           => 'dashicons-editor-video',
+		'supports'            => [ 'thumbnail' ],
+		'taxonomies'          => [ 'semester', 'special-program', 'director', 'actor' ],
+		'rewrite'             => [
+			'with_front' => true,
+			'pages'      => false,
 		]
-	);
+	] );
 }
 
 function ensure_numerical_movie_link( $post_id ): void {
@@ -52,14 +49,12 @@ function ensure_numerical_movie_link( $post_id ): void {
 	wp_update_post( array(
 		'ID'         => $post_id,
 		'post_name'  => $post_id,
-		'post_title' => ( array_key_exists( 'movie_german_title', $_POST ) && array_key_exists( 'movie_english_title', $_POST ) ) ? $_POST['movie_german_title'] . " (" . $_POST['movie_english_title'] . ")" : "TBA",
+		'post_title' => ( array_key_exists( 'german_title', $_POST ) && array_key_exists( 'english_title', $_POST ) ) ? $_POST['german_title'] . " (" . $_POST['english_title'] . ")" : "TBA",
 	) );
 	add_action( 'save_post_movie', 'ensure_numerical_movie_link' );
 }
 
 function movie_extended_info_meta_boxes( $meta_boxes ) {
-	$prefix = 'movie_';
-
 	$meta_boxes[] = [
 		'title'      => esc_html__( 'Movie Information', 'ggl-post-types' ),
 		'id'         => 'movie_information',
@@ -75,28 +70,28 @@ function movie_extended_info_meta_boxes( $meta_boxes ) {
 			[
 				'type'     => 'text',
 				'name'     => esc_html__( 'German Title', 'ggl-post-types' ),
-				'id'       => $prefix . 'german_title',
+				'id'       => 'german_title',
 				'desc'     => esc_html__( 'Please enter the German title of the movie here', 'ggl-post-types' ),
 				'required' => true
 			],
 			[
 				'type'     => 'text',
 				'name'     => esc_html__( 'English Title', 'ggl-post-types' ),
-				'id'       => $prefix . 'english_title',
+				'id'       => 'english_title',
 				'desc'     => esc_html__( 'Please enter the English title of the movie here', 'ggl-post-types' ),
 				'required' => true
 			],
 			[
 				'type'     => 'text',
 				'name'     => esc_html__( 'Original Title', 'ggl-post-types' ),
-				'id'       => $prefix . 'original_title',
+				'id'       => 'original_title',
 				'desc'     => __( 'Please enter the original title here. For Japanese/Chinese/etc. titles, please input the logographics and the romanized versions seperated by an em dash (<code>—</code>) surrounded by spaces', 'ggl-post-types' ),
 				'required' => true
 			],
 			[
 				'type'     => 'select_advanced',
 				'name'     => __( 'Country/Countries of Origin', 'ggl-post-types' ),
-				'id'       => $prefix . 'country',
+				'id'       => 'country',
 				'options'  => generate_country_mapping(),
 				'multiple' => true,
 				'required' => true,
@@ -105,14 +100,14 @@ function movie_extended_info_meta_boxes( $meta_boxes ) {
 			[
 				'type'     => 'date',
 				'name'     => esc_html__( 'Release Date', 'ggl-post-types' ),
-				'id'       => $prefix . 'release_date',
+				'id'       => 'release_date',
 				'required' => true,
 				'min'      => 0,
 			],
 			[
 				'type'     => 'number',
 				'name'     => esc_html__( 'Running Time', 'ggl-post-types' ),
-				'id'       => $prefix . 'running_time',
+				'id'       => 'running_time',
 				'desc'     => esc_html__( 'The movie\'s running time in minutes', 'ggl-post-types' ),
 				'std'      => 90,
 				'step'     => 1,
@@ -122,7 +117,7 @@ function movie_extended_info_meta_boxes( $meta_boxes ) {
 			[
 				'type'        => 'taxonomy',
 				'name'        => esc_html__( 'Directed by', 'ggl-post-types' ),
-				'id'          => $prefix . 'director',
+				'id'          => 'director',
 				'taxonomy'    => 'director',
 				'required'    => true,
 				'field_type'  => 'select_advanced',
@@ -136,7 +131,7 @@ function movie_extended_info_meta_boxes( $meta_boxes ) {
 			[
 				'type'        => 'taxonomy',
 				'name'        => esc_html__( 'Starring', 'ggl-post-types' ),
-				'id'          => $prefix . 'actors',
+				'id'          => 'actors',
 				'taxonomy'    => 'actor',
 				'required'    => true,
 				'field_type'  => 'select_advanced',
@@ -154,19 +149,19 @@ function movie_extended_info_meta_boxes( $meta_boxes ) {
 			[
 				'type'     => 'radio',
 				'name'     => esc_html__( 'Selected by', 'ggl-post-types' ),
-				'id'       => $prefix . 'selected_by_type',
+				'id'       => 'selected_by',
 				'inline'   => true,
 				'required' => true,
 				'options'  => [
-					'member'      => esc_html__( 'Team Member', 'ggl-post-types' ),
-					'cooperation' => esc_html__( 'Cooperation Partner', 'ggl-post-types' ),
-					'hidden'      => esc_html__( 'Don\'t show', 'ggl-post-types' )
+					'member' => esc_html__( 'Team Member', 'ggl-post-types' ),
+					'coop'   => esc_html__( 'Cooperation Partner', 'ggl-post-types' ),
+					'hidden' => esc_html__( 'Don\'t show', 'ggl-post-types' )
 				]
 			],
 			[
 				'type'        => 'post',
 				'name'        => esc_html__( 'Team Member', 'ggl-post-types' ),
-				'id'          => $prefix . 'member_id',
+				'id'          => 'team_member_id',
 				'post_type'   => 'team-member',
 				'field_type'  => 'select_advanced',
 				'add_new'     => true,
@@ -175,13 +170,13 @@ function movie_extended_info_meta_boxes( $meta_boxes ) {
 					'post_status'    => 'publish',
 					'posts_per_page' => - 1
 				],
-				'visible'     => [ $prefix . 'selected_by_type', '=', 'member' ],
+				'visible'     => [ 'selected_by', '=', 'member' ],
 				'ajax'        => true
 			],
 			[
 				'type'        => 'post',
 				'name'        => esc_html__( 'Cooperation Partner', 'ggl-post-types' ),
-				'id'          => $prefix . 'cooperation_partner_id',
+				'id'          => 'cooperation_partner_id',
 				'post_type'   => 'cooperation-partner',
 				'field_type'  => 'select_advanced',
 				'placeholder' => esc_html__( 'Select a Cooperation Partner', 'ggl-post-types' ),
@@ -190,13 +185,13 @@ function movie_extended_info_meta_boxes( $meta_boxes ) {
 					'post_status'    => 'publish',
 					'posts_per_page' => - 1
 				],
-				'visible'     => [ $prefix . 'selected_by_type', '=', 'cooperation' ],
+				'visible'     => [ 'selected_by', '=', 'coop' ],
 				'ajax'        => true
 			],
 			[
 				'type'     => 'radio',
 				'name'     => esc_html__( 'Program Type', 'ggl-post-types' ),
-				'id'       => $prefix . 'program_type',
+				'id'       => 'program_type',
 				'inline'   => true,
 				'required' => true,
 				'options'  => [
@@ -208,7 +203,7 @@ function movie_extended_info_meta_boxes( $meta_boxes ) {
 				'type'        => 'taxonomy',
 				'name'        => esc_html__( 'Special Program', 'ggl-post-types' ),
 				'placeholder' => esc_html__( 'Select a Special Program', 'ggl-post-types' ),
-				'id'          => $prefix . 'special_program',
+				'id'          => 'special_program',
 				'taxonomy'    => 'special-program',
 				'required'    => false,
 				'field_type'  => 'select_advanced',
@@ -216,7 +211,7 @@ function movie_extended_info_meta_boxes( $meta_boxes ) {
 				'query_args'  => [
 					'number' => 10,
 				],
-				'visible'     => [ $prefix . 'program_type', '=', 'special_program' ],
+				'visible'     => [ 'program_type', '=', 'special_program' ],
 				'ajax'        => true
 			],
 		],
@@ -226,8 +221,6 @@ function movie_extended_info_meta_boxes( $meta_boxes ) {
 }
 
 function movie_licensing_and_age_rating_meta_boxes( $meta_boxes ): mixed {
-	$prefix = 'movie_';
-
 	$meta_boxes[] = [
 		'title'      => esc_html__( 'Licensing and Age Rating', 'ggl-post-types' ),
 		'id'         => 'licensing_information',
@@ -238,7 +231,7 @@ function movie_licensing_and_age_rating_meta_boxes( $meta_boxes ): mixed {
 			[
 				'type'     => 'radio',
 				'name'     => esc_html__( 'License Type', 'ggl-post-types' ),
-				'id'       => $prefix . 'license_type',
+				'id'       => 'license_type',
 				'inline'   => true,
 				'required' => true,
 				'options'  => [
@@ -250,7 +243,7 @@ function movie_licensing_and_age_rating_meta_boxes( $meta_boxes ): mixed {
 			[
 				'type'     => 'select',
 				'name'     => esc_html__( 'Age Rating', 'ggl-post-types' ),
-				'id'       => $prefix . 'age_rating',
+				'id'       => 'age_rating',
 				'desc'     => '<a href="https://www.fsk.de/freigabensuche/" target="_blank">' . __( 'FSK Title Lookup', 'ggl-post-types' ) . '</a>',
 				'options'  => [
 					- 2 => esc_html__( 'unknown', 'ggl-post-types' ),
@@ -271,8 +264,6 @@ function movie_licensing_and_age_rating_meta_boxes( $meta_boxes ): mixed {
 }
 
 function movie_sound_information_meta_boxes( $meta_boxes ): mixed {
-	$prefix = 'movie_';
-
 	$meta_boxes[] = [
 		'title'      => esc_html__( 'Audio and Subtitles', 'ggl-post-types' ),
 		'id'         => 'audio_and_subtitle_information',
@@ -283,7 +274,7 @@ function movie_sound_information_meta_boxes( $meta_boxes ): mixed {
 			[
 				'type'     => 'radio',
 				'name'     => esc_html__( 'Audio Type', 'ggl-post-types' ),
-				'id'       => $prefix . 'audio_type',
+				'id'       => 'audio_type',
 				'inline'   => true,
 				'required' => true,
 				'options'  => [
@@ -294,7 +285,7 @@ function movie_sound_information_meta_boxes( $meta_boxes ): mixed {
 			[
 				'type'     => 'select_advanced',
 				'name'     => esc_html__( 'Audio Language', 'ggl-post-types' ),
-				'id'       => $prefix . 'audio_language',
+				'id'       => 'audio_language',
 				'std'      => 'eng',
 				'options'  => generate_language_mapping(),
 				'required' => true,
@@ -302,7 +293,7 @@ function movie_sound_information_meta_boxes( $meta_boxes ): mixed {
 			[
 				'type'     => 'select_advanced',
 				'name'     => esc_html__( 'Subtitle Language', 'ggl-post-types' ),
-				'id'       => $prefix . 'subtitle_language',
+				'id'       => 'subtitle_language',
 				'std'      => 'deu',
 				'options'  => generate_language_mapping(),
 				'required' => true,
@@ -314,8 +305,6 @@ function movie_sound_information_meta_boxes( $meta_boxes ): mixed {
 }
 
 function movie_screening_info_meta_boxes( $meta_boxes ) {
-	$prefix = 'movie_';
-
 	$meta_boxes[] = [
 		'title'      => esc_html__( 'Screening Information', 'ggl-post-types' ),
 		'id'         => 'screening_information',
@@ -326,7 +315,7 @@ function movie_screening_info_meta_boxes( $meta_boxes ) {
 			[
 				'type'        => 'taxonomy',
 				'name'        => esc_html__( 'Semester', 'ggl-post-type' ),
-				'id'          => $prefix . 'semester',
+				'id'          => 'semester',
 				'placeholder' => esc_html__( 'Select a Semester', 'ggl-post-types' ),
 				'taxonomy'    => 'semester',
 				'required'    => true,
@@ -340,7 +329,7 @@ function movie_screening_info_meta_boxes( $meta_boxes ) {
 			[
 				'type'       => 'datetime',
 				'name'       => esc_html__( 'Date and Time', 'ggl-post-types' ),
-				'id'         => $prefix . 'screening_date',
+				'id'         => 'screening_date',
 				'timestamp'  => true,
 				'js_options' => [
 					'dateFormat' => 'dd.mm.yy',
@@ -350,15 +339,15 @@ function movie_screening_info_meta_boxes( $meta_boxes ) {
 			[
 				'type'     => 'text',
 				'name'     => esc_html__( 'Location', 'ggl-post-types' ),
-				'id'       => $prefix . 'screening_location',
+				'id'       => 'screening_location',
 				'desc'     => esc_html__( 'Screening locations name (or address if needed)', 'ggl-post-types' ),
 				'std'      => esc_html__( 'Stage 1 @ UNIKUM Oldenburg', 'ggl-post-types' ),
 				'required' => true
 			],
 			[
 				'type'     => 'radio',
-				'name'     => esc_html__( 'Addmission Type', 'ggl-post-types' ),
-				'id'       => $prefix . 'addmission_type',
+				'name'     => esc_html__( 'Admission Type', 'ggl-post-types' ),
+				'id'       => 'admission_type',
 				'inline'   => true,
 				'required' => true,
 				'options'  => [
@@ -371,11 +360,11 @@ function movie_screening_info_meta_boxes( $meta_boxes ) {
 			[
 				'type'    => 'number',
 				'name'    => esc_html__( 'Fee', 'ggl-post-types' ),
-				'id'      => $prefix . 'admission_fee',
+				'id'      => 'admission_fee',
 				'std'     => 3,
 				'min'     => 0,
 				'step'    => 0.01,
-				'visible' => [ $prefix . 'addmission_type', "=", "paid" ]
+				'visible' => [ 'admission_type', "=", "paid" ]
 			],
 		],
 	];
@@ -384,8 +373,6 @@ function movie_screening_info_meta_boxes( $meta_boxes ) {
 }
 
 function movie_text_boxes( $meta_boxes ) {
-	$prefix = 'movie_';
-
 	$meta_boxes[] = [
 		'title'      => esc_html__( 'Movie Texts', 'ggl-post-types' ),
 		'id'         => 'additional_information',
@@ -400,7 +387,7 @@ function movie_text_boxes( $meta_boxes ) {
 			],
 			[
 				'type'                  => 'wysiwyg',
-				'id'                    => $prefix . 'summary',
+				'id'                    => 'summary',
 				'required'              => true,
 				'add_to_wpseo_analysis' => true,
 				'options'               => [
@@ -414,7 +401,7 @@ function movie_text_boxes( $meta_boxes ) {
 			],
 			[
 				'type'                  => 'wysiwyg',
-				'id'                    => $prefix . 'worth_to_see',
+				'id'                    => 'worth_to_see',
 				'required'              => true,
 				'add_to_wpseo_analysis' => true,
 				'options'               => [
@@ -429,16 +416,16 @@ function movie_text_boxes( $meta_boxes ) {
 			[
 				'type' => 'checkbox',
 				'name' => esc_html__( 'Show Content Notice', 'ggl-post-types' ),
-				'id'   => $prefix . 'show_content_notice',
+				'id'   => 'show_content_notice',
 				'std'  => 0,
 			],
 			[
 				'type'                  => 'wysiwyg',
-				'id'                    => $prefix . 'content_notice',
+				'id'                    => 'content_notice',
 				'required'              => false,
 				'add_to_wpseo_analysis' => false,
 				'dfw'                   => false,
-				'visible'               => [ $prefix . 'show_content_notice', true ],
+				'visible'               => [ 'show_content_notice', true ],
 				'desc'                  => esc_html__( 'The content notice will be displayed above the content summary', 'ggl-post-types' ),
 				'options'               => [
 					'teeny'         => true,
@@ -452,7 +439,7 @@ function movie_text_boxes( $meta_boxes ) {
 }
 
 function movie_short_movie_box( $meta_boxes ) {
-	$prefix = 'movie_';
+	$prefix = 'short_movie';
 
 	$meta_boxes[] = [
 		'title'      => esc_html__( 'Short Movie', 'ggl-post-types' ),
@@ -464,7 +451,7 @@ function movie_short_movie_box( $meta_boxes ) {
 			[
 				'type'     => 'radio',
 				'name'     => esc_html__( 'Advertise Short Movie', 'ggl-post-types' ),
-				'id'       => $prefix . 'short_movie_screened',
+				'id'       => 'short_movie_screened',
 				'required' => true,
 				'options'  => [
 					'yes' => esc_html__( 'Yes', 'ggl-post-types' ),
@@ -475,27 +462,28 @@ function movie_short_movie_box( $meta_boxes ) {
 			[
 				'type'    => 'text',
 				'name'    => esc_html__( 'Title', 'ggl-post-types' ),
-				'id'      => $prefix . 'short_movie_title',
+				'id'      => 'short_movie_title',
 				'visible' => [ $prefix . 'short_movie_screened', '=', 'yes' ]
 			],
 			[
 				'type'    => 'text',
 				'name'    => esc_html__( 'Directed by', 'ggl-post-types' ),
-				'id'      => $prefix . 'short_movie_directed_by',
+				'id'      => 'short_movie_directed_by',
 				'visible' => [ $prefix . 'short_movie_screened', '=', 'yes' ]
 
 			],
 			[
-				'type'    => 'text',
-				'name'    => esc_html__( 'Country', 'ggl-post-types' ),
-				'id'      => $prefix . 'short_movie_country',
-				'visible' => [ $prefix . 'short_movie_screened', '=', 'yes' ]
-
+				'type'     => 'select_advanced',
+				'name'     => __( 'Country/Countries of Origin', 'ggl-post-types' ),
+				'id'       => 'short_movie_country',
+				'options'  => generate_country_mapping(),
+				'multiple' => true,
+				'visible'  => [ 'short_movie_screened', '=', 'yes' ]
 			],
 			[
 				'type'    => 'number',
 				'name'    => esc_html__( 'Running Time', 'ggl-post-types' ),
-				'id'      => $prefix . 'short_movie_running_time',
+				'id'      => 'short_movie_running_time',
 				'desc'    => esc_html__( 'The short\'s running time in minutes', 'ggl-post-types' ),
 				'std'     => 5,
 				'step'    => 1,
@@ -505,7 +493,7 @@ function movie_short_movie_box( $meta_boxes ) {
 			[
 				'type'    => 'number',
 				'name'    => esc_html__( 'Release Year', 'ggl-post-types' ),
-				'id'      => $prefix . 'short_movie_release_year',
+				'id'      => 'short_movie_release_year',
 				'std'     => 1970,
 				'step'    => 1,
 				'min'     => 0,

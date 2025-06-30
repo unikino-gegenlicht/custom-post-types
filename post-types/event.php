@@ -1,11 +1,7 @@
 <?php
-//require_once '../language-mapping.php';
-$metaboxPrefix = "event_";
 
 function ggl_post_type_event(): void {
-	register_post_type(
-		'event',
-		[
+	register_post_type( 'event', [
 			'label'               => __( 'Events', 'ggl-post-types' ),
 			'labels'              => [
 				'menu_name'          => __( 'Events', 'ggl-post-types' ),
@@ -32,14 +28,13 @@ function ggl_post_type_event(): void {
 			'delete_with_user'    => false,
 			'menu_position'       => 7,
 			'menu_icon'           => 'dashicons-schedule',
-			'supports'            => [ 'editor', 'thumbnail' ],
+			'supports'            => [ 'thumbnail' ],
 			'taxonomies'          => [ 'semester', 'special-program' ],
 			'rewrite'             => [
 				'with_front' => true,
 				'pages'      => false,
 			]
-		]
-	);
+		] );
 }
 
 function generate_numerical_event_id( $post_id ): void {
@@ -52,13 +47,12 @@ function generate_numerical_event_id( $post_id ): void {
 	wp_update_post( array(
 		'ID'         => $post_id,
 		'post_name'  => $post_id,
-		'post_title' => (array_key_exists('event_german_title', $_POST) && array_key_exists('event_english_title', $_POST)) ? $_POST['event_german_title'] . " (" . $_POST['event_english_title'] . ")" : "TBA" ,
+		'post_title' => ( array_key_exists( 'german_title', $_POST ) && array_key_exists( 'english_title', $_POST ) ) ? $_POST['german_title'] . " (" . $_POST['english_title'] . ")" : "TBA",
 	) );
 	add_action( 'save_post_event', 'generate_numerical_event_id' );
 }
 
 function event_extended_info_meta_boxes( $meta_boxes ) {
-	global $metaboxPrefix;
 	$meta_boxes[] = [
 		'title'      => esc_html__( 'Event Information', 'ggl-post-types' ),
 		'id'         => 'movie_information',
@@ -74,21 +68,21 @@ function event_extended_info_meta_boxes( $meta_boxes ) {
 			[
 				'type'     => 'text',
 				'name'     => esc_html__( 'German Title', 'ggl-post-types' ),
-				'id'       => $metaboxPrefix . 'german_title',
+				'id'       => 'german_title',
 				'desc'     => esc_html__( 'Please enter the German title of the event here', 'ggl-post-types' ),
 				'required' => true
 			],
 			[
 				'type'     => 'text',
 				'name'     => esc_html__( 'English Title', 'ggl-post-types' ),
-				'id'       => $metaboxPrefix . 'english_title',
+				'id'       => 'english_title',
 				'desc'     => esc_html__( 'Please enter the English title of the event here', 'ggl-post-types' ),
 				'required' => true
 			],
 			[
 				'type'    => 'radio',
 				'name'    => esc_html__( 'License Type', 'ggl-post-types' ),
-				'id'      => $metaboxPrefix . 'license_type',
+				'id'      => 'license_type',
 				'inline'  => true,
 				'options' => [
 					'full' => esc_html__( 'Advertisement License', 'ggl-post-types' ),
@@ -101,7 +95,7 @@ function event_extended_info_meta_boxes( $meta_boxes ) {
 			[
 				'type'     => 'select',
 				'name'     => esc_html__( 'Age Rating', 'ggl-post-types' ),
-				'id'       => $metaboxPrefix . 'age_rating',
+				'id'       => 'age_rating',
 				'desc'     => esc_html__( 'The official age rating set by the FSK (https://www.fsk.de/?seitid=70&tid=70)', 'ggl-post-types' ),
 				'options'  => [
 					- 3 => esc_html__( 'Not Applicable', 'ggl-post-types' ),
@@ -119,7 +113,7 @@ function event_extended_info_meta_boxes( $meta_boxes ) {
 			[
 				'type'     => 'number',
 				'name'     => esc_html__( 'Duration', 'ggl-post-types' ),
-				'id'       => $metaboxPrefix . 'duration',
+				'id'       => 'duration',
 				'desc'     => esc_html__( 'The event\'s duration in minutes', 'ggl-post-types' ),
 				'std'      => 90,
 				'step'     => 1,
@@ -129,19 +123,19 @@ function event_extended_info_meta_boxes( $meta_boxes ) {
 			[
 				'type'     => 'radio',
 				'name'     => esc_html__( 'Selected by', 'ggl-post-types' ),
-				'id'       => $metaboxPrefix . 'selected_by_type',
+				'id'       => 'selected_by',
 				'inline'   => true,
 				'required' => true,
 				'options'  => [
-					'member'      => esc_html__( 'Team Member', 'ggl-post-types' ),
-					'cooperation' => esc_html__( 'Cooperation Partner', 'ggl-post-types' ),
-					'hidden'      => esc_html__( 'Don\'t show', 'ggl-post-types' )
+					'member' => esc_html__( 'Team Member', 'ggl-post-types' ),
+					'coop'   => esc_html__( 'Cooperation Partner', 'ggl-post-types' ),
+					'hidden' => esc_html__( 'Don\'t show', 'ggl-post-types' )
 				]
 			],
 			[
 				'type'        => 'post',
 				'name'        => esc_html__( 'Team Member', 'ggl-post-types' ),
-				'id'          => $metaboxPrefix . 'member_id',
+				'id'          => 'team_member_id',
 				'post_type'   => 'team-member',
 				'field_type'  => 'select_advanced',
 				'add_new'     => true,
@@ -150,12 +144,12 @@ function event_extended_info_meta_boxes( $meta_boxes ) {
 					'post_status'    => 'publish',
 					'posts_per_page' => - 1
 				],
-				'visible'     => [ $metaboxPrefix . 'selected_by_type', '=', 'member' ]
+				'visible'     => [ 'selected_by', '=', 'member' ]
 			],
 			[
 				'type'        => 'post',
 				'name'        => esc_html__( 'Cooperation Partner', 'ggl-post-types' ),
-				'id'          => $metaboxPrefix . 'cooperation_partner_id',
+				'id'          => 'cooperation_partner_id',
 				'post_type'   => 'cooperation-partner',
 				'field_type'  => 'select_advanced',
 				'placeholder' => esc_html__( 'Select a Cooperation Partner', 'ggl-post-types' ),
@@ -164,12 +158,12 @@ function event_extended_info_meta_boxes( $meta_boxes ) {
 					'post_status'    => 'publish',
 					'posts_per_page' => - 1
 				],
-				'visible'     => [ $metaboxPrefix . 'selected_by_type', '=', 'cooperation' ]
+				'visible'     => [ 'selected_by', '=', 'cooperation' ]
 			],
 			[
 				'type'     => 'radio',
 				'name'     => esc_html__( 'Program Type', 'ggl-post-types' ),
-				'id'       => $metaboxPrefix . 'program_type',
+				'id'       => 'program_type',
 				'inline'   => true,
 				'required' => true,
 				'options'  => [
@@ -181,7 +175,7 @@ function event_extended_info_meta_boxes( $meta_boxes ) {
 				'type'        => 'taxonomy',
 				'name'        => esc_html__( 'Special Program', 'ggl-post-types' ),
 				'placeholder' => esc_html__( 'Select a Special Program', 'ggl-post-types' ),
-				'id'          => $metaboxPrefix . 'special_program',
+				'id'          => 'special_program',
 				'taxonomy'    => 'special-program',
 				'required'    => false,
 				'field_type'  => 'select_advanced',
@@ -190,7 +184,7 @@ function event_extended_info_meta_boxes( $meta_boxes ) {
 					'number' => 10,
 				],
 				'ajax'        => false,
-				'visible'     => [ $metaboxPrefix . 'program_type', '=', 'special_program' ]
+				'visible'     => [ 'program_type', '=', 'special_program' ]
 			],
 		],
 	];
@@ -199,8 +193,6 @@ function event_extended_info_meta_boxes( $meta_boxes ) {
 }
 
 function event_sound_information_meta_boxes( $meta_boxes ): mixed {
-	global $metaboxPrefix, $GGL_ISO693_3;
-
 	$meta_boxes[] = [
 		'title'      => esc_html__( 'Audio and Subtitles', 'ggl-post-types' ),
 		'id'         => 'audio_and_subtitle_information',
@@ -211,7 +203,7 @@ function event_sound_information_meta_boxes( $meta_boxes ): mixed {
 			[
 				'type'     => 'radio',
 				'name'     => esc_html__( 'Audio Type', 'ggl-post-types' ),
-				'id'       => $metaboxPrefix . 'audio_type',
+				'id'       => 'audio_type',
 				'inline'   => true,
 				'required' => true,
 				'options'  => [
@@ -222,7 +214,7 @@ function event_sound_information_meta_boxes( $meta_boxes ): mixed {
 			[
 				'type'     => 'select_advanced',
 				'name'     => esc_html__( 'Audio Language', 'ggl-post-types' ),
-				'id'       => $metaboxPrefix . 'audio_language',
+				'id'       => 'audio_language',
 				'std'      => 'eng',
 				'options'  => generate_language_mapping(),
 				'required' => false,
@@ -230,7 +222,7 @@ function event_sound_information_meta_boxes( $meta_boxes ): mixed {
 			[
 				'type'     => 'select_advanced',
 				'name'     => esc_html__( 'Subtitle Language', 'ggl-post-types' ),
-				'id'       => $metaboxPrefix . 'subtitle_language',
+				'id'       => 'subtitle_language',
 				'std'      => 'deu',
 				'options'  => generate_language_mapping(),
 				'required' => true
@@ -242,8 +234,6 @@ function event_sound_information_meta_boxes( $meta_boxes ): mixed {
 }
 
 function event_screening_info_meta_boxes( $meta_boxes ) {
-	global $metaboxPrefix;
-
 	$meta_boxes[] = [
 		'title'      => esc_html__( 'Screening Information', 'ggl-post-types' ),
 		'id'         => 'screening_information',
@@ -254,7 +244,7 @@ function event_screening_info_meta_boxes( $meta_boxes ) {
 			[
 				'type'        => 'taxonomy',
 				'name'        => esc_html__( 'Semester', 'ggl-post-type' ),
-				'id'          => $metaboxPrefix . 'semester',
+				'id'          => 'semester',
 				'placeholder' => esc_html__( 'Select a Semester', 'ggl-post-types' ),
 				'taxonomy'    => 'semester',
 				'required'    => true,
@@ -267,7 +257,7 @@ function event_screening_info_meta_boxes( $meta_boxes ) {
 			[
 				'type'       => 'datetime',
 				'name'       => esc_html__( 'Date and Time', 'ggl-post-types' ),
-				'id'         => $metaboxPrefix . 'screening_date',
+				'id'         => 'screening_date',
 				'timestamp'  => true,
 				'js_options' => [
 					'dateFormat' => 'dd.mm.yy',
@@ -277,7 +267,7 @@ function event_screening_info_meta_boxes( $meta_boxes ) {
 			[
 				'type'     => 'text',
 				'name'     => esc_html__( 'Location', 'ggl-post-types' ),
-				'id'       => $metaboxPrefix . 'screening_location',
+				'id'       => 'screening_location',
 				'desc'     => esc_html__( 'Screening locations name (or address if needed)', 'ggl-post-types' ),
 				'std'      => esc_html__( 'Stage 1 @ UNIKUM Oldenburg', 'ggl-post-types' ),
 				'required' => true
@@ -285,7 +275,7 @@ function event_screening_info_meta_boxes( $meta_boxes ) {
 			[
 				'type'     => 'radio',
 				'name'     => esc_html__( 'Addmission Type', 'ggl-post-types' ),
-				'id'       => $metaboxPrefix . 'addmission_type',
+				'id'       => 'admission_type',
 				'inline'   => true,
 				'required' => true,
 				'options'  => [
@@ -298,11 +288,11 @@ function event_screening_info_meta_boxes( $meta_boxes ) {
 			[
 				'type'    => 'number',
 				'name'    => esc_html__( 'Fee', 'ggl-post-types' ),
-				'id'      => $metaboxPrefix . 'admission_fee',
+				'id'      => 'admission_fee',
 				'std'     => 3,
 				'min'     => 0,
 				'step'    => 0.01,
-				'visible' => [ $metaboxPrefix . 'addmission_type', "=", "paid" ]
+				'visible' => [ 'admission_type', "=", "paid" ]
 			],
 		],
 	];
@@ -311,10 +301,7 @@ function event_screening_info_meta_boxes( $meta_boxes ) {
 }
 
 
-
 function event_additional_information_box( $meta_boxes ) {
-	global $metaboxPrefix;
-
 	$meta_boxes[] = [
 		'title'      => esc_html__( "Why it's worth seeing", 'ggl-post-types' ),
 		'id'         => 'additional_information',
@@ -325,13 +312,55 @@ function event_additional_information_box( $meta_boxes ) {
 		'fields'     => [
 			[
 				'type' => 'heading',
-				'title'      => esc_html__( "Why it's worth seeing", 'ggl-post-types' ),
+				'name' => esc_html__( "Content Summary", 'ggl-post-types' ),
 			],
 			[
-				'type'     => 'wysiwyg',
-				'id'       => $metaboxPrefix . 'worth_seeing_since',
-				'required' => false
-			]
+				'type'                  => 'wysiwyg',
+				'id'                    => 'summary',
+				'required'              => true,
+				'add_to_wpseo_analysis' => true,
+				'options'               => [
+					'teeny'         => true,
+					'media_buttons' => false,
+				]
+			],
+			[
+				'type' => 'heading',
+				'name' => esc_html__( "Why it's worth seeing", 'ggl-post-types' ),
+			],
+			[
+				'type'                  => 'wysiwyg',
+				'id'                    => 'worth_to_see',
+				'required'              => true,
+				'add_to_wpseo_analysis' => true,
+				'options'               => [
+					'teeny'         => true,
+					'media_buttons' => false,
+				]
+			],
+			[
+				'type' => 'heading',
+				'name' => esc_html__( "Content Notice", 'ggl-post-types' ),
+			],
+			[
+				'type' => 'checkbox',
+				'name' => esc_html__( 'Show Content Notice', 'ggl-post-types' ),
+				'id'   => 'show_content_notice',
+				'std'  => 0,
+			],
+			[
+				'type'                  => 'wysiwyg',
+				'id'                    => 'content_notice',
+				'required'              => false,
+				'add_to_wpseo_analysis' => false,
+				'dfw'                   => false,
+				'visible'               => [ 'show_content_notice', true ],
+				'desc'                  => esc_html__( 'The content notice will be displayed above the content summary', 'ggl-post-types' ),
+				'options'               => [
+					'teeny'         => true,
+					'media_buttons' => false,
+				]
+			],
 		],
 	];
 

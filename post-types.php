@@ -69,7 +69,7 @@ add_filter( 'rwmb_meta_boxes', 'event_screening_info_meta_boxes' );
 add_filter( 'rwmb_meta_boxes', 'event_additional_information_box' );
 add_action( 'save_post_event', 'generate_numerical_event_id' );
 
-require_once 'post-types/supporters.php';
+require_once 'post-types/supporter.php';
 add_action( 'init', 'ggl_post_type_supporter' );
 add_filter( 'rwmb_meta_boxes', 'supporter_register_meta_boxes' );
 

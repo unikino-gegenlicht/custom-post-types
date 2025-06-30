@@ -50,38 +50,39 @@ function ggl_taxonomy_program_type_meta_boxes( $meta_boxes ): mixed {
 			[
 				'type' => 'color',
 				'name' => esc_html__( 'Background Color', 'ggl-post-types' ),
-				'id'   => $prefix . 'banner_color',
+				'id'   => 'background_color',
 				'desc' => esc_html__( 'The color used as the background for content related the special programm', 'ggl-post-types' ),
 			],
 			[
 				'type' => 'color',
-				'name' => esc_html__( 'Background Color (Dark Mode)', 'ggl-post-types' ),
-				'id'   => $prefix . 'banner_color',
-				'desc' => esc_html__( 'The color used as the background in dark mode for content related the special programm', 'ggl-post-types' ),
-			],
-			[
-				'type' => 'color',
 				'name' => esc_html__( 'Text Color', 'ggl-post-types' ),
-				'id'   => $prefix . 'text_color',
+				'id'   => 'text_color',
 				'desc' => esc_html__( 'The color used for the text on the special programme program related pages', 'ggl-post-types' ),
 			],
 			[
 				'type' => 'color',
+				'name' => esc_html__( 'Background Color (Dark Mode)', 'ggl-post-types' ),
+				'id'   => 'dark_background_color',
+				'desc' => esc_html__( 'The color used as the background in dark mode for content related the special programm', 'ggl-post-types' ),
+			],
+
+			[
+				'type' => 'color',
 				'name' => esc_html__( 'Text Color (Dark Mode)', 'ggl-post-types' ),
-				'id'   => $prefix . 'text_color_dark',
+				'id'   => 'dark_text_color',
 				'desc' => esc_html__( 'The color used for the text in dark mode on the special programm related pages', 'ggl-post-types' ),
 			],
 			[
 				'type'         => 'single_image',
 				'name'         => __( 'Program Logo', 'ggl-post-types' ),
-				'id'           => $prefix . 'image',
+				'id'           => 'logo',
 				'force_delete' => false,
 				'desc'         => esc_html__( 'This logo is displayed on the front page to identify the special program', 'ggl-post-types' ),
 			],
 			[
 				'type'         => 'single_image',
 				'name'         => __( 'Image for Anonymized Detail Pages', 'ggl-post-types' ),
-				'id'           => $prefix . 'anonymous_detail_image',
+				'id'           => 'anonymous_detail_image',
 				'force_delete' => false,
 				'desc'         => esc_html__( 'This image might be show to unauthenticated users visiting the website' )
 			],
