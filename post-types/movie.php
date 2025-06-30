@@ -439,8 +439,6 @@ function movie_text_boxes( $meta_boxes ) {
 }
 
 function movie_short_movie_box( $meta_boxes ) {
-	$prefix = 'short_movie';
-
 	$meta_boxes[] = [
 		'title'      => esc_html__( 'Short Movie', 'ggl-post-types' ),
 		'id'         => 'short_movie',
@@ -463,13 +461,13 @@ function movie_short_movie_box( $meta_boxes ) {
 				'type'    => 'text',
 				'name'    => esc_html__( 'Title', 'ggl-post-types' ),
 				'id'      => 'short_movie_title',
-				'visible' => [ $prefix . 'short_movie_screened', '=', 'yes' ]
+				'visible' => [ 'short_movie_screened', '=', 'yes' ]
 			],
 			[
 				'type'    => 'text',
 				'name'    => esc_html__( 'Directed by', 'ggl-post-types' ),
 				'id'      => 'short_movie_directed_by',
-				'visible' => [ $prefix . 'short_movie_screened', '=', 'yes' ]
+				'visible' => [ 'short_movie_screened', '=', 'yes' ]
 
 			],
 			[
@@ -488,7 +486,7 @@ function movie_short_movie_box( $meta_boxes ) {
 				'std'     => 5,
 				'step'    => 1,
 				'min'     => 0,
-				'visible' => [ $prefix . 'short_movie_screened', '=', 'yes' ]
+				'visible' => [ 'short_movie_screened', '=', 'yes' ]
 			],
 			[
 				'type'    => 'number',
@@ -497,7 +495,7 @@ function movie_short_movie_box( $meta_boxes ) {
 				'std'     => 1970,
 				'step'    => 1,
 				'min'     => 0,
-				'visible' => [ $prefix . 'short_movie_screened', '=', 'yes' ]
+				'visible' => [ 'short_movie_screened', '=', 'yes' ]
 			]
 		],
 	];
