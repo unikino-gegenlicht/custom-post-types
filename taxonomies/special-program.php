@@ -82,9 +82,9 @@ function ggl_taxonomy_program_type_meta_boxes( $meta_boxes ): mixed {
 			[
 				'type'         => 'single_image',
 				'name'         => __( 'Image for Anonymized Detail Pages', 'ggl-post-types' ),
-				'id'           => 'anonymous_detail_image',
+				'id'           => 'anonymous_image',
 				'force_delete' => false,
-				'desc'         => esc_html__( 'This image might be show to unauthenticated users visiting the website' )
+				'desc' => esc_html__("Upload an image for fallback usage which is displayed on a movies detail page in case one hasn't been uploaded or the movie may not be advertised", 'gegenlicht' ),
 			],
 		],
 	];

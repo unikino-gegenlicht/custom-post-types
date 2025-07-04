@@ -61,34 +61,37 @@ function team_member_register_meta_boxes( $meta_boxes ) {
 			],
 			[
 				'type'    => 'radio',
-				'id'      => $prefix . 'status',
+				'id'      => 'status',
 				'inline'  => true,
 				'options' => [
-					'probationary' => esc_html__( 'Probationary', 'ggl-post-types' ),
 					'active'       => esc_html__( 'Active', 'ggl-post-types' ),
 					'former'       => esc_html__( 'Former', 'ggl-post-types' ),
 				]
-			]
-		],
-	];
-
-	$meta_boxes[] = [
-		'title'      => esc_html__( 'Membership Type', 'ggl-post-types' ),
-		'id'         => 'membership_information',
-		'context'    => 'before_permalink',
-		'style'      => 'seamless',
-		'post_types' => [ 'team-member' ],
-		'fields'     => [
-			[
-				'type' => 'heading',
-				'name' => esc_html__( 'Introduction', 'ggl-post-types' ),
 			],
 			[
-				'type'   => 'text',
-				'id'     => $prefix . 'introduction',
-				'inline' => true,
-				'title'  => esc_html__( 'Introduction', 'ggl-post-types' ),
-				'desc'   => esc_html__( 'This short introduction will appear on the team page below your photo' )
+				'type' => 'heading',
+				'name' => esc_html__( 'Joined In', 'ggl-post-types' ),
+			],
+			[
+				'type'    => 'number',
+				'id'      => 'joined_in',
+				'inline'  => true,
+				'std'     => (int) date('Y'),
+				'step'    => 1,
+				'min'     => 0,
+			],
+			[
+				'type' => 'heading',
+				'name' => esc_html__( 'Left In', 'ggl-post-types' ),
+			],
+			[
+				'type'    => 'number',
+				'id'      => 'left_in',
+				'inline'  => true,
+				'step'    => 1,
+				'min'     => 0,
+				'visible'  => [ 'status', '=', 'former' ]
+
 			]
 		],
 	];
