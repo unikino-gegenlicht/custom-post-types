@@ -156,7 +156,8 @@ function movie_extended_info_meta_boxes( $meta_boxes ) {
 					'member' => esc_html__( 'Team Member', 'ggl-post-types' ),
 					'coop'   => esc_html__( 'Cooperation Partner', 'ggl-post-types' ),
 					'hidden' => esc_html__( 'Don\'t show', 'ggl-post-types' )
-				]
+				],
+				'std' => 'member',
 			],
 			[
 				'type'        => 'post',
@@ -197,7 +198,8 @@ function movie_extended_info_meta_boxes( $meta_boxes ) {
 				'options'  => [
 					'main'            => esc_html__( 'Main Program', 'ggl-post-types' ),
 					'special_program' => esc_html__( 'Special Program', 'ggl-post-types' ),
-				]
+				],
+				'std' => 'main',
 			],
 			[
 				'type'        => 'taxonomy',
@@ -238,7 +240,8 @@ function movie_licensing_and_age_rating_meta_boxes( $meta_boxes ): mixed {
 					'full' => esc_html__( 'Advertisement License', 'ggl-post-types' ),
 					'pool' => esc_html__( 'Pool License', 'ggl-post-types' ),
 					'none' => esc_html__( 'No License', 'ggl-post-types' ),
-				]
+				],
+				'std'  => 'full',
 			],
 			[
 				'type'     => 'select',
@@ -281,6 +284,7 @@ function movie_sound_information_meta_boxes( $meta_boxes ): mixed {
 					'original'        => esc_html__( 'Original', 'ggl-post-types' ),
 					'synchronization' => esc_html__( 'Synchronization', 'ggl-post-types' ),
 				],
+				'default'  => 'original',
 			],
 			[
 				'type'     => 'select_advanced',
@@ -408,6 +412,41 @@ function movie_text_boxes( $meta_boxes ) {
 					'teeny'         => true,
 					'media_buttons' => false,
 				]
+			],
+			[
+				'type' => 'heading',
+				'name' => esc_html__( "Content Summary (Anonymized)", 'ggl-post-types' ),
+				'desc' => esc_html__("Please enter an anonymized version of the content summary here", 'ggl-post-types' ),
+				'visible'     => [ 'license_type', '!=', 'full' ],
+			],
+			[
+				'type'                  => 'wysiwyg',
+				'id'                    => 'anon_summary',
+				'required'              => false,
+				'add_to_wpseo_analysis' => false,
+				'options'               => [
+					'teeny'         => true,
+					'media_buttons' => false,
+				],
+				'visible'     => [ 'license_type', '!=', 'full' ],
+			],
+			[
+				'type' => 'heading',
+				'name' => esc_html__( "Why it's worth seeing (Anonymized)", 'ggl-post-types' ),
+				'desc' => esc_html__("Please enter an anonymized version of the \"Why it's worth seeing?\" summary here", 'ggl-post-types' ),
+				'visible'     => [ 'license_type', '!=', 'full' ],
+			],
+			[
+				'type'                  => 'wysiwyg',
+				'id'                    => 'anon_worth_to_see',
+				'required'              => false,
+				'add_to_wpseo_analysis' => false,
+				'options'               => [
+					'teeny'         => true,
+					'media_buttons' => false,
+				],
+				'visible'     => [ 'license_type', '!=', 'full' ],
+
 			],
 			[
 				'type' => 'heading',
