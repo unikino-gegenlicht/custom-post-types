@@ -81,6 +81,13 @@ function ggl_taxonomy_program_type_meta_boxes( $meta_boxes ): mixed {
 			],
 			[
 				'type'         => 'single_image',
+				'name'         => __( 'Program Logo (Dark Mode)', 'ggl-post-types' ),
+				'id'           => 'logo_dark',
+				'force_delete' => false,
+				'desc'         => esc_html__( 'This logo is displayed on the front page to identify the special program if the dark mode is active', 'ggl-post-types' ),
+			],
+			[
+				'type'         => 'single_image',
 				'name'         => __( 'Image for Anonymized Detail Pages', 'ggl-post-types' ),
 				'id'           => 'anonymous_image',
 				'force_delete' => false,
