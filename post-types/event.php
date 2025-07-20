@@ -247,7 +247,7 @@ function event_screening_info_meta_boxes( $meta_boxes ) {
 				'id'          => 'semester',
 				'placeholder' => esc_html__( 'Select a Semester', 'ggl-post-types' ),
 				'taxonomy'    => 'semester',
-				'required'    => true,
+				'required'    => false,
 				'field_type'  => 'select_advanced',
 				'query_args'  => [
 					'number' => 10,

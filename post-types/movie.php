@@ -157,7 +157,7 @@ function movie_extended_info_meta_boxes( $meta_boxes ) {
 					'coop'   => esc_html__( 'Cooperation Partner', 'ggl-post-types' ),
 					'hidden' => esc_html__( 'Don\'t show', 'ggl-post-types' )
 				],
-				'std' => 'member',
+				'std'      => 'member',
 			],
 			[
 				'type'        => 'post',
@@ -199,7 +199,7 @@ function movie_extended_info_meta_boxes( $meta_boxes ) {
 					'main'            => esc_html__( 'Main Program', 'ggl-post-types' ),
 					'special_program' => esc_html__( 'Special Program', 'ggl-post-types' ),
 				],
-				'std' => 'main',
+				'std'      => 'main',
 			],
 			[
 				'type'        => 'taxonomy',
@@ -241,7 +241,7 @@ function movie_licensing_and_age_rating_meta_boxes( $meta_boxes ): mixed {
 					'pool' => esc_html__( 'Pool License', 'ggl-post-types' ),
 					'none' => esc_html__( 'No License', 'ggl-post-types' ),
 				],
-				'std'  => 'full',
+				'std'      => 'full',
 			],
 			[
 				'type'     => 'select',
@@ -260,6 +260,26 @@ function movie_licensing_and_age_rating_meta_boxes( $meta_boxes ): mixed {
 				'std'      => - 2,
 				'required' => true
 			],
+			[
+				'type'    => 'checkbox_list',
+				'name'    => esc_html__( 'Descriptors', 'ggl-post-types' ),
+				'id'      => 'descriptors',
+				'desc'    => '<a href="https://www.fsk.de/freigabensuche/" target="_blank">' . __( 'FSK Title Lookup', 'ggl-post-types' ) . '</a>',
+				'options' => [
+					'sexualized_violence' => esc_html__( 'Sexualized Violence', 'ggl-post-types' ),
+					'violence'            => esc_html__( 'Violence', 'ggl-post-types' ),
+					'self_harm'           => esc_html__( 'Self Harm', 'ggl-post-types' ),
+					'drug_usage'          => esc_html__( 'Drug Usage', 'ggl-post-types' ),
+					'discrimination'      => esc_html__( 'Discrimination', 'ggl-post-types' ),
+					'sexuality'           => esc_html__( 'Sexuality', 'ggl-post-types' ),
+					'threat'              => esc_html__( 'Threat', 'ggl-post-types' ),
+					'injury'              => esc_html__( 'Injury', 'ggl-post-types' ),
+					'stressful_topics'    => esc_html__( 'Stressful Topics', 'ggl-post-types' ),
+					'language'            => esc_html__( 'Language', 'ggl-post-types' ),
+					'nudeness'            => esc_html__( 'Nudeness', 'ggl-post-types' ),
+				]
+
+			]
 		]
 	];
 
@@ -322,7 +342,7 @@ function movie_screening_info_meta_boxes( $meta_boxes ) {
 				'id'          => 'semester',
 				'placeholder' => esc_html__( 'Select a Semester', 'ggl-post-types' ),
 				'taxonomy'    => 'semester',
-				'required'    => true,
+				'required'    => false,
 				'field_type'  => 'select_advanced',
 				'query_args'  => [
 					'number' => 10,
@@ -414,10 +434,10 @@ function movie_text_boxes( $meta_boxes ) {
 				]
 			],
 			[
-				'type' => 'heading',
-				'name' => esc_html__( "Content Summary (Anonymized)", 'ggl-post-types' ),
-				'desc' => esc_html__("Please enter an anonymized version of the content summary here", 'ggl-post-types' ),
-				'visible'     => [ 'license_type', '!=', 'full' ],
+				'type'    => 'heading',
+				'name'    => esc_html__( "Content Summary (Anonymized)", 'ggl-post-types' ),
+				'desc'    => esc_html__( "Please enter an anonymized version of the content summary here", 'ggl-post-types' ),
+				'visible' => [ 'license_type', '!=', 'full' ],
 			],
 			[
 				'type'                  => 'wysiwyg',
@@ -428,13 +448,13 @@ function movie_text_boxes( $meta_boxes ) {
 					'teeny'         => true,
 					'media_buttons' => false,
 				],
-				'visible'     => [ 'license_type', '!=', 'full' ],
+				'visible'               => [ 'license_type', '!=', 'full' ],
 			],
 			[
-				'type' => 'heading',
-				'name' => esc_html__( "Why it's worth seeing (Anonymized)", 'ggl-post-types' ),
-				'desc' => esc_html__("Please enter an anonymized version of the \"Why it's worth seeing?\" summary here", 'ggl-post-types' ),
-				'visible'     => [ 'license_type', '!=', 'full' ],
+				'type'    => 'heading',
+				'name'    => esc_html__( "Why it's worth seeing (Anonymized)", 'ggl-post-types' ),
+				'desc'    => esc_html__( "Please enter an anonymized version of the \"Why it's worth seeing?\" summary here", 'ggl-post-types' ),
+				'visible' => [ 'license_type', '!=', 'full' ],
 			],
 			[
 				'type'                  => 'wysiwyg',
@@ -445,7 +465,7 @@ function movie_text_boxes( $meta_boxes ) {
 					'teeny'         => true,
 					'media_buttons' => false,
 				],
-				'visible'     => [ 'license_type', '!=', 'full' ],
+				'visible'               => [ 'license_type', '!=', 'full' ],
 
 			],
 			[
