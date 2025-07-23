@@ -40,9 +40,37 @@ function ggl_taxonomy_semester_meta_boxes( $meta_boxes ): mixed {
 				'id'         => $prefix . 'start',
 				'desc'       => esc_html__( 'The date at which the first official screening of the semester will take place', 'ggl-post-types' ),
 				'timestamp'  => false,
+				'required'    => true,
 				'js_options' => [
 					'dateFormat' => 'dd.mm.yy',
 				],
+			],
+		],
+	];
+
+	$meta_boxes[] = [
+		'title'      => esc_html__( 'Archival Data', 'ggl-post-types' ),
+		'id'         => 'archival-information',
+		'taxonomies' => 'semester',
+		'context'    => 'normal',
+		'fields'     => [
+			[
+				'type'      => 'switch',
+				'name'      => esc_html__( 'Add Archival Data', 'ggl-post-types' ),
+				'desc'      => esc_html__( 'Setting this value to on will lead to the movies entered down below to be added to the archival data instead of replacing it. (not recommended)', 'ggl-post-types' ),
+				'id'        => $prefix . 'add_archival_data',
+				'on_label'  => __( "Yes", 'ggl-post-types' ),
+				'off_label' => __( "No", 'ggl-post-types' ),
+			],
+			[
+				'type'        => 'key_value',
+				'name'        => esc_html__( 'Shown Movies', 'ggl-post-types' ),
+				'id'          => $prefix . 'shown_movies',
+				'desc'        => esc_html__( 'When filling in this archival list, you will disable the reading of the created posts for the semester. The movies displayed here are sorted by the date you entered before being rendered.', 'ggl-post-types' ),
+				'placeholder' => [
+					'key'   => 'Date (dd.mm.yy)',
+					'value' => 'Movie/Event Name',
+				]
 			],
 		],
 	];
