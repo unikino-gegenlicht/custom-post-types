@@ -276,7 +276,9 @@ function movie_licensing_and_age_rating_meta_boxes( $meta_boxes ): mixed {
 					'injury'              => esc_html__( 'Injury', 'ggl-post-types' ),
 					'stressful_topics'    => esc_html__( 'Stressful Topics', 'ggl-post-types' ),
 					'language'            => esc_html__( 'Language', 'ggl-post-types' ),
-					'nudeness'            => esc_html__( 'Nudeness', 'ggl-post-types' ),
+					'nudity'              => esc_html__( 'Nudity', 'ggl-post-types' ),
+					'risky_behaviour'     => esc_html__( 'Risky Behaviour', 'ggl-post-types' ),
+					'marginalization'     => esc_html__( 'Marginalization', 'ggl-post-types' ),
 				]
 
 			]
