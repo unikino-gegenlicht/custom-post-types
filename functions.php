@@ -45,6 +45,7 @@ function unregister_taxonomies() {
 
 function ggl_post_types_load_textdomain() {
 	load_plugin_textdomain( 'ggl-post-types', false, dirname( plugin_basename( __FILE__ ) ) . '/languages' );
+	load_plugin_textdomain( 'ggl-i18n', false, dirname( plugin_basename( __FILE__ ) ) . '/languages' );
 }
 
 function reorder_menu() {
@@ -63,7 +64,7 @@ function reorder_menu() {
 function generate_language_mapping(): array {
 	$output = array();
 	foreach ( GGL_LANGUAGES as $languageKey ) {
-		$translatedLanguage     = __( $languageKey, 'ggl-post-types' );
+		$translatedLanguage     = __( $languageKey, 'ggl-i18n' );
 		$output[ $languageKey ] = $translatedLanguage;
 	}
 
@@ -73,7 +74,7 @@ function generate_language_mapping(): array {
 function generate_country_mapping(): array {
 	$output = array();
 	foreach ( GGL_COUNTRIES as $code ) {
-		$translatedName  = __( $code, 'ggl-post-types' );
+		$translatedName  = __( $code, 'ggl-i18n' );
 		$output[ $code ] = $translatedName;
 	}
 

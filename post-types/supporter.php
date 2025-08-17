@@ -62,6 +62,11 @@ function supporter_register_meta_boxes( $meta_boxes ) {
 				'name' => esc_html__( 'Website', 'ggl-post-types' ),
 				'id'   => $prefix . 'website',
 			],
+			[
+				"type" => "checkbox",
+				"name" => esc_html__("Display on Top", "ggl-post-types"),
+				"id"   => $prefix . 'display_first',
+			]
 		],
 	];
 
