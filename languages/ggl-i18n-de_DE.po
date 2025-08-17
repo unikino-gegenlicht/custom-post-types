@@ -1,0 +1,2216 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: GEGENLICHT 2\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/theme/wordpress-theme\n"
+"POT-Creation-Date: 2025-07-04T16:26:53+00:00\n"
+"PO-Revision-Date: 2025-07-11 15:58+0200\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: de\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.6\n"
+"X-Domain: ggl-post-types\n"
+
+msgid "AF"
+msgstr "Afghanistan"
+
+msgid "AX"
+msgstr "Åland Islands"
+
+msgid "AL"
+msgstr "Albanien"
+
+msgid "DZ"
+msgstr "Algerien"
+
+msgid "AS"
+msgstr "Samoa"
+
+msgid "AD"
+msgstr "Andorra"
+
+msgid "AO"
+msgstr "Angola"
+
+msgid "AI"
+msgstr "Anguilla"
+
+msgid "AQ"
+msgstr "Antarktis"
+
+msgid "AG"
+msgstr "Antigua und Barbuda"
+
+msgid "AR"
+msgstr "Argentinien"
+
+msgid "AM"
+msgstr "Armenien"
+
+msgid "AW"
+msgstr "Aruba"
+
+msgid "AU"
+msgstr "Australien"
+
+msgid "AT"
+msgstr "Österreich"
+
+msgid "AZ"
+msgstr "Aserbaidschan"
+
+msgid "BS"
+msgstr "Bahamas"
+
+msgid "BH"
+msgstr "Bahrain"
+
+msgid "BD"
+msgstr "Bangladesh"
+
+msgid "BB"
+msgstr "Barbados"
+
+msgid "BY"
+msgstr "Weissrussland"
+
+msgid "BE"
+msgstr "Belgien"
+
+msgid "BZ"
+msgstr "Belize"
+
+msgid "BJ"
+msgstr "Benin"
+
+msgid "BM"
+msgstr "Bermudas"
+
+msgid "BT"
+msgstr "Bhutan"
+
+msgid "BO"
+msgstr "Bolivien"
+
+msgid "BQ"
+msgstr "Karibische Niederlande"
+
+msgid "BA"
+msgstr "Bosnien-Herzegowina"
+
+msgid "BW"
+msgstr "Botswana"
+
+msgid "BV"
+msgstr "Bouvet Inseln"
+
+msgid "BR"
+msgstr "Brasilien"
+
+msgid "IO"
+msgstr "Britisch-Indischer Ozean"
+
+msgid "BN"
+msgstr "Brunei"
+
+msgid "BG"
+msgstr "Bulgarien"
+
+msgid "BF"
+msgstr "Burkina Faso"
+
+msgid "BI"
+msgstr "Burundi"
+
+msgid "KH"
+msgstr "Kambodscha"
+
+msgid "CM"
+msgstr "Kamerun"
+
+msgid "CA"
+msgstr "Kanada"
+
+msgid "CV"
+msgstr "Kap Verde"
+
+msgid "KY"
+msgstr "Kaiman Inseln"
+
+msgid "CF"
+msgstr "Zentralafrikanische Republik"
+
+msgid "TD"
+msgstr "Tschad"
+
+msgid "CL"
+msgstr "Chile"
+
+msgid "CN"
+msgstr "China"
+
+msgid "CX"
+msgstr "Christmas Island"
+
+msgid "CC"
+msgstr "Kokosinseln"
+
+msgid "CO"
+msgstr "Kolumbien"
+
+msgid "KM"
+msgstr "Komoren"
+
+msgid "CG"
+msgstr "Kongo"
+
+msgid "CD"
+msgstr "Demokratische Republik Kongo"
+
+msgid "CK"
+msgstr "Cook Inseln"
+
+msgid "CR"
+msgstr "Costa Rica"
+
+msgid "CI"
+msgstr "Elfenbeinküste"
+
+msgid "HR"
+msgstr "Kroatien"
+
+msgid "CU"
+msgstr "Kuba"
+
+msgid "CW"
+msgstr "Curaçao"
+
+msgid "CY"
+msgstr "Zypern"
+
+msgid "CZ"
+msgstr "Tschechische Republik"
+
+msgid "DK"
+msgstr "Dänemark"
+
+msgid "DJ"
+msgstr "Djibuti"
+
+msgid "DM"
+msgstr "Dominika"
+
+msgid "DO"
+msgstr "Dominikanische Republik"
+
+msgid "EC"
+msgstr "Ecuador"
+
+msgid "EG"
+msgstr "Ägypten"
+
+msgid "SV"
+msgstr "El Salvador"
+
+msgid "GQ"
+msgstr "Äquatorial Guinea"
+
+msgid "ER"
+msgstr "Eritrea"
+
+msgid "EE"
+msgstr "Estland"
+
+msgid "ET"
+msgstr "Äthiopien"
+
+msgid "FK"
+msgstr "Falkland Inseln"
+
+msgid "FO"
+msgstr "Färöer Inseln"
+
+msgid "FJ"
+msgstr "Fidschi"
+
+msgid "FI"
+msgstr "Finnland"
+
+msgid "FR"
+msgstr "Frankreich"
+
+msgid "GF"
+msgstr "französisch Guyana"
+
+msgid "PF"
+msgstr "Französisch Polynesien"
+
+msgid "TF"
+msgstr "Französisches Süd-Territorium"
+
+msgid "GA"
+msgstr "Gabun"
+
+msgid "GM"
+msgstr "Gambia"
+
+msgid "GE"
+msgstr "Georgien"
+
+msgid "DE"
+msgstr "Deutschland"
+
+msgid "GH"
+msgstr "Ghana"
+
+msgid "GI"
+msgstr "Gibraltar"
+
+msgid "GR"
+msgstr "Griechenland"
+
+msgid "GL"
+msgstr "Grönland"
+
+msgid "GD"
+msgstr "Grenada"
+
+msgid "GP"
+msgstr "Guadeloupe"
+
+msgid "GU"
+msgstr "Guam"
+
+msgid "GT"
+msgstr "Guatemala"
+
+msgid "GG"
+msgstr "Guernsey"
+
+msgid "GN"
+msgstr "Guinea"
+
+msgid "GW"
+msgstr "Guinea Bissau"
+
+msgid "GY"
+msgstr "Guyana"
+
+msgid "HT"
+msgstr "Haiti"
+
+msgid "HM"
+msgstr "Heard und McDonald Islands"
+
+msgid "VA"
+msgstr "Vatikan"
+
+msgid "HN"
+msgstr "Honduras"
+
+msgid "HK"
+msgstr "Hong Kong"
+
+msgid "HU"
+msgstr "Ungarn"
+
+msgid "IS"
+msgstr "Island"
+
+msgid "IN"
+msgstr "Indien"
+
+msgid "ID"
+msgstr "Indonesien"
+
+msgid "IR"
+msgstr "Iran"
+
+msgid "IQ"
+msgstr "Irak"
+
+msgid "IE"
+msgstr "Irland"
+
+msgid "IM"
+msgstr "Isle of Man"
+
+msgid "IL"
+msgstr "Israel"
+
+msgid "IT"
+msgstr "Italien"
+
+msgid "JM"
+msgstr "Jamaika"
+
+msgid "JP"
+msgstr "Japan"
+
+msgid "JE"
+msgstr "Jersey"
+
+msgid "JO"
+msgstr "Jordanien"
+
+msgid "KZ"
+msgstr "Kasachstan"
+
+msgid "KE"
+msgstr "Kenia"
+
+msgid "KI"
+msgstr "Kiribati"
+
+msgid "KP"
+msgstr "Nord Korea"
+
+msgid "KR"
+msgstr "Süd Korea"
+
+msgid "KW"
+msgstr "Kuwait"
+
+msgid "KG"
+msgstr "Kirgisistan"
+
+msgid "LA"
+msgstr "Laos"
+
+msgid "LV"
+msgstr "Lettland"
+
+msgid "LB"
+msgstr "Libanon"
+
+msgid "LS"
+msgstr "Lesotho"
+
+msgid "LR"
+msgstr "Liberia"
+
+msgid "LY"
+msgstr "Libyen"
+
+msgid "LI"
+msgstr "Liechtenstein"
+
+msgid "LT"
+msgstr "Litauen"
+
+msgid "LU"
+msgstr "Luxemburg"
+
+msgid "MO"
+msgstr "Macao"
+
+msgid "MK"
+msgstr "Mazedonien"
+
+msgid "MG"
+msgstr "Madagaskar"
+
+msgid "MW"
+msgstr "Malawi"
+
+msgid "MY"
+msgstr "Malaysia"
+
+msgid "MV"
+msgstr "Malediven"
+
+msgid "ML"
+msgstr "Mali"
+
+msgid "MT"
+msgstr "Malta"
+
+msgid "MH"
+msgstr "Marshall Inseln"
+
+msgid "MQ"
+msgstr "Martinique"
+
+msgid "MR"
+msgstr "Mauretanien"
+
+msgid "MU"
+msgstr "Mauritius"
+
+msgid "YT"
+msgstr "Mayotte"
+
+msgid "MX"
+msgstr "Mexiko"
+
+msgid "FM"
+msgstr "Mikronesien"
+
+msgid "MD"
+msgstr "Moldavien"
+
+msgid "MC"
+msgstr "Monaco"
+
+msgid "MN"
+msgstr "Mongolei"
+
+msgid "ME"
+msgstr "Montenegro"
+
+msgid "MS"
+msgstr "Montserrat"
+
+msgid "MA"
+msgstr "Marokko"
+
+msgid "MZ"
+msgstr "Mocambique"
+
+msgid "MM"
+msgstr "Birma"
+
+msgid "NA"
+msgstr "Namibia"
+
+msgid "NR"
+msgstr "Nauru"
+
+msgid "NP"
+msgstr "Nepal"
+
+msgid "NL"
+msgstr "Niederlande"
+
+msgid "NC"
+msgstr "Neukaledonien"
+
+msgid "NZ"
+msgstr "Neuseeland"
+
+msgid "NI"
+msgstr "Nicaragua"
+
+msgid "NE"
+msgstr "Niger"
+
+msgid "NG"
+msgstr "Nigeria"
+
+msgid "NU"
+msgstr "Niue"
+
+msgid "NF"
+msgstr "Norfolk Inseln"
+
+msgid "MP"
+msgstr "Marianen"
+
+msgid "NO"
+msgstr "Norwegen"
+
+msgid "OM"
+msgstr "Oman"
+
+msgid "PK"
+msgstr "Pakistan"
+
+msgid "PW"
+msgstr "Palau"
+
+msgid "PS"
+msgstr "Palästina"
+
+msgid "PA"
+msgstr "Panama"
+
+msgid "PG"
+msgstr "Papua Neuguinea"
+
+msgid "PY"
+msgstr "Paraguay"
+
+msgid "PE"
+msgstr "Peru"
+
+msgid "PH"
+msgstr "Philippinen"
+
+msgid "PN"
+msgstr "Pitcairn"
+
+msgid "PL"
+msgstr "Polen"
+
+msgid "PT"
+msgstr "Portugal"
+
+msgid "PR"
+msgstr "Puerto Rico"
+
+msgid "QA"
+msgstr "Qatar"
+
+msgid "RE"
+msgstr "Reunion"
+
+msgid "RO"
+msgstr "Rumänien"
+
+msgid "RU"
+msgstr "Russland"
+
+msgid "RW"
+msgstr "Ruanda"
+
+msgid "BL"
+msgstr "Saint-Barthélemy"
+
+msgid "SH"
+msgstr "St. Helena"
+
+msgid "KN"
+msgstr "St. Kitts Nevis Anguilla"
+
+msgid "LC"
+msgstr "Saint Lucia"
+
+msgid "MF"
+msgstr "Saint-Martin"
+
+msgid "PM"
+msgstr "St. Pierre und Miquelon"
+
+msgid "VC"
+msgstr "St. Vincent"
+
+msgid "WS"
+msgstr "Samoa"
+
+msgid "SM"
+msgstr "San Marino"
+
+msgid "ST"
+msgstr "Sao Tome"
+
+msgid "SA"
+msgstr "Saudi Arabien"
+
+msgid "SN"
+msgstr "Senegal"
+
+msgid "RS"
+msgstr "Serbien"
+
+msgid "SC"
+msgstr "Seychellen"
+
+msgid "SL"
+msgstr "Sierra Leone"
+
+msgid "SG"
+msgstr "Singapur"
+
+msgid "SX"
+msgstr "Sint Maarten"
+
+msgid "SK"
+msgstr "Slowakei"
+
+msgid "SI"
+msgstr "Slowenien"
+
+msgid "SB"
+msgstr "Solomon Inseln"
+
+msgid "SO"
+msgstr "Somalia"
+
+msgid "ZA"
+msgstr "Südafrika"
+
+msgid "GS"
+msgstr "Südgeorgien und die Südlichen Sandwichinseln"
+
+msgid "SS"
+msgstr "Südsudan"
+
+msgid "ES"
+msgstr "Spanien"
+
+msgid "LK"
+msgstr "Sri Lanka"
+
+msgid "SD"
+msgstr "Sudan"
+
+msgid "SR"
+msgstr "Surinam"
+
+msgid "SJ"
+msgstr "Svalbard und Jan Mayen Islands"
+
+msgid "SZ"
+msgstr "Eswatini"
+
+msgid "SE"
+msgstr "Schweden"
+
+msgid "CH"
+msgstr "Schweiz"
+
+msgid "SY"
+msgstr "Syrien"
+
+msgid "TW"
+msgstr "Taiwan"
+
+msgid "TJ"
+msgstr "Tadschikistan"
+
+msgid "TZ"
+msgstr "Tansania"
+
+msgid "TH"
+msgstr "Thailand"
+
+msgid "TL"
+msgstr "Osttimor"
+
+msgid "TG"
+msgstr "Togo"
+
+msgid "TK"
+msgstr "Tokelau"
+
+msgid "TO"
+msgstr "Tonga"
+
+msgid "TT"
+msgstr "Trinidad Tobago"
+
+msgid "TN"
+msgstr "Tunesien"
+
+msgid "TR"
+msgstr "Türkei"
+
+msgid "TM"
+msgstr "Turkmenistan"
+
+msgid "TC"
+msgstr "Turks und Kaikos Inseln"
+
+msgid "TV"
+msgstr "Tuvalu"
+
+msgid "UG"
+msgstr "Uganda"
+
+msgid "UA"
+msgstr "Ukraine"
+
+msgid "AE"
+msgstr "Vereinigte Arabische Emirate"
+
+msgid "GB"
+msgstr "Großbritannien"
+
+msgid "US"
+msgstr "Vereinigte Staaten von Amerika"
+
+msgid "UM"
+msgstr "United States Minor Outlying Islands"
+
+msgid "UY"
+msgstr "Uruguay"
+
+msgid "UZ"
+msgstr "Usbekistan"
+
+msgid "VU"
+msgstr "Vanuatu"
+
+msgid "VE"
+msgstr "Venezuela"
+
+msgid "VN"
+msgstr "Vietnam"
+
+msgid "VG"
+msgstr "Virgin Island (Brit.)"
+
+msgid "VI"
+msgstr "Virgin Island (USA)"
+
+msgid "WF"
+msgstr "Wallis et Futuna"
+
+msgid "EH"
+msgstr "Westsahara"
+
+msgid "YE"
+msgstr "Jemen"
+
+msgid "ZM"
+msgstr "Sambia"
+
+msgid "ZW"
+msgstr "Zimbabwe"
+
+msgid "aar"
+msgstr "Danakil-Sprache"
+
+msgid "abk"
+msgstr "Abchasisch"
+
+msgid "ace"
+msgstr "Aceh-Sprache"
+
+msgid "ach"
+msgstr "Acholi-Sprache"
+
+msgid "ada"
+msgstr "Adangme-Sprache"
+
+msgid "ady"
+msgstr "Adygisch"
+
+msgid "afa"
+msgstr "Hamitosemitische Sprachen (Andere)"
+
+msgid "afh"
+msgstr "Afrihili"
+
+msgid "afr"
+msgstr "Afrikaans"
+
+msgid "ain"
+msgstr "Ainu-Sprache"
+
+msgid "aka"
+msgstr "Akan-Sprache"
+
+msgid "akk"
+msgstr "Akkadisch"
+
+msgid "sqi"
+msgstr "Albanisch"
+
+msgid "ale"
+msgstr "Aleutisch"
+
+msgid "alg"
+msgstr "Algonkin-Sprachen (Andere)"
+
+msgid "alt"
+msgstr "Altaisch"
+
+msgid "amh"
+msgstr "Amharisch"
+
+msgid "ang"
+msgstr "Altenglisch"
+
+msgid "anp"
+msgstr "Anga-Sprache"
+
+msgid "apa"
+msgstr "Apachen-Sprachen"
+
+msgid "ara"
+msgstr "Arabisch"
+
+msgid "arc"
+msgstr "Aramäisch"
+
+msgid "arg"
+msgstr "Aragonesisch"
+
+msgid "hye"
+msgstr "Armenisch"
+
+msgid "arn"
+msgstr "Arauka-Sprachen"
+
+msgid "arp"
+msgstr "Arapaho-Sprache"
+
+msgid "art"
+msgstr "Kunstsprachen (Andere)"
+
+msgid "arw"
+msgstr "Arawak-Sprachen"
+
+msgid "asm"
+msgstr "Assamesisch"
+
+msgid "ast"
+msgstr "Asturisch"
+
+msgid "ath"
+msgstr "Athapaskische Sprachen (Andere)"
+
+msgid "aus"
+msgstr "Australische Sprachen"
+
+msgid "ava"
+msgstr "Awarisch"
+
+msgid "ave"
+msgstr "Avestisch"
+
+msgid "awa"
+msgstr "Awadhi"
+
+msgid "aym"
+msgstr "Aymará-Sprache"
+
+msgid "aze"
+msgstr "Aserbeidschanisch"
+
+msgid "bad"
+msgstr "Banda-Sprachen (Ubangi-Sprachen)"
+
+msgid "bai"
+msgstr "Bamileke-Sprachen"
+
+msgid "bak"
+msgstr "Baschkirisch"
+
+msgid "bal"
+msgstr "Belutschisch"
+
+msgid "bam"
+msgstr "Bambara-Sprache"
+
+msgid "ban"
+msgstr "Balinesisch"
+
+msgid "eus"
+msgstr "Baskisch"
+
+msgid "bas"
+msgstr "Basaa-Sprache"
+
+msgid "bat"
+msgstr "Baltische Sprachen (Andere)"
+
+msgid "bej"
+msgstr "Bedauye"
+
+msgid "bel"
+msgstr "Weißrussisch"
+
+msgid "bem"
+msgstr "Bemba-Sprache"
+
+msgid "ben"
+msgstr "Bengali"
+
+msgid "ber"
+msgstr "Berbersprachen (Andere)"
+
+msgid "bho"
+msgstr "Bhojpuri"
+
+msgid "bih"
+msgstr "Bihari (Andere)"
+
+msgid "bik"
+msgstr "Bikol-Sprache"
+
+msgid "bin"
+msgstr "Edo-Sprache"
+
+msgid "bis"
+msgstr "Beach-la-mar"
+
+msgid "bla"
+msgstr "Blackfoot-Sprache"
+
+msgid "bnt"
+msgstr "Bantusprachen (Andere)"
+
+msgid "bod"
+msgstr "Tibetisch"
+
+msgid "bos"
+msgstr "Bosnisch"
+
+msgid "bra"
+msgstr "Braj-Bhakha"
+
+msgid "bre"
+msgstr "Bretonisch"
+
+msgid "btk"
+msgstr "Batak-Sprache"
+
+msgid "bua"
+msgstr "Burjatisch"
+
+msgid "bug"
+msgstr "Bugi-Sprache"
+
+msgid "bul"
+msgstr "Bulgarisch"
+
+msgid "mya"
+msgstr "Birmanisch"
+
+msgid "byn"
+msgstr "Bilin-Sprache"
+
+msgid "cad"
+msgstr "Caddo-Sprachen"
+
+msgid "cai"
+msgstr "Indianersprachen, Zentralamerika (Andere)"
+
+msgid "car"
+msgstr "Karibische Sprachen"
+
+msgid "cat"
+msgstr "Katalanisch"
+
+msgid "cau"
+msgstr "Kaukasische Sprachen (Andere)"
+
+msgid "ceb"
+msgstr "Cebuano"
+
+msgid "cel"
+msgstr "Keltische Sprachen (Andere)"
+
+msgid "ces"
+msgstr "Tschechisch"
+
+msgid "cha"
+msgstr "Chamorro-Sprache"
+
+msgid "chb"
+msgstr "Chibcha-Sprachen"
+
+msgid "che"
+msgstr "Tschetschenisch"
+
+msgid "chg"
+msgstr "Tschagataisch"
+
+msgid "zho"
+msgstr "Chinesisch"
+
+msgid "chk"
+msgstr "Trukesisch"
+
+msgid "chm"
+msgstr "Tscheremissisch"
+
+msgid "chn"
+msgstr "Chinook-Jargon"
+
+msgid "cho"
+msgstr "Choctaw-Sprache"
+
+msgid "chp"
+msgstr "Chipewyan-Sprache"
+
+msgid "chr"
+msgstr "Cherokee-Sprache"
+
+msgid "chu"
+msgstr "Kirchenslawisch"
+
+msgid "chv"
+msgstr "Tschuwaschisch"
+
+msgid "chy"
+msgstr "Cheyenne-Sprache"
+
+msgid "cmc"
+msgstr "Cham-Sprachen"
+
+msgid "cop"
+msgstr "Koptisch"
+
+msgid "cor"
+msgstr "Kornisch"
+
+msgid "cos"
+msgstr "Korsisch"
+
+msgid "cpe"
+msgstr "Kreolisch-Englisch (Andere)"
+
+msgid "cpf"
+msgstr "Kreolisch-Französisch (Andere)"
+
+msgid "cpp"
+msgstr "Kreolisch-Portugiesisch (Andere)"
+
+msgid "cre"
+msgstr "Cree-Sprache"
+
+msgid "crh"
+msgstr "Krimtatarisch"
+
+msgid "crp"
+msgstr "Kreolische Sprachen; Pidginsprachen (Andere)"
+
+msgid "csb"
+msgstr "Kaschubisch"
+
+msgid "cus"
+msgstr "Kuschitische Sprachen (Andere)"
+
+msgid "cym"
+msgstr "Kymrisch"
+
+msgid "dak"
+msgstr "Dakota-Sprache"
+
+msgid "dan"
+msgstr "Dänisch"
+
+msgid "dar"
+msgstr "Darginisch"
+
+msgid "day"
+msgstr "Dajakisch"
+
+msgid "del"
+msgstr "Delaware-Sprache"
+
+msgid "den"
+msgstr "Slave-Sprache"
+
+msgid "deu"
+msgstr "Deutsch"
+
+msgid "dgr"
+msgstr "Dogrib-Sprache"
+
+msgid "din"
+msgstr "Dinka-Sprache"
+
+msgid "div"
+msgstr "Maledivisch"
+
+msgid "doi"
+msgstr "Dogri"
+
+msgid "dra"
+msgstr "Drawidische Sprachen (Andere)"
+
+msgid "dsb"
+msgstr "Niedersorbisch"
+
+msgid "dua"
+msgstr "Duala-Sprachen"
+
+msgid "dum"
+msgstr "Mittelniederländisch"
+
+msgid "nld"
+msgstr "Niederländisch"
+
+msgid "dyu"
+msgstr "Dyula-Sprache"
+
+msgid "dzo"
+msgstr "Dzongkha"
+
+msgid "efi"
+msgstr "Efik"
+
+msgid "egy"
+msgstr "Ägyptisch"
+
+msgid "eka"
+msgstr "Ekajuk"
+
+msgid "ell"
+msgstr "Neugriechisch"
+
+msgid "elx"
+msgstr "Elamisch"
+
+msgid "eng"
+msgstr "Englisch"
+
+msgid "enm"
+msgstr "Mittelenglisch"
+
+msgid "epo"
+msgstr "Esperanto"
+
+msgid "est"
+msgstr "Estnisch"
+
+msgid "ewe"
+msgstr "Ewe-Sprache"
+
+msgid "ewo"
+msgstr "Ewondo"
+
+msgid "fan"
+msgstr "Pangwe-Sprache"
+
+msgid "fao"
+msgstr "Färöisch"
+
+msgid "fas"
+msgstr "Persisch"
+
+msgid "fat"
+msgstr "Fante-Sprache"
+
+msgid "fij"
+msgstr "Fidschi-Sprache"
+
+msgid "fil"
+msgstr "Pilipino"
+
+msgid "fin"
+msgstr "Finnisch"
+
+msgid "fiu"
+msgstr "Finnougrische Sprachen (Andere)"
+
+msgid "fon"
+msgstr "Fon-Sprache"
+
+msgid "fra"
+msgstr "Französisch"
+
+msgid "frm"
+msgstr "Mittelfranzösisch"
+
+msgid "fro"
+msgstr "Altfranzösisch"
+
+msgid "frr"
+msgstr "Nordfriesisch"
+
+msgid "frs"
+msgstr "Ostfriesisch"
+
+msgid "fry"
+msgstr "Friesisch"
+
+msgid "ful"
+msgstr "Ful"
+
+msgid "fur"
+msgstr "Friulisch"
+
+msgid "gaa"
+msgstr "Ga-Sprache"
+
+msgid "gay"
+msgstr "Gayo-Sprache"
+
+msgid "gba"
+msgstr "Gbaya-Sprache"
+
+msgid "gem"
+msgstr "Germanische Sprachen (Andere)"
+
+msgid "kat"
+msgstr "Georgisch"
+
+msgid "gez"
+msgstr "Altäthiopisch"
+
+msgid "gil"
+msgstr "Gilbertesisch"
+
+msgid "gla"
+msgstr "Gälisch-Schottisch"
+
+msgid "gle"
+msgstr "Irisch"
+
+msgid "glg"
+msgstr "Galicisch"
+
+msgid "glv"
+msgstr "Manx"
+
+msgid "gmh"
+msgstr "Mittelhochdeutsch"
+
+msgid "goh"
+msgstr "Althochdeutsch"
+
+msgid "gon"
+msgstr "Gondi-Sprache"
+
+msgid "gor"
+msgstr "Gorontalesisch"
+
+msgid "got"
+msgstr "Gotisch"
+
+msgid "grb"
+msgstr "Grebo-Sprache"
+
+msgid "grc"
+msgstr "Griechisch"
+
+msgid "grn"
+msgstr "Guaraní-Sprache"
+
+msgid "gsw"
+msgstr "Schweizerdeutsch"
+
+msgid "guj"
+msgstr "Gujarati-Sprache"
+
+msgid "gwi"
+msgstr "Kutchin-Sprache"
+
+msgid "hai"
+msgstr "Haida-Sprache"
+
+msgid "hat"
+msgstr "Haïtien (Haiti-Kreolisch)"
+
+msgid "hau"
+msgstr "Haussa-Sprache"
+
+msgid "haw"
+msgstr "Hawaiisch"
+
+msgid "heb"
+msgstr "Hebräisch"
+
+msgid "her"
+msgstr "Herero-Sprache"
+
+msgid "hil"
+msgstr "Hiligaynon-Sprache"
+
+msgid "him"
+msgstr "Himachali"
+
+msgid "hin"
+msgstr "Hindi"
+
+msgid "hit"
+msgstr "Hethitisch"
+
+msgid "hmn"
+msgstr "Miao-Sprachen"
+
+msgid "hmo"
+msgstr "Hiri-Motu"
+
+msgid "hrv"
+msgstr "Kroatisch"
+
+msgid "hsb"
+msgstr "Obersorbisch"
+
+msgid "hun"
+msgstr "Ungarisch"
+
+msgid "hup"
+msgstr "Hupa-Sprache"
+
+msgid "iba"
+msgstr "Iban-Sprache"
+
+msgid "ibo"
+msgstr "Ibo-Sprache"
+
+msgid "isl"
+msgstr "Isländisch"
+
+msgid "ido"
+msgstr "Ido"
+
+msgid "iii"
+msgstr "Lalo-Sprache"
+
+msgid "ijo"
+msgstr "Ijo-Sprache"
+
+msgid "iku"
+msgstr "Inuktitut"
+
+msgid "ile"
+msgstr "Interlingue"
+
+msgid "ilo"
+msgstr "Ilokano-Sprache"
+
+msgid "ina"
+msgstr "Interlingua"
+
+msgid "inc"
+msgstr "Indoarische Sprachen (Andere)"
+
+msgid "ind"
+msgstr "Bahasa Indonesia"
+
+msgid "ine"
+msgstr "Indogermanische Sprachen (Andere)"
+
+msgid "inh"
+msgstr "Inguschisch"
+
+msgid "ipk"
+msgstr "Inupik"
+
+msgid "ira"
+msgstr "Iranische Sprachen (Andere)"
+
+msgid "iro"
+msgstr "Irokesische Sprachen"
+
+msgid "ita"
+msgstr "Italienisch"
+
+msgid "jav"
+msgstr "Javanisch"
+
+msgid "jbo"
+msgstr "Lojban"
+
+msgid "jpn"
+msgstr "Japanisch"
+
+msgid "jpr"
+msgstr "Jüdisch-Persisch"
+
+msgid "jrb"
+msgstr "Jüdisch-Arabisch"
+
+msgid "kaa"
+msgstr "Karakalpakisch"
+
+msgid "kab"
+msgstr "Kabylisch"
+
+msgid "kac"
+msgstr "Kachin-Sprache"
+
+msgid "kal"
+msgstr "Grönländisch"
+
+msgid "kam"
+msgstr "Kamba-Sprache"
+
+msgid "kan"
+msgstr "Kannada"
+
+msgid "kar"
+msgstr "Karenisch"
+
+msgid "kas"
+msgstr "Kaschmiri"
+
+msgid "kau"
+msgstr "Kanuri-Sprache"
+
+msgid "kaw"
+msgstr "Kawi"
+
+msgid "kaz"
+msgstr "Kasachisch"
+
+msgid "kbd"
+msgstr "Kabardinisch"
+
+msgid "kha"
+msgstr "Khasi-Sprache"
+
+msgid "khi"
+msgstr "Khoisan-Sprachen (Andere)"
+
+msgid "khm"
+msgstr "Kambodschanisch"
+
+msgid "kho"
+msgstr "Sakisch"
+
+msgid "kik"
+msgstr "Kikuyu-Sprache"
+
+msgid "kin"
+msgstr "Rwanda-Sprache"
+
+msgid "kir"
+msgstr "Kirgisisch"
+
+msgid "kmb"
+msgstr "Kimbundu-Sprache"
+
+msgid "kok"
+msgstr "Konkani"
+
+msgid "kom"
+msgstr "Komi-Sprache"
+
+msgid "kon"
+msgstr "Kongo-Sprache"
+
+msgid "kor"
+msgstr "Koreanisch"
+
+msgid "kos"
+msgstr "Kosraeanisch"
+
+msgid "kpe"
+msgstr "Kpelle-Sprache"
+
+msgid "krc"
+msgstr "Karatschaiisch-Balkarisch"
+
+msgid "krl"
+msgstr "Karelisch"
+
+msgid "kro"
+msgstr "Kru-Sprachen (Andere)"
+
+msgid "kru"
+msgstr "Oraon-Sprache"
+
+msgid "kua"
+msgstr "Kwanyama-Sprache"
+
+msgid "kum"
+msgstr "Kumükisch"
+
+msgid "kur"
+msgstr "Kurdisch"
+
+msgid "kut"
+msgstr "Kutenai-Sprache"
+
+msgid "lad"
+msgstr "Judenspanisch"
+
+msgid "lah"
+msgstr "Lahnda"
+
+msgid "lam"
+msgstr "Lamba-Sprache (Bantusprache)"
+
+msgid "lao"
+msgstr "Laotisch"
+
+msgid "lat"
+msgstr "Latein"
+
+msgid "lav"
+msgstr "Lettisch"
+
+msgid "lez"
+msgstr "Lesgisch"
+
+msgid "lim"
+msgstr "Limburgisch"
+
+msgid "lin"
+msgstr "Lingala"
+
+msgid "lit"
+msgstr "Litauisch"
+
+msgid "lol"
+msgstr "Mongo-Sprache"
+
+msgid "loz"
+msgstr "Rotse-Sprache"
+
+msgid "ltz"
+msgstr "Luxemburgisch"
+
+msgid "lua"
+msgstr "Lulua-Sprache"
+
+msgid "lub"
+msgstr "Luba-Katanga-Sprache"
+
+msgid "lug"
+msgstr "Ganda-Sprache"
+
+msgid "lui"
+msgstr "Luiseño-Sprache"
+
+msgid "lun"
+msgstr "Lunda-Sprache"
+
+msgid "luo"
+msgstr "Luo-Sprache"
+
+msgid "lus"
+msgstr "Lushai-Sprache"
+
+msgid "mkd"
+msgstr "Makedonisch"
+
+msgid "mad"
+msgstr "Maduresisch"
+
+msgid "mag"
+msgstr "Khotta"
+
+msgid "mah"
+msgstr "Marschallesisch"
+
+msgid "mai"
+msgstr "Maithili"
+
+msgid "mak"
+msgstr "Makassarisch"
+
+msgid "mal"
+msgstr "Malayalam"
+
+msgid "man"
+msgstr "Malinke-Sprache"
+
+msgid "mri"
+msgstr "Maori-Sprache"
+
+msgid "map"
+msgstr "Austronesische Sprachen (Andere)"
+
+msgid "mar"
+msgstr "Marathi"
+
+msgid "mas"
+msgstr "Massai-Sprache"
+
+msgid "msa"
+msgstr "Malaiisch"
+
+msgid "mdf"
+msgstr "Mokscha-Sprache"
+
+msgid "mdr"
+msgstr "Mandaresisch"
+
+msgid "men"
+msgstr "Mende-Sprache"
+
+msgid "mga"
+msgstr "Mittelirisch"
+
+msgid "mic"
+msgstr "Micmac-Sprache"
+
+msgid "min"
+msgstr "Minangkabau-Sprache"
+
+msgid "mis"
+msgstr "Einzelne andere Sprachen"
+
+msgid "mkh"
+msgstr "Mon-Khmer-Sprachen (Andere)"
+
+msgid "mlg"
+msgstr "Malagassi-Sprache"
+
+msgid "mlt"
+msgstr "Maltesisch"
+
+msgid "mnc"
+msgstr "Mandschurisch"
+
+msgid "mni"
+msgstr "Meithei-Sprache"
+
+msgid "mno"
+msgstr "Manobo-Sprachen"
+
+msgid "moh"
+msgstr "Mohawk-Sprache"
+
+msgid "mon"
+msgstr "Mongolisch"
+
+msgid "mos"
+msgstr "Mossi-Sprache"
+
+msgid "mul"
+msgstr "Mehrere Sprachen"
+
+msgid "mun"
+msgstr "Mundasprachen (Andere)"
+
+msgid "mus"
+msgstr "Muskogisch"
+
+msgid "mwl"
+msgstr "Mirandesisch"
+
+msgid "mwr"
+msgstr "Marwari"
+
+msgid "myn"
+msgstr "Maya-Sprachen"
+
+msgid "myv"
+msgstr "Erza-Mordwinisch"
+
+msgid "nah"
+msgstr "Nahuatl"
+
+msgid "nai"
+msgstr "Indianersprachen, Nordamerika (Andere)"
+
+msgid "nap"
+msgstr "Neapel / Mundart"
+
+msgid "nau"
+msgstr "Nauruanisch"
+
+msgid "nav"
+msgstr "Navajo-Sprache"
+
+msgid "nbl"
+msgstr "Ndebele-Sprache (Transvaal)"
+
+msgid "nde"
+msgstr "Ndebele-Sprache (Simbabwe)"
+
+msgid "ndo"
+msgstr "Ndonga"
+
+msgid "nds"
+msgstr "Niederdeutsch"
+
+msgid "nep"
+msgstr "Nepali"
+
+msgid "new"
+msgstr "Newari"
+
+msgid "nia"
+msgstr "Nias-Sprache"
+
+msgid "nic"
+msgstr "Nigerkordofanische Sprachen (Andere)"
+
+msgid "niu"
+msgstr "Niue-Sprache"
+
+msgid "nno"
+msgstr "Nynorsk"
+
+msgid "nob"
+msgstr "Bokmål"
+
+msgid "nog"
+msgstr "Nogaisch"
+
+msgid "non"
+msgstr "Altnorwegisch"
+
+msgid "nor"
+msgstr "Norwegisch"
+
+msgid "nqo"
+msgstr "N'Ko"
+
+msgid "nso"
+msgstr "Pedi-Sprache"
+
+msgid "nub"
+msgstr "Nubische Sprachen"
+
+msgid "nwc"
+msgstr "Alt-Newari"
+
+msgid "nya"
+msgstr "Nyanja-Sprache"
+
+msgid "nym"
+msgstr "Nyamwezi-Sprache"
+
+msgid "nyn"
+msgstr "Nkole-Sprache"
+
+msgid "nyo"
+msgstr "Nyoro-Sprache"
+
+msgid "nzi"
+msgstr "Nzima-Sprache"
+
+msgid "oci"
+msgstr "Okzitanisch"
+
+msgid "oji"
+msgstr "Ojibwa-Sprache"
+
+msgid "ori"
+msgstr "Oriya-Sprache"
+
+msgid "orm"
+msgstr "Galla-Sprache"
+
+msgid "osa"
+msgstr "Osage-Sprache"
+
+msgid "oss"
+msgstr "Ossetisch"
+
+msgid "ota"
+msgstr "Osmanisch"
+
+msgid "oto"
+msgstr "Otomangue-Sprachen"
+
+msgid "paa"
+msgstr "Papuasprachen (Andere)"
+
+msgid "pag"
+msgstr "Pangasinan-Sprache"
+
+msgid "pal"
+msgstr "Mittelpersisch"
+
+msgid "pam"
+msgstr "Pampanggan-Sprache"
+
+msgid "pan"
+msgstr "Pandschabi-Sprache"
+
+msgid "pap"
+msgstr "Papiamento"
+
+msgid "pau"
+msgstr "Palau-Sprache"
+
+msgid "peo"
+msgstr "Altpersisch"
+
+msgid "phi"
+msgstr "Philippinisch-Austronesisch (Andere)"
+
+msgid "phn"
+msgstr "Phönikisch"
+
+msgid "pli"
+msgstr "Pali"
+
+msgid "pol"
+msgstr "Polnisch"
+
+msgid "pon"
+msgstr "Ponapeanisch"
+
+msgid "por"
+msgstr "Portugiesisch"
+
+msgid "pra"
+msgstr "Prakrit"
+
+msgid "pro"
+msgstr "Altokzitanisch"
+
+msgid "pus"
+msgstr "Paschtu"
+
+msgid "que"
+msgstr "Quechua-Sprache"
+
+msgid "raj"
+msgstr "Rajasthani"
+
+msgid "rap"
+msgstr "Osterinsel-Sprache"
+
+msgid "rar"
+msgstr "Rarotonganisch"
+
+msgid "roa"
+msgstr "Romanische Sprachen (Andere)"
+
+msgid "roh"
+msgstr "Rätoromanisch"
+
+msgid "rom"
+msgstr "Romani (Sprache)"
+
+msgid "ron"
+msgstr "Rumänisch"
+
+msgid "run"
+msgstr "Rundi-Sprache"
+
+msgid "rup"
+msgstr "Aromunisch"
+
+msgid "rus"
+msgstr "Russisch"
+
+msgid "sad"
+msgstr "Sandawe-Sprache"
+
+msgid "sag"
+msgstr "Sango-Sprache"
+
+msgid "sah"
+msgstr "Jakutisch"
+
+msgid "sai"
+msgstr "Indianersprachen, Südamerika (Andere)"
+
+msgid "sal"
+msgstr "Salish-Sprache"
+
+msgid "sam"
+msgstr "Samaritanisch"
+
+msgid "san"
+msgstr "Sanskrit"
+
+msgid "sas"
+msgstr "Sasak"
+
+msgid "sat"
+msgstr "Santali"
+
+msgid "scn"
+msgstr "Sizilianisch"
+
+msgid "sco"
+msgstr "Schottisch"
+
+msgid "sel"
+msgstr "Selkupisch"
+
+msgid "sem"
+msgstr "Semitische Sprachen (Andere)"
+
+msgid "sga"
+msgstr "Altirisch"
+
+msgid "sgn"
+msgstr "Zeichensprachen"
+
+msgid "shn"
+msgstr "Schan-Sprache"
+
+msgid "sid"
+msgstr "Sidamo-Sprache"
+
+msgid "sin"
+msgstr "Singhalesisch"
+
+msgid "sio"
+msgstr "Sioux-Sprachen (Andere)"
+
+msgid "sit"
+msgstr "Sinotibetische Sprachen (Andere)"
+
+msgid "sla"
+msgstr "Slawische Sprachen (Andere)"
+
+msgid "slk"
+msgstr "Slowakisch"
+
+msgid "slv"
+msgstr "Slowenisch"
+
+msgid "sma"
+msgstr "Südsaamisch"
+
+msgid "sme"
+msgstr "Nordsaamisch"
+
+msgid "smi"
+msgstr "Saamisch"
+
+msgid "smj"
+msgstr "Lulesaamisch"
+
+msgid "smn"
+msgstr "Inarisaamisch"
+
+msgid "smo"
+msgstr "Samoanisch"
+
+msgid "sms"
+msgstr "Skoltsaamisch"
+
+msgid "sna"
+msgstr "Schona-Sprache"
+
+msgid "snd"
+msgstr "Sindhi-Sprache"
+
+msgid "snk"
+msgstr "Soninke-Sprache"
+
+msgid "sog"
+msgstr "Sogdisch"
+
+msgid "som"
+msgstr "Somali"
+
+msgid "son"
+msgstr "Songhai-Sprache"
+
+msgid "sot"
+msgstr "Süd-Sotho-Sprache"
+
+msgid "spa"
+msgstr "Spanisch"
+
+msgid "srd"
+msgstr "Sardisch"
+
+msgid "srn"
+msgstr "Sranantongo"
+
+msgid "srp"
+msgstr "Serbisch"
+
+msgid "srr"
+msgstr "Serer-Sprache"
+
+msgid "ssa"
+msgstr "Nilosaharanische Sprachen (Andere)"
+
+msgid "ssw"
+msgstr "Swasi-Sprache"
+
+msgid "suk"
+msgstr "Sukuma-Sprache"
+
+msgid "sun"
+msgstr "Sundanesisch"
+
+msgid "sus"
+msgstr "Susu"
+
+msgid "sux"
+msgstr "Sumerisch"
+
+msgid "swa"
+msgstr "Swahili"
+
+msgid "swe"
+msgstr "Schwedisch"
+
+msgid "syc"
+msgstr "Syrisch"
+
+msgid "syr"
+msgstr "Neuostaramäisch"
+
+msgid "tah"
+msgstr "Tahitisch"
+
+msgid "tai"
+msgstr "Thaisprachen (Andere)"
+
+msgid "tam"
+msgstr "Tamil"
+
+msgid "tat"
+msgstr "Tatarisch"
+
+msgid "tel"
+msgstr "Telugu-Sprache"
+
+msgid "tem"
+msgstr "Temne-Sprache"
+
+msgid "ter"
+msgstr "Tereno-Sprache"
+
+msgid "tet"
+msgstr "Tetum-Sprache"
+
+msgid "tgk"
+msgstr "Tadschikisch"
+
+msgid "tgl"
+msgstr "Tagalog"
+
+msgid "tha"
+msgstr "Thailändisch"
+
+msgid "tig"
+msgstr "Tigre-Sprache"
+
+msgid "tir"
+msgstr "Tigrinja-Sprache"
+
+msgid "tiv"
+msgstr "Tiv-Sprache"
+
+msgid "tkl"
+msgstr "Tokelauanisch"
+
+msgid "tlh"
+msgstr "Klingonisch"
+
+msgid "tli"
+msgstr "Tlingit-Sprache"
+
+msgid "tmh"
+msgstr "Tamaeq"
+
+msgid "tog"
+msgstr "Tonga (Bantusprache, Sambia)"
+
+msgid "ton"
+msgstr "Tongaisch"
+
+msgid "tpi"
+msgstr "Neumelanesisch"
+
+msgid "tsi"
+msgstr "Tsimshian-Sprache"
+
+msgid "tsn"
+msgstr "Tswana-Sprache"
+
+msgid "tso"
+msgstr "Tsonga-Sprache"
+
+msgid "tuk"
+msgstr "Turkmenisch"
+
+msgid "tum"
+msgstr "Tumbuka-Sprache"
+
+msgid "tup"
+msgstr "Tupi-Sprache"
+
+msgid "tur"
+msgstr "Türkisch"
+
+msgid "tut"
+msgstr "Altaische Sprachen (Andere)"
+
+msgid "tvl"
+msgstr "Elliceanisch"
+
+msgid "twi"
+msgstr "Twi-Sprache"
+
+msgid "tyv"
+msgstr "Tuwinisch"
+
+msgid "udm"
+msgstr "Udmurtisch"
+
+msgid "uga"
+msgstr "Ugaritisch"
+
+msgid "uig"
+msgstr "Uigurisch"
+
+msgid "ukr"
+msgstr "Ukrainisch"
+
+msgid "umb"
+msgstr "Mbundu-Sprache"
+
+msgid "und"
+msgstr "Nicht zu entscheiden"
+
+msgid "urd"
+msgstr "Urdu"
+
+msgid "uzb"
+msgstr "Usbekisch"
+
+msgid "vai"
+msgstr "Vai-Sprache"
+
+msgid "ven"
+msgstr "Venda-Sprache"
+
+msgid "vie"
+msgstr "Vietnamesisch"
+
+msgid "vol"
+msgstr "Volapük"
+
+msgid "vot"
+msgstr "Wotisch"
+
+msgid "wak"
+msgstr "Wakash-Sprachen"
+
+msgid "wal"
+msgstr "Walamo-Sprache"
+
+msgid "war"
+msgstr "Waray"
+
+msgid "was"
+msgstr "Washo-Sprache"
+
+msgid "wen"
+msgstr "Sorbisch (Andere)"
+
+msgid "wln"
+msgstr "Wallonisch"
+
+msgid "wol"
+msgstr "Wolof-Sprache"
+
+msgid "xal"
+msgstr "Kalmückisch"
+
+msgid "xho"
+msgstr "Xhosa-Sprache"
+
+msgid "yao"
+msgstr "Yao-Sprache (Bantusprache)"
+
+msgid "yap"
+msgstr "Yapesisch"
+
+msgid "yid"
+msgstr "Jiddisch"
+
+msgid "yor"
+msgstr "Yoruba-Sprache"
+
+msgid "ypk"
+msgstr "Ypik-Sprachen"
+
+msgid "zap"
+msgstr "Zapotekisch"
+
+msgid "zbl"
+msgstr "Bliss-Symbol"
+
+msgid "zen"
+msgstr "Zenaga"
+
+msgid "zgh"
+msgstr "Standard-marokkanischen Tamazight"
+
+msgid "zha"
+msgstr "Zhuang"
+
+msgid "znd"
+msgstr "Zande-Sprachen"
+
+msgid "zul"
+msgstr "Zulu-Sprache"
+
+msgid "zun"
+msgstr "Zuñi-Sprache"
+
+msgid "zxx"
+msgstr "Kein linguistischer Inhalt"
+
+msgid "zza"
+msgstr "Zazaki"
