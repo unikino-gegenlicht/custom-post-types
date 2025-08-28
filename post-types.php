@@ -86,3 +86,16 @@ add_action( 'admin_menu', 'reorder_menu' );
 
 
 add_action( 'plugins_loaded', 'ggl_post_types_load_textdomain' );
+
+
+
+add_action("wpseo_register_extra_replacements", function () {
+	require_once "seo/replacements.php";
+
+	wpseo_register_var_replacement("%%ggl_title%%", "ggl_pt_get_title", "advanced", "The protected title of a movie or event");
+	wpseo_register_var_replacement("%%ggl_date%%", "ggl_pt_screening_date", "advanced", "The formatted screening date for the entry");
+	wpseo_register_var_replacement("%%ggl_text%%", "ggl_pt_text", "advanced", "The protected text for the entry");
+	wpseo_register_var_replacement("%%ggl_admission%%", "ggl_pt_admission", "advanced", "The protected text for the entry");
+	wpseo_register_var_replacement("%%ggl_age_rating%%", "ggl_pt_age_rating", "advanced", "Age Rating for the Entry");
+	wpseo_register_var_replacement("%%line_break%%", "ggl_pt_linebreak", "advanced", "Linebreak");
+});
