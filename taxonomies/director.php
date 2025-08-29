@@ -17,6 +17,12 @@ function ggl_taxonomy_director(): void {
 		'meta_box_cb'    => false,
 		'show_tag_cloud' => false,
 		'query_var'      => 'director',
-		'rewrite'        => false
+		'rewrite'        => false,
+		"capabilities"   => [
+			"manage_terms" => "publish_posts",
+			"edit_terms"   => "publish_posts",
+			"assign_terms" => "publish_posts",
+			"delete_terms" => "edit_others_posts",
+		]
 	] );
 }
