@@ -34,6 +34,12 @@ function ggl_taxonomy_program_type(): void {
 				'hierarchical' => false,
 				'with_front'   => false,
 			],
+			"capabilities"   => [
+				"manage_terms" => "publish_posts",
+				"edit_terms"   => "publish_posts",
+				"assign_terms" => "publish_posts",
+				"delete_terms" => "edit_others_posts",
+			]
 		]
 	);
 }
