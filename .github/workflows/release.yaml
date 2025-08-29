@@ -75,5 +75,5 @@ jobs:
           generate_release_notes: true
           draft: true
           files: |
-            custom-post-types.${{ github.ref_name }}.zip
+            ggl-post-types.${{ github.ref_name }}.zip
             LICENSE
