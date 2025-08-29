@@ -67,6 +67,29 @@ function cooperation_partner_register_meta_boxes( $meta_boxes ) {
 		],
 	];
 
+	$meta_boxes[] = [
+		'title'      => esc_html__( 'Archival Data', 'ggl-post-types' ),
+		'id'         => 'manual-archive',
+		'context'    => 'before_permalink',
+		'style'      => 'seamless',
+		'post_types' => [ 'cooperation-partner' ],
+		'fields'     => [
+			[
+				'type' => 'heading',
+				'name' => esc_html__( 'Archival Data', 'ggl-post-types' ),
+			],
+			[
+				'type'        => 'key_value',
+				'id'          => $prefix . 'shown_movies',
+				'desc'        => esc_html__( 'When filling in this archival list the given values are added to the automatically read values', 'ggl-post-types' ),
+				'placeholder' => [
+					'key'   => 'Year',
+					'value' => 'Movie/Event Name',
+				]
+			],
+		],
+	];
+
 	return $meta_boxes;
 }
 

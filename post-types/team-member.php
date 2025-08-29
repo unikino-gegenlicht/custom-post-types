@@ -65,7 +65,7 @@ function team_member_register_meta_boxes( $meta_boxes ) {
 				'inline'  => true,
 				'options' => [
 					'active'       => esc_html__( 'Active', 'ggl-post-types' ),
-					'former'       => esc_html__( 'Former', 'ggl-post-types' ),
+						'former'       => esc_html__( 'Former', 'ggl-post-types' ),
 				]
 			],
 			[
@@ -83,6 +83,7 @@ function team_member_register_meta_boxes( $meta_boxes ) {
 			[
 				'type' => 'heading',
 				'name' => esc_html__( 'Left In', 'ggl-post-types' ),
+				'visible'  => [ 'status', '=', 'former' ]
 			],
 			[
 				'type'    => 'number',
@@ -93,6 +94,29 @@ function team_member_register_meta_boxes( $meta_boxes ) {
 				'visible'  => [ 'status', '=', 'former' ]
 
 			]
+		],
+	];
+
+	$meta_boxes[] = [
+		'title'      => esc_html__( 'Archival Data', 'ggl-post-types' ),
+		'id'         => 'manual-archive',
+		'context'    => 'before_permalink',
+		'style'      => 'seamless',
+		'post_types' => [ 'team-member' ],
+		'fields'     => [
+			[
+				'type' => 'heading',
+				'name' => esc_html__( 'Archival Data', 'ggl-post-types' ),
+			],
+			[
+				'type'        => 'key_value',
+				'id'          => $prefix . 'shown_movies',
+				'desc'        => esc_html__( 'When filling in this archival list the given values are added to the automatically read values', 'ggl-post-types' ),
+				'placeholder' => [
+					'key'   => 'Year',
+					'value' => 'Movie/Event Name',
+				]
+			],
 		],
 	];
 
