@@ -2,14 +2,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: unnamed project\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/custom-post-types\n"
-"POT-Creation-Date: 2025-08-16T19:52:08+00:00\n"
-"PO-Revision-Date: 2025-08-29 13:25+0200\n"
 "Last-Translator: Jan Eike Suchard <jan@gegenlicht.net>\n"
 "Language-Team: German <website@gegenlicht.net>\n"
-"Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2025-08-16T19:52:08+00:00\n"
+"PO-Revision-Date: 2025-08-29 13:35+0200\n"
+"Language: de\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 3.6\n"
 
@@ -38,17 +38,22 @@ msgstr "Jan Eike Suchard"
 msgid "https://suchard.cloud"
 msgstr "https://suchard.cloud"
 
-#: post-types/cooperation-partner.php:13 post-types/cooperation-partner.php:15
+#: post-types/cooperation-partner.php:13
+#: post-types/cooperation-partner.php:15
 msgid "Cooperation Partners"
 msgstr "Kooperationspartner"
 
-#: post-types/cooperation-partner.php:16 post-types/cooperation-partner.php:17
-#: post-types/event.php:131 post-types/event.php:151 post-types/movie.php:157
+#: post-types/cooperation-partner.php:16
+#: post-types/cooperation-partner.php:17
+#: post-types/event.php:131
+#: post-types/event.php:151
+#: post-types/movie.php:157
 #: post-types/movie.php:179
 msgid "Cooperation Partner"
 msgstr "Kooperationspartner"
 
-#: post-types/cooperation-partner.php:18 post-types/cooperation-partner.php:19
+#: post-types/cooperation-partner.php:18
+#: post-types/cooperation-partner.php:19
 msgid "Add Cooperation Partner"
 msgstr "Kooperationspartner hinzufügen"
 
@@ -64,31 +69,39 @@ msgstr "Kooperationspartner anzeigen"
 msgid "All Cooperation Partners"
 msgstr "Alle Kooperationspartner"
 
-#: post-types/cooperation-partner.php:23 post-types/supporter.php:21
+#: post-types/cooperation-partner.php:23
+#: post-types/supporter.php:21
 msgid "Logo"
 msgstr "Logo"
 
-#: post-types/cooperation-partner.php:24 post-types/supporter.php:22
+#: post-types/cooperation-partner.php:24
+#: post-types/supporter.php:22
 msgid "Set Logo"
 msgstr "Logo auswählen"
 
-#: post-types/cooperation-partner.php:25 post-types/supporter.php:23
+#: post-types/cooperation-partner.php:25
+#: post-types/supporter.php:23
 msgid "Remove Logo"
 msgstr "Logo entfernen"
 
-#: post-types/cooperation-partner.php:26 post-types/supporter.php:24
+#: post-types/cooperation-partner.php:26
+#: post-types/supporter.php:24
 msgid "Upload Logo"
 msgstr "Logo hochladen"
 
-#: post-types/cooperation-partner.php:60 post-types/supporter.php:58
+#: post-types/cooperation-partner.php:60
+#: post-types/supporter.php:58
 msgid "Further Details"
 msgstr "Weitere Informationen"
 
-#: post-types/cooperation-partner.php:64 post-types/supporter.php:62
+#: post-types/cooperation-partner.php:64
+#: post-types/supporter.php:62
 msgid "Website"
 msgstr "Website"
 
-#: post-types/event.php:5 post-types/event.php:7 post-types/event.php:8
+#: post-types/event.php:5
+#: post-types/event.php:7
+#: post-types/event.php:8
 msgid "Events"
 msgstr "Events"
 
@@ -96,7 +109,8 @@ msgstr "Events"
 msgid "Event"
 msgstr "Event"
 
-#: post-types/event.php:10 post-types/event.php:11
+#: post-types/event.php:10
+#: post-types/event.php:11
 msgid "Add Event"
 msgstr "Event hinzufügen"
 
@@ -124,11 +138,13 @@ msgstr "Keine Events im Papierkorb gefunden"
 msgid "All Events"
 msgstr "Alle Events"
 
-#: post-types/event.php:57 post-types/event.php:66
+#: post-types/event.php:57
+#: post-types/event.php:66
 msgid "Event Information"
 msgstr "Eventinformationen"
 
-#: post-types/event.php:70 post-types/movie.php:72
+#: post-types/event.php:70
+#: post-types/movie.php:72
 msgid "German Title"
 msgstr "Deutscher Titel"
 
@@ -136,7 +152,8 @@ msgstr "Deutscher Titel"
 msgid "Please enter the German title of the event here"
 msgstr "Bitte gebe hier den deutschen Titel des Events an"
 
-#: post-types/event.php:77 post-types/movie.php:79
+#: post-types/event.php:77
+#: post-types/movie.php:79
 msgid "English Title"
 msgstr "Englischer Titel"
 
@@ -144,23 +161,28 @@ msgstr "Englischer Titel"
 msgid "Please enter the English title of the event here"
 msgstr "Bitte gebe hier den englischen Titel des Events ein"
 
-#: post-types/event.php:84 post-types/movie.php:235
+#: post-types/event.php:84
+#: post-types/movie.php:235
 msgid "License Type"
 msgstr "Lizensierungsart"
 
-#: post-types/event.php:88 post-types/movie.php:240
+#: post-types/event.php:88
+#: post-types/movie.php:240
 msgid "Advertisement License"
 msgstr "Werberechte"
 
-#: post-types/event.php:89 post-types/movie.php:241
+#: post-types/event.php:89
+#: post-types/movie.php:241
 msgid "Pool License"
 msgstr "Schirmlizenz"
 
-#: post-types/event.php:90 post-types/movie.php:242
+#: post-types/event.php:90
+#: post-types/movie.php:242
 msgid "No License"
 msgstr "Keine Lizenz"
 
-#: post-types/event.php:91 post-types/event.php:101
+#: post-types/event.php:91
+#: post-types/event.php:101
 msgid "Not Applicable"
 msgstr "Nicht Anwendbar"
 
@@ -168,7 +190,8 @@ msgstr "Nicht Anwendbar"
 msgid "Please select the best fitting category for this event. If you are unsure, read the <a href=\"https://wiki.gegenlicht.net/doku.php/lexikon/lizensierung\" target=\"_blank\">following entry</a>."
 msgstr "Bitte wähle die am besten passende Lizensierungsart für das Event aus. Falls du dir unsicher bist, lese den <a href=\"https://wiki.gegenlicht.net/doku.php/lexikon/lizensierung\" target=\"_blank\">folgenden Artikel</a>"
 
-#: post-types/event.php:97 post-types/movie.php:248
+#: post-types/event.php:97
+#: post-types/movie.php:248
 msgid "Age Rating"
 msgstr "Altersfreigabe"
 
@@ -180,27 +203,33 @@ msgstr "Die von der FSK offiziell festgelegte Altersfreigabe (https://www.fsk.de
 msgid "Unknown"
 msgstr "Unbekannt"
 
-#: post-types/event.php:103 post-types/movie.php:253
+#: post-types/event.php:103
+#: post-types/movie.php:253
 msgid "Not rated"
 msgstr "Ungeprüft"
 
-#: post-types/event.php:104 post-types/movie.php:254
+#: post-types/event.php:104
+#: post-types/movie.php:254
 msgid "FSK 0"
 msgstr "FSK 0"
 
-#: post-types/event.php:105 post-types/movie.php:255
+#: post-types/event.php:105
+#: post-types/movie.php:255
 msgid "FSK 6"
 msgstr "FSK 6"
 
-#: post-types/event.php:106 post-types/movie.php:256
+#: post-types/event.php:106
+#: post-types/movie.php:256
 msgid "FSK 12"
 msgstr "FSK 12"
 
-#: post-types/event.php:107 post-types/movie.php:257
+#: post-types/event.php:107
+#: post-types/movie.php:257
 msgid "FSK 16"
 msgstr "FSK 16"
 
-#: post-types/event.php:108 post-types/movie.php:258
+#: post-types/event.php:108
+#: post-types/movie.php:258
 msgid "FSK 18"
 msgstr "FSK 18"
 
@@ -212,90 +241,115 @@ msgstr "Dauer"
 msgid "The event's duration in minutes"
 msgstr "Die Dauer des Events in Minuten"
 
-#: post-types/event.php:125 post-types/movie.php:151
+#: post-types/event.php:125
+#: post-types/movie.php:151
 msgid "Selected by"
 msgstr "Ausgesucht von"
 
-#: post-types/event.php:130 post-types/event.php:137 post-types/movie.php:156
-#: post-types/movie.php:164 post-types/team-member.php:15
+#: post-types/event.php:130
+#: post-types/event.php:137
+#: post-types/movie.php:156
+#: post-types/movie.php:164
+#: post-types/team-member.php:15
 #: post-types/team-member.php:16
 msgid "Team Member"
 msgstr "Teammitglied"
 
-#: post-types/event.php:132 post-types/movie.php:158
+#: post-types/event.php:132
+#: post-types/movie.php:158
 msgid "Don't show"
 msgstr "Nicht anzeigen"
 
-#: post-types/event.php:142 post-types/movie.php:169
+#: post-types/event.php:142
+#: post-types/movie.php:169
 msgid "Select a Team Member"
 msgstr "Wähle ein Teammitglied aus"
 
-#: post-types/event.php:155 post-types/movie.php:183
+#: post-types/event.php:155
+#: post-types/movie.php:183
 msgid "Select a Cooperation Partner"
 msgstr "Wähle einen Kooperationspartner aus"
 
-#: post-types/event.php:165 post-types/movie.php:194
+#: post-types/event.php:165
+#: post-types/movie.php:194
 msgid "Program Type"
 msgstr "Programmart"
 
-#: post-types/event.php:170 post-types/movie.php:199
+#: post-types/event.php:170
+#: post-types/movie.php:199
 msgid "Main Program"
 msgstr "Hauptprogramm"
 
-#: post-types/event.php:171 post-types/event.php:176 post-types/movie.php:200
-#: post-types/movie.php:206 taxonomies/special-program.php:17
+#: post-types/event.php:171
+#: post-types/event.php:176
+#: post-types/movie.php:200
+#: post-types/movie.php:206
+#: taxonomies/special-program.php:17
 msgid "Special Program"
 msgstr "Sonderprogramm"
 
-#: post-types/event.php:177 post-types/movie.php:207
+#: post-types/event.php:177
+#: post-types/movie.php:207
 msgid "Select a Special Program"
 msgstr "Wähle ein Sonderprogramm aus"
 
-#: post-types/event.php:197 post-types/movie.php:293
+#: post-types/event.php:197
+#: post-types/movie.php:293
 msgid "Audio and Subtitles"
 msgstr "Ton und Untertitel"
 
-#: post-types/event.php:205 post-types/movie.php:301
+#: post-types/event.php:205
+#: post-types/movie.php:301
 msgid "Audio Type"
 msgstr "Art der Tonspur"
 
-#: post-types/event.php:210 post-types/movie.php:306
+#: post-types/event.php:210
+#: post-types/movie.php:306
 msgid "Original"
 msgstr "Original"
 
-#: post-types/event.php:211 post-types/movie.php:307
+#: post-types/event.php:211
+#: post-types/movie.php:307
 msgid "Synchronization"
 msgstr "Synchronisation"
 
-#: post-types/event.php:216 post-types/movie.php:313
+#: post-types/event.php:216
+#: post-types/movie.php:313
 msgid "Audio Language"
 msgstr "Sprache der Tonspur"
 
-#: post-types/event.php:224 post-types/movie.php:321
+#: post-types/event.php:224
+#: post-types/movie.php:321
 msgid "Subtitle Language"
 msgstr "Sprache der Untertitel"
 
-#: post-types/event.php:238 post-types/movie.php:335
+#: post-types/event.php:238
+#: post-types/movie.php:335
 msgid "Screening Information"
 msgstr "Vorstellungsdetails"
 
-#: post-types/event.php:248 post-types/movie.php:345
+#: post-types/event.php:248
+#: post-types/movie.php:345
 msgid "Select a Semester"
 msgstr "Wähle ein Semester aus"
 
-#: post-types/event.php:259 post-types/movie.php:357
+#: post-types/event.php:259
+#: post-types/movie.php:357
 msgid "Date and Time"
 msgstr "Datum und Uhrzeit"
 
-#: post-types/event.php:269 post-types/movie.php:367
+#: post-types/event.php:269
+#: post-types/movie.php:367
 msgid "Location"
 msgstr "Vorstellungsort"
 
-#: post-types/event.php:271 post-types/movie.php:369
+#: post-types/event.php:271
+#: post-types/movie.php:369
 msgid "Screening locations name (or address if needed)"
 msgstr "Name des Veranstaltungsorts (falls benötigt die Adresse)"
 
-#: post-types/event.php:272 post-types/movie.php:370
+#: post-types/event.php:272
+#: post-types/movie.php:370
 msgid "Stage 1 @ UNIKUM Oldenburg"
 msgstr "Bühne 1 @ UNIKUM Oldenburg"
 
@@ -303,51 +357,64 @@ msgstr "Bühne 1 @ UNIKUM Oldenburg"
 msgid "Addmission Type"
 msgstr "Eintrittsmodalitäten"
 
-#: post-types/event.php:282 post-types/movie.php:380
+#: post-types/event.php:282
+#: post-types/movie.php:380
 msgid "Free"
 msgstr "Kostenlos"
 
-#: post-types/event.php:283 post-types/movie.php:381
+#: post-types/event.php:283
+#: post-types/movie.php:381
 msgid "Donation"
 msgstr "gegen Spende"
 
-#: post-types/event.php:284 post-types/movie.php:382
+#: post-types/event.php:284
+#: post-types/movie.php:382
 msgid "Paid"
 msgstr "Kostenpflichtig"
 
-#: post-types/event.php:290 post-types/movie.php:388
+#: post-types/event.php:290
+#: post-types/movie.php:388
 msgid "Fee"
 msgstr "Eintrittspreis"
 
-#: post-types/event.php:306 post-types/event.php:329 post-types/movie.php:426
+#: post-types/event.php:306
+#: post-types/event.php:329
+#: post-types/movie.php:426
 msgid "Why it's worth seeing"
 msgstr "Darum sehenswert"
 
-#: post-types/event.php:315 post-types/movie.php:412
+#: post-types/event.php:315
+#: post-types/movie.php:412
 msgid "Content Summary"
 msgstr "Darum geht's"
 
-#: post-types/event.php:343 post-types/movie.php:475
+#: post-types/event.php:343
+#: post-types/movie.php:475
 msgid "Content Notice"
 msgstr "Inhaltshinweis"
 
-#: post-types/event.php:347 post-types/movie.php:479
+#: post-types/event.php:347
+#: post-types/movie.php:479
 msgid "Show Content Notice"
 msgstr "Inhaltshinweis anzeigen"
 
-#: post-types/event.php:358 post-types/movie.php:490
+#: post-types/event.php:358
+#: post-types/movie.php:490
 msgid "The content notice will be displayed above the content summary"
 msgstr "Die Inhaltshinweise werden über der Inhaltszusammenfassung angezeigt"
 
-#: post-types/movie.php:6 post-types/movie.php:8
+#: post-types/movie.php:6
+#: post-types/movie.php:8
 msgid "Movies"
 msgstr "Filme"
 
-#: post-types/movie.php:9 post-types/movie.php:10
+#: post-types/movie.php:9
+#: post-types/movie.php:10
 msgid "Movie"
 msgstr "Film"
 
-#: post-types/movie.php:11 post-types/movie.php:12
+#: post-types/movie.php:11
+#: post-types/movie.php:12
 msgid "Add Movie"
 msgstr "Film hinzufügen"
 
@@ -379,7 +446,8 @@ msgstr "Alle Filme"
 msgid "Old Movies"
 msgstr "Alte Filme"
 
-#: post-types/movie.php:59 post-types/movie.php:68
+#: post-types/movie.php:59
+#: post-types/movie.php:68
 msgid "Movie Information"
 msgstr "Filminformationen"
 
@@ -399,7 +467,8 @@ msgstr "Originaler Titel"
 msgid "Please enter the original title here. For Japanese/Chinese/etc. titles, please input the logographics and the romanized versions seperated by an em dash (<code>—</code>) surrounded by spaces"
 msgstr "Bitte gebe den originalen Titel des Films ein. Bei japanischen/chinesischen Titeln, gebe bitte die Schriftzeichen und die Transkription, getrennt von einem Geviertstrich (<code>—</code>) der von Leerzeichen umgeben ist"
 
-#: post-types/movie.php:93 post-types/movie.php:536
+#: post-types/movie.php:93
+#: post-types/movie.php:536
 msgid "Country/Countries of Origin"
 msgstr "Drehort"
 
@@ -407,7 +476,8 @@ msgstr "Drehort"
 msgid "Release Date"
 msgstr "Veröffentlichungsdatum"
 
-#: post-types/movie.php:109 post-types/movie.php:544
+#: post-types/movie.php:109
+#: post-types/movie.php:544
 msgid "Running Time"
 msgstr "Laufzeit"
 
@@ -415,7 +485,8 @@ msgstr "Laufzeit"
 msgid "The movie's running time in minutes"
 msgstr "Laufzeit des Films in Minuten"
 
-#: post-types/movie.php:119 post-types/movie.php:529
+#: post-types/movie.php:119
+#: post-types/movie.php:529
 msgid "Directed by"
 msgstr "Regisseur"
 
@@ -435,7 +506,8 @@ msgstr "Wähle eine:n Schauspieler:in aus"
 msgid "Licensing and Age Rating"
 msgstr "Lizensierung und Altersfreigabe"
 
-#: post-types/movie.php:250 post-types/movie.php:267
+#: post-types/movie.php:250
+#: post-types/movie.php:267
 msgid "FSK Title Lookup"
 msgstr "FSK Titelsuche"
 
@@ -531,11 +603,13 @@ msgstr "Kurzfilm"
 msgid "Advertise Short Movie"
 msgstr "Kurzfilm bewerben"
 
-#: post-types/movie.php:516 taxonomies/semester.php:62
+#: post-types/movie.php:516
+#: taxonomies/semester.php:62
 msgid "Yes"
 msgstr "Ja"
 
-#: post-types/movie.php:517 taxonomies/semester.php:63
+#: post-types/movie.php:517
+#: taxonomies/semester.php:63
 msgid "No"
 msgstr "Nein"
 
@@ -551,15 +625,18 @@ msgstr "Laufzeit des Kurzfilms in Minuten"
 msgid "Release Year"
 msgstr "Veröffentlichungsjahr"
 
-#: post-types/supporter.php:11 post-types/supporter.php:13
+#: post-types/supporter.php:11
+#: post-types/supporter.php:13
 msgid "Supporters"
 msgstr "Unterstützer"
 
-#: post-types/supporter.php:14 post-types/supporter.php:15
+#: post-types/supporter.php:14
+#: post-types/supporter.php:15
 msgid "Supporter"
 msgstr "Unterstützer"
 
-#: post-types/supporter.php:16 post-types/supporter.php:17
+#: post-types/supporter.php:16
+#: post-types/supporter.php:17
 msgid "Add Supporter"
 msgstr "Unterstützer hinzufügen"
 
@@ -575,11 +652,13 @@ msgstr "Unterstützer anzeigen"
 msgid "All Supporters"
 msgstr "Alle Unterstützer"
 
-#: post-types/team-member.php:12 post-types/team-member.php:14
+#: post-types/team-member.php:12
+#: post-types/team-member.php:14
 msgid "Team Members"
 msgstr "Teammitglieder"
 
-#: post-types/team-member.php:17 post-types/team-member.php:18
+#: post-types/team-member.php:17
+#: post-types/team-member.php:18
 msgid "Add Team Member"
 msgstr "Teammitglied hinzufügen"
 
@@ -611,7 +690,8 @@ msgstr "Bild entfernen"
 msgid "Upload Photo"
 msgstr "Bild hochladen"
 
-#: post-types/team-member.php:52 post-types/team-member.php:60
+#: post-types/team-member.php:52
+#: post-types/team-member.php:60
 msgid "Membership Type"
 msgstr "Mitgliedsstatus"
 
@@ -631,7 +711,8 @@ msgstr "Beigetreten in"
 msgid "Left In"
 msgstr "Ausgeschieden in"
 
-#: taxonomies/actor.php:6 taxonomies/actor.php:7
+#: taxonomies/actor.php:6
+#: taxonomies/actor.php:7
 msgid "Actors"
 msgstr "Schauspieler:innen"
 
@@ -739,6 +820,10 @@ msgstr "Start der Vorstellungen"
 msgid "The date at which the first official screening of the semester will take place"
 msgstr "Datum der ersten offiziellen Vorstellung des Semesters"
 
+#: post-types/cooperation-partner.php:71
+#: post-types/cooperation-partner.php:79
+#: post-types/team-member.php:101
+#: post-types/team-member.php:109
 #: taxonomies/semester.php:52
 msgid "Archival Data"
 msgstr "Archiveinträge"
@@ -759,7 +844,8 @@ msgstr "Gezeigte Filme"
 msgid "When filling in this archival list, you will disable the reading of the created posts for the semester. The movies displayed here are sorted by the date you entered before being rendered."
 msgstr "Beim Befüllen dieser Liste wird das Auslesen der erstellten Posts deaktiviert für das gegebene Semester. Die Einträge werden nach dem angegebenen Datum sortiert"
 
-#: taxonomies/special-program.php:13 taxonomies/special-program.php:16
+#: taxonomies/special-program.php:13
+#: taxonomies/special-program.php:16
 #: taxonomies/special-program.php:24
 msgid "Special Programs"
 msgstr "Sonderprogramme"
@@ -847,3 +933,8 @@ msgstr "Anonymisierendes Bild"
 #: post-types/supporter.php:67
 msgid "Display on Top"
 msgstr "Als erstes Anzeigen"
+
+#: post-types/cooperation-partner.php:84
+#: post-types/team-member.php:114
+msgid "When filling in this archival list the given values are added to the automatically read values"
+msgstr "Die angegebenen Einträge werden zu den automatisch gelesenen Werten hinzugefügt"

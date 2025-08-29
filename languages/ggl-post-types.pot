@@ -2,14 +2,14 @@
 # This file is distributed under the EUPL-1.2.
 msgid ""
 msgstr ""
-"Project-Id-Version: Custom Post Types for Movies, Team Members and Supporters 1.0.0\n"
+"Project-Id-Version: Custom Post Types for Movies, Team Members and Supporters 1.2.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/custom-post-types\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2025-08-29T11:24:16+00:00\n"
+"POT-Creation-Date: 2025-08-29T11:43:32+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: ggl-post-types\n"
@@ -98,6 +98,19 @@ msgstr ""
 #: post-types/cooperation-partner.php:64
 #: post-types/supporter.php:62
 msgid "Website"
+msgstr ""
+
+#: post-types/cooperation-partner.php:71
+#: post-types/cooperation-partner.php:79
+#: post-types/team-member.php:101
+#: post-types/team-member.php:109
+#: taxonomies/semester.php:52
+msgid "Archival Data"
+msgstr ""
+
+#: post-types/cooperation-partner.php:84
+#: post-types/team-member.php:114
+msgid "When filling in this archival list the given values are added to the automatically read values"
 msgstr ""
 
 #: post-types/event.php:5
@@ -823,10 +836,6 @@ msgstr ""
 
 #: taxonomies/semester.php:41
 msgid "The date at which the first official screening of the semester will take place"
-msgstr ""
-
-#: taxonomies/semester.php:52
-msgid "Archival Data"
 msgstr ""
 
 #: taxonomies/semester.php:59
