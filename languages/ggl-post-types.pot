@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2025-08-16T19:52:08+00:00\n"
+"POT-Creation-Date: 2025-08-29T11:24:16+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: ggl-post-types\n"
@@ -653,6 +653,10 @@ msgstr ""
 msgid "All Supporters"
 msgstr ""
 
+#: post-types/supporter.php:67
+msgid "Display on Top"
+msgstr ""
+
 #: post-types/team-member.php:12
 #: post-types/team-member.php:14
 msgid "Team Members"
@@ -871,58 +875,58 @@ msgstr ""
 msgid "New Special Program Name"
 msgstr ""
 
-#: taxonomies/special-program.php:45
+#: taxonomies/special-program.php:51
 msgid "Extended Configuration"
 msgstr ""
 
-#: taxonomies/special-program.php:52
+#: taxonomies/special-program.php:58
 msgid "Background Color"
 msgstr ""
 
-#: taxonomies/special-program.php:54
+#: taxonomies/special-program.php:60
 msgid "The color used as the background for content related the special programm"
 msgstr ""
 
-#: taxonomies/special-program.php:58
+#: taxonomies/special-program.php:64
 msgid "Text Color"
 msgstr ""
 
-#: taxonomies/special-program.php:60
+#: taxonomies/special-program.php:66
 msgid "The color used for the text on the special programme program related pages"
 msgstr ""
 
-#: taxonomies/special-program.php:64
+#: taxonomies/special-program.php:70
 msgid "Background Color (Dark Mode)"
 msgstr ""
 
-#: taxonomies/special-program.php:66
+#: taxonomies/special-program.php:72
 msgid "The color used as the background in dark mode for content related the special programm"
 msgstr ""
 
-#: taxonomies/special-program.php:71
+#: taxonomies/special-program.php:77
 msgid "Text Color (Dark Mode)"
 msgstr ""
 
-#: taxonomies/special-program.php:73
+#: taxonomies/special-program.php:79
 msgid "The color used for the text in dark mode on the special programm related pages"
 msgstr ""
 
-#: taxonomies/special-program.php:77
+#: taxonomies/special-program.php:83
 msgid "Program Logo"
 msgstr ""
 
-#: taxonomies/special-program.php:80
+#: taxonomies/special-program.php:86
 msgid "This logo is displayed on the front page to identify the special program"
 msgstr ""
 
-#: taxonomies/special-program.php:84
+#: taxonomies/special-program.php:90
 msgid "Program Logo (Dark Mode)"
 msgstr ""
 
-#: taxonomies/special-program.php:87
+#: taxonomies/special-program.php:93
 msgid "This logo is displayed on the front page to identify the special program if the dark mode is active"
 msgstr ""
 
-#: taxonomies/special-program.php:91
+#: taxonomies/special-program.php:97
 msgid "Image for Anonymized Detail Pages"
 msgstr ""
