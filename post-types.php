@@ -81,6 +81,9 @@ require_once 'post-types/team-member.php';
 add_action( 'init', 'ggl_post_type_team_member' );
 add_filter( 'rwmb_meta_boxes', 'team_member_register_meta_boxes' );
 
+require_once 'post-types/screening-location.php';
+add_action( 'init', 'ggl_post_type_screening_location' );
+add_filter( 'rwmb_meta_boxes', 'location_register_meta_boxes' );
 
 add_filter( 'custom_menu_order', '__return_true' );
 add_filter( 'menu_order', 'ggl_menu_order' );
