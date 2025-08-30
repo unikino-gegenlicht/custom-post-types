@@ -2,39 +2,39 @@
 
 function ggl_post_type_event(): void {
 	register_post_type( 'event', [
-			'label'               => __( 'Events', 'ggl-post-types' ),
-			'labels'              => [
-				'menu_name'          => __( 'Events', 'ggl-post-types' ),
-				'name_admin_bar'     => __( 'Events', 'ggl-post-types' ),
-				'singular_name'      => __( 'Event', 'ggl-post-types' ),
-				'add_new_item'       => __( 'Add Event', 'ggl-post-types' ),
-				'add_new'            => __( 'Add Event', 'ggl-post-types' ),
-				'edit_item'          => __( 'Edit Event', 'ggl-post-types' ),
-				'view_item'          => __( 'Show Event', 'ggl-post-types' ),
-				'search_items'       => __( 'Search Event', 'ggl-post-types' ),
-				'not_found'          => __( 'No Events found', 'ggl-post-types' ),
-				'not_found_in_trash' => __( 'No Events found in Trash', 'ggl-post-types' ),
-				'all_items'          => __( 'All Events', 'ggl-post-types' ),
-			],
-			'public'              => true,
-			'has_archive'         => 'event-archive',
-			'exclude_from_search' => false,
-			'publicly_queryable'  => true,
-			'capability_type'     => 'post',
-			'hierarchical'        => false,
-			'can_export'          => true,
-			'show_ui'             => true,
-			'show_in_rest'        => true,
-			'delete_with_user'    => false,
-			'menu_position'       => 7,
-			'menu_icon'           => 'dashicons-schedule',
-			'supports'            => [ 'thumbnail' ],
-			'taxonomies'          => [ 'semester', 'special-program' ],
-			'rewrite'             => [
-				'with_front' => true,
-				'pages'      => false,
-			]
-		] );
+		'label'               => __( 'Events', 'ggl-post-types' ),
+		'labels'              => [
+			'menu_name'          => __( 'Events', 'ggl-post-types' ),
+			'name_admin_bar'     => __( 'Events', 'ggl-post-types' ),
+			'singular_name'      => __( 'Event', 'ggl-post-types' ),
+			'add_new_item'       => __( 'Add Event', 'ggl-post-types' ),
+			'add_new'            => __( 'Add Event', 'ggl-post-types' ),
+			'edit_item'          => __( 'Edit Event', 'ggl-post-types' ),
+			'view_item'          => __( 'Show Event', 'ggl-post-types' ),
+			'search_items'       => __( 'Search Event', 'ggl-post-types' ),
+			'not_found'          => __( 'No Events found', 'ggl-post-types' ),
+			'not_found_in_trash' => __( 'No Events found in Trash', 'ggl-post-types' ),
+			'all_items'          => __( 'All Events', 'ggl-post-types' ),
+		],
+		'public'              => true,
+		'has_archive'         => 'event-archive',
+		'exclude_from_search' => false,
+		'publicly_queryable'  => true,
+		'capability_type'     => 'post',
+		'hierarchical'        => false,
+		'can_export'          => true,
+		'show_ui'             => true,
+		'show_in_rest'        => true,
+		'delete_with_user'    => false,
+		'menu_position'       => 6,
+		'menu_icon'           => 'dashicons-schedule',
+		'supports'            => [ 'thumbnail' ],
+		'taxonomies'          => [ 'semester', 'special-program' ],
+		'rewrite'             => [
+			'with_front' => true,
+			'pages'      => false,
+		]
+	] );
 }
 
 function generate_numerical_event_id( $post_id ): void {
@@ -265,12 +265,19 @@ function event_screening_info_meta_boxes( $meta_boxes ) {
 				'required'   => true
 			],
 			[
-				'type'     => 'text',
-				'name'     => esc_html__( 'Location', 'ggl-post-types' ),
-				'id'       => 'screening_location',
-				'desc'     => esc_html__( 'Screening locations name (or address if needed)', 'ggl-post-types' ),
-				'std'      => esc_html__( 'Stage 1 @ UNIKUM Oldenburg', 'ggl-post-types' ),
-				'required' => true
+				'type'       => 'post',
+				'name'       => esc_html__( 'Location', 'ggl-post-types' ),
+				'id'         => 'screening_location',
+				'desc'       => esc_html__( 'The location the screening will take place in', 'ggl-post-types' ),
+				'required'   => true,
+				'field_type' => 'select_advanced',
+				'post_type'  => 'screening-location',
+				'query_args' => [
+					'post_status'    => 'publish',
+					'posts_per_page' => - 1
+				],
+				'ajax'       => true,
+				'add_new'    => false,
 			],
 			[
 				'type'     => 'radio',

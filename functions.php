@@ -48,7 +48,7 @@ function ggl_post_types_load_textdomain() {
 	load_plugin_textdomain( 'ggl-i18n', false, dirname( plugin_basename( __FILE__ ) ) . '/languages' );
 }
 
-function reorder_menu() {
+function ggl_cpt__spaceout_admin_menu() {
 	remove_menu_page( 'edit.php' ); // Posts
 	remove_menu_page( 'edit-comments.php' ); // Comments
 	global $menu;
@@ -59,6 +59,7 @@ function reorder_menu() {
 	unset( $menu[11] );
 
 	add_admin_menu_separator( 10 );
+	add_admin_menu_separator( 20 );
 }
 
 function generate_language_mapping(): array {
@@ -79,4 +80,21 @@ function generate_country_mapping(): array {
 	}
 
 	return $output;
+}
+
+function ggl_menu_order(array $order) {
+	$newOrder = array(
+		"index.php",
+		"separator1",
+		"edit.php?post_type=movie",
+		"edit.php?post_type=event",
+		"edit.php?post_type=team-member",
+		"edit.php?post_type=cooperation-partner",
+		"edit.php?post_type=supporter",
+		"edit.php?post_type=screening-location",
+		"separator2",
+		"edit.php?post_type=page"
+	);
+		return $newOrder;
+
 }

@@ -28,9 +28,9 @@ function ggl_post_type_movie(): void {
 		'show_ui'             => true, // implies show_in_menu, show_in_nav_menus, show_in_admin_bar
 		'show_in_rest'        => true,
 		'delete_with_user'    => false,
-		'menu_position'       => 6,
+		'menu_position'       => 5,
 		'menu_icon'           => 'dashicons-editor-video',
-		'supports'            => [ 'thumbnail' ],
+		'supports'            => [ 'thumbnail', 'author' ],
 		'taxonomies'          => [ 'semester', 'special-program', 'director', 'actor' ],
 		'rewrite'             => [
 			'with_front' => true,
@@ -45,14 +45,15 @@ function ensure_numerical_movie_link( $post_id ): void {
 	if ( false !== $parent_id ) {
 		$post_id = $parent_id;
 	}
-	remove_action( 'save_post_movie', 'ensure_numerical_movie_link' );
+	remove_action( 'save_post_movie', 'ensure_numerical_movie_link', 1 );
 	wp_update_post( array(
 		'ID'         => $post_id,
 		'post_name'  => $post_id,
 		'post_title' => ( array_key_exists( 'german_title', $_POST ) && array_key_exists( 'english_title', $_POST ) ) ? $_POST['german_title'] . " (" . $_POST['english_title'] . ")" : "TBA",
 	) );
-	add_action( 'save_post_movie', 'ensure_numerical_movie_link' );
+	add_action( 'save_post_movie', 'ensure_numerical_movie_link', 1 );
 }
+
 
 function movie_extended_info_meta_boxes( $meta_boxes ) {
 	$meta_boxes[] = [
@@ -363,12 +364,19 @@ function movie_screening_info_meta_boxes( $meta_boxes ) {
 				'required'   => true
 			],
 			[
-				'type'     => 'text',
-				'name'     => esc_html__( 'Location', 'ggl-post-types' ),
-				'id'       => 'screening_location',
-				'desc'     => esc_html__( 'Screening locations name (or address if needed)', 'ggl-post-types' ),
-				'std'      => esc_html__( 'Stage 1 @ UNIKUM Oldenburg', 'ggl-post-types' ),
-				'required' => true
+				'type'       => 'post',
+				'name'       => esc_html__( 'Location', 'ggl-post-types' ),
+				'id'         => 'screening_location',
+				'desc'       => esc_html__( 'The location the screening will take place in', 'ggl-post-types' ),
+				'required'   => true,
+				'field_type' => 'select_advanced',
+				'post_type'  => 'screening-location',
+				'query_args' => [
+					'post_status'    => 'publish',
+					'posts_per_page' => - 1
+				],
+				'ajax'       => true,
+				'add_new'    => false,
 			],
 			[
 				'type'     => 'radio',

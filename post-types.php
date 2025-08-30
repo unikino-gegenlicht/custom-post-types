@@ -59,7 +59,7 @@ add_filter( 'rwmb_meta_boxes', 'movie_sound_information_meta_boxes' );
 add_filter( 'rwmb_meta_boxes', 'movie_screening_info_meta_boxes' );
 add_filter( 'rwmb_meta_boxes', 'movie_text_boxes' );
 add_filter( 'rwmb_meta_boxes', 'movie_short_movie_box' );
-add_action( 'save_post_movie', 'ensure_numerical_movie_link' );
+add_action( 'save_post_movie', 'ensure_numerical_movie_link', 1 );
 
 require_once 'post-types/event.php';
 add_action( 'init', 'ggl_post_type_event' );
@@ -81,8 +81,13 @@ require_once 'post-types/team-member.php';
 add_action( 'init', 'ggl_post_type_team_member' );
 add_filter( 'rwmb_meta_boxes', 'team_member_register_meta_boxes' );
 
+require_once 'post-types/screening-location.php';
+add_action( 'init', 'ggl_post_type_screening_location' );
+add_filter( 'rwmb_meta_boxes', 'location_register_meta_boxes' );
 
-add_action( 'admin_menu', 'reorder_menu' );
+add_filter( 'custom_menu_order', '__return_true' );
+add_filter( 'menu_order', 'ggl_menu_order' );
+add_action( 'admin_menu', 'ggl_cpt__spaceout_admin_menu' );
 
 
 add_action( 'plugins_loaded', 'ggl_post_types_load_textdomain' );
