@@ -8,41 +8,40 @@
 require_once plugin_dir_path( __FILE__ ) . '../inc/icons.php';
 
 function ggl_post_type_cooperation_partner(): void {
-	register_post_type( 'cooperation-partner',
-		[
-			'label'               => __( 'Cooperation Partners', 'ggl-post-types' ),
-			'labels'              => [
-				'menu_name'             => __( 'Cooperation Partners', 'ggl-post-types' ),
-				'name_admin_bar'        => __( 'Cooperation Partner', 'ggl-post-types' ),
-				'singular_name'         => __( 'Cooperation Partner', 'ggl-post-types' ),
-				'add_new_item'          => __( 'Add Cooperation Partner', 'ggl-post-types' ),
-				'add_new'               => __( 'Add Cooperation Partner', 'ggl-post-types' ),
-				'edit_item'             => __( 'Edit Cooperation Partner', 'ggl-post-types' ),
-				'view_item'             => __( 'View Cooperation Partner', 'ggl-post-types' ),
-				'all_items'             => __( 'All Cooperation Partners', 'ggl-post-types' ),
-				'featured_image'        => __( 'Logo', 'ggl-post-types' ),
-				'set_featured_image'    => __( 'Set Logo', 'ggl-post-types' ),
-				'remove_featured_image' => __( 'Remove Logo', 'ggl-post-types' ),
-				'upload_featured_image' => __( 'Upload Logo', 'ggl-post-types' ),
-			],
-			'public'              => true,
-			'has_archive'         => 'cooperation-partners',
-			'exclude_from_search' => true,
-			'publicly_queryable'  => true,
-			'capability_type'     => 'post',
-			'hierarchical'        => false,
-			'can_export'          => true,
-			'show_ui'             => true,
-			'show_in_rest'        => true,
-			'menu_position'       => 8,
-			'menu_icon'           => IconHandshake,
-			'supports'            => [ 'title', 'thumbnail', 'editor' ],
-			'rewrite'             => [
-				'slug'       => 'cooperation-partners',
-				'with_front' => false,
-				'pages'      => false,
-			]
-		] );
+	register_post_type( 'cooperation-partner', [
+		'label'               => __( 'Cooperation Partners', 'ggl-post-types' ),
+		'labels'              => [
+			'menu_name'             => __( 'Cooperation Partners', 'ggl-post-types' ),
+			'name_admin_bar'        => __( 'Cooperation Partner', 'ggl-post-types' ),
+			'singular_name'         => __( 'Cooperation Partner', 'ggl-post-types' ),
+			'add_new_item'          => __( 'Add Cooperation Partner', 'ggl-post-types' ),
+			'add_new'               => __( 'Add Cooperation Partner', 'ggl-post-types' ),
+			'edit_item'             => __( 'Edit Cooperation Partner', 'ggl-post-types' ),
+			'view_item'             => __( 'View Cooperation Partner', 'ggl-post-types' ),
+			'all_items'             => __( 'All Cooperation Partners', 'ggl-post-types' ),
+			'featured_image'        => __( 'Logo', 'ggl-post-types' ),
+			'set_featured_image'    => __( 'Set Logo', 'ggl-post-types' ),
+			'remove_featured_image' => __( 'Remove Logo', 'ggl-post-types' ),
+			'upload_featured_image' => __( 'Upload Logo', 'ggl-post-types' ),
+		],
+		'public'              => true,
+		'has_archive'         => 'cooperation-partners',
+		'exclude_from_search' => true,
+		'publicly_queryable'  => true,
+		'capability_type'     => 'post',
+		'hierarchical'        => false,
+		'can_export'          => true,
+		'show_ui'             => true,
+		'show_in_rest'        => true,
+		'menu_position'       => 8,
+		'menu_icon'           => IconHandshake,
+		'supports'            => [ 'title', 'thumbnail', 'editor' ],
+		'rewrite'             => [
+			'slug'       => 'cooperation-partners',
+			'with_front' => false,
+			'pages'      => false,
+		]
+	] );
 }
 
 function cooperation_partner_register_meta_boxes( $meta_boxes ) {
@@ -61,7 +60,7 @@ function cooperation_partner_register_meta_boxes( $meta_boxes ) {
 			],
 			[
 				'type' => 'url',
-				'name' => esc_html__( 'Website' , 'ggl-post-types' ),
+				'name' => esc_html__( 'Website', 'ggl-post-types' ),
 				'id'   => $prefix . 'website',
 			],
 		],
