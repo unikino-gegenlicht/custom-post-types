@@ -80,37 +80,6 @@ function event_extended_info_meta_boxes( $meta_boxes ) {
 				'required' => true
 			],
 			[
-				'type'    => 'radio',
-				'name'    => esc_html__( 'License Type', 'ggl-post-types' ),
-				'id'      => 'license_type',
-				'inline'  => true,
-				'options' => [
-					'full' => esc_html__( 'Advertisement License', 'ggl-post-types' ),
-					'pool' => esc_html__( 'Pool License', 'ggl-post-types' ),
-					'none' => esc_html__( 'No License', 'ggl-post-types' ),
-					'n/a'  => esc_html__( 'Not Applicable', 'ggl-post-types' )
-				],
-				'desc'    => __( 'Please select the best fitting category for this event. If you are unsure, read the <a href="https://wiki.gegenlicht.net/doku.php/lexikon/lizensierung" target="_blank">following entry</a>.', 'ggl-post-types' )
-			],
-			[
-				'type'     => 'select',
-				'name'     => esc_html__( 'Age Rating', 'ggl-post-types' ),
-				'id'       => 'age_rating',
-				'desc'     => esc_html__( 'The official age rating set by the FSK (https://www.fsk.de/?seitid=70&tid=70)', 'ggl-post-types' ),
-				'options'  => [
-					- 3 => esc_html__( 'Not Applicable', 'ggl-post-types' ),
-					- 2 => esc_html__( 'Unknown', 'ggl-post-types' ),
-					- 1 => esc_html__( 'Not rated', 'ggl-post-types' ),
-					0   => esc_html__( 'FSK 0', 'ggl-post-types' ),
-					6   => esc_html__( 'FSK 6', 'ggl-post-types' ),
-					12  => esc_html__( 'FSK 12', 'ggl-post-types' ),
-					16  => esc_html__( 'FSK 16', 'ggl-post-types' ),
-					18  => esc_html__( 'FSK 18', 'ggl-post-types' ),
-				],
-				'std'      => - 2,
-				'required' => true
-			],
-			[
 				'type'     => 'number',
 				'name'     => esc_html__( 'Duration', 'ggl-post-types' ),
 				'id'       => 'duration',
@@ -119,6 +88,31 @@ function event_extended_info_meta_boxes( $meta_boxes ) {
 				'step'     => 1,
 				'min'      => 0,
 				'required' => true
+			],
+			[
+				'type'     => 'select_advanced',
+				'name'     => esc_html__( 'Event Language', 'ggl-post-types' ),
+				'id'       => 'language',
+				'std'      => 'eng',
+				'options'  => generate_language_mapping(),
+				'required' => false,
+			],
+			[
+				'type'      => 'switch',
+				'name'      => esc_html__( 'Has minimal attendee age', 'ggl-post-types' ),
+				'id'        => 'age_restricted',
+				'std'       => false,
+				'on_label'  => esc_html__( 'Yes', 'ggl-post-types' ),
+				'off_label' => esc_html__( 'No', 'ggl-post-types' ),
+			],
+			[
+				'type'     => 'number',
+				'name'     => esc_html__( 'Minimal Attendee Age', 'ggl-post-types' ),
+				'id'       => 'minimal_age',
+				'std'      => 16,
+				'step'     => 1,
+				'min'      => 0,
+				'visible' => ["age_restricted"]
 			],
 			[
 				'type'     => 'radio',
@@ -192,47 +186,6 @@ function event_extended_info_meta_boxes( $meta_boxes ) {
 	return $meta_boxes;
 }
 
-function event_sound_information_meta_boxes( $meta_boxes ): mixed {
-	$meta_boxes[] = [
-		'title'      => esc_html__( 'Audio and Subtitles', 'ggl-post-types' ),
-		'id'         => 'audio_and_subtitle_information',
-		'context'    => 'side',
-		'post_types' => [ 'event' ],
-		'autosave'   => true,
-		'fields'     => [
-			[
-				'type'     => 'radio',
-				'name'     => esc_html__( 'Audio Type', 'ggl-post-types' ),
-				'id'       => 'audio_type',
-				'inline'   => true,
-				'required' => true,
-				'options'  => [
-					'original'        => esc_html__( 'Original', 'ggl-post-types' ),
-					'synchronization' => esc_html__( 'Synchronization', 'ggl-post-types' ),
-				],
-			],
-			[
-				'type'     => 'select_advanced',
-				'name'     => esc_html__( 'Audio Language', 'ggl-post-types' ),
-				'id'       => 'audio_language',
-				'std'      => 'eng',
-				'options'  => generate_language_mapping(),
-				'required' => false,
-			],
-			[
-				'type'     => 'select_advanced',
-				'name'     => esc_html__( 'Subtitle Language', 'ggl-post-types' ),
-				'id'       => 'subtitle_language',
-				'std'      => 'deu',
-				'options'  => generate_language_mapping(),
-				'required' => true
-			],
-		]
-	];
-
-	return $meta_boxes;
-}
-
 function event_screening_info_meta_boxes( $meta_boxes ) {
 	$meta_boxes[] = [
 		'title'      => esc_html__( 'Screening Information', 'ggl-post-types' ),
@@ -268,7 +221,7 @@ function event_screening_info_meta_boxes( $meta_boxes ) {
 				'type'       => 'post',
 				'name'       => esc_html__( 'Location', 'ggl-post-types' ),
 				'id'         => 'screening_location',
-				'desc'       => esc_html__( 'The location the screening will take place in', 'ggl-post-types' ),
+				'desc'       => esc_html__( 'The location the event will take place in', 'ggl-post-types' ),
 				'required'   => true,
 				'field_type' => 'select_advanced',
 				'post_type'  => 'screening-location',
@@ -281,7 +234,7 @@ function event_screening_info_meta_boxes( $meta_boxes ) {
 			],
 			[
 				'type'     => 'radio',
-				'name'     => esc_html__( 'Addmission Type', 'ggl-post-types' ),
+				'name'     => esc_html__( 'Admission Type', 'ggl-post-types' ),
 				'id'       => 'admission_type',
 				'inline'   => true,
 				'required' => true,
@@ -319,7 +272,7 @@ function event_additional_information_box( $meta_boxes ) {
 		'fields'     => [
 			[
 				'type' => 'heading',
-				'name' => esc_html__( "Content Summary", 'ggl-post-types' ),
+				'name' => esc_html__( "Event Summary", 'ggl-post-types' ),
 			],
 			[
 				'type'                  => 'wysiwyg',
@@ -333,7 +286,7 @@ function event_additional_information_box( $meta_boxes ) {
 			],
 			[
 				'type' => 'heading',
-				'name' => esc_html__( "Why it's worth seeing", 'ggl-post-types' ),
+				'name' => esc_html__( "Why it's worth attending", 'ggl-post-types' ),
 			],
 			[
 				'type'                  => 'wysiwyg',
@@ -347,11 +300,11 @@ function event_additional_information_box( $meta_boxes ) {
 			],
 			[
 				'type' => 'heading',
-				'name' => esc_html__( "Content Notice", 'ggl-post-types' ),
+				'name' => esc_html__( "Notices", 'ggl-post-types' ),
 			],
 			[
 				'type' => 'checkbox',
-				'name' => esc_html__( 'Show Content Notice', 'ggl-post-types' ),
+				'name' => esc_html__( 'Show Notice', 'ggl-post-types' ),
 				'id'   => 'show_content_notice',
 				'std'  => 0,
 			],
@@ -362,7 +315,7 @@ function event_additional_information_box( $meta_boxes ) {
 				'add_to_wpseo_analysis' => false,
 				'dfw'                   => false,
 				'visible'               => [ 'show_content_notice', true ],
-				'desc'                  => esc_html__( 'The content notice will be displayed above the content summary', 'ggl-post-types' ),
+				'desc'                  => esc_html__( 'The content notice will be displayed above the event summary', 'ggl-post-types' ),
 				'options'               => [
 					'teeny'         => true,
 					'media_buttons' => false,
