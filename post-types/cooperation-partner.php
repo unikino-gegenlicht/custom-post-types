@@ -69,7 +69,7 @@ function cooperation_partner_register_meta_boxes( $meta_boxes ) {
 	$meta_boxes[] = [
 		'title'      => esc_html__( 'Archival Data', 'ggl-post-types' ),
 		'id'         => 'manual-archive',
-		'context'    => 'before_permalink',
+		'context'    => 'normal',
 		'style'      => 'seamless',
 		'post_types' => [ 'cooperation-partner' ],
 		'fields'     => [
