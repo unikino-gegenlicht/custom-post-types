@@ -30,7 +30,7 @@ function ggl_post_type_movie(): void {
 		'delete_with_user'    => false,
 		'menu_position'       => 5,
 		'menu_icon'           => 'dashicons-editor-video',
-		'supports'            => [ 'thumbnail', 'author' ],
+		'supports'            => [ 'thumbnail' ],
 		'taxonomies'          => [ 'semester', 'special-program', 'director', 'actor' ],
 		'rewrite'             => [
 			'with_front' => true,
