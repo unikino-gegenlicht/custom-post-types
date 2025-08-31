@@ -166,11 +166,17 @@ function movie_extended_info_meta_boxes( $meta_boxes ) {
 				'id'          => 'team_member_id',
 				'post_type'   => 'team-member',
 				'field_type'  => 'select_advanced',
-				'add_new'     => true,
+				'add_new'     => false,
 				'placeholder' => esc_html__( 'Select a Team Member', 'ggl-post-types' ),
 				'query_args'  => [
 					'post_status'    => 'publish',
-					'posts_per_page' => - 1
+					'posts_per_page' => - 1,
+					'meta_query' =>[[
+						"key" => "status",
+						"value" => "active",
+					]],
+					'orderby'        => 'title',
+					'order'          => 'ASC',
 				],
 				'visible'     => [ 'selected_by', '=', 'member' ],
 				'ajax'        => true
@@ -182,10 +188,12 @@ function movie_extended_info_meta_boxes( $meta_boxes ) {
 				'post_type'   => 'cooperation-partner',
 				'field_type'  => 'select_advanced',
 				'placeholder' => esc_html__( 'Select a Cooperation Partner', 'ggl-post-types' ),
-				'add_new'     => true,
+				'add_new'     => false,
 				'query_args'  => [
 					'post_status'    => 'publish',
-					'posts_per_page' => - 1
+					'posts_per_page' => - 1,
+					'orderby'        => 'title',
+					'order'          => 'ASC',
 				],
 				'visible'     => [ 'selected_by', '=', 'coop' ],
 				'ajax'        => true
