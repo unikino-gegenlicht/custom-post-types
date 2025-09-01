@@ -432,10 +432,7 @@ function movie_text_boxes( $meta_boxes ) {
 				'id'                    => 'summary',
 				'required'              => true,
 				'add_to_wpseo_analysis' => true,
-				'options'               => [
-					'teeny'         => true,
-					'media_buttons' => false,
-				]
+				'options'               => GGL_CPT__WYSIWYG_OPTIONS,
 			],
 			[
 				'type' => 'heading',
@@ -446,10 +443,8 @@ function movie_text_boxes( $meta_boxes ) {
 				'id'                    => 'worth_to_see',
 				'required'              => true,
 				'add_to_wpseo_analysis' => true,
-				'options'               => [
-					'teeny'         => true,
-					'media_buttons' => false,
-				]
+				'options'               => GGL_CPT__WYSIWYG_OPTIONS,
+
 			],
 			[
 				'type'    => 'heading',
@@ -462,10 +457,7 @@ function movie_text_boxes( $meta_boxes ) {
 				'id'                    => 'anon_summary',
 				'required'              => false,
 				'add_to_wpseo_analysis' => false,
-				'options'               => [
-					'teeny'         => true,
-					'media_buttons' => false,
-				],
+				'options'               => GGL_CPT__WYSIWYG_OPTIONS,
 				'visible'               => [ 'license_type', '!=', 'full' ],
 			],
 			[
@@ -479,10 +471,7 @@ function movie_text_boxes( $meta_boxes ) {
 				'id'                    => 'anon_worth_to_see',
 				'required'              => false,
 				'add_to_wpseo_analysis' => false,
-				'options'               => [
-					'teeny'         => true,
-					'media_buttons' => false,
-				],
+				'options'               => GGL_CPT__WYSIWYG_OPTIONS,
 				'visible'               => [ 'license_type', '!=', 'full' ],
 
 			],
@@ -504,10 +493,7 @@ function movie_text_boxes( $meta_boxes ) {
 				'dfw'                   => false,
 				'visible'               => [ 'show_content_notice', true ],
 				'desc'                  => esc_html__( 'The content notice will be displayed above the content summary', 'ggl-post-types' ),
-				'options'               => [
-					'teeny'         => true,
-					'media_buttons' => false,
-				]
+				'options'               => GGL_CPT__WYSIWYG_OPTIONS,
 			],
 		],
 	];

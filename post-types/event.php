@@ -279,10 +279,7 @@ function event_additional_information_box( $meta_boxes ) {
 				'id'                    => 'summary',
 				'required'              => true,
 				'add_to_wpseo_analysis' => true,
-				'options'               => [
-					'teeny'         => true,
-					'media_buttons' => false,
-				]
+				'options'               => GGL_CPT__WYSIWYG_OPTIONS
 			],
 			[
 				'type' => 'heading',
@@ -293,10 +290,7 @@ function event_additional_information_box( $meta_boxes ) {
 				'id'                    => 'worth_to_see',
 				'required'              => true,
 				'add_to_wpseo_analysis' => true,
-				'options'               => [
-					'teeny'         => true,
-					'media_buttons' => false,
-				]
+				'options'               => GGL_CPT__WYSIWYG_OPTIONS
 			],
 			[
 				'type' => 'heading',
@@ -316,10 +310,7 @@ function event_additional_information_box( $meta_boxes ) {
 				'dfw'                   => false,
 				'visible'               => [ 'show_content_notice', true ],
 				'desc'                  => esc_html__( 'The content notice will be displayed above the event summary', 'ggl-post-types' ),
-				'options'               => [
-					'teeny'         => true,
-					'media_buttons' => false,
-				]
+				'options'               => GGL_CPT__WYSIWYG_OPTIONS
 			],
 		],
 	];
