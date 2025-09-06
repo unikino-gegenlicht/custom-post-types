@@ -42,6 +42,35 @@ function ggl_post_type_team_member(): void {
 	] );
 }
 
+function ggl_cpt__add_team_member_status_filter( $post_type ): void {
+	if ($post_type !== "team-member") {
+		return;
+	}
+
+	?>
+	<select name="member_status">
+		<option value="" <?= selected("all", @ $_GET["member_status"]) ?>><?= esc_html__("Active and Former", "ggl-post-types") ?></option>
+		<option value="active" <?= selected("active", @ $_GET["member_status"]) ?>><?= esc_html__("Active only", "ggl-post-types") ?></option>
+		<option value="former" <?= selected("former", @ $_GET["member_status"]) ?>><?= esc_html__("Former only", "ggl-post-types") ?></option>
+	</select>
+<?php
+}
+
+function ggl_cpt__apply_team_member_status_filter( WP_Query $query ) {
+	$cs = function_exists( 'get_current_screen' ) ? get_current_screen() : null;
+
+	// make sure we are on the right admin page
+	if ( ! is_admin() || empty( $cs->post_type ) || $cs->post_type != 'team-member' || $cs->id != 'edit-team-member' ) {
+		return;
+	}
+
+	if ( @ $_GET['member_status'] != - 1 && @ $_GET['member_status'] !== null && @ $_GET['member_status'] !== "" ) {
+		$status = @ $_GET['member_status'] ?: null;
+		$query->set( 'meta_query', array( [ 'key' => 'status', 'value' => @ $status ] ) );
+	}
+
+}
+
 function team_member_register_meta_boxes( $meta_boxes ) {
 	$prefix = 'team-member_';
 

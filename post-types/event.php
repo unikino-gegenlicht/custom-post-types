@@ -52,6 +52,107 @@ function generate_numerical_event_id( $post_id ): void {
 	add_action( 'save_post_event', 'generate_numerical_event_id' );
 }
 
+function ggl_cpt__add_event_semester_filter( $post_type ): void {
+	if ( $post_type !== 'event' ) {
+		return;
+	}
+
+	$semesters = get_terms( [
+		"taxonomy"   => "semester",
+		"hide_empty" => true,
+	] );
+
+	$sortedSemesters = [];
+	foreach ( $semesters as $semester ) {
+		$startDate              = date_parse_from_format( "d.m.Y", get_term_meta( $semester->term_id, "semester_start", true ) );
+		$ts                     = mktime( 0, 0, 0, $startDate['month'], $startDate['day'], $startDate['year'] ) ?: 0;
+		$sortedSemesters[ $ts ] = $semester;
+	}
+	krsort( $sortedSemesters )
+	?>
+	<select name="semester">
+		<option value=""><?= esc_html__( "All Semesters", "gegenlicht" ) ?></option>
+		<?php foreach ( $sortedSemesters as $semester ): ?>
+			<option value="<?= $semester->slug ?>" <?= selected( $semester->slug, @ $_GET["semester"], 0 ) ?>><?= $semester->name ?></option>
+		<?php endforeach; ?>
+	</select>
+	<?php
+
+}
+
+function ggl_cpt__apply_event_semester_filter( WP_Query $query ) {
+	$cs = function_exists( 'get_current_screen' ) ? get_current_screen() : null;
+
+	// make sure we are on the right admin page
+	if ( ! is_admin() || empty( $cs->post_type ) || $cs->post_type != 'event' || $cs->id != 'edit-event' ) {
+		return;
+	}
+
+	if ( @ $_GET['semester'] != - 1 && @ $_GET['semester'] !== null && @ $_GET['semester'] !== "" ) {
+		$selected_id = @ $_GET['semester'] ?: null;
+		$query->set( 'tax_query', array( [ 'taxonomy' => 'semester', 'terms' => $selected_id, 'field' => "slug" ] ) );
+	}
+
+}
+
+function ggl_cpt__add_event_program_filter( $post_type ): void {
+	if ( $post_type !== 'event' ) {
+		return;
+	}
+
+	$special_programs = get_terms( [
+		"taxonomy"   => "special-program",
+		"hide_empty" => true,
+		"orderby"    => "name",
+		"order"      => "ASC",
+	] );
+	?>
+	<select name="program">
+		<option value=""><?= esc_html__( "All Programs", "gegenlicht" ) ?></option>
+		<option value="main" <?= selected( "main", @ $_GET["program"], 0 ) ?>><?= esc_html__( "Main Program", "gegenlicht" ) ?></option>
+		<?php foreach ( $special_programs as $special_program ): ?>
+			<option value="<?= $special_program->slug ?>" <?= selected( $special_program->slug, @ $_GET["program"], 0 ) ?>><?= $special_program->name ?></option>
+		<?php endforeach; ?>
+	</select>
+	<?php
+
+}
+
+function ggl_cpt__apply_event_program_filter( WP_Query $query ) {
+	$cs = function_exists( 'get_current_screen' ) ? get_current_screen() : null;
+
+	// make sure we are on the right admin page
+	if ( ! is_admin() || empty( $cs->post_type ) || $cs->post_type != 'event' || $cs->id != 'edit-event' ) {
+		return;
+	}
+
+	if ( @ $_GET['program'] != - 1 && @ $_GET['program'] !== "" && @ $_GET['program'] !== null ) {
+		$selected_program = @ $_GET['program'] ?: null;
+		if ( $selected_program === "main" ) {
+			$query->set( "meta_query", [
+				[
+					"key"   => "program_type",
+					"value" => "main",
+				]
+			] );
+		} else {
+			$query->set( "meta_query", [
+				"key"   => "program_type",
+				"value" => "special_program",
+			] );
+			$query->set( "tax_query", [
+				[
+					"taxonomy" => "special-program",
+					"terms"    => $selected_program,
+					"field"    => "slug",
+				]
+			] );
+		}
+	}
+
+}
+
+
 function event_extended_info_meta_boxes( $meta_boxes ) {
 	$meta_boxes[] = [
 		'title'      => esc_html__( 'Event Information', 'ggl-post-types' ),

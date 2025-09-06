@@ -16,9 +16,9 @@
  * Plugin Name:       Custom Post Types for Movies, Team Members and Supporters
  * Plugin URI:        https://github.com/unikino-gegenlicht/custom-post-types
  * Description:       This plugin introduces custom post types to the WordPress installation which enable handling of movies, team members and supporters
- * Version:           3.1.0
+ * Version:           3.2.0
  * Requires at least: 6.1
- * Requires PHP:      8.1
+ * Requires PHP:      8.4
  * Author:            Jan Eike Suchard
  * Author URI:        https://suchard.cloud
  * Text Domain:       ggl-post-types
@@ -32,6 +32,8 @@ require_once dirname( __FILE__ ) . '/inc/languages.php';
 require_once "const.php";
 
 require_once( dirname( __FILE__ ) . "/functions.php" );
+
+add_filter('months_dropdown_results', '__return_empty_array');
 
 /* Register the taxonomies */
 require_once 'taxonomies/semester.php';
@@ -54,6 +56,10 @@ add_action( 'init', 'ggl_taxonomy_actor' );
 /* Register the post types */
 require_once 'post-types/movie.php';
 add_action( 'init', 'ggl_post_type_movie' );
+add_action( 'restrict_manage_posts', 'ggl_cpt__add_movie_semester_filter');
+add_action('pre_get_posts', 'ggl_cpt__apply_movie_semester_filter');
+add_action( 'restrict_manage_posts', 'ggl_cpt__add_movie_program_filter');
+add_action('pre_get_posts', 'ggl_cpt__apply_movie_program_filter');
 add_filter( 'rwmb_meta_boxes', 'movie_extended_info_meta_boxes' );
 add_filter( 'rwmb_meta_boxes', 'movie_licensing_and_age_rating_meta_boxes' );
 add_filter( 'rwmb_meta_boxes', 'movie_sound_information_meta_boxes' );
@@ -64,6 +70,10 @@ add_action( 'save_post_movie', 'ensure_numerical_movie_link', 1 );
 
 require_once 'post-types/event.php';
 add_action( 'init', 'ggl_post_type_event' );
+add_action( 'restrict_manage_posts', 'ggl_cpt__add_event_semester_filter');
+add_action('pre_get_posts', 'ggl_cpt__apply_event_semester_filter');
+add_action( 'restrict_manage_posts', 'ggl_cpt__add_event_program_filter');
+add_action('pre_get_posts', 'ggl_cpt__apply_event_program_filter');
 add_filter( 'rwmb_meta_boxes', 'event_extended_info_meta_boxes' );
 add_filter( 'rwmb_meta_boxes', 'event_screening_info_meta_boxes' );
 add_filter( 'rwmb_meta_boxes', 'event_additional_information_box' );
@@ -79,6 +89,8 @@ add_filter( 'rwmb_meta_boxes', 'cooperation_partner_register_meta_boxes' );
 
 require_once 'post-types/team-member.php';
 add_action( 'init', 'ggl_post_type_team_member' );
+add_action("restrict_manage_posts", "ggl_cpt__add_team_member_status_filter");
+add_action("pre_get_posts", "ggl_cpt__apply_team_member_status_filter");
 add_filter( 'rwmb_meta_boxes', 'team_member_register_meta_boxes' );
 
 require_once 'post-types/screening-location.php';
