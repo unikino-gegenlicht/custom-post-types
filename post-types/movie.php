@@ -58,7 +58,7 @@ function ggl_cpt__add_movie_semester_filter( $post_type ): void {
 	krsort( $sortedSemesters )
 	?>
     <select name="semester">
-        <option value=""><?= esc_html__( "All Semesters", "gegenlicht" ) ?></option>
+        <option value=""><?= esc_html__( "All Semesters", "ggl-post-types" ) ?></option>
 		<?php foreach ( $sortedSemesters as $semester ): ?>
             <option value="<?= $semester->slug ?>" <?= selected( $semester->slug, @ $_GET["semester"], 0 ) ?>><?= $semester->name ?></option>
 		<?php endforeach; ?>
@@ -95,8 +95,8 @@ function ggl_cpt__add_movie_program_filter( $post_type ): void {
 	] );
 	?>
     <select name="program">
-        <option value=""><?= esc_html__( "All Programs", "gegenlicht" ) ?></option>
-        <option value="main" <?= selected( "main", @ $_GET["program"], 0 ) ?>><?= esc_html__( "Main Program", "gegenlicht" ) ?></option>
+        <option value=""><?= esc_html__( "All Programs", "ggl-post-types" ) ?></option>
+        <option value="main" <?= selected( "main", @ $_GET["program"], 0 ) ?>><?= esc_html__( "Main Program", "ggl-post-types" ) ?></option>
 		<?php foreach ( $special_programs as $special_program ): ?>
             <option value="<?= $special_program->slug ?>" <?= selected( $special_program->slug, @ $_GET["program"], 0 ) ?>><?= $special_program->name ?></option>
 		<?php endforeach; ?>

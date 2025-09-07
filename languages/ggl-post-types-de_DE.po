@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: unnamed project\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/custom-post-types\n"
 "POT-Creation-Date: 2025-08-16T19:52:08+00:00\n"
-"PO-Revision-Date: 2025-09-06 16:40+0200\n"
+"PO-Revision-Date: 2025-09-07 17:51+0200\n"
 "Last-Translator: Jan Eike Suchard <jan@gegenlicht.net>\n"
 "Language-Team: German <website@gegenlicht.net>\n"
 "Language: de\n"
@@ -222,7 +222,7 @@ msgstr "Wähle einen Kooperationspartner aus"
 msgid "Program Type"
 msgstr "Programmart"
 
-#: post-types/event.php:265 post-types/movie.php:310
+#: post-types/event.php:265 post-types/movie.php:99 post-types/movie.php:310
 msgid "Main Program"
 msgstr "Hauptprogramm"
 
@@ -503,11 +503,11 @@ msgstr "Kurzfilm"
 msgid "Advertise Short Movie"
 msgstr "Kurzfilm bewerben"
 
-#: post-types/event.php:206 post-types/movie.php:620 taxonomies/semester.php:62
+#: post-types/event.php:206 post-types/movie.php:620 taxonomies/semester.php:71
 msgid "Yes"
 msgstr "Ja"
 
-#: post-types/event.php:207 post-types/movie.php:621 taxonomies/semester.php:63
+#: post-types/event.php:207 post-types/movie.php:621 taxonomies/semester.php:72
 msgid "No"
 msgstr "Nein"
 
@@ -675,7 +675,7 @@ msgstr "Semester"
 msgid "Search Semesters"
 msgstr "Semester durchsuchen"
 
-#: taxonomies/semester.php:9
+#: post-types/movie.php:61 taxonomies/semester.php:9
 msgid "All Semesters"
 msgstr "Alle Semester"
 
@@ -699,37 +699,37 @@ msgstr "Neues Semester"
 msgid "Semesters keep things organized"
 msgstr "Semester helfen die Website sortiert zu halten"
 
-#: taxonomies/semester.php:32
+#: taxonomies/semester.php:41
 msgid "Extended Information"
 msgstr "Erweiterte Informationen"
 
-#: taxonomies/semester.php:39
+#: taxonomies/semester.php:48
 msgid "Screening Start"
 msgstr "Start der Vorstellungen"
 
-#: taxonomies/semester.php:41
+#: taxonomies/semester.php:50
 msgid "The date at which the first official screening of the semester will take place"
 msgstr "Datum der ersten offiziellen Vorstellung des Semesters"
 
 #: post-types/cooperation-partner.php:70 post-types/cooperation-partner.php:78
 #: post-types/team-member.php:127 post-types/team-member.php:135
-#: taxonomies/semester.php:52
+#: taxonomies/semester.php:61
 msgid "Archival Data"
 msgstr "Archiveinträge"
 
-#: taxonomies/semester.php:59
+#: taxonomies/semester.php:68
 msgid "Add Archival Data"
 msgstr "Archiveintrag hinzufügen"
 
-#: taxonomies/semester.php:60
+#: taxonomies/semester.php:69
 msgid "Setting this value to on will lead to the movies entered down below to be added to the archival data instead of replacing it. (not recommended)"
 msgstr "Das Aktivieren des Schalters führt dazu, dass die hier angegebenen Filme mit den Filmen aus den Posts gemischt werden (nicht empfohlen)"
 
-#: taxonomies/semester.php:67
+#: taxonomies/semester.php:76
 msgid "Shown Movies"
 msgstr "Gezeigte Filme"
 
-#: taxonomies/semester.php:69
+#: taxonomies/semester.php:78
 msgid "When filling in this archival list, you will disable the reading of the created posts for the semester. The movies displayed here are sorted by the date you entered before being rendered."
 msgstr "Beim Befüllen dieser Liste wird das Auslesen der erstellten Posts deaktiviert für das gegebene Semester. Die Einträge werden nach dem angegebenen Datum sortiert"
 
@@ -922,3 +922,7 @@ msgstr "Nur Aktive"
 #: post-types/team-member.php:54
 msgid "Former only"
 msgstr "Nur Ehemalige"
+
+#: post-types/movie.php:98
+msgid "All Programs"
+msgstr "Alle Programmarten"
