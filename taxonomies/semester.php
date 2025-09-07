@@ -26,6 +26,15 @@ function ggl_taxonomy_semester(): void {
 	] );
 }
 
+function ggl_cpt__reorder_semesters(WP_Term_Query $query) {
+	$cs = function_exists( 'get_current_screen' ) ? get_current_screen() : null;
+	if (!is_admin() || empty($cs->post_type) || $cs->id != 'edit-semester' ) return;
+
+	$query->query_vars["orderby"] = "meta_value_num";
+	$query->query_vars["meta_key"] = "semester_start";
+	$query->query_vars["order"] = "DESC";
+}
+
 function ggl_taxonomy_semester_meta_boxes( $meta_boxes ): mixed {
 	$prefix       = 'semester_';
 	$meta_boxes[] = [
@@ -39,7 +48,7 @@ function ggl_taxonomy_semester_meta_boxes( $meta_boxes ): mixed {
 				'name'       => esc_html__( 'Screening Start', 'ggl-post-types' ),
 				'id'         => $prefix . 'start',
 				'desc'       => esc_html__( 'The date at which the first official screening of the semester will take place', 'ggl-post-types' ),
-				'timestamp'  => false,
+				'timestamp'  => true,
 				'required'    => true,
 				'js_options' => [
 					'dateFormat' => 'dd.mm.yy',
