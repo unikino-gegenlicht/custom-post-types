@@ -16,7 +16,7 @@
  * Plugin Name:       Custom Post Types for Movies, Team Members and Supporters
  * Plugin URI:        https://github.com/unikino-gegenlicht/custom-post-types
  * Description:       This plugin introduces custom post types to the WordPress installation which enable handling of movies, team members and supporters
- * Version:           3.2.1
+ * Version:           3.2.2
  * Requires at least: 6.1
  * Requires PHP:      8.4
  * Author:            Jan Eike Suchard
@@ -46,7 +46,7 @@ require_once 'taxonomies/special-program.php';
 unregister_taxonomy( 'program-type' );
 add_action( 'init', 'ggl_taxonomy_program_type' );
 add_filter( 'rwmb_meta_boxes', 'ggl_taxonomy_program_type_meta_boxes' );
-add_filter("pre_get_terms", "ggl_cpt__reorder_semesters");
+add_action("parse_term_query", "ggl_cpt__reorder_semesters", 2, 2);
 
 require_once 'taxonomies/director.php';
 add_action( 'init', 'ggl_taxonomy_director' );
