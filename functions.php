@@ -209,7 +209,7 @@ function ggl_cpt__generate_single_ical( WP_Post $post ): Event | null {
 	$uniqueID = new UniqueIdentifier(get_post_permalink($post->ID));
 	$event = new Event($uniqueID);
 
-	$summary        = ggl_cpt__get_title( $post );
+	$summary        = ($post->post_type == "movie" ? "🎬 " : "🔮 ").ggl_cpt__get_title( $post );
 	$admission_de   = ggl_cpt__admission();
 	$admission_en   = ggl_cpt__admission( "en" );
 	$screeningStart = new DateTimeImmutable( date( "Y-m-d\TH:i:s", rwmb_get_value( "screening_date", post_id: $post->ID ) ) . " Europe/Berlin" );
@@ -355,6 +355,7 @@ function ggl_cpt__generate_single_ical( WP_Post $post ): Event | null {
  */
 function ggl_cpt__serialize_icals(array $events, $asBlob = true): string {
 	$calendar = new Calendar($events);
+	$calendar->setPublishedTTL(new DateInterval("P7D"));
 	$factory = new CalendarFactory();
 
 	$preparedCalendar = $factory->createCalendar($calendar);
