@@ -463,12 +463,12 @@ function movie_screening_info_meta_boxes( $meta_boxes ) {
                                     'meta_key' => 'semester_start',
                                     'order'    => 'desc'
                             ],
-                            'std' => get_terms('semester', [
+                            'std'         => get_terms( 'semester', [
                                     'number'   => 1,
                                     'orderby'  => 'meta_value_num',
                                     'meta_key' => 'semester_start',
                                     'order'    => 'desc'
-                            ])[0]->term_id,
+                            ] )[0]->term_id,
                             'add_new'     => current_user_can( "edit_others_posts" ),
                             'ajax'        => true
                     ],
@@ -494,7 +494,10 @@ function movie_screening_info_meta_boxes( $meta_boxes ) {
                                     'post_status'    => 'publish',
                                     'posts_per_page' => - 1
                             ],
-                            'std' => get_posts(["post_type" => "screening-location", "posts_per_page" => 1])[0]->ID,
+                            'std'        => get_posts( [
+                                    "post_type"      => "screening-location",
+                                    "posts_per_page" => 1
+                            ] )[0]->ID,
                             'ajax'       => true,
                             'add_new'    => false,
                     ],
