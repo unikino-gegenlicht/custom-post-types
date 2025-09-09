@@ -10,7 +10,7 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           php-version: '8.4'
-          tools: wp-cli
+          tools: wp-cli, composer
 
       - name: Checkout Sources
         uses: actions/checkout@v4
@@ -28,6 +28,7 @@ jobs:
           rm LICENSE
           rm README.md
           mkdir ggl-post-types
+          composer install
           shopt -s extglob
           mv !(ggl-post-types|.git|.github) ggl-post-types/
           wp i18n make-mo ggl-post-types/languages/ ggl-post-types/languages/
