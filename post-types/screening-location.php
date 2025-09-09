@@ -77,6 +77,34 @@ function location_register_meta_boxes( $meta_boxes ) {
 			],
 		],
 	];
+	$meta_boxes[] = [
+		'title'      => esc_html__( 'Coordinates', "ggl-post-types" ),
+		'id'         => $prefix . 'coordinates',
+		'context'    => 'after_title',
+		'style'      => 'seamless',
+		'post_types' => [ 'screening-location' ],
+		'fields'     => [
+			[
+				'type' => 'heading',
+				'name' => esc_html__( 'Coordinates', 'ggl-post-types' ),
+			],
+			[
+				'type'     => 'number',
+				'name'     => esc_html__( 'Latitude', 'ggl-post-types' ),
+				'id'       => "lat",
+				'step'     => "any",
+				'required' => true,
+			],
+			[
+				'type'     => 'number',
+				'name'     => esc_html__( 'Longitude', 'ggl-post-types' ),
+				'id'       => "long",
+				'step'     => "any",
+				'required' => true,
+			],
+		],
+	];
+
 
 	return $meta_boxes;
 }
