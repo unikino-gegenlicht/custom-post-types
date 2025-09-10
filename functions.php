@@ -1,14 +1,16 @@
 <?php
 
+use DateTimeZone as PhpDateTimeZone;
 use Eluceo\iCal\Domain\Entity\Calendar;
 use Eluceo\iCal\Domain\Entity\Event;
+use Eluceo\iCal\Domain\Entity\TimeZone;
+use Eluceo\iCal\Domain\ValueObject\Alarm;
+use Eluceo\iCal\Domain\ValueObject\DateTime;
 use Eluceo\iCal\Domain\ValueObject\EmailAddress;
 use Eluceo\iCal\Domain\ValueObject\GeographicPosition;
 use Eluceo\iCal\Domain\ValueObject\Location;
 use Eluceo\iCal\Domain\ValueObject\Organizer;
-use Eluceo\iCal\Domain\ValueObject\Alarm;
 use Eluceo\iCal\Domain\ValueObject\TimeSpan;
-use Eluceo\iCal\Domain\ValueObject\DateTime;
 use Eluceo\iCal\Domain\ValueObject\UniqueIdentifier;
 use Eluceo\iCal\Domain\ValueObject\Uri;
 use Eluceo\iCal\Presentation\Factory\CalendarFactory;
@@ -201,22 +203,26 @@ function ggl_cpt__admission( $lang = "de" ) {
 	}
 }
 
-function ggl_cpt__generate_single_ical( WP_Post $post ): Event | null {
+function ggl_cpt__generate_single_ical( WP_Post $post ): Event|null {
 	if ( ! in_array( $post->post_type, [ "event", "movie" ] ) ) {
 		return null;
 	}
 
-	$uniqueID = new UniqueIdentifier(get_post_permalink($post->ID));
-	$event = new Event($uniqueID);
+	$uniqueID = new UniqueIdentifier( get_post_permalink( $post->ID ) );
+	$event    = new Event( $uniqueID );
 
-	$summary        = ($post->post_type == "movie" ? "🎬 " : "🔮 ").ggl_cpt__get_title( $post );
+	$summary        = ( $post->post_type == "movie" ? "🎬 " : "🔮 " ) . ggl_cpt__get_title( $post );
 	$admission_de   = ggl_cpt__admission();
 	$admission_en   = ggl_cpt__admission( "en" );
 	$screeningStart = new DateTimeImmutable( date( "Y-m-d\TH:i:s", rwmb_get_value( "screening_date", post_id: $post->ID ) ) . " Europe/Berlin" );
-	$runningTime    = (int) rwmb_get_value( "running_time", post_id: $post->ID );
-	$shortDuration  = (int) rwmb_get_value( "short_movie_running_time", post_id: $post->ID );
-	$totalDuration  = $runningTime + $shortDuration + 10;
-	$age_rating     = rwmb_get_value( "age_rating", post_id: $post->ID );
+	if ( $post->post_type === "event" ) {
+		$duration = (int) rwmb_get_value( "duration", post_id: $post->ID );
+	} else {
+		$duration = (int) rwmb_get_value( "running_time", post_id: $post->ID );
+	}
+	$shortDuration = (int) rwmb_get_value( "short_movie_running_time", post_id: $post->ID );
+	$totalDuration = $duration + $shortDuration + 10;
+	$age_rating    = rwmb_get_value( "age_rating", post_id: $post->ID );
 
 	/**
 	 * Build the description which is displayed in the events details
@@ -225,17 +231,16 @@ function ggl_cpt__generate_single_ical( WP_Post $post ): Event | null {
 	$description .= "Eintritt: {$admission_de}" . PHP_EOL;
 	switch ( $post->post_type ) {
 		case "movie":
-			$description .= "Start der Vorstellung: {$screeningStart->sub(new DateInterval("PT45M"))->format("H.i")} Uhr" . PHP_EOL;
 			$description .= "FSK: " . match ( true ) {
 					$age_rating < 0 => "ohne Freigabe/unbekannt",
 					$age_rating >= 0 => "Ab " . rwmb_get_value( 'age_rating' ) . " freigegeben",
 				} . PHP_EOL;
-			$description .= "Laufzeit des Films: {$runningTime} Minuten". PHP_EOL;
+			$description .= "Laufzeit des Films: {$duration} Minuten" . PHP_EOL;
 			break;
 		case "event":
-			$description .= "Start des Events: {$screeningStart->format("H:i")} Uhr". PHP_EOL;
+			$description .= "Start des Events: {$screeningStart->format("H:i")} Uhr" . PHP_EOL;
 			if ( rwmb_get_value( "age_restricted", post_id: $post->ID ) ) {
-				$description .= "Mindestalter: " . rwmb_get_value( "minimal_age" ). PHP_EOL;
+				$description .= "Mindestalter: " . rwmb_get_value( "minimal_age" ) . PHP_EOL;
 			}
 			break;
 	}
@@ -243,21 +248,21 @@ function ggl_cpt__generate_single_ical( WP_Post $post ): Event | null {
 
 
 	$description .= "― English Version ―" . PHP_EOL;
-	$description .= "Admission: {$admission_en}". PHP_EOL;
+	$description .= "Admission: {$admission_en}" . PHP_EOL;
 	switch ( $post->post_type ) {
 		case "movie":
-			$description .= "Admission starts: {$screeningStart->sub(new DateInterval("PT45M"))->format("H.i")}h". PHP_EOL;
+			$description .= "Admission starts: {$screeningStart->sub(new DateInterval("PT45M"))->format("H.i")}h" . PHP_EOL;
 			$description .= "Age Rating: " . match ( true ) {
 					$age_rating < 0 => "unrated/unknown rating",
 					$age_rating >= 0 => "For ages " . rwmb_get_value( 'age_rating' ) . "+",
-				}. PHP_EOL;
-			$description .= "Running Time: {$runningTime} minutes". PHP_EOL;
+				} . PHP_EOL;
+			$description .= "Running Time: {$duration} minutes" . PHP_EOL;
 			$description .= PHP_EOL . PHP_EOL;
 			break;
 		case "event":
-			$description .= "Event starts at: {$screeningStart->format("H.i")}h". PHP_EOL;
+			$description .= "Event starts at: {$screeningStart->format("H.i")}h" . PHP_EOL;
 			if ( rwmb_get_value( "age_restricted", post_id: $post->ID ) ) {
-				$description .= "Minimal Attendee Age: " . rwmb_get_value( "minimal_age" ). PHP_EOL;
+				$description .= "Minimal Attendee Age: " . rwmb_get_value( "minimal_age" ) . PHP_EOL;
 			}
 			$description .= PHP_EOL . PHP_EOL;
 			break;
@@ -273,75 +278,63 @@ function ggl_cpt__generate_single_ical( WP_Post $post ): Event | null {
 	 * Get the information for the screening location as event location and build the location entry
 	 */
 	$location = get_post( rwmb_get_value( "screening_location", post_id: $post->ID ) );
-	if ($location):
-	$street        = rwmb_get_value( "street", post_id: $location->ID );
-	$postal_code   = rwmb_get_value( "postal_code", post_id: $location->ID );
-	$city          = rwmb_get_value( "city", post_id: $location->ID );
-	$latitude      = rwmb_get_value( "lat", post_id: $location->ID );
-	$longitude     = rwmb_get_value( "long", post_id: $location->ID );
+	if ( $location ):
+		$street      = rwmb_get_value( "street", post_id: $location->ID );
+		$postal_code = rwmb_get_value( "postal_code", post_id: $location->ID );
+		$city        = rwmb_get_value( "city", post_id: $location->ID );
+		$latitude    = rwmb_get_value( "lat", post_id: $location->ID );
+		$longitude   = rwmb_get_value( "long", post_id: $location->ID );
 
-	$eventLocation = new Location("{$street}, {$postal_code} {$city}", $location->post_title);
-	$eventLocation = $eventLocation->withGeographicPosition(new GeographicPosition($latitude, $longitude));
+		$eventLocation = new Location( "{$street}, {$postal_code} {$city}", $location->post_title );
+		$eventLocation = $eventLocation->withGeographicPosition( new GeographicPosition( $latitude, $longitude ) );
 
-	$event = $event->setLocation($eventLocation);
+		$event = $event->setLocation( $eventLocation );
 	endif;
 
 	/**
 	 * Build Reminders
 	 */
 
-	$initial = new DateInterval("PT6H");
+	$initial         = new DateInterval( "PT6H" );
 	$initial->invert = 1;
 
-	$reminder1 = new Alarm(
-		new Alarm\DisplayAction("Heute ist Kinotag!"),
-		new Alarm\RelativeTrigger($initial),
-	);
+	$reminder1 = new Alarm( new Alarm\DisplayAction( "Heute ist Kinotag!" ), new Alarm\RelativeTrigger( $initial ), );
 
-	$first = new DateInterval("PT60M");
+	$first         = new DateInterval( "PT60M" );
 	$first->invert = 1;
 
-	$reminder2 = new Alarm(
-		new Alarm\DisplayAction("In einer Stunde geht's los. So langsam solltest du dich auf den Weg machen!"),
-		new Alarm\RelativeTrigger($first),
-	);
+	$reminder2 = new Alarm( new Alarm\DisplayAction( "In einer Stunde geht's los. So langsam solltest du dich auf den Weg machen!" ), new Alarm\RelativeTrigger( $first ), );
 
-	$second = new DateInterval("PT30M");
+	$second         = new DateInterval( "PT30M" );
 	$second->invert = 1;
 
-	$reminder3 = new Alarm(
-		new Alarm\DisplayAction("In dreißig Minuten geht's los. Der Einlass beginnt schon"),
-		new Alarm\RelativeTrigger($second),
-	);
+	$reminder3 = new Alarm( new Alarm\DisplayAction( "In dreißig Minuten geht's los. Der Einlass beginnt schon" ), new Alarm\RelativeTrigger( $second ), );
 
-	$thrid = new DateInterval("PT10M");
+	$thrid         = new DateInterval( "PT10M" );
 	$thrid->invert = 1;
 
-	$reminder4 = new Alarm(
-		new Alarm\DisplayAction("In 10 Minuten geht's los. Jetzt aber schnell ins Kino"),
-		new Alarm\RelativeTrigger($thrid),
-	);
+	$reminder4 = new Alarm( new Alarm\DisplayAction( "In 10 Minuten geht's los. Jetzt aber schnell ins Kino" ), new Alarm\RelativeTrigger( $thrid ), );
 
 	/**
 	 * Now calculate the times for the event
 	 */
 
-	$eventStart = new DateTime($screeningStart, true);
-	$eventEnd = new DateTime($screeningStart->add(new DateInterval("PT{$totalDuration}M")), true);
+	$eventStart = new DateTime( $screeningStart, true );
+	$eventEnd   = new DateTime( $screeningStart->add( new DateInterval( "PT{$totalDuration}M" ) ), true );
 
 	/**
 	 * Now add the event data
 	 */
 
-	$event = $event->setUrl(new Uri(get_post_permalink($post->ID)));
-	$event = $event->setSummary($summary);
-	$event = $event->setDescription($description);
-	$event = $event->setOrganizer($organizer);
-	$event = $event->setOccurrence(new TimeSpan($eventStart, $eventEnd));
-	$event = $event->addAlarm($reminder1);
-	$event = $event->addAlarm($reminder2);
-	$event = $event->addAlarm($reminder3);
-	$event = $event->addAlarm($reminder4);
+	$event = $event->setUrl( new Uri( get_post_permalink( $post->ID ) ) );
+	$event = $event->setSummary( $summary );
+	$event = $event->setDescription( $description );
+	$event = $event->setOrganizer( $organizer );
+	$event = $event->setOccurrence( new TimeSpan( $eventStart, $eventEnd ) );
+	$event = $event->addAlarm( $reminder1 );
+	$event = $event->addAlarm( $reminder2 );
+	$event = $event->addAlarm( $reminder3 );
+	$event = $event->addAlarm( $reminder4 );
 
 	return $event;
 }
@@ -353,16 +346,38 @@ function ggl_cpt__generate_single_ical( WP_Post $post ): Event | null {
  *
  * @return string The events in once ics file as blob
  */
-function ggl_cpt__serialize_icals(array $events, $asBlob = true): string {
-	$calendar = new Calendar($events);
-	$calendar->setPublishedTTL(new DateInterval("P7D"));
-	$factory = new CalendarFactory();
+function ggl_cpt__serialize_icals( array $events, $asBlob = true ): string {
+	$start = null;
+	$end = null;
 
-	$preparedCalendar = $factory->createCalendar($calendar);
+	foreach ( $events as $event ) {
+		$occurrence = $event->getOccurrence();
+		if (!$occurrence instanceof TimeSpan) {
+			continue;
+		}
+
+		if ($start > $occurrence->getBegin()->getDateTime() || $start == null) {
+			$start = $occurrence->getBegin()->getDateTime();
+		}
+
+		if ($end < $occurrence->getEnd()->getDateTime() || $end == null) {
+			$end = $occurrence->getEnd()->getDateTime();
+		}
+	}
+
+	$calendar = new Calendar( $events );
+	$calendar = $calendar->setPublishedTTL( new DateInterval( "P7D" ) );
+	$calendar = $calendar->addTimeZone(TimeZone::createFromPhpDateTimeZone(new DateTimeZone("Europe/Berlin"), $start, $end) );
+	$factory  = new CalendarFactory();
+
+	$preparedCalendar = $factory->createCalendar( $calendar );
 	ob_start();
 	echo $preparedCalendar;
 	$data = ob_get_clean();
 
-	if ($asBlob) return "data:text/calendar;base64," . base64_encode($data);
+	if ( $asBlob ) {
+		return "data:text/calendar;base64," . base64_encode( $data );
+	}
+
 	return $data;
 }

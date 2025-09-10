@@ -29,6 +29,7 @@
 
 require_once dirname( __FILE__ ) . '/inc/countries.php';
 require_once dirname( __FILE__ ) . '/inc/languages.php';
+require_once dirname( __FILE__ ) . '/vendor/autoload.php';
 require_once "const.php";
 
 require_once( dirname( __FILE__ ) . "/functions.php" );
