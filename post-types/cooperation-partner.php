@@ -35,7 +35,7 @@ function ggl_post_type_cooperation_partner(): void {
 		'show_in_rest'        => true,
 		'menu_position'       => 8,
 		'menu_icon'           => IconHandshake,
-		'supports'            => [ 'title', 'thumbnail', 'editor' ],
+		'supports'            => [ 'title', 'thumbnail', 'editor', 'revisions' ],
 		'rewrite'             => [
 			'slug'       => 'cooperation-partners',
 			'with_front' => false,

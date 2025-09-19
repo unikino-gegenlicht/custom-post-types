@@ -30,7 +30,7 @@ function ggl_post_type_screening_location(): void {
 		'show_in_rest'        => true,
 		'menu_position'       => 9,
 		'menu_icon'           => 'dashicons-location',
-		'supports'            => [ 'title' ],
+		'supports'            => [ 'title', 'revisions', 'autosave', 'author' ],
 		'rewrite'             => false,
 	] );
 }

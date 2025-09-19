@@ -28,7 +28,7 @@ function ggl_post_type_event(): void {
 		'delete_with_user'    => false,
 		'menu_position'       => 6,
 		'menu_icon'           => 'dashicons-schedule',
-		'supports'            => [ 'thumbnail' ],
+		'supports'            => [ 'thumbnail', 'revisions' ],
 		'taxonomies'          => [ 'semester', 'special-program' ],
 		'rewrite'             => [
 			'with_front' => true,

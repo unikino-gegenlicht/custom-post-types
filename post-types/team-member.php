@@ -33,7 +33,7 @@ function ggl_post_type_team_member(): void {
 		'show_in_rest'        => true,
 		'menu_position'       => 7,
 		'menu_icon'           => 'dashicons-groups',
-		'supports'            => [ 'title', 'thumbnail' ],
+		'supports'            => [ 'title', 'thumbnail', 'revisions', 'autosave' ],
 		'rewrite'             => [
 			'slug'       => 'team',
 			'with_front' => true,

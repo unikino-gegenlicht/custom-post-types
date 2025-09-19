@@ -33,7 +33,7 @@ function ggl_post_type_supporter(): void {
 		'show_in_rest'        => true,
 		'menu_position'       => 9,
 		'menu_icon'           => 'dashicons-superhero-alt',
-		'supports'            => [ 'title', 'thumbnail', 'editor' ],
+		'supports'            => [ 'title', 'thumbnail', 'editor', 'revisions', 'author' ],
 		'rewrite'             => [
 			'slug'       => 'supporters',
 			'with_front' => false,
