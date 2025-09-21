@@ -54,18 +54,21 @@ function location_register_meta_boxes( $meta_boxes ) {
 				'name'     => esc_html__( 'Street', 'ggl-post-types' ),
 				'id'       => "street",
 				'required' => true,
+				'revision' => true
 			],
 			[
 				'type'     => 'text',
 				'name'     => esc_html__( 'Postal Code', 'ggl-post-types' ),
 				'id'       => "postal_code",
 				'required' => true,
+				'revision' => true
 			],
 			[
 				'type'     => 'text',
 				'name'     => esc_html__( 'City', 'ggl-post-types' ),
 				'id'       => "city",
 				'required' => true,
+				'revision' => true
 
 			],
 			[
@@ -74,6 +77,7 @@ function location_register_meta_boxes( $meta_boxes ) {
 				'id'       => "country",
 				'options'  => generate_country_mapping(),
 				'required' => true,
+				'revision' => true
 			],
 		],
 	];
@@ -94,6 +98,7 @@ function location_register_meta_boxes( $meta_boxes ) {
 				'id'       => "lat",
 				'step'     => "any",
 				'required' => true,
+				'revision' => true
 			],
 			[
 				'type'     => 'number',
@@ -101,6 +106,7 @@ function location_register_meta_boxes( $meta_boxes ) {
 				'id'       => "long",
 				'step'     => "any",
 				'required' => true,
+				'revision' => true
 			],
 		],
 	];

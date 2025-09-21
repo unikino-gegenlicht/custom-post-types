@@ -24,6 +24,7 @@ function ggl_taxonomy_program_type(): void {
 				'menu_name'     => __( 'Special Programs', 'ggl-post-types' ),
 			],
 			'show_ui'       => true,
+			'show_in_menu'  => current_user_can("manage_options"),
 			'public'        => true,
 			'show_tagcloud' => false,
 			'hierarchical'  => false,
@@ -58,18 +59,21 @@ function ggl_taxonomy_program_type_meta_boxes( $meta_boxes ): mixed {
 				'name' => esc_html__( 'Background Color', 'ggl-post-types' ),
 				'id'   => 'background_color',
 				'desc' => esc_html__( 'The color used as the background for content related the special programm', 'ggl-post-types' ),
+				'revision' => true
 			],
 			[
 				'type' => 'color',
 				'name' => esc_html__( 'Text Color', 'ggl-post-types' ),
 				'id'   => 'text_color',
 				'desc' => esc_html__( 'The color used for the text on the special programme program related pages', 'ggl-post-types' ),
+				'revision' => true
 			],
 			[
 				'type' => 'color',
 				'name' => esc_html__( 'Background Color (Dark Mode)', 'ggl-post-types' ),
 				'id'   => 'dark_background_color',
 				'desc' => esc_html__( 'The color used as the background in dark mode for content related the special programm', 'ggl-post-types' ),
+				'revision' => true
 			],
 
 			[
@@ -77,6 +81,7 @@ function ggl_taxonomy_program_type_meta_boxes( $meta_boxes ): mixed {
 				'name' => esc_html__( 'Text Color (Dark Mode)', 'ggl-post-types' ),
 				'id'   => 'dark_text_color',
 				'desc' => esc_html__( 'The color used for the text in dark mode on the special programm related pages', 'ggl-post-types' ),
+				'revision' => true
 			],
 			[
 				'type'         => 'single_image',
@@ -84,6 +89,7 @@ function ggl_taxonomy_program_type_meta_boxes( $meta_boxes ): mixed {
 				'id'           => 'logo',
 				'force_delete' => false,
 				'desc'         => esc_html__( 'This logo is displayed on the front page to identify the special program', 'ggl-post-types' ),
+				'revision' => true
 			],
 			[
 				'type'         => 'single_image',
@@ -91,6 +97,7 @@ function ggl_taxonomy_program_type_meta_boxes( $meta_boxes ): mixed {
 				'id'           => 'logo_dark',
 				'force_delete' => false,
 				'desc'         => esc_html__( 'This logo is displayed on the front page to identify the special program if the dark mode is active', 'ggl-post-types' ),
+				'revision' => true
 			],
 			[
 				'type'         => 'single_image',
@@ -98,6 +105,7 @@ function ggl_taxonomy_program_type_meta_boxes( $meta_boxes ): mixed {
 				'id'           => 'anonymous_image',
 				'force_delete' => false,
 				'desc' => esc_html__("Upload an image for fallback usage which is displayed on a movies detail page in case one hasn't been uploaded or the movie may not be advertised", 'gegenlicht' ),
+				'revision' => true
 			],
 		],
 	];

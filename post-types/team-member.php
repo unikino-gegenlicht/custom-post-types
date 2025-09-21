@@ -92,7 +92,8 @@ function team_member_register_meta_boxes( $meta_boxes ) {
 				'options' => [
 					'active' => esc_html__( 'Active', 'ggl-post-types' ),
 					'former' => esc_html__( 'Former', 'ggl-post-types' ),
-				]
+				],
+                'revision' => true
 			],
 			[
 				'type' => 'heading',
@@ -105,11 +106,12 @@ function team_member_register_meta_boxes( $meta_boxes ) {
 				'std'    => (int) date( 'Y' ),
 				'step'   => 1,
 				'min'    => 0,
+                'revision' => true
 			],
 			[
 				'type'    => 'heading',
 				'name'    => esc_html__( 'Left In', 'ggl-post-types' ),
-				'visible' => [ 'status', '=', 'former' ]
+				'visible' => [ 'status', '=', 'former' ],
 			],
 			[
 				'type'    => 'number',
@@ -117,8 +119,8 @@ function team_member_register_meta_boxes( $meta_boxes ) {
 				'inline'  => true,
 				'step'    => 1,
 				'min'     => 0,
-				'visible' => [ 'status', '=', 'former' ]
-
+				'visible' => [ 'status', '=', 'former' ],
+                'revision' => true
 			]
 		],
 	];
@@ -141,7 +143,8 @@ function team_member_register_meta_boxes( $meta_boxes ) {
 				'placeholder' => [
 					'key'   => 'Year',
 					'value' => 'Movie/Event Name',
-				]
+				],
+                'revision' => true
 			],
 		],
 	];

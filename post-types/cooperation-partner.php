@@ -62,6 +62,7 @@ function cooperation_partner_register_meta_boxes( $meta_boxes ) {
 				'type' => 'url',
 				'name' => esc_html__( 'Website', 'ggl-post-types' ),
 				'id'   => $prefix . 'website',
+				'revision' => true,
 			],
 		],
 	];
@@ -84,7 +85,8 @@ function cooperation_partner_register_meta_boxes( $meta_boxes ) {
 				'placeholder' => [
 					'key'   => 'Year',
 					'value' => 'Movie/Event Name',
-				]
+				],
+				'revision' => true,
 			],
 		],
 	];

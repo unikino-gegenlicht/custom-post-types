@@ -15,6 +15,7 @@ function ggl_taxonomy_semester(): void {
 		'description'   => __( 'Semesters keep things organized', 'ggl-post-types' ),
 		'public'        => true,
 		'meta_box_cb'   => false,
+		'show_in_menu'  => current_user_can("manage_options"),
 		'hierarchical'  => false,
 		'show_tagcloud' => false,
 		'query_var'     => true,
@@ -56,6 +57,7 @@ function ggl_taxonomy_semester_meta_boxes( $meta_boxes ): mixed {
 				'js_options' => [
 					'dateFormat' => 'dd.mm.yy',
 				],
+				'revision' => true
 			],
 		],
 	];
@@ -73,6 +75,7 @@ function ggl_taxonomy_semester_meta_boxes( $meta_boxes ): mixed {
 				'id'        => $prefix . 'add_archival_data',
 				'on_label'  => __( "Yes", 'ggl-post-types' ),
 				'off_label' => __( "No", 'ggl-post-types' ),
+				'revision' => true
 			],
 			[
 				'type'        => 'key_value',
@@ -82,7 +85,8 @@ function ggl_taxonomy_semester_meta_boxes( $meta_boxes ): mixed {
 				'placeholder' => [
 					'key'   => 'Date (dd.mm.yy)',
 					'value' => 'Movie/Event Name',
-				]
+				],
+				'revision' => true
 			],
 		],
 	];

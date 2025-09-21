@@ -12,12 +12,14 @@ function ggl_taxonomy_actor(): void {
 			'add_new_item'  => __( 'Add New Actor', 'ggl-post-types' ),
 			'new_item_name' => __( 'New Actor', 'ggl-post-types' ),
 		],
-		'public'         => true,
-		'show_in_menu'   => false,
+		'public'         => false,
+		'show_in_menu'   => current_user_can("manage_options"),
+		'show_ui'        => true,
 		'meta_box_cb'    => false,
 		'show_tag_cloud' => false,
 		'query_var'      => 'actor',
 		'rewrite'        => false,
+		"description"     => __("This taxonomy is used for managing the actors that are displayed for each movie. Please only add a new "),
 		"capabilities"   => [
 			"manage_terms" => "publish_posts",
 			"edit_terms"   => "publish_posts",
@@ -25,4 +27,23 @@ function ggl_taxonomy_actor(): void {
 			"delete_terms" => "edit_others_posts",
 		]
 	] );
+}
+
+function ggl_taxonomy_actor_meta_boxes( $meta_boxes ): mixed {
+	$prefix       = 'actor_';
+	$meta_boxes[] = [
+		'title'      => "",
+		'id'         => 'actor_notices_1',
+		'taxonomies' => 'actor',
+		'context'    => 'form_top',
+		'style' => 'seamless',
+		'fields'     => [
+			[
+				'type'       => 'custom_html',
+				'std' => '<div class="alert altert-warning">TEST</div>',
+			],
+		],
+	];
+
+	return $meta_boxes;
 }
