@@ -31,7 +31,7 @@ jobs:
           composer install
           shopt -s extglob
           mv !(ggl-post-types|.git|.github) ggl-post-types/
-          wp i18n make-mo ggl-post-types/languages/ ggl-post-types/languages/
+          wp i18n make-mo ggl-post-types/src/languages/ ggl-post-types/src/languages/
           zip -r ggl-post-types.zip ggl-post-types/*
 
       - name: Create Release Artifact
