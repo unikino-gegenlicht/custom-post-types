@@ -1,6 +1,8 @@
 <?php
 
-function ggl_cpt__update_oembed_data(array $data, WP_Post $post, int $width, int $height): array {
+function ggl_cpt__update_oembed_data(array $data, WP_Post $_post, int $width, int $height): array {
+	global $post;
+	$post = $_post;
 	if ($post->post_type !== 'event' && $post->post_type !== 'movie') {
 		return $data;
 	}
