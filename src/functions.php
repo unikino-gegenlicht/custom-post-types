@@ -388,20 +388,20 @@ function ggl_cpt__get_thumbnail_url( WP_Post|int $post = 0, string $size = "full
 		return get_the_post_thumbnail_url( $post, $size );
 	}
 
-	$fallbackImageUrl = wp_get_attachment_image_url( get_theme_mod( 'anonymous_image' ), $size );
+	$fallbackImageUrl = wp_get_attachment_image_url( get_theme_mod( 'anonymous_image' ), size: $size );
 
-	$licensingType = rwmb_get_value( "license_type" ) ?: "full";
+	$licensingType = rwmb_get_value( "license_type", post_id: $post->ID ) ?: "full";
 	$anonymize     = ( $licensingType != "full" && ! is_user_logged_in() );
 
 	if ( ! $anonymize ) {
 		return get_the_post_thumbnail_url( $post, $size ) ?: $fallbackImageUrl;
 	}
 
-	$inSpecialProgram = rwmb_meta( 'program_type' ) == 'special_program';
+	$inSpecialProgram = rwmb_get_value( 'program_type', post_id: $post->ID ) == 'special_program';
 	if ( $inSpecialProgram ) {
-		$specialProgram = rwmb_get_value( 'special_program' );
+		$specialProgram = rwmb_get_value( 'special_program', post_id: $post->ID );
 
-		return wp_get_attachment_image_url( get_term_meta( $specialProgram->term_id, "anonymous_image", single: true ), $size ) ?: $fallbackImageUrl;
+		return wp_get_attachment_image_url( get_term_meta( $specialProgram->term_id, "anonymous_image", single: true ), size: $size ) ?: $fallbackImageUrl;
 	}
 
 	return $fallbackImageUrl;
