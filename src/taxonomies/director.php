@@ -15,6 +15,7 @@ function ggl_taxonomy_director(): void {
 		'public'         => false,
 		'show_in_menu'   => current_user_can("manage_options"),
 		'show_ui'        => true,
+		'show_in_rest'   => true,
 		'meta_box_cb'    => false,
 		'show_tag_cloud' => false,
 		'query_var'      => 'director',

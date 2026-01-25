@@ -29,6 +29,7 @@ function ggl_taxonomy_program_type(): void {
 			'show_tagcloud' => false,
 			'hierarchical'  => false,
 			'meta_box_cb'   => false,
+			'show_in_rest'   => true,
 			'query_var'     => true,
 			'rewrite'       => [
 				'slug'         => 'special-program',

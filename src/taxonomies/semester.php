@@ -18,6 +18,7 @@ function ggl_taxonomy_semester(): void {
 		'show_in_menu'  => current_user_can("manage_options"),
 		'hierarchical'  => false,
 		'show_tagcloud' => false,
+		'show_in_rest'   => true,
 		'query_var'     => true,
 		'rewrite'       => [
 			'slug'         => 'semester',
