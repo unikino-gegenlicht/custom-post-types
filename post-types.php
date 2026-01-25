@@ -16,7 +16,7 @@
  * Plugin Name:       Custom Post Types for Movies, Team Members and Supporters
  * Plugin URI:        https://github.com/unikino-gegenlicht/custom-post-types
  * Description:       This plugin introduces custom post types to the WordPress installation which enable handling of movies, team members and supporters
- * Version:           3.2.2
+ * Version:           3.5.0
  * Requires at least: 6.1
  * Requires PHP:      8.4
  * Author:            Jan Eike Suchard
@@ -27,36 +27,44 @@
  * Update URI:        false
  */
 
-require_once dirname( __FILE__ ) . '/inc/countries.php';
-require_once dirname( __FILE__ ) . '/inc/languages.php';
+require_once dirname( __FILE__ ) . '/src/inc/countries.php';
+require_once dirname( __FILE__ ) . '/src/inc/languages.php';
 require_once dirname( __FILE__ ) . '/vendor/autoload.php';
-require_once "const.php";
+require_once dirname( __FILE__ ) . "/src/const.php";
 
-require_once( dirname( __FILE__ ) . "/functions.php" );
+require_once( dirname( __FILE__ ) . "/src/functions.php" );
 
 add_filter('months_dropdown_results', '__return_empty_array');
 
 /* Register the taxonomies */
-require_once 'taxonomies/semester.php';
+require_once 'src/taxonomies/semester.php';
 unregister_taxonomy( 'semester' );
 add_action( 'init', 'ggl_taxonomy_semester' );
 add_filter( 'rwmb_meta_boxes', 'ggl_taxonomy_semester_meta_boxes' );
 
 
-require_once 'taxonomies/special-program.php';
+require_once 'src/taxonomies/special-program.php';
 unregister_taxonomy( 'program-type' );
 add_action( 'init', 'ggl_taxonomy_program_type' );
 add_filter( 'rwmb_meta_boxes', 'ggl_taxonomy_program_type_meta_boxes' );
 add_action("parse_term_query", "ggl_cpt__reorder_semesters", 2, 2);
 
-require_once 'taxonomies/director.php';
+require_once 'src/taxonomies/director.php';
 add_action( 'init', 'ggl_taxonomy_director' );
 
-require_once 'taxonomies/actor.php';
+require_once 'src/taxonomies/actor.php';
 add_action( 'init', 'ggl_taxonomy_actor' );
+add_filter( 'rwmb_meta_boxes', 'ggl_taxonomy_actor_meta_boxes' );
+add_action('actor_pre_add_form', function ($term) {
+	echo '<div style="background-color: lightgoldenrodyellow; padding: 0.05rem 0.1rem; border-radius: 0.75rem;">
+	<h3 style="text-align: center; font-variant-caps: small-caps">'. esc_html__("Notice") . '</h3>
+	<p>'. esc_html__("Only add a new entry, if the one you want is not available. Adding values like 'multiple' or 'none' is not allowed and those entries will be removed without further notice") . '</p>
+</div>';
+}, 10, 2);
+
 
 /* Register the post types */
-require_once 'post-types/movie.php';
+require_once 'src/post-types/movie.php';
 add_action( 'init', 'ggl_post_type_movie' );
 add_action( 'restrict_manage_posts', 'ggl_cpt__add_movie_semester_filter');
 add_action('pre_get_posts', 'ggl_cpt__apply_movie_semester_filter');
@@ -69,8 +77,9 @@ add_filter( 'rwmb_meta_boxes', 'movie_screening_info_meta_boxes' );
 add_filter( 'rwmb_meta_boxes', 'movie_text_boxes' );
 add_filter( 'rwmb_meta_boxes', 'movie_short_movie_box' );
 add_action( 'save_post_movie', 'ensure_numerical_movie_link', 1 );
+add_action("admin_head-edit.php", "ggl_cpt__replace_movie_title_in_table");
 
-require_once 'post-types/event.php';
+require_once 'src/post-types/event.php';
 add_action( 'init', 'ggl_post_type_event' );
 add_action( 'restrict_manage_posts', 'ggl_cpt__add_event_semester_filter');
 add_action('pre_get_posts', 'ggl_cpt__apply_event_semester_filter');
@@ -81,21 +90,21 @@ add_filter( 'rwmb_meta_boxes', 'event_screening_info_meta_boxes' );
 add_filter( 'rwmb_meta_boxes', 'event_additional_information_box' );
 add_action( 'save_post_event', 'generate_numerical_event_id' );
 
-require_once 'post-types/supporter.php';
+require_once 'src/post-types/supporter.php';
 add_action( 'init', 'ggl_post_type_supporter' );
 add_filter( 'rwmb_meta_boxes', 'supporter_register_meta_boxes' );
 
-require_once 'post-types/cooperation-partner.php';
+require_once 'src/post-types/cooperation-partner.php';
 add_action( 'init', 'ggl_post_type_cooperation_partner' );
 add_filter( 'rwmb_meta_boxes', 'cooperation_partner_register_meta_boxes' );
 
-require_once 'post-types/team-member.php';
+require_once 'src/post-types/team-member.php';
 add_action( 'init', 'ggl_post_type_team_member' );
 add_action("restrict_manage_posts", "ggl_cpt__add_team_member_status_filter");
 add_action("pre_get_posts", "ggl_cpt__apply_team_member_status_filter");
 add_filter( 'rwmb_meta_boxes', 'team_member_register_meta_boxes' );
 
-require_once 'post-types/screening-location.php';
+require_once 'src/post-types/screening-location.php';
 add_action( 'init', 'ggl_post_type_screening_location' );
 add_filter( 'rwmb_meta_boxes', 'location_register_meta_boxes' );
 
@@ -109,12 +118,10 @@ add_action( 'plugins_loaded', 'ggl_post_types_load_textdomain' );
 
 
 add_action("wpseo_register_extra_replacements", function () {
-	require_once "seo/replacements.php";
+	require_once "src/seo/replacements.php";
 
 	wpseo_register_var_replacement("%%ggl_title%%", "ggl_pt_get_title", "advanced", "The protected title of a movie or event");
 	wpseo_register_var_replacement("%%ggl_date%%", "ggl_pt_screening_date", "advanced", "The formatted screening date for the entry");
-	wpseo_register_var_replacement("%%ggl_text%%", "ggl_pt_text", "advanced", "The protected text for the entry");
-	wpseo_register_var_replacement("%%ggl_admission%%", "ggl_pt_admission", "advanced", "The protected text for the entry");
-	wpseo_register_var_replacement("%%ggl_age_rating%%", "ggl_pt_age_rating", "advanced", "Age Rating for the Entry");
-	wpseo_register_var_replacement("%%line_break%%", "ggl_pt_linebreak", "advanced", "Linebreak");
+	wpseo_register_var_replacement("%%ggl_details%%", "ggl_pt_details", "advanced", "The protected text for the entry");
+	wpseo_register_var_replacement("%%ggl_text%%", "ggl_pt_details", "advanced", "The protected text for the entry");
 });

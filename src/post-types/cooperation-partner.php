@@ -53,15 +53,17 @@ function cooperation_partner_register_meta_boxes( $meta_boxes ) {
 		'context'    => 'after_title',
 		'style'      => 'seamless',
 		'post_types' => [ 'cooperation-partner' ],
+		'autosave'   => true,
+		'revisions'  => true,
 		'fields'     => [
 			[
 				'type' => 'heading',
 				'name' => esc_html__( 'Further Details', 'ggl-post-types' ),
 			],
 			[
-				'type' => 'url',
-				'name' => esc_html__( 'Website', 'ggl-post-types' ),
-				'id'   => $prefix . 'website',
+				'type'     => 'url',
+				'name'     => esc_html__( 'Website', 'ggl-post-types' ),
+				'id'       => $prefix . 'website',
 				'revision' => true,
 			],
 		],
@@ -73,6 +75,8 @@ function cooperation_partner_register_meta_boxes( $meta_boxes ) {
 		'context'    => 'normal',
 		'style'      => 'seamless',
 		'post_types' => [ 'cooperation-partner' ],
+		'autosave'   => true,
+		'revisions'  => true,
 		'fields'     => [
 			[
 				'type' => 'heading',
@@ -86,7 +90,7 @@ function cooperation_partner_register_meta_boxes( $meta_boxes ) {
 					'key'   => 'Year',
 					'value' => 'Movie/Event Name',
 				],
-				'revision' => true,
+				'revision'    => true,
 			],
 		],
 	];

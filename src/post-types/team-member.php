@@ -33,7 +33,7 @@ function ggl_post_type_team_member(): void {
 		'show_in_rest'        => true,
 		'menu_position'       => 7,
 		'menu_icon'           => 'dashicons-groups',
-		'supports'            => [ 'title', 'thumbnail', 'revisions', 'autosave' ],
+		'supports'            => [ 'title', 'thumbnail', 'revisions', 'autosave', 'author' ],
 		'rewrite'             => [
 			'slug'       => 'team',
 			'with_front' => true,
@@ -43,17 +43,17 @@ function ggl_post_type_team_member(): void {
 }
 
 function ggl_cpt__add_team_member_status_filter( $post_type ): void {
-	if ($post_type !== "team-member") {
+	if ( $post_type !== "team-member" ) {
 		return;
 	}
 
 	?>
-	<select name="member_status">
-		<option value="" <?= selected("all", @ $_GET["member_status"]) ?>><?= esc_html__("Active and Former", "ggl-post-types") ?></option>
-		<option value="active" <?= selected("active", @ $_GET["member_status"]) ?>><?= esc_html__("Active only", "ggl-post-types") ?></option>
-		<option value="former" <?= selected("former", @ $_GET["member_status"]) ?>><?= esc_html__("Former only", "ggl-post-types") ?></option>
-	</select>
-<?php
+    <select name="member_status">
+        <option value="" <?= selected( "all", @ $_GET["member_status"] ) ?>><?= esc_html__( "Active and Former", "ggl-post-types" ) ?></option>
+        <option value="active" <?= selected( "active", @ $_GET["member_status"] ) ?>><?= esc_html__( "Active only", "ggl-post-types" ) ?></option>
+        <option value="former" <?= selected( "former", @ $_GET["member_status"] ) ?>><?= esc_html__( "Former only", "ggl-post-types" ) ?></option>
+    </select>
+	<?php
 }
 
 function ggl_cpt__apply_team_member_status_filter( WP_Query $query ) {
@@ -79,6 +79,7 @@ function team_member_register_meta_boxes( $meta_boxes ) {
 		'id'         => 'membership_information',
 		'context'    => 'before_permalink',
 		'style'      => 'seamless',
+		'revisions'  => true,
 		'post_types' => [ 'team-member' ],
 		'fields'     => [
 			[
@@ -86,27 +87,27 @@ function team_member_register_meta_boxes( $meta_boxes ) {
 				'name' => esc_html__( 'Membership Type', 'ggl-post-types' ),
 			],
 			[
-				'type'    => 'radio',
-				'id'      => 'status',
-				'inline'  => true,
-				'options' => [
+				'type'     => 'radio',
+				'id'       => 'status',
+				'inline'   => true,
+				'options'  => [
 					'active' => esc_html__( 'Active', 'ggl-post-types' ),
 					'former' => esc_html__( 'Former', 'ggl-post-types' ),
 				],
-                'revision' => true
+				'revision' => true
 			],
 			[
 				'type' => 'heading',
 				'name' => esc_html__( 'Joined In', 'ggl-post-types' ),
 			],
 			[
-				'type'   => 'number',
-				'id'     => 'joined_in',
-				'inline' => true,
-				'std'    => (int) date( 'Y' ),
-				'step'   => 1,
-				'min'    => 0,
-                'revision' => true
+				'type'     => 'number',
+				'id'       => 'joined_in',
+				'inline'   => true,
+				'std'      => (int) date( 'Y' ),
+				'step'     => 1,
+				'min'      => 0,
+				'revision' => true
 			],
 			[
 				'type'    => 'heading',
@@ -114,13 +115,13 @@ function team_member_register_meta_boxes( $meta_boxes ) {
 				'visible' => [ 'status', '=', 'former' ],
 			],
 			[
-				'type'    => 'number',
-				'id'      => 'left_in',
-				'inline'  => true,
-				'step'    => 1,
-				'min'     => 0,
-				'visible' => [ 'status', '=', 'former' ],
-                'revision' => true
+				'type'     => 'number',
+				'id'       => 'left_in',
+				'inline'   => true,
+				'step'     => 1,
+				'min'      => 0,
+				'visible'  => [ 'status', '=', 'former' ],
+				'revision' => true
 			]
 		],
 	];
@@ -130,6 +131,7 @@ function team_member_register_meta_boxes( $meta_boxes ) {
 		'id'         => 'manual-archive',
 		'context'    => 'before_permalink',
 		'style'      => 'seamless',
+		'revisions'  => true,
 		'post_types' => [ 'team-member' ],
 		'fields'     => [
 			[
@@ -144,7 +146,7 @@ function team_member_register_meta_boxes( $meta_boxes ) {
 					'key'   => 'Year',
 					'value' => 'Movie/Event Name',
 				],
-                'revision' => true
+				'revision'    => true
 			],
 		],
 	];

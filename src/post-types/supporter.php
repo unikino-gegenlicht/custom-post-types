@@ -50,6 +50,7 @@ function supporter_register_meta_boxes( $meta_boxes ) {
 		'id'         => $prefix . 'additional_info',
 		'context'    => 'after_title',
 		'style'      => 'seamless',
+		'revisions'  => true,
 		'post_types' => [ 'supporter' ],
 		'fields'     => [
 			[
@@ -57,15 +58,15 @@ function supporter_register_meta_boxes( $meta_boxes ) {
 				'name' => esc_html__( 'Further Details', 'ggl-post-types' ),
 			],
 			[
-				'type' => 'url',
-				'name' => esc_html__( 'Website', 'ggl-post-types' ),
-				'id'   => $prefix . 'website',
+				'type'     => 'url',
+				'name'     => esc_html__( 'Website', 'ggl-post-types' ),
+				'id'       => $prefix . 'website',
 				'revision' => true
 			],
 			[
-				"type" => "checkbox",
-				"name" => esc_html__( "Display on Top", "ggl-post-types" ),
-				"id"   => $prefix . 'display_first',
+				"type"     => "checkbox",
+				"name"     => esc_html__( "Display on Top", "ggl-post-types" ),
+				"id"       => $prefix . 'display_first',
 				'revision' => true
 			]
 		],
