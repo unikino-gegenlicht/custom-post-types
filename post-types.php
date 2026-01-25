@@ -125,3 +125,6 @@ add_action("wpseo_register_extra_replacements", function () {
 	wpseo_register_var_replacement("%%ggl_details%%", "ggl_pt_details", "advanced", "The protected text for the entry");
 	wpseo_register_var_replacement("%%ggl_text%%", "ggl_pt_details", "advanced", "The protected text for the entry");
 });
+
+require_once "src/seo/oembed.php";
+add_filter('oembed_response_data', 'ggl_cpt__update_oembed_data', 10, 4);
