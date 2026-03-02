@@ -7,6 +7,7 @@
         }
     ],
     "require": {
-        "eluceo/ical": "^2.15"
+        "eluceo/ical": "^2.15",
+      "ext-intl": "*"
     }
 }
