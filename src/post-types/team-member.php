@@ -127,6 +127,32 @@ function team_member_register_meta_boxes( $meta_boxes ) {
 	];
 
 	$meta_boxes[] = [
+		'title'     => esc_html__( "Teamie Description", 'ggl-post-types' ),
+		'id'        => 'team-description',
+		'context'   => 'before_permalink',
+		'style'     => 'seamless',
+		'revisions' => true,
+		'post_types' => [ 'team-member' ],
+		'fields'    => [
+			[
+				'type' => 'heading',
+				'name' => esc_html__( 'Description', 'ggl-post-types' ),
+                "desc" => esc_html__("The following description will be displayed after the generic text which is displayed for everyone. Use this text to introduce yourself or what drove you to us. This text will usually be filled after the first semester you are with us.", "ggl-post-types"),
+			],
+			[
+				'type'                  => 'wysiwyg',
+				'id'                    => 'description',
+				'required'              => false,
+				'add_to_wpseo_analysis' => true,
+				'dfw'                   => false,
+				'options'               => GGL_CPT__WYSIWYG_OPTIONS,
+				'revision'              => true,
+				'textarea_rows'         => 5,
+			],
+		]
+	];
+
+	$meta_boxes[] = [
 		'title'      => esc_html__( 'Archival Data', 'ggl-post-types' ),
 		'id'         => 'manual-archive',
 		'context'    => 'before_permalink',
