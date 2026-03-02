@@ -71,11 +71,7 @@ add_action('pre_get_posts', 'ggl_cpt__apply_movie_semester_filter');
 add_action( 'restrict_manage_posts', 'ggl_cpt__add_movie_program_filter');
 add_action('pre_get_posts', 'ggl_cpt__apply_movie_program_filter');
 add_filter( 'rwmb_meta_boxes', 'movie_extended_info_meta_boxes' );
-add_filter( 'rwmb_meta_boxes', 'movie_licensing_and_age_rating_meta_boxes' );
-add_filter( 'rwmb_meta_boxes', 'movie_sound_information_meta_boxes' );
-add_filter( 'rwmb_meta_boxes', 'movie_screening_info_meta_boxes' );
 add_filter( 'rwmb_meta_boxes', 'movie_text_boxes' );
-add_filter( 'rwmb_meta_boxes', 'movie_short_movie_box' );
 add_action( 'save_post_movie', 'ensure_numerical_movie_link', 1 );
 add_action("admin_head-edit.php", "ggl_cpt__replace_movie_title_in_table");
 
@@ -86,7 +82,6 @@ add_action('pre_get_posts', 'ggl_cpt__apply_event_semester_filter');
 add_action( 'restrict_manage_posts', 'ggl_cpt__add_event_program_filter');
 add_action('pre_get_posts', 'ggl_cpt__apply_event_program_filter');
 add_filter( 'rwmb_meta_boxes', 'event_extended_info_meta_boxes' );
-add_filter( 'rwmb_meta_boxes', 'event_screening_info_meta_boxes' );
 add_filter( 'rwmb_meta_boxes', 'event_additional_information_box' );
 add_action( 'save_post_event', 'generate_numerical_event_id' );
 
@@ -131,3 +126,63 @@ add_action("wpseo_register_extra_replacements", function () {
 
 require_once "src/seo/oembed.php";
 add_filter('oembed_response_data', 'ggl_cpt__update_oembed_data', 10, 4);
+
+add_action("after_setup_theme", function () {
+	add_image_size( 'opengraph', 1200, 675, crop: true );
+	wp_enqueue_script("ggl_cpt__allow_edit_unsafe", plugin_dir_url(__FILE__) . "src/allow-raw-data.js");
+});
+
+function ggl_cpt__change_title_text( $title ){
+	$screen = get_current_screen();
+
+	if  ( 'team-member' == $screen->post_type ) {
+		$title = esc_html__('Enter Name of the Teamie', "ggl-post-types");
+	}
+
+	if  ( 'cooperation-partner' == $screen->post_type ) {
+		$title = esc_html__('Enter Name of the Cooperation Partner', "ggl-post-types");
+	}
+
+	if  ( 'supporter' == $screen->post_type ) {
+		$title = esc_html__('Enter Name of the Supporter', "ggl-post-types");
+	}
+
+	if  ( 'screening-location' == $screen->post_type ) {
+		$title = esc_html__('Enter Name of the Screening Location', "ggl-post-types");
+	}
+
+	return $title;
+}
+add_filter( 'enter_title_here', 'ggl_cpt__change_title_text' );
+
+
+add_action('rwmb_meta_boxes', function ( $meta_boxes ) {
+	$meta_boxes[] = [
+		'title' => __("Extended Settings", "ggl-post-types"),
+		'type' => 'user',
+		'fields' => [
+			[
+				'name' => __('Team Member', 'ggl-post-types'),
+				'id' => 'teamie_id',
+				'type' => 'post',
+				'post_type'   => 'team-member',
+				'field_type'  => 'select_advanced',
+				'query_args'  => [
+					'post_status'    => 'publish',
+					'posts_per_page' => - 1,
+					'meta_query'     => [
+						[
+							"key"   => "status",
+							"value" => "active",
+						]
+					],
+					'orderby'        => 'title',
+					'order'          => 'ASC',
+				],
+				'ajax'        => true,
+				'desc' => __("Select the team member that shall be linked with your account. This will automatically set you as the person who selected a movie/event during the creation of a new entry", "ggl-post-types"),
+			]
+		]
+	];
+	return $meta_boxes;
+});
