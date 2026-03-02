@@ -43,6 +43,9 @@ function generate_numerical_event_id( $post_id ): void {
 	if ( false !== $parent_id ) {
 		$post_id = $parent_id;
 	}
+	if ( get_post( $post_id )->post_name == $post_id ) {
+		return;
+	}
 	remove_action( 'save_post_event', 'generate_numerical_event_id' );
 	wp_update_post( array(
 		'ID'         => $post_id,
@@ -161,7 +164,7 @@ function event_extended_info_meta_boxes( $meta_boxes ) {
 		'style'      => 'seamless',
 		'post_types' => [ 'event' ],
 		'autosave'   => true,
-		'revisions'  => true,
+		'revision'   => true,
 		'tabs'       => [
 			"information"      => [ "label" => "Basic Information", "icon" => "dashicons-info-outline" ],
 			'youth-protection' => [ "label" => 'Youth Protection', "icon" => "dashicons-privacy" ],
@@ -406,6 +409,7 @@ function event_extended_info_meta_boxes( $meta_boxes ) {
 
 	return $meta_boxes;
 }
+
 function event_additional_information_box( $meta_boxes ) {
 	$meta_boxes[] = [
 		'title'      => esc_html__( "Why it's worth seeing", 'ggl-post-types' ),
@@ -414,6 +418,7 @@ function event_additional_information_box( $meta_boxes ) {
 		'post_types' => [ 'event' ],
 		'style'      => 'seamless',
 		'autosave'   => true,
+		'revision'   => true,
 		'tabs'       => [
 			"summary"         => [ "label" => esc_html__( "Event Summary", 'ggl-post-types' ) ],
 			"worth_to_attend" => [ "label" => esc_html__( "Why it's worth attending", 'ggl-post-types' ) ],

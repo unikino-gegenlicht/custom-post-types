@@ -44,7 +44,7 @@ function location_register_meta_boxes( $meta_boxes ) {
 		'context'    => 'after_title',
 		'style'      => 'seamless',
 		'post_types' => [ 'screening-location' ],
-		'revisions'  => true,
+		'revision' => true,
 		'fields'     => [
 			[
 				'type' => 'heading',

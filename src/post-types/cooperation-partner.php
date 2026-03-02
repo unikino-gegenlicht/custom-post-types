@@ -54,7 +54,7 @@ function cooperation_partner_register_meta_boxes( $meta_boxes ) {
 		'style'      => 'seamless',
 		'post_types' => [ 'cooperation-partner' ],
 		'autosave'   => true,
-		'revisions'  => true,
+		'revision'   => true,
 		'fields'     => [
 			[
 				'type' => 'heading',
@@ -76,7 +76,7 @@ function cooperation_partner_register_meta_boxes( $meta_boxes ) {
 		'style'      => 'seamless',
 		'post_types' => [ 'cooperation-partner' ],
 		'autosave'   => true,
-		'revisions'  => true,
+		'revision'   => true,
 		'fields'     => [
 			[
 				'type' => 'heading',

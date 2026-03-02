@@ -188,7 +188,7 @@ function movie_extended_info_meta_boxes( $meta_boxes ) {
 		'style'      => 'seamless',
 		'post_types' => [ 'movie' ],
 		'autosave'   => true,
-		'revisions'  => true,
+		'revision' => true,
 		'tabs'       => [
 			'information'      => [
 				"label" => esc_html__( 'Movie Information', "ggl-post-types" ),
@@ -271,6 +271,7 @@ function movie_extended_info_meta_boxes( $meta_boxes ) {
 				'required'   => true,
 				'min'        => 0,
 				'revision'   => true,
+                'timestamp' => true,
 				'js_options' => [
 					'dateFormat' => ( str_starts_with( get_locale(), "de" ) ? 'dd.mm.yy' : "mm/dd/yy" ),
 				],
@@ -703,7 +704,7 @@ function movie_text_boxes( $meta_boxes ) {
 		'post_types' => [ 'movie' ],
 		'style'      => 'seamless',
 		'autosave'   => true,
-		'revisions'  => true,
+		'revision' => true,
 		'tab_style'  => 'box',
 		'tabs'       => [
 			"summary"      => [ "label" => esc_html__( "Content Summary", 'ggl-post-types' ) ],
@@ -738,7 +739,7 @@ function movie_text_boxes( $meta_boxes ) {
 		'post_types' => [ 'movie' ],
 		'style'      => 'seamless',
 		'autosave'   => true,
-		'revisions'  => true,
+		'revision' => true,
 		'tab_style'  => 'box',
 		'tabs'       => [
 			"summary"      => [ "label" => esc_html__( "Content Summary", 'ggl-post-types' ) ],

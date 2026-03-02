@@ -79,7 +79,7 @@ function team_member_register_meta_boxes( $meta_boxes ) {
 		'id'         => 'membership_information',
 		'context'    => 'before_permalink',
 		'style'      => 'seamless',
-		'revisions'  => true,
+		'revision'  => true,
 		'post_types' => [ 'team-member' ],
 		'fields'     => [
 			[
@@ -131,7 +131,7 @@ function team_member_register_meta_boxes( $meta_boxes ) {
 		'id'        => 'team-description',
 		'context'   => 'before_permalink',
 		'style'     => 'seamless',
-		'revisions' => true,
+		'revision'  => true,
 		'post_types' => [ 'team-member' ],
 		'fields'    => [
 			[
@@ -157,7 +157,7 @@ function team_member_register_meta_boxes( $meta_boxes ) {
 		'id'         => 'manual-archive',
 		'context'    => 'before_permalink',
 		'style'      => 'seamless',
-		'revisions'  => true,
+		'revision'  => true,
 		'post_types' => [ 'team-member' ],
 		'fields'     => [
 			[

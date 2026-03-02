@@ -50,7 +50,7 @@ function supporter_register_meta_boxes( $meta_boxes ) {
 		'id'         => $prefix . 'additional_info',
 		'context'    => 'after_title',
 		'style'      => 'seamless',
-		'revisions'  => true,
+		'revision'  => true,
 		'post_types' => [ 'supporter' ],
 		'fields'     => [
 			[
