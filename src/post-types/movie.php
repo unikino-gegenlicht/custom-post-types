@@ -182,25 +182,56 @@ function ensure_numerical_movie_link( $post_id ): void {
 
 function movie_extended_info_meta_boxes( $meta_boxes ) {
 	$meta_boxes[] = [
-		'title'      => esc_html__( 'Movie Information', 'ggl-post-types' ),
+		'title'      => esc_html__( 'Movie Metaboxes', 'ggl-post-types' ),
 		'id'         => 'movie_meta',
 		'context'    => 'form_top',
 		'style'      => 'seamless',
 		'post_types' => [ 'movie' ],
 		'autosave'   => true,
 		'revisions'  => true,
-		'fields'     => [
-			[
-				'type' => 'heading',
-				'name' => esc_html__( 'Movie Information', 'ggl-post-types' ),
+		'tabs'       => [
+			'information'      => [
+				"label" => esc_html__( 'Movie Information', "ggl-post-types" ),
+				"icon"  => "dashicons-info-outline"
 			],
+			'production'       => [
+				"label" => esc_html__( 'Production Members', "ggl-post-types" ),
+				"icon"  => "dashicons-groups"
+			],
+			'sound'            => [
+				"label" => esc_html__( 'Audio and Subtitles', "ggl-post-types" ),
+				"icon"  => "dashicons-controls-volumeon"
+			],
+			'youth-protection' => [
+				"label" => esc_html__( 'Youth Protection', "ggl-post-types" ),
+				"icon"  => "dashicons-privacy"
+			],
+			'licensing'        => [
+				"label" => esc_html__( "Licensing and Admissions", "ggl-post-types" ),
+				"icon"  => "dashicons-awards"
+			],
+			'screening'        => [
+				"label" => esc_html__( "Screening Details", "ggl-post-types" ),
+				"icon"  => "dashicons-calendar"
+			],
+			'content-notice'   => [
+				"label" => esc_html__( "Content Notice", "ggl-post-types" ),
+				"icon"  => "dashicons-warning"
+			],
+			'short-movie'      => [
+				"label" => esc_html__( "Short Movie", "ggl-post-types" ),
+				"icon"  => "dashicons-video-alt"
+			],
+		],
+		'fields'     => [
 			[
 				'type'     => 'text',
 				'name'     => esc_html__( 'German Title', 'ggl-post-types' ),
 				'id'       => 'german_title',
 				'desc'     => esc_html__( 'Please enter the German title of the movie here', 'ggl-post-types' ),
 				'required' => true,
-				'revision' => true
+				'revision' => true,
+				'tab'      => 'information',
 			],
 			[
 				'type'     => 'text',
@@ -208,7 +239,9 @@ function movie_extended_info_meta_boxes( $meta_boxes ) {
 				'id'       => 'english_title',
 				'desc'     => esc_html__( 'Please enter the English title of the movie here', 'ggl-post-types' ),
 				'required' => true,
-				'revision' => true
+				'revision' => true,
+				'tab'      => 'information',
+
 			],
 			[
 				'type'     => 'text',
@@ -216,7 +249,9 @@ function movie_extended_info_meta_boxes( $meta_boxes ) {
 				'id'       => 'original_title',
 				'desc'     => __( 'Please enter the original title here. For Japanese/Chinese/etc. titles, please input the logographics and the romanized versions seperated by an em dash (<code>—</code>) surrounded by spaces', 'ggl-post-types' ),
 				'required' => true,
-				'revision' => true
+				'revision' => true,
+				'tab'      => 'information',
+
 			],
 			[
 				'type'     => 'select_advanced',
@@ -225,16 +260,22 @@ function movie_extended_info_meta_boxes( $meta_boxes ) {
 				'options'  => generate_country_mapping(),
 				'multiple' => true,
 				'required' => true,
-				'revision' => true
-			],
+				'revision' => true,
+				'tab'      => 'information',
 
+			],
 			[
-				'type'     => 'date',
-				'name'     => esc_html__( 'Release Date', 'ggl-post-types' ),
-				'id'       => 'release_date',
-				'required' => true,
-				'min'      => 0,
-				'revision' => true
+				'type'       => 'date',
+				'name'       => esc_html__( 'Release Date', 'ggl-post-types' ),
+				'id'         => 'release_date',
+				'required'   => true,
+				'min'        => 0,
+				'revision'   => true,
+				'js_options' => [
+					'dateFormat' => ( str_starts_with( get_locale(), "de" ) ? 'dd.mm.yy' : "mm/dd/yy" ),
+				],
+				'tab'        => 'information',
+
 			],
 			[
 				'type'     => 'number',
@@ -245,7 +286,9 @@ function movie_extended_info_meta_boxes( $meta_boxes ) {
 				'step'     => 1,
 				'min'      => 0,
 				'required' => true,
-				'revision' => true
+				'revision' => true,
+				'tab'      => 'information',
+
 			],
 			[
 				'type'        => 'taxonomy',
@@ -260,7 +303,8 @@ function movie_extended_info_meta_boxes( $meta_boxes ) {
 					'number' => 10,
 				],
 				'ajax'        => true,
-				'revision'    => true
+				'revision'    => true,
+				'tab'         => 'production'
 			],
 			[
 				'type'        => 'taxonomy',
@@ -279,7 +323,201 @@ function movie_extended_info_meta_boxes( $meta_boxes ) {
 					'maximumSelectionLength' => 2
 				],
 				'ajax'        => true,
-				'revision'    => true
+				'revision'    => true,
+				'tab'         => 'production'
+			],
+			[
+				'type'     => 'radio',
+				'name'     => esc_html__( 'Audio Type', 'ggl-post-types' ),
+				'id'       => 'audio_type',
+				'inline'   => true,
+				'required' => true,
+				'options'  => [
+					'original'        => esc_html__( 'Original', 'ggl-post-types' ),
+					'synchronization' => esc_html__( 'Synchronization', 'ggl-post-types' ),
+				],
+				'default'  => 'original',
+				'revision' => true,
+				'tab'      => 'sound'
+			],
+			[
+				'type'     => 'select_advanced',
+				'name'     => esc_html__( 'Audio Language', 'ggl-post-types' ),
+				'id'       => 'audio_language',
+				'std'      => 'eng',
+				'options'  => generate_language_mapping(),
+				'required' => true,
+				'revision' => true,
+				'tab'      => 'sound'
+			],
+			[
+				'type'     => 'select_advanced',
+				'name'     => esc_html__( 'Subtitle Language', 'ggl-post-types' ),
+				'id'       => 'subtitle_language',
+				'std'      => 'deu',
+				'options'  => generate_language_mapping(),
+				'required' => true,
+				'revision' => true,
+				'tab'      => 'sound'
+			],
+			[
+				'type'     => 'radio',
+				'name'     => esc_html__( 'License Type', 'ggl-post-types' ),
+				'id'       => 'license_type',
+				'inline'   => true,
+				'required' => true,
+				'options'  => [
+					'full' => esc_html__( 'Advertisement License', 'ggl-post-types' ),
+					'pool' => esc_html__( 'Pool License', 'ggl-post-types' ),
+					'none' => esc_html__( 'No License', 'ggl-post-types' ),
+				],
+				'std'      => 'full',
+				'revision' => true,
+				'tab'      => 'licensing'
+			],
+			[
+				"type"    => "custom_html",
+				"std"     => "<p class='notice notice-warning' style='display: block'>" . esc_html__( "You selected that we will screen this movie without an advertisement license. This means that you will have to input a second text which is a anonymized version of the text in the program booklet. Please check the additional input boxes below for further information!", "ggl-post-types" ) . "</p>",
+				'visible' => [ 'license_type', '!=', 'full' ],
+				'tab'     => 'licensing'
+			],
+			[
+				'type'     => 'radio',
+				'name'     => esc_html__( 'Admission Type', 'ggl-post-types' ),
+				'id'       => 'admission_type',
+				'inline'   => true,
+				'required' => true,
+				'options'  => [
+					'free'     => esc_html__( 'Free', 'ggl-post-types' ),
+					'donation' => esc_html__( 'Donation', 'ggl-post-types' ),
+					'paid'     => esc_html__( 'Paid', 'ggl-post-types' )
+				],
+				'std'      => 'paid',
+				'revision' => true,
+				'tab'      => 'licensing'
+			],
+			[
+				'type'     => 'number',
+				'name'     => esc_html__( 'Admission Fee', 'ggl-post-types' ),
+				'id'       => 'admission_fee',
+				'std'      => 3.00,
+				'min'      => 0,
+				'step'     => 0.01,
+				'visible'  => [ 'admission_type', "=", "paid" ],
+				'revision' => true,
+				'tab'      => 'licensing'
+			],
+			[
+				'type' => 'custom_html',
+				'std'  => '<a target="_blank" href="https://www.fsk.de/freigabensuche/" style="display: flex; background-color: #e4df00; color: #033667; text-align: center; font-size: 25px; font-weight: bold; padding: 1ex 0.5em; text-decoration: none; flex-direction: row; align-items: center; justify-content: center "><img style="padding: 0.75ex" height="25px" src="https://www.fsk.de/wp-content/uploads/fsk_logo_pos_2c_XL@2-8_M.png"/><span>' . __( "To the FSK rating search", "ggl-post-types" ) . '</span></a>',
+				'tab'  => 'youth-protection'
+			],
+			[
+				'type'     => 'select',
+				'name'     => esc_html__( 'Age Rating', 'ggl-post-types' ),
+				'id'       => 'age_rating',
+				'options'  => [
+					- 2 => esc_html__( 'unknown', 'ggl-post-types' ),
+					- 1 => esc_html__( 'Not rated', 'ggl-post-types' ),
+					0   => esc_html__( 'FSK 0', 'ggl-post-types' ),
+					6   => esc_html__( 'FSK 6', 'ggl-post-types' ),
+					12  => esc_html__( 'FSK 12', 'ggl-post-types' ),
+					16  => esc_html__( 'FSK 16', 'ggl-post-types' ),
+					18  => esc_html__( 'FSK 18', 'ggl-post-types' ),
+				],
+				'std'      => - 2,
+				'required' => true,
+				'revision' => true,
+				'tab'      => 'youth-protection'
+			],
+			[
+				'type'     => 'checkbox_list',
+				'name'     => esc_html__( 'Descriptors', 'ggl-post-types' ),
+				'id'       => 'descriptors',
+				'options'  => [
+					'sexualized_violence' => esc_html__( 'Sexualized Violence', 'ggl-post-types' ),
+					'violence'            => esc_html__( 'Violence', 'ggl-post-types' ),
+					'self_harm'           => esc_html__( 'Self Harm', 'ggl-post-types' ),
+					'drug_usage'          => esc_html__( 'Drug Usage', 'ggl-post-types' ),
+					'discrimination'      => esc_html__( 'Discrimination', 'ggl-post-types' ),
+					'sexuality'           => esc_html__( 'Sexuality', 'ggl-post-types' ),
+					'threat'              => esc_html__( 'Threat', 'ggl-post-types' ),
+					'injury'              => esc_html__( 'Injury', 'ggl-post-types' ),
+					'stressful_topics'    => esc_html__( 'Stressful Topics', 'ggl-post-types' ),
+					'language'            => esc_html__( 'Language', 'ggl-post-types' ),
+					'nudity'              => esc_html__( 'Nudity', 'ggl-post-types' ),
+					'risky_behaviour'     => esc_html__( 'Risky Behaviour', 'ggl-post-types' ),
+					'marginalization'     => esc_html__( 'Marginalization', 'ggl-post-types' ),
+				],
+				'revision' => true,
+				'tab'      => 'youth-protection'
+			],
+			[
+				'type'        => 'taxonomy',
+				'name'        => esc_html__( 'Semester', 'ggl-post-type' ),
+				'id'          => 'semester',
+				'placeholder' => esc_html__( 'Select a Semester', 'ggl-post-types' ),
+				'taxonomy'    => 'semester',
+				'required'    => false,
+				'field_type'  => 'select_advanced',
+				'query_args'  => [
+					'number'   => 5,
+					'orderby'  => 'meta_value_num',
+					'meta_key' => 'semester_start',
+					'order'    => 'desc'
+				],
+				'std'         => count( get_terms( 'semester', [
+					'number'   => 1,
+					'orderby'  => 'meta_value_num',
+					'meta_key' => 'semester_start',
+					'order'    => 'desc'
+				] ) ) > 0 ? get_terms( 'semester', [
+					'number'   => 1,
+					'orderby'  => 'meta_value_num',
+					'meta_key' => 'semester_start',
+					'order'    => 'desc'
+				] )[0]->term_id : null,
+				'add_new'     => current_user_can( "edit_others_posts" ),
+				'ajax'        => true,
+				'revision'    => true,
+				'tab'         => 'screening'
+			],
+			[
+				'type'       => 'datetime',
+				'name'       => esc_html__( 'Date and Time', 'ggl-post-types' ),
+				'id'         => 'screening_date',
+				'timestamp'  => true,
+				'js_options' => [
+					'dateFormat' => ( str_starts_with( get_locale(), "de" ) ? 'dd.mm.yy' : "mm/dd/yy" ),
+				],
+				'required'   => true,
+				'revision'   => true,
+				'tab'        => 'screening'
+
+			],
+			[
+				'type'       => 'post',
+				'name'       => esc_html__( 'Location', 'ggl-post-types' ),
+				'id'         => 'screening_location',
+				'desc'       => esc_html__( 'The location the screening will take place in', 'ggl-post-types' ),
+				'required'   => true,
+				'field_type' => 'select_advanced',
+				'post_type'  => 'screening-location',
+				'query_args' => [
+					'post_status'    => 'publish',
+					'posts_per_page' => - 1
+				],
+				'std'        => count( get_posts( [
+					"post_type"      => "screening-location",
+					"posts_per_page" => 1
+				] ) ) > 0 ? get_posts( [
+					"post_type"      => "screening-location",
+					"posts_per_page" => 1
+				] )[0]->ID : null,
+				'ajax'       => true,
+				'add_new'    => false,
+				'revision'   => true,
+				'tab'        => 'screening'
 			],
 			[
 				'type'     => 'radio',
@@ -293,7 +531,8 @@ function movie_extended_info_meta_boxes( $meta_boxes ) {
 					'hidden' => esc_html__( 'Don\'t show', 'ggl-post-types' )
 				],
 				'std'      => 'member',
-				'revision' => true
+				'revision' => true,
+				'tab'      => 'screening'
 			],
 			[
 				'type'        => 'post',
@@ -319,6 +558,7 @@ function movie_extended_info_meta_boxes( $meta_boxes ) {
 				'ajax'        => true,
 				'revision'    => true,
 				'multiple'    => true,
+				'tab'         => 'screening'
 			],
 			[
 				'type'        => 'post',
@@ -338,6 +578,7 @@ function movie_extended_info_meta_boxes( $meta_boxes ) {
 				'ajax'        => true,
 				'revision'    => true,
 				'multiple'    => true,
+				'tab'         => 'screening'
 			],
 			[
 				'type'     => 'radio',
@@ -350,7 +591,8 @@ function movie_extended_info_meta_boxes( $meta_boxes ) {
 					'special_program' => esc_html__( 'Special Program', 'ggl-post-types' ),
 				],
 				'std'      => 'main',
-				'revision' => true
+				'revision' => true,
+				'tab'      => 'screening'
 			],
 			[
 				'type'        => 'taxonomy',
@@ -366,300 +608,17 @@ function movie_extended_info_meta_boxes( $meta_boxes ) {
 				],
 				'visible'     => [ 'program_type', '=', 'special_program' ],
 				'ajax'        => true,
-				'revision'    => true
-			],
-		],
-	];
-
-	return $meta_boxes;
-}
-
-function movie_licensing_and_age_rating_meta_boxes( $meta_boxes ): mixed {
-	$meta_boxes[] = [
-		'title'      => esc_html__( 'Licensing and Age Rating', 'ggl-post-types' ),
-		'id'         => 'legal_information',
-		'context'    => 'side',
-		'post_types' => [ 'movie' ],
-		'autosave'   => true,
-		'revisions'  => true,
-		'fields'     => [
-			[
-				'type'     => 'radio',
-				'name'     => esc_html__( 'License Type', 'ggl-post-types' ),
-				'id'       => 'license_type',
-				'inline'   => true,
-				'required' => true,
-				'options'  => [
-					'full' => esc_html__( 'Advertisement License', 'ggl-post-types' ),
-					'pool' => esc_html__( 'Pool License', 'ggl-post-types' ),
-					'none' => esc_html__( 'No License', 'ggl-post-types' ),
-				],
-				'std'      => 'full',
-				'revision' => true
-			],
-			[
-				'type'     => 'select',
-				'name'     => esc_html__( 'Age Rating', 'ggl-post-types' ),
-				'id'       => 'age_rating',
-				'desc'     => '<a href="https://www.fsk.de/freigabensuche/" target="_blank">' . __( 'FSK Title Lookup', 'ggl-post-types' ) . '</a>',
-				'options'  => [
-					- 2 => esc_html__( 'unknown', 'ggl-post-types' ),
-					- 1 => esc_html__( 'Not rated', 'ggl-post-types' ),
-					0   => esc_html__( 'FSK 0', 'ggl-post-types' ),
-					6   => esc_html__( 'FSK 6', 'ggl-post-types' ),
-					12  => esc_html__( 'FSK 12', 'ggl-post-types' ),
-					16  => esc_html__( 'FSK 16', 'ggl-post-types' ),
-					18  => esc_html__( 'FSK 18', 'ggl-post-types' ),
-				],
-				'std'      => - 2,
-				'required' => true,
-				'revision' => true
-			],
-			[
-				'type'     => 'checkbox_list',
-				'name'     => esc_html__( 'Descriptors', 'ggl-post-types' ),
-				'id'       => 'descriptors',
-				'desc'     => '<a href="https://www.fsk.de/freigabensuche/" target="_blank">' . __( 'FSK Title Lookup', 'ggl-post-types' ) . '</a>',
-				'options'  => [
-					'sexualized_violence' => esc_html__( 'Sexualized Violence', 'ggl-post-types' ),
-					'violence'            => esc_html__( 'Violence', 'ggl-post-types' ),
-					'self_harm'           => esc_html__( 'Self Harm', 'ggl-post-types' ),
-					'drug_usage'          => esc_html__( 'Drug Usage', 'ggl-post-types' ),
-					'discrimination'      => esc_html__( 'Discrimination', 'ggl-post-types' ),
-					'sexuality'           => esc_html__( 'Sexuality', 'ggl-post-types' ),
-					'threat'              => esc_html__( 'Threat', 'ggl-post-types' ),
-					'injury'              => esc_html__( 'Injury', 'ggl-post-types' ),
-					'stressful_topics'    => esc_html__( 'Stressful Topics', 'ggl-post-types' ),
-					'language'            => esc_html__( 'Language', 'ggl-post-types' ),
-					'nudity'              => esc_html__( 'Nudity', 'ggl-post-types' ),
-					'risky_behaviour'     => esc_html__( 'Risky Behaviour', 'ggl-post-types' ),
-					'marginalization'     => esc_html__( 'Marginalization', 'ggl-post-types' ),
-				],
-				'revision' => true
-
-			]
-		]
-	];
-
-	return $meta_boxes;
-}
-
-function movie_sound_information_meta_boxes( $meta_boxes ): mixed {
-	$meta_boxes[] = [
-		'title'      => esc_html__( 'Audio and Subtitles', 'ggl-post-types' ),
-		'id'         => 'audio_and_subtitle_information',
-		'context'    => 'side',
-		'post_types' => [ 'movie' ],
-		'autosave'   => true,
-		'revisions'  => true,
-		'fields'     => [
-			[
-				'type'     => 'radio',
-				'name'     => esc_html__( 'Audio Type', 'ggl-post-types' ),
-				'id'       => 'audio_type',
-				'inline'   => true,
-				'required' => true,
-				'options'  => [
-					'original'        => esc_html__( 'Original', 'ggl-post-types' ),
-					'synchronization' => esc_html__( 'Synchronization', 'ggl-post-types' ),
-				],
-				'default'  => 'original',
-				'revision' => true
-			],
-			[
-				'type'     => 'select_advanced',
-				'name'     => esc_html__( 'Audio Language', 'ggl-post-types' ),
-				'id'       => 'audio_language',
-				'std'      => 'eng',
-				'options'  => generate_language_mapping(),
-				'required' => true,
-				'revision' => true
-			],
-			[
-				'type'     => 'select_advanced',
-				'name'     => esc_html__( 'Subtitle Language', 'ggl-post-types' ),
-				'id'       => 'subtitle_language',
-				'std'      => 'deu',
-				'options'  => generate_language_mapping(),
-				'required' => true,
-				'revision' => true
-			],
-		]
-	];
-
-	return $meta_boxes;
-}
-
-function movie_screening_info_meta_boxes( $meta_boxes ) {
-	$meta_boxes[] = [
-		'title'      => esc_html__( 'Screening Information', 'ggl-post-types' ),
-		'id'         => 'movie_screening_info',
-		'context'    => 'side',
-		'post_types' => [ 'movie' ],
-		'autosave'   => true,
-		'revisions'  => true,
-		'fields'     => [
-			[
-				'type'        => 'taxonomy',
-				'name'        => esc_html__( 'Semester', 'ggl-post-type' ),
-				'id'          => 'semester',
-				'placeholder' => esc_html__( 'Select a Semester', 'ggl-post-types' ),
-				'taxonomy'    => 'semester',
-				'required'    => false,
-				'field_type'  => 'select_advanced',
-				'query_args'  => [
-					'number'   => 5,
-					'orderby'  => 'meta_value_num',
-					'meta_key' => 'semester_start',
-					'order'    => 'desc'
-				],
-				'std'         => get_terms( 'semester', [
-					'number'   => 1,
-					'orderby'  => 'meta_value_num',
-					'meta_key' => 'semester_start',
-					'order'    => 'desc'
-				] )[0]->term_id,
-				'add_new'     => current_user_can( "edit_others_posts" ),
-				'ajax'        => true,
-				'revision'    => true
-			],
-			[
-				'type'       => 'datetime',
-				'name'       => esc_html__( 'Date and Time', 'ggl-post-types' ),
-				'id'         => 'screening_date',
-				'timestamp'  => true,
-				'js_options' => [
-					'dateFormat' => 'dd.mm.yy',
-				],
-				'required'   => true,
-				'revision'   => true
-			],
-			[
-				'type'       => 'post',
-				'name'       => esc_html__( 'Location', 'ggl-post-types' ),
-				'id'         => 'screening_location',
-				'desc'       => esc_html__( 'The location the screening will take place in', 'ggl-post-types' ),
-				'required'   => true,
-				'field_type' => 'select_advanced',
-				'post_type'  => 'screening-location',
-				'query_args' => [
-					'post_status'    => 'publish',
-					'posts_per_page' => - 1
-				],
-				'std'        => get_posts( [
-					"post_type"      => "screening-location",
-					"posts_per_page" => 1
-				] )[0]->ID,
-				'ajax'       => true,
-				'add_new'    => false,
-				'revision'   => true
-			],
-			[
-				'type'     => 'radio',
-				'name'     => esc_html__( 'Admission Type', 'ggl-post-types' ),
-				'id'       => 'admission_type',
-				'inline'   => true,
-				'required' => true,
-				'options'  => [
-					'free'     => esc_html__( 'Free', 'ggl-post-types' ),
-					'donation' => esc_html__( 'Donation', 'ggl-post-types' ),
-					'paid'     => esc_html__( 'Paid', 'ggl-post-types' )
-				],
-				'std'      => 'paid',
-				'revision' => true
-			],
-			[
-				'type'     => 'number',
-				'name'     => esc_html__( 'Fee', 'ggl-post-types' ),
-				'id'       => 'admission_fee',
-				'std'      => 3,
-				'min'      => 0,
-				'step'     => 0.01,
-				'visible'  => [ 'admission_type', "=", "paid" ],
-				'revision' => true
-			],
-		],
-	];
-
-	return $meta_boxes;
-}
-
-function movie_text_boxes( $meta_boxes ) {
-	$meta_boxes[] = [
-		'title'      => esc_html__( 'Movie Texts', 'ggl-post-types' ),
-		'id'         => 'movie_text_boxes',
-		'context'    => 'normal',
-		'post_types' => [ 'movie' ],
-		'style'      => 'seamless',
-		'autosave'   => true,
-		'revisions'  => true,
-		'fields'     => [
-			[
-				'type' => 'heading',
-				'name' => esc_html__( "Content Summary", 'ggl-post-types' ),
-			],
-			[
-				'type'                  => 'wysiwyg',
-				'id'                    => 'summary',
-				'required'              => true,
-				'add_to_wpseo_analysis' => true,
-				'options'               => GGL_CPT__WYSIWYG_OPTIONS,
-				'revision'              => true
-			],
-			[
-				'type' => 'heading',
-				'name' => esc_html__( "Why it's worth seeing", 'ggl-post-types' ),
-			],
-			[
-				'type'                  => 'wysiwyg',
-				'id'                    => 'worth_to_see',
-				'required'              => true,
-				'add_to_wpseo_analysis' => true,
-				'options'               => GGL_CPT__WYSIWYG_OPTIONS,
-				'revision'              => true
-
-			],
-			[
-				'type'    => 'heading',
-				'name'    => esc_html__( "Content Summary (Anonymized)", 'ggl-post-types' ),
-				'desc'    => esc_html__( "Please enter an anonymized version of the content summary here", 'ggl-post-types' ),
-				'visible' => [ 'license_type', '!=', 'full' ],
-			],
-			[
-				'type'                  => 'wysiwyg',
-				'id'                    => 'anon_summary',
-				'required'              => false,
-				'add_to_wpseo_analysis' => false,
-				'options'               => GGL_CPT__WYSIWYG_OPTIONS,
-				'visible'               => [ 'license_type', '!=', 'full' ],
-				'revision'              => true
-			],
-			[
-				'type'    => 'heading',
-				'name'    => esc_html__( "Why it's worth seeing (Anonymized)", 'ggl-post-types' ),
-				'desc'    => esc_html__( "Please enter an anonymized version of the \"Why it's worth seeing?\" summary here", 'ggl-post-types' ),
-				'visible' => [ 'license_type', '!=', 'full' ],
-			],
-			[
-				'type'                  => 'wysiwyg',
-				'id'                    => 'anon_worth_to_see',
-				'required'              => false,
-				'add_to_wpseo_analysis' => false,
-				'options'               => GGL_CPT__WYSIWYG_OPTIONS,
-				'visible'               => [ 'license_type', '!=', 'full' ],
-				'revision'              => true
-
-			],
-			[
-				'type' => 'heading',
-				'name' => esc_html__( "Content Notice", 'ggl-post-types' ),
+				'revision'    => true,
+				'tab'         => 'screening'
 			],
 			[
 				'type'     => 'checkbox',
 				'name'     => esc_html__( 'Show Content Notice', 'ggl-post-types' ),
 				'id'       => 'show_content_notice',
 				'std'      => 0,
-				'revision' => true
+				'revision' => true,
+				'desc'     => esc_html__( 'If this box is ticked the below entered content notice will be displayed above the text for this movie.', 'ggl-post-types' ),
+				'tab'      => 'content-notice'
 			],
 			[
 				'type'                  => 'wysiwyg',
@@ -667,26 +626,11 @@ function movie_text_boxes( $meta_boxes ) {
 				'required'              => false,
 				'add_to_wpseo_analysis' => false,
 				'dfw'                   => false,
-				'visible'               => [ 'show_content_notice', true ],
-				'desc'                  => esc_html__( 'The content notice will be displayed above the content summary', 'ggl-post-types' ),
 				'options'               => GGL_CPT__WYSIWYG_OPTIONS,
-				'revision'              => true
+				'revision'              => true,
+				'tab'                   => 'content-notice',
+				'textarea_rows'         => 5,
 			],
-		],
-	];
-
-	return $meta_boxes;
-}
-
-function movie_short_movie_box( $meta_boxes ) {
-	$meta_boxes[] = [
-		'title'      => esc_html__( 'Short Movie', 'ggl-post-types' ),
-		'id'         => 'short_movie',
-		'context'    => 'side',
-		'post_types' => [ 'movie' ],
-		'autosave'   => true,
-		'revisions'  => true,
-		'fields'     => [
 			[
 				'type'     => 'radio',
 				'name'     => esc_html__( 'Advertise Short Movie', 'ggl-post-types' ),
@@ -697,21 +641,22 @@ function movie_short_movie_box( $meta_boxes ) {
 					'no'  => esc_html__( 'No', 'ggl-post-types' ),
 				],
 				'std'      => 'yes',
-				'revision' => true
+				'revision' => true,
+				'tab'      => 'short-movie'
 			],
 			[
 				'type'     => 'text',
 				'name'     => esc_html__( 'Title', 'ggl-post-types' ),
 				'id'       => 'short_movie_title',
-				'visible'  => [ 'short_movie_screened', '=', 'yes' ],
-				'revision' => true
+				'revision' => true,
+				'tab'      => 'short-movie'
 			],
 			[
 				'type'     => 'text',
 				'name'     => esc_html__( 'Directed by', 'ggl-post-types' ),
 				'id'       => 'short_movie_directed_by',
-				'visible'  => [ 'short_movie_screened', '=', 'yes' ],
-				'revision' => true
+				'revision' => true,
+				'tab'      => 'short-movie'
 
 			],
 			[
@@ -720,7 +665,7 @@ function movie_short_movie_box( $meta_boxes ) {
 				'id'       => 'short_movie_country',
 				'options'  => generate_country_mapping(),
 				'multiple' => true,
-				'visible'  => [ 'short_movie_screened', '=', 'yes' ],
+				'tab'      => 'short-movie',
 				'revision' => true
 			],
 			[
@@ -731,7 +676,7 @@ function movie_short_movie_box( $meta_boxes ) {
 				'std'      => 5,
 				'step'     => 1,
 				'min'      => 0,
-				'visible'  => [ 'short_movie_screened', '=', 'yes' ],
+				'tab'      => 'short-movie',
 				'revision' => true
 			],
 			[
@@ -741,9 +686,90 @@ function movie_short_movie_box( $meta_boxes ) {
 				'std'      => 1970,
 				'step'     => 1,
 				'min'      => 0,
-				'visible'  => [ 'short_movie_screened', '=', 'yes' ],
+				'tab'      => 'short-movie',
 				'revision' => true
 			]
+		],
+	];
+
+	return $meta_boxes;
+}
+
+function movie_text_boxes( $meta_boxes ) {
+	$meta_boxes[] = [
+		'title'      => esc_html__( 'Movie Texts', 'ggl-post-types' ),
+		'id'         => 'movie_text_boxes',
+		'context'    => 'after_title',
+		'post_types' => [ 'movie' ],
+		'style'      => 'seamless',
+		'autosave'   => true,
+		'revisions'  => true,
+		'tab_style'  => 'box',
+		'tabs'       => [
+			"summary"      => [ "label" => esc_html__( "Content Summary", 'ggl-post-types' ) ],
+			"worth_to_see" => [ "label" => esc_html__( "Why it's worth seeing", 'ggl-post-types' ) ],
+		],
+		'fields'     => [
+			[
+				'type'                  => 'wysiwyg',
+				'id'                    => 'summary',
+				'required'              => true,
+				'add_to_wpseo_analysis' => true,
+				'options'               => GGL_CPT__WYSIWYG_OPTIONS,
+				'revision'              => true,
+				'tab'                   => 'summary'
+			],
+			[
+				'type'                  => 'wysiwyg',
+				'id'                    => 'worth_to_see',
+				'required'              => true,
+				'add_to_wpseo_analysis' => true,
+				'options'               => GGL_CPT__WYSIWYG_OPTIONS,
+				'revision'              => true,
+				'tab'                   => "worth_to_see",
+
+			],
+		]
+	];
+	$meta_boxes[] = [
+		'title'      => esc_html__( 'Anonymized Texts', 'ggl-post-types' ),
+		'id'         => 'movie_anon_text_boxes',
+		'context'    => 'after_title',
+		'post_types' => [ 'movie' ],
+		'style'      => 'seamless',
+		'autosave'   => true,
+		'revisions'  => true,
+		'tab_style'  => 'box',
+		'tabs'       => [
+			"summary"      => [ "label" => esc_html__( "Content Summary", 'ggl-post-types' ) ],
+			"worth_to_see" => [ "label" => esc_html__( "Why it's worth seeing", 'ggl-post-types' ) ],
+		],
+		'visible'    => [ 'license_type', '!=', 'full' ],
+		'fields'     => [
+			[
+				'type' => "custom_html",
+				"std"  => "<div style='padding-left: 10px'><h3>" . esc_html__( "Anonymized Texts", "ggl-post-types" ) . "</h3><p>" . esc_html__( "As you selected that we do not have advertising rights for this movie you need to provide an anonymized version of the texts you wrote above.", "ggl-post-types" ) . "</p><p>" . esc_html__( "The text may not contain the names of characters, names of actors, clearly identifiable names of plot locations and similar names that would make the movie identifiable by a online search engine.", "ggl-post-types" ) . "</p></div>"
+			],
+			[
+				'type'                  => 'wysiwyg',
+				'id'                    => 'anon_summary',
+				'required'              => false,
+				'add_to_wpseo_analysis' => false,
+				'options'               => GGL_CPT__WYSIWYG_OPTIONS,
+				'visible'               => [ 'license_type', '!=', 'full' ],
+				'revision'              => true,
+				"tab"                   => "summary",
+			],
+			[
+				'type'                  => 'wysiwyg',
+				'id'                    => 'anon_worth_to_see',
+				'required'              => false,
+				'add_to_wpseo_analysis' => false,
+				'options'               => GGL_CPT__WYSIWYG_OPTIONS,
+				'visible'               => [ 'license_type', '!=', 'full' ],
+				'revision'              => true,
+				"tab"                   => "worth_to_see",
+			],
 		],
 	];
 

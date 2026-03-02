@@ -5,7 +5,7 @@ function ggl_post_type_event(): void {
 		'label'               => __( 'Events', 'ggl-post-types' ),
 		'labels'              => [
 			'menu_name'          => __( 'Events', 'ggl-post-types' ),
-			'name_admin_bar'     => __( 'Events', 'ggl-post-types' ),
+			'name_admin_bar'     => __( 'Event', 'ggl-post-types' ),
 			'singular_name'      => __( 'Event', 'ggl-post-types' ),
 			'add_new_item'       => __( 'Add Event', 'ggl-post-types' ),
 			'add_new'            => __( 'Add Event', 'ggl-post-types' ),
@@ -155,13 +155,20 @@ function ggl_cpt__apply_event_program_filter( WP_Query $query ) {
 
 function event_extended_info_meta_boxes( $meta_boxes ) {
 	$meta_boxes[] = [
-		'title'      => esc_html__( 'Event Information', 'ggl-post-types' ),
+		'title'      => esc_html__( 'Event Metaboxes', 'ggl-post-types' ),
 		'id'         => 'event_meta',
 		'context'    => 'form_top',
 		'style'      => 'seamless',
 		'post_types' => [ 'event' ],
 		'autosave'   => true,
 		'revisions'  => true,
+		'tabs'       => [
+			"information"      => [ "label" => "Basic Information", "icon" => "dashicons-info-outline" ],
+			'youth-protection' => [ "label" => 'Youth Protection', "icon" => "dashicons-privacy" ],
+			'screening'        => [ "label" => "Screening Details", "icon" => "dashicons-calendar" ],
+			'admission'        => [ "label" => "Admission", "icon" => "dashicons-tickets" ],
+			'content-notice'   => [ "label" => "Content Notice", "icon" => "dashicons-warning" ],
+		],
 		'fields'     => [
 			[
 				'type' => 'heading',
@@ -174,6 +181,7 @@ function event_extended_info_meta_boxes( $meta_boxes ) {
 				'desc'     => esc_html__( 'Please enter the German title of the event here', 'ggl-post-types' ),
 				'required' => true,
 				'revision' => true,
+				'tab'      => 'information',
 			],
 			[
 				'type'     => 'text',
@@ -181,7 +189,8 @@ function event_extended_info_meta_boxes( $meta_boxes ) {
 				'id'       => 'english_title',
 				'desc'     => esc_html__( 'Please enter the English title of the event here', 'ggl-post-types' ),
 				'required' => true,
-				'revision' => true
+				'revision' => true,
+				'tab'      => 'information',
 			],
 			[
 				'type'     => 'number',
@@ -192,7 +201,8 @@ function event_extended_info_meta_boxes( $meta_boxes ) {
 				'step'     => 1,
 				'min'      => 0,
 				'required' => true,
-				'revision' => true
+				'revision' => true,
+				'tab'      => 'information',
 			],
 			[
 				'type'     => 'select_advanced',
@@ -201,7 +211,8 @@ function event_extended_info_meta_boxes( $meta_boxes ) {
 				'std'      => 'eng',
 				'options'  => generate_language_mapping(),
 				'required' => false,
-				'revision' => true
+				'revision' => true,
+				'tab'      => 'information',
 			],
 			[
 				'type'      => 'switch',
@@ -210,7 +221,8 @@ function event_extended_info_meta_boxes( $meta_boxes ) {
 				'std'       => false,
 				'on_label'  => esc_html__( 'Yes', 'ggl-post-types' ),
 				'off_label' => esc_html__( 'No', 'ggl-post-types' ),
-				'revision'  => true
+				'revision'  => true,
+				"tab"       => "youth-protection",
 			],
 			[
 				'type'     => 'number',
@@ -220,94 +232,9 @@ function event_extended_info_meta_boxes( $meta_boxes ) {
 				'step'     => 1,
 				'min'      => 0,
 				'visible'  => [ "age_restricted" ],
-				'revision' => true
+				'revision' => true,
+				'tab'      => "youth-protection",
 			],
-			[
-				'type'     => 'radio',
-				'name'     => esc_html__( 'Selected by', 'ggl-post-types' ),
-				'id'       => 'selected_by',
-				'inline'   => true,
-				'required' => true,
-				'options'  => [
-					'member' => esc_html__( 'Team Member', 'ggl-post-types' ),
-					'coop'   => esc_html__( 'Cooperation Partner', 'ggl-post-types' ),
-					'hidden' => esc_html__( 'Don\'t show', 'ggl-post-types' )
-				],
-				'revision' => true
-			],
-			[
-				'type'        => 'post',
-				'name'        => esc_html__( 'Team Member', 'ggl-post-types' ),
-				'id'          => 'team_member_id',
-				'post_type'   => 'team-member',
-				'field_type'  => 'select_advanced',
-				'add_new'     => true,
-				'placeholder' => esc_html__( 'Select a Team Member', 'ggl-post-types' ),
-				'query_args'  => [
-					'post_status'    => 'publish',
-					'posts_per_page' => - 1
-				],
-				'visible'     => [ 'selected_by', '=', 'member' ],
-				'revision'    => true
-			],
-			[
-				'type'        => 'post',
-				'name'        => esc_html__( 'Cooperation Partner', 'ggl-post-types' ),
-				'id'          => 'cooperation_partner_id',
-				'post_type'   => 'cooperation-partner',
-				'field_type'  => 'select_advanced',
-				'placeholder' => esc_html__( 'Select a Cooperation Partner', 'ggl-post-types' ),
-				'add_new'     => true,
-				'query_args'  => [
-					'post_status'    => 'publish',
-					'posts_per_page' => - 1
-				],
-				'visible'     => [ 'selected_by', '=', 'coop' ],
-				'revision'    => true
-			],
-			[
-				'type'     => 'radio',
-				'name'     => esc_html__( 'Program Type', 'ggl-post-types' ),
-				'id'       => 'program_type',
-				'inline'   => true,
-				'required' => true,
-				'options'  => [
-					'main'            => esc_html__( 'Main Program', 'ggl-post-types' ),
-					'special_program' => esc_html__( 'Special Program', 'ggl-post-types' ),
-				],
-				'revision' => true
-			],
-			[
-				'type'        => 'taxonomy',
-				'name'        => esc_html__( 'Special Program', 'ggl-post-types' ),
-				'placeholder' => esc_html__( 'Select a Special Program', 'ggl-post-types' ),
-				'id'          => 'special_program',
-				'taxonomy'    => 'special-program',
-				'required'    => false,
-				'field_type'  => 'select_advanced',
-				'add_new'     => true,
-				'query_args'  => [
-					'number' => 10,
-				],
-				'ajax'        => false,
-				'visible'     => [ 'program_type', '=', 'special_program' ],
-				'revision'    => true
-			],
-		],
-	];
-
-	return $meta_boxes;
-}
-
-function event_screening_info_meta_boxes( $meta_boxes ) {
-	$meta_boxes[] = [
-		'title'      => esc_html__( 'Screening Information', 'ggl-post-types' ),
-		'id'         => 'event_presentation_info',
-		'context'    => 'side',
-		'post_types' => [ 'event' ],
-		'autosave'   => true,
-		'revisions'  => true,
-		'fields'     => [
 			[
 				'type'        => 'taxonomy',
 				'name'        => esc_html__( 'Semester', 'ggl-post-type' ),
@@ -320,7 +247,8 @@ function event_screening_info_meta_boxes( $meta_boxes ) {
 					'number' => 10,
 				],
 				'add_new'     => true,
-				'revision'    => true
+				'revision'    => true,
+				'tab'         => 'screening',
 			],
 			[
 				'type'       => 'datetime',
@@ -331,7 +259,8 @@ function event_screening_info_meta_boxes( $meta_boxes ) {
 					'dateFormat' => 'dd.mm.yy',
 				],
 				'required'   => true,
-				'revision'   => true
+				'revision'   => true,
+				'tab'        => 'screening',
 			],
 			[
 				'type'       => 'post',
@@ -347,7 +276,84 @@ function event_screening_info_meta_boxes( $meta_boxes ) {
 				],
 				'ajax'       => true,
 				'add_new'    => false,
-				'revision'   => true
+				'revision'   => true,
+				'tab'        => 'screening',
+			],
+			[
+				'type'     => 'radio',
+				'name'     => esc_html__( 'Selected by', 'ggl-post-types' ),
+				'id'       => 'selected_by',
+				'inline'   => true,
+				'required' => true,
+				'options'  => [
+					'member' => esc_html__( 'Team Member', 'ggl-post-types' ),
+					'coop'   => esc_html__( 'Cooperation Partner', 'ggl-post-types' ),
+					'hidden' => esc_html__( 'Don\'t show', 'ggl-post-types' )
+				],
+				'revision' => true,
+				'tab'      => 'screening',
+			],
+			[
+				'type'        => 'post',
+				'name'        => esc_html__( 'Team Member', 'ggl-post-types' ),
+				'id'          => 'team_member_id',
+				'post_type'   => 'team-member',
+				'field_type'  => 'select_advanced',
+				'add_new'     => true,
+				'placeholder' => esc_html__( 'Select a Team Member', 'ggl-post-types' ),
+				'query_args'  => [
+					'post_status'    => 'publish',
+					'posts_per_page' => - 1
+				],
+				'visible'     => [ 'selected_by', '=', 'member' ],
+				'revision'    => true,
+				'tab'         => 'screening',
+			],
+			[
+				'type'        => 'post',
+				'name'        => esc_html__( 'Cooperation Partner', 'ggl-post-types' ),
+				'id'          => 'cooperation_partner_id',
+				'post_type'   => 'cooperation-partner',
+				'field_type'  => 'select_advanced',
+				'placeholder' => esc_html__( 'Select a Cooperation Partner', 'ggl-post-types' ),
+				'add_new'     => true,
+				'query_args'  => [
+					'post_status'    => 'publish',
+					'posts_per_page' => - 1
+				],
+				'visible'     => [ 'selected_by', '=', 'coop' ],
+				'revision'    => true,
+				'tab'         => 'screening',
+			],
+			[
+				'type'     => 'radio',
+				'name'     => esc_html__( 'Program Type', 'ggl-post-types' ),
+				'id'       => 'program_type',
+				'inline'   => true,
+				'required' => true,
+				'options'  => [
+					'main'            => esc_html__( 'Main Program', 'ggl-post-types' ),
+					'special_program' => esc_html__( 'Special Program', 'ggl-post-types' ),
+				],
+				'revision' => true,
+				'tab'      => 'screening',
+			],
+			[
+				'type'        => 'taxonomy',
+				'name'        => esc_html__( 'Special Program', 'ggl-post-types' ),
+				'placeholder' => esc_html__( 'Select a Special Program', 'ggl-post-types' ),
+				'id'          => 'special_program',
+				'taxonomy'    => 'special-program',
+				'required'    => false,
+				'field_type'  => 'select_advanced',
+				'add_new'     => true,
+				'query_args'  => [
+					'number' => 10,
+				],
+				'ajax'        => false,
+				'visible'     => [ 'program_type', '=', 'special_program' ],
+				'revision'    => true,
+				'tab'         => 'screening',
 			],
 			[
 				'type'     => 'radio',
@@ -361,7 +367,8 @@ function event_screening_info_meta_boxes( $meta_boxes ) {
 					'paid'     => esc_html__( 'Paid', 'ggl-post-types' )
 				],
 				'std'      => 'free',
-				'revision' => true
+				'revision' => true,
+				'tab'      => 'admission',
 			],
 			[
 				'type'     => 'number',
@@ -371,15 +378,34 @@ function event_screening_info_meta_boxes( $meta_boxes ) {
 				'min'      => 0,
 				'step'     => 0.01,
 				'visible'  => [ 'admission_type', "=", "paid" ],
-				'revision' => true
+				'revision' => true,
+				'tab'      => 'admission',
 			],
+		],
+		[
+			'type'     => 'checkbox',
+			'name'     => esc_html__( 'Show Content Notice', 'ggl-post-types' ),
+			'id'       => 'show_content_notice',
+			'std'      => 0,
+			'revision' => true,
+			'desc'     => esc_html__( 'If this box is ticked the below entered content notice will be displayed above the text for this movie.', 'ggl-post-types' ),
+			'tab'      => 'content-notice'
+		],
+		[
+			'type'                  => 'wysiwyg',
+			'id'                    => 'content_notice',
+			'required'              => false,
+			'add_to_wpseo_analysis' => false,
+			'dfw'                   => false,
+			'options'               => GGL_CPT__WYSIWYG_OPTIONS,
+			'revision'              => true,
+			'tab'                   => 'content-notice',
+			'textarea_rows'         => 5,
 		],
 	];
 
 	return $meta_boxes;
 }
-
-
 function event_additional_information_box( $meta_boxes ) {
 	$meta_boxes[] = [
 		'title'      => esc_html__( "Why it's worth seeing", 'ggl-post-types' ),
@@ -388,22 +414,19 @@ function event_additional_information_box( $meta_boxes ) {
 		'post_types' => [ 'event' ],
 		'style'      => 'seamless',
 		'autosave'   => true,
+		'tabs'       => [
+			"summary"         => [ "label" => esc_html__( "Event Summary", 'ggl-post-types' ) ],
+			"worth_to_attend" => [ "label" => esc_html__( "Why it's worth attending", 'ggl-post-types' ) ],
+		],
 		'fields'     => [
-			[
-				'type' => 'heading',
-				'name' => esc_html__( "Event Summary", 'ggl-post-types' ),
-			],
 			[
 				'type'                  => 'wysiwyg',
 				'id'                    => 'summary',
 				'required'              => true,
 				'add_to_wpseo_analysis' => true,
 				'options'               => GGL_CPT__WYSIWYG_OPTIONS,
-				'revision'              => true
-			],
-			[
-				'type' => 'heading',
-				'name' => esc_html__( "Why it's worth attending", 'ggl-post-types' ),
+				'revision'              => true,
+				'tab'                   => "summary",
 			],
 			[
 				'type'                  => 'wysiwyg',
@@ -411,29 +434,8 @@ function event_additional_information_box( $meta_boxes ) {
 				'required'              => true,
 				'add_to_wpseo_analysis' => true,
 				'options'               => GGL_CPT__WYSIWYG_OPTIONS,
-				'revision'              => true
-			],
-			[
-				'type' => 'heading',
-				'name' => esc_html__( "Notices", 'ggl-post-types' ),
-			],
-			[
-				'type'     => 'checkbox',
-				'name'     => esc_html__( 'Show Notice', 'ggl-post-types' ),
-				'id'       => 'show_content_notice',
-				'std'      => 0,
-				'revision' => true
-			],
-			[
-				'type'                  => 'wysiwyg',
-				'id'                    => 'content_notice',
-				'required'              => false,
-				'add_to_wpseo_analysis' => false,
-				'dfw'                   => false,
-				'visible'               => [ 'show_content_notice', true ],
-				'desc'                  => esc_html__( 'The content notice will be displayed above the event summary', 'ggl-post-types' ),
-				'options'               => GGL_CPT__WYSIWYG_OPTIONS,
-				'revision'              => true
+				'revision'              => true,
+				'tab'                   => "worth_to_attend",
 			],
 		],
 	];
