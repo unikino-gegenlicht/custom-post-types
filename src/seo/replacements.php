@@ -7,7 +7,7 @@
 
 function ggl_pt_get_title() {
 	global $post;
-	$post = get_post($post);
+	$post = get_post( $post );
 
 	$title        = rwmb_get_value( "german_title", post_id: $post->ID );
 	$englishTitle = rwmb_get_value( "english_title", post_id: $post->ID );
@@ -41,7 +41,7 @@ function ggl_pt_get_title() {
 
 function ggl_pt_screening_date() {
 	global $post;
-	$post = get_post($post);
+	$post = get_post( $post );
 
 
 	$screeningStart = (int) rwmb_get_value( "screening_date", post_id: $post->ID );
@@ -51,34 +51,35 @@ function ggl_pt_screening_date() {
 
 function ggl_pt_text() {
 	global $post;
-	$post = get_post($post);
+	$post = get_post( $post );
 
-	$anonymize = rwmb_get_value( "license_type", post_id: $post->ID ) !== "full";
-	$original_text = match ($anonymize) {
-		false => rwmb_get_value("summary", post_id: $post->ID),
-		true => rwmb_get_value("anon_summary", post_id: $post->ID)
+	$anonymize     = rwmb_get_value( "license_type", post_id: $post->ID ) !== "full";
+	$original_text = match ( $anonymize ) {
+		false => rwmb_get_value( "summary", post_id: $post->ID ),
+		true => rwmb_get_value( "anon_summary", post_id: $post->ID )
 	};
 
 	$return_string = "";
-	$words = explode(" ", $original_text);
-	foreach ($words as $word ) {
-		if ((strlen($return_string) + strlen($word)) < 150) {
+	$words         = explode( " ", $original_text );
+	foreach ( $words as $word ) {
+		if ( ( strlen( $return_string ) + strlen( $word ) ) < 150 ) {
 			$return_string .= " {$word}";
 		}
 	}
-	$sentences = array_slice(explode(".", $return_string), 0, count(explode(".", $return_string)) == 1 ? 1 : -1);
-	return join(".", $sentences) . "…";
+	$sentences = array_slice( explode( ".", $return_string ), 0, count( explode( ".", $return_string ) ) == 1 ? 1 : - 1 );
+
+	return join( ".", $sentences ) . "…";
 }
 
 function ggl_pt_details() {
 	global $post;
-	$post = get_post();
+	$post             = get_post();
 	$audioType        = rwmb_meta( 'audio_type' );
 	$audioLanguage    = rwmb_meta( 'audio_language' );
 	$subtitleLanguage = rwmb_meta( 'subtitle_language' );
 
 	if ( $audioType == 'original' ) {
-		$versionTag = match ( $subtitleLanguage ) {
+		$versionTag  = match ( $subtitleLanguage ) {
 			"eng" => "OmeU",
 			"zxx" => "OV",
 			default => "OmU"
@@ -88,7 +89,7 @@ function ggl_pt_details() {
 			default => "{$audioLanguage}. Original mit {$subtitleLanguage}. Untertiteln"
 		};
 	} else {
-		$versionTag = match ( $subtitleLanguage ) {
+		$versionTag  = match ( $subtitleLanguage ) {
 			"eng" => "SFmeU",
 			"zxx" => "SF",
 			default => "SFmU"
@@ -118,15 +119,15 @@ function ggl_pt_details() {
 		$names[] = get_post( $id )->post_title;
 	}
 	$proposer_string = match ( $proposal_by ) {
-		"member" => "| ausgesucht von: " . join("+", $names),
-		"coop" => "| in Kooperation mit: ". join("+", $names),
+		"member" => "| ausgesucht von: " . join( "+", $names ),
+		"coop" => "| in Kooperation mit: " . join( "+", $names ),
 		default => ""
 	};
 
 	$countries  = rwmb_get_value( "country" );
 	$countryStr = join( "/", $countries );
 
-	$releaseYear = date( 'Y', strtotime(rwmb_get_value( 'release_date' )) );
+	$releaseYear = date( 'Y', strtotime( rwmb_get_value( 'release_date' ) ) );
 
 	return "{$versionTag} ($versionName) | {$countryStr} {$releaseYear} | Laufzeit: {$running_time} Minuten | FSK: {$ageRating} {$proposer_string}";
 }
