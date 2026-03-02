@@ -13,14 +13,14 @@ function ggl_taxonomy_actor(): void {
 			'new_item_name' => __( 'New Actor', 'ggl-post-types' ),
 		],
 		'public'         => false,
-		'show_in_menu'   => current_user_can("manage_options"),
+		'show_in_menu'   => current_user_can( "manage_options" ),
 		'show_ui'        => true,
-		'show_in_rest' => true,
-		'meta_box_cb'    => false,
+		'show_in_rest'   => true,
 		'show_tag_cloud' => false,
+		'meta_box_cb'     => false,
 		'query_var'      => 'actor',
 		'rewrite'        => false,
-		"description"     => __("This taxonomy is used for managing the actors that are displayed for each movie. Please only add a new "),
+		"description"    => __( "This taxonomy is used for managing the actors that are displayed for each movie. Please only add a new " ),
 		"capabilities"   => [
 			"manage_terms" => "publish_posts",
 			"edit_terms"   => "publish_posts",
@@ -31,17 +31,16 @@ function ggl_taxonomy_actor(): void {
 }
 
 function ggl_taxonomy_actor_meta_boxes( $meta_boxes ): mixed {
-	$prefix       = 'actor_';
 	$meta_boxes[] = [
 		'title'      => "",
 		'id'         => 'actor_notices_1',
 		'taxonomies' => 'actor',
 		'context'    => 'form_top',
-		'style' => 'seamless',
+		'style'      => 'seamless',
 		'fields'     => [
 			[
-				'type'       => 'custom_html',
-				'std' => '<div class="alert altert-warning">TEST</div>',
+				'type' => 'custom_html',
+				'std'  => '<div class="alert altert-warning">TEST</div>',
 			],
 		],
 	];

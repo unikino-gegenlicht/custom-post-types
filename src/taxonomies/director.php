@@ -13,11 +13,11 @@ function ggl_taxonomy_director(): void {
 			'new_item_name' => __( 'New Director', 'ggl-post-types' ),
 		],
 		'public'         => false,
-		'show_in_menu'   => current_user_can("manage_options"),
+		'show_in_menu'   => current_user_can( "manage_options" ),
 		'show_ui'        => true,
 		'show_in_rest'   => true,
-		'meta_box_cb'    => false,
 		'show_tag_cloud' => false,
+		'meta_box_cb'     => false,
 		'query_var'      => 'director',
 		'rewrite'        => false,
 		"capabilities"   => [
