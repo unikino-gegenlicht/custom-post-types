@@ -188,7 +188,7 @@ function movie_extended_info_meta_boxes( $meta_boxes ) {
 		'style'      => 'seamless',
 		'post_types' => [ 'movie' ],
 		'autosave'   => true,
-		'revision' => true,
+		'revision'   => true,
 		'tabs'       => [
 			'information'      => [
 				"label" => esc_html__( 'Movie Information', "ggl-post-types" ),
@@ -222,6 +222,10 @@ function movie_extended_info_meta_boxes( $meta_boxes ) {
 				"label" => esc_html__( "Short Movie", "ggl-post-types" ),
 				"icon"  => "dashicons-video-alt"
 			],
+			'display'          => [
+				"label" => esc_html__( "Display Options", "ggl-post-types" ),
+				"icon"  => "dashicons-visibility"
+			]
 		],
 		'fields'     => [
 			[
@@ -271,7 +275,7 @@ function movie_extended_info_meta_boxes( $meta_boxes ) {
 				'required'   => true,
 				'min'        => 0,
 				'revision'   => true,
-                'timestamp' => true,
+				'timestamp'  => true,
 				'js_options' => [
 					'dateFormat' => ( str_starts_with( get_locale(), "de" ) ? 'dd.mm.yy' : "mm/dd/yy" ),
 				],
@@ -689,6 +693,28 @@ function movie_extended_info_meta_boxes( $meta_boxes ) {
 				'min'      => 0,
 				'tab'      => 'short-movie',
 				'revision' => true
+			],
+			[
+				'type' => 'checkbox',
+				'name' => esc_html__( 'Display Animated Image', 'ggl-post-types' ),
+				'id'   => 'use_animated_feature_image',
+				'std'  => 0,
+				'desc' => esc_html__( "If enabled, the featured image will be handled as an animation. The browser settings of the visitors are still respected." ),
+				'tab'  => 'display'
+			],
+			[
+				'type' => "single_image",
+				'id'   => 'landscape_animated_feature_image',
+				'name' => esc_html__( 'Animated Feature Image for Landscape', 'ggl-post-types' ),
+				'tab'  => 'display',
+				'desc' => esc_html__("Please select an Animation with a aspect ratio of 16:9 and a resolution of 800x450 px", 'ggl-post-types'),
+			],
+			[
+				'type' => "single_image",
+				'id'   => 'portrait_animated_feature_image',
+				'name' => esc_html__( 'Animated Feature Image for Portrait Mode', 'ggl-post-types' ),
+				'tab'  => 'display',
+                'desc' => esc_html__("Please select an Animation with a aspect ratio of 4:5 and a resolution of 800x1000 px", 'ggl-post-types'),
 			]
 		],
 	];
@@ -704,7 +730,7 @@ function movie_text_boxes( $meta_boxes ) {
 		'post_types' => [ 'movie' ],
 		'style'      => 'seamless',
 		'autosave'   => true,
-		'revision' => true,
+		'revision'   => true,
 		'tab_style'  => 'box',
 		'tabs'       => [
 			"summary"      => [ "label" => esc_html__( "Content Summary", 'ggl-post-types' ) ],
@@ -739,7 +765,7 @@ function movie_text_boxes( $meta_boxes ) {
 		'post_types' => [ 'movie' ],
 		'style'      => 'seamless',
 		'autosave'   => true,
-		'revision' => true,
+		'revision'   => true,
 		'tab_style'  => 'box',
 		'tabs'       => [
 			"summary"      => [ "label" => esc_html__( "Content Summary", 'ggl-post-types' ) ],
