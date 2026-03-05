@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-03-02T16:05:30+00:00\n"
+"POT-Creation-Date: 2026-03-04T15:26:10+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: ggl-post-types\n"
@@ -39,20 +39,38 @@ msgstr ""
 msgid "https://suchard.cloud"
 msgstr ""
 
-#: post-types.php:139
+#: post-types.php:138
 msgid "Enter Name of the Teamie"
 msgstr ""
 
-#: post-types.php:143
+#: post-types.php:142
 msgid "Enter Name of the Cooperation Partner"
 msgstr ""
 
-#: post-types.php:147
+#: post-types.php:146
 msgid "Enter Name of the Supporter"
 msgstr ""
 
-#: post-types.php:151
+#: post-types.php:150
 msgid "Enter Name of the Screening Location"
+msgstr ""
+
+#: post-types.php:161
+msgid "Extended Settings"
+msgstr ""
+
+#: post-types.php:165
+#: src/post-types/event.php:292
+#: src/post-types/event.php:301
+#: src/post-types/movie.php:534
+#: src/post-types/movie.php:544
+#: src/post-types/team-member.php:13
+#: src/post-types/team-member.php:14
+msgid "Team Member"
+msgstr ""
+
+#: post-types.php:183
+msgid "Select the team member that shall be linked with your account. This will automatically set you as the person who selected a movie/event during the creation of a new entry"
 msgstr ""
 
 #: src/post-types/cooperation-partner.php:12
@@ -62,10 +80,10 @@ msgstr ""
 
 #: src/post-types/cooperation-partner.php:15
 #: src/post-types/cooperation-partner.php:16
-#: src/post-types/event.php:290
-#: src/post-types/event.php:314
-#: src/post-types/movie.php:530
-#: src/post-types/movie.php:565
+#: src/post-types/event.php:293
+#: src/post-types/event.php:317
+#: src/post-types/movie.php:535
+#: src/post-types/movie.php:570
 msgid "Cooperation Partner"
 msgstr ""
 
@@ -168,181 +186,172 @@ msgstr ""
 msgid "All Events"
 msgstr ""
 
-#: src/post-types/event.php:158
+#: src/post-types/event.php:161
 msgid "Event Metaboxes"
 msgstr ""
 
-#: src/post-types/event.php:175
+#: src/post-types/event.php:178
 msgid "Event Information"
 msgstr ""
 
-#: src/post-types/event.php:179
-#: src/post-types/movie.php:229
+#: src/post-types/event.php:182
+#: src/post-types/movie.php:233
 msgid "German Title"
 msgstr ""
 
-#: src/post-types/event.php:181
+#: src/post-types/event.php:184
 msgid "Please enter the German title of the event here"
 msgstr ""
 
-#: src/post-types/event.php:188
-#: src/post-types/movie.php:238
+#: src/post-types/event.php:191
+#: src/post-types/movie.php:242
 msgid "English Title"
 msgstr ""
 
-#: src/post-types/event.php:190
+#: src/post-types/event.php:193
 msgid "Please enter the English title of the event here"
 msgstr ""
 
-#: src/post-types/event.php:197
+#: src/post-types/event.php:200
 msgid "Duration"
 msgstr ""
 
-#: src/post-types/event.php:199
+#: src/post-types/event.php:202
 msgid "The event's duration in minutes"
 msgstr ""
 
-#: src/post-types/event.php:209
+#: src/post-types/event.php:212
 msgid "Event Language"
 msgstr ""
 
-#: src/post-types/event.php:219
+#: src/post-types/event.php:222
 msgid "Has minimal attendee age"
 msgstr ""
 
-#: src/post-types/event.php:222
-#: src/post-types/movie.php:640
+#: src/post-types/event.php:225
+#: src/post-types/movie.php:645
 #: src/taxonomies/semester.php:77
 msgid "Yes"
 msgstr ""
 
-#: src/post-types/event.php:223
-#: src/post-types/movie.php:641
+#: src/post-types/event.php:226
+#: src/post-types/movie.php:646
 #: src/taxonomies/semester.php:78
 msgid "No"
 msgstr ""
 
-#: src/post-types/event.php:229
+#: src/post-types/event.php:232
 msgid "Minimal Attendee Age"
 msgstr ""
 
-#: src/post-types/event.php:242
-#: src/post-types/movie.php:459
+#: src/post-types/event.php:245
+#: src/post-types/movie.php:464
 msgid "Select a Semester"
 msgstr ""
 
-#: src/post-types/event.php:255
-#: src/post-types/movie.php:487
+#: src/post-types/event.php:258
+#: src/post-types/movie.php:492
 msgid "Date and Time"
 msgstr ""
 
-#: src/post-types/event.php:267
-#: src/post-types/movie.php:500
+#: src/post-types/event.php:270
+#: src/post-types/movie.php:505
 msgid "Location"
 msgstr ""
 
-#: src/post-types/event.php:269
+#: src/post-types/event.php:272
 msgid "The location the event will take place in"
 msgstr ""
 
-#: src/post-types/event.php:284
-#: src/post-types/movie.php:524
+#: src/post-types/event.php:287
+#: src/post-types/movie.php:529
 msgid "Selected by"
 msgstr ""
 
-#: src/post-types/event.php:289
-#: src/post-types/event.php:298
-#: src/post-types/movie.php:529
-#: src/post-types/movie.php:539
-#: src/post-types/team-member.php:13
-#: src/post-types/team-member.php:14
-msgid "Team Member"
-msgstr ""
-
-#: src/post-types/event.php:291
-#: src/post-types/movie.php:531
+#: src/post-types/event.php:294
+#: src/post-types/movie.php:536
 msgid "Don't show"
 msgstr ""
 
-#: src/post-types/event.php:303
-#: src/post-types/movie.php:544
+#: src/post-types/event.php:306
+#: src/post-types/movie.php:549
 msgid "Select a Team Member"
 msgstr ""
 
-#: src/post-types/event.php:318
-#: src/post-types/movie.php:569
+#: src/post-types/event.php:321
+#: src/post-types/movie.php:574
 msgid "Select a Cooperation Partner"
 msgstr ""
 
-#: src/post-types/event.php:330
-#: src/post-types/movie.php:585
+#: src/post-types/event.php:333
+#: src/post-types/movie.php:590
 msgid "Program Type"
 msgstr ""
 
-#: src/post-types/event.php:335
+#: src/post-types/event.php:338
 #: src/post-types/movie.php:118
-#: src/post-types/movie.php:590
+#: src/post-types/movie.php:595
 msgid "Main Program"
 msgstr ""
 
-#: src/post-types/event.php:336
-#: src/post-types/event.php:343
-#: src/post-types/movie.php:591
-#: src/post-types/movie.php:599
+#: src/post-types/event.php:339
+#: src/post-types/event.php:346
+#: src/post-types/movie.php:596
+#: src/post-types/movie.php:604
 #: src/taxonomies/special-program.php:14
 msgid "Special Program"
 msgstr ""
 
-#: src/post-types/event.php:344
-#: src/post-types/movie.php:600
+#: src/post-types/event.php:347
+#: src/post-types/movie.php:605
 msgid "Select a Special Program"
 msgstr ""
 
-#: src/post-types/event.php:360
-#: src/post-types/movie.php:386
+#: src/post-types/event.php:363
+#: src/post-types/movie.php:391
 msgid "Admission Type"
 msgstr ""
 
-#: src/post-types/event.php:365
-#: src/post-types/movie.php:391
+#: src/post-types/event.php:368
+#: src/post-types/movie.php:396
 msgid "Free"
 msgstr ""
 
-#: src/post-types/event.php:366
-#: src/post-types/movie.php:392
+#: src/post-types/event.php:369
+#: src/post-types/movie.php:397
 msgid "Donation"
 msgstr ""
 
-#: src/post-types/event.php:367
-#: src/post-types/movie.php:393
+#: src/post-types/event.php:370
+#: src/post-types/movie.php:398
 msgid "Paid"
 msgstr ""
 
-#: src/post-types/event.php:375
+#: src/post-types/event.php:378
 msgid "Fee"
 msgstr ""
 
-#: src/post-types/event.php:387
-#: src/post-types/movie.php:616
+#: src/post-types/event.php:390
+#: src/post-types/movie.php:621
 msgid "Show Content Notice"
 msgstr ""
 
-#: src/post-types/event.php:391
-#: src/post-types/movie.php:620
+#: src/post-types/event.php:394
+#: src/post-types/movie.php:625
 msgid "If this box is ticked the below entered content notice will be displayed above the text for this movie."
 msgstr ""
 
-#: src/post-types/event.php:411
-#: src/post-types/movie.php:710
-#: src/post-types/movie.php:745
+#: src/post-types/event.php:415
+#: src/post-types/movie.php:737
+#: src/post-types/movie.php:772
 msgid "Why it's worth seeing"
 msgstr ""
 
-#: src/post-types/event.php:418
+#: src/post-types/event.php:423
 msgid "Event Summary"
 msgstr ""
 
-#: src/post-types/event.php:419
+#: src/post-types/event.php:424
 msgid "Why it's worth attending"
 msgstr ""
 
@@ -434,232 +443,260 @@ msgstr ""
 msgid "Short Movie"
 msgstr ""
 
-#: src/post-types/movie.php:231
+#: src/post-types/movie.php:226
+msgid "Display Options"
+msgstr ""
+
+#: src/post-types/movie.php:235
 msgid "Please enter the German title of the movie here"
 msgstr ""
 
-#: src/post-types/movie.php:240
+#: src/post-types/movie.php:244
 msgid "Please enter the English title of the movie here"
 msgstr ""
 
-#: src/post-types/movie.php:248
+#: src/post-types/movie.php:252
 msgid "Original Title"
 msgstr ""
 
-#: src/post-types/movie.php:250
+#: src/post-types/movie.php:254
 msgid "Please enter the original title here. For Japanese/Chinese/etc. titles, please input the logographics and the romanized versions seperated by an em dash (<code>—</code>) surrounded by spaces"
 msgstr ""
 
-#: src/post-types/movie.php:258
-#: src/post-types/movie.php:664
+#: src/post-types/movie.php:262
+#: src/post-types/movie.php:669
 msgid "Country/Countries of Origin"
 msgstr ""
 
-#: src/post-types/movie.php:269
+#: src/post-types/movie.php:273
 msgid "Release Date"
 msgstr ""
 
-#: src/post-types/movie.php:282
-#: src/post-types/movie.php:673
+#: src/post-types/movie.php:287
+#: src/post-types/movie.php:678
 msgid "Running Time"
 msgstr ""
 
-#: src/post-types/movie.php:284
+#: src/post-types/movie.php:289
 msgid "The movie's running time in minutes"
 msgstr ""
 
-#: src/post-types/movie.php:295
-#: src/post-types/movie.php:656
+#: src/post-types/movie.php:300
+#: src/post-types/movie.php:661
 msgid "Directed by"
 msgstr ""
 
-#: src/post-types/movie.php:300
+#: src/post-types/movie.php:305
 msgid "Select Director"
 msgstr ""
 
-#: src/post-types/movie.php:311
+#: src/post-types/movie.php:316
 msgid "Starring"
 msgstr ""
 
-#: src/post-types/movie.php:318
+#: src/post-types/movie.php:323
 msgid "Select Actors"
 msgstr ""
 
-#: src/post-types/movie.php:331
+#: src/post-types/movie.php:336
 msgid "Audio Type"
 msgstr ""
 
-#: src/post-types/movie.php:336
+#: src/post-types/movie.php:341
 msgid "Original"
 msgstr ""
 
-#: src/post-types/movie.php:337
+#: src/post-types/movie.php:342
 msgid "Synchronization"
 msgstr ""
 
-#: src/post-types/movie.php:345
+#: src/post-types/movie.php:350
 msgid "Audio Language"
 msgstr ""
 
-#: src/post-types/movie.php:355
+#: src/post-types/movie.php:360
 msgid "Subtitle Language"
 msgstr ""
 
-#: src/post-types/movie.php:365
+#: src/post-types/movie.php:370
 msgid "License Type"
 msgstr ""
 
-#: src/post-types/movie.php:370
+#: src/post-types/movie.php:375
 msgid "Advertisement License"
 msgstr ""
 
-#: src/post-types/movie.php:371
+#: src/post-types/movie.php:376
 msgid "Pool License"
 msgstr ""
 
-#: src/post-types/movie.php:372
+#: src/post-types/movie.php:377
 msgid "No License"
 msgstr ""
 
-#: src/post-types/movie.php:380
+#: src/post-types/movie.php:385
 msgid "You selected that we will screen this movie without an advertisement license. This means that you will have to input a second text which is a anonymized version of the text in the program booklet. Please check the additional input boxes below for further information!"
 msgstr ""
 
-#: src/post-types/movie.php:401
+#: src/post-types/movie.php:406
 msgid "Admission Fee"
 msgstr ""
 
-#: src/post-types/movie.php:412
+#: src/post-types/movie.php:417
 msgid "To the FSK rating search"
 msgstr ""
 
-#: src/post-types/movie.php:417
+#: src/post-types/movie.php:422
 msgid "Age Rating"
 msgstr ""
 
-#: src/post-types/movie.php:420
+#: src/post-types/movie.php:425
 msgid "unknown"
 msgstr ""
 
-#: src/post-types/movie.php:421
+#: src/post-types/movie.php:426
 msgid "Not rated"
 msgstr ""
 
-#: src/post-types/movie.php:422
+#: src/post-types/movie.php:427
 msgid "FSK 0"
 msgstr ""
 
-#: src/post-types/movie.php:423
+#: src/post-types/movie.php:428
 msgid "FSK 6"
 msgstr ""
 
-#: src/post-types/movie.php:424
+#: src/post-types/movie.php:429
 msgid "FSK 12"
 msgstr ""
 
-#: src/post-types/movie.php:425
+#: src/post-types/movie.php:430
 msgid "FSK 16"
 msgstr ""
 
-#: src/post-types/movie.php:426
+#: src/post-types/movie.php:431
 msgid "FSK 18"
 msgstr ""
 
-#: src/post-types/movie.php:435
+#: src/post-types/movie.php:440
 msgid "Descriptors"
 msgstr ""
 
-#: src/post-types/movie.php:438
+#: src/post-types/movie.php:443
 msgid "Sexualized Violence"
 msgstr ""
 
-#: src/post-types/movie.php:439
+#: src/post-types/movie.php:444
 msgid "Violence"
 msgstr ""
 
-#: src/post-types/movie.php:440
+#: src/post-types/movie.php:445
 msgid "Self Harm"
 msgstr ""
 
-#: src/post-types/movie.php:441
+#: src/post-types/movie.php:446
 msgid "Drug Usage"
 msgstr ""
 
-#: src/post-types/movie.php:442
+#: src/post-types/movie.php:447
 msgid "Discrimination"
 msgstr ""
 
-#: src/post-types/movie.php:443
+#: src/post-types/movie.php:448
 msgid "Sexuality"
 msgstr ""
 
-#: src/post-types/movie.php:444
+#: src/post-types/movie.php:449
 msgid "Threat"
 msgstr ""
 
-#: src/post-types/movie.php:445
+#: src/post-types/movie.php:450
 msgid "Injury"
 msgstr ""
 
-#: src/post-types/movie.php:446
+#: src/post-types/movie.php:451
 msgid "Stressful Topics"
 msgstr ""
 
-#: src/post-types/movie.php:447
+#: src/post-types/movie.php:452
 msgid "Language"
 msgstr ""
 
-#: src/post-types/movie.php:448
+#: src/post-types/movie.php:453
 msgid "Nudity"
 msgstr ""
 
-#: src/post-types/movie.php:449
+#: src/post-types/movie.php:454
 msgid "Risky Behaviour"
 msgstr ""
 
-#: src/post-types/movie.php:450
+#: src/post-types/movie.php:455
 msgid "Marginalization"
 msgstr ""
 
-#: src/post-types/movie.php:502
+#: src/post-types/movie.php:507
 msgid "The location the screening will take place in"
 msgstr ""
 
-#: src/post-types/movie.php:636
+#: src/post-types/movie.php:641
 msgid "Advertise Short Movie"
 msgstr ""
 
-#: src/post-types/movie.php:649
+#: src/post-types/movie.php:654
 msgid "Title"
 msgstr ""
 
-#: src/post-types/movie.php:675
+#: src/post-types/movie.php:680
 msgid "The short's running time in minutes"
 msgstr ""
 
-#: src/post-types/movie.php:684
+#: src/post-types/movie.php:689
 msgid "Release Year"
 msgstr ""
 
-#: src/post-types/movie.php:700
+#: src/post-types/movie.php:699
+msgid "Display Animated Image"
+msgstr ""
+
+#: src/post-types/movie.php:702
+msgid "If enabled, the featured image will be handled as an animation. The browser settings of the visitors are still respected."
+msgstr ""
+
+#: src/post-types/movie.php:708
+msgid "Animated Feature Image for Landscape"
+msgstr ""
+
+#: src/post-types/movie.php:710
+msgid "Please select an Animation with a aspect ratio of 16:9 and a resolution of 800x450 px"
+msgstr ""
+
+#: src/post-types/movie.php:715
+msgid "Animated Feature Image for Portrait Mode"
+msgstr ""
+
+#: src/post-types/movie.php:717
+msgid "Please select an Animation with a aspect ratio of 4:5 and a resolution of 800x1000 px"
+msgstr ""
+
+#: src/post-types/movie.php:727
 msgid "Movie Texts"
 msgstr ""
 
-#: src/post-types/movie.php:709
-#: src/post-types/movie.php:744
+#: src/post-types/movie.php:736
+#: src/post-types/movie.php:771
 msgid "Content Summary"
 msgstr ""
 
-#: src/post-types/movie.php:735
-#: src/post-types/movie.php:751
+#: src/post-types/movie.php:762
+#: src/post-types/movie.php:778
 msgid "Anonymized Texts"
 msgstr ""
 
-#: src/post-types/movie.php:751
+#: src/post-types/movie.php:778
 msgid "As you selected that we do not have advertising rights for this movie you need to provide an anonymized version of the texts you wrote above."
 msgstr ""
 
-#: src/post-types/movie.php:751
+#: src/post-types/movie.php:778
 msgid "The text may not contain the names of characters, names of actors, clearly identifiable names of plot locations and similar names that would make the movie identifiable by a online search engine."
 msgstr ""
 

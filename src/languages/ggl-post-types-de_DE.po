@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: unnamed project\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/custom-post-"
 "types\n"
-"POT-Creation-Date: 2026-03-04T11:20:43+00:00\n"
-"PO-Revision-Date: 2026-03-04 12:22+0100\n"
+"POT-Creation-Date: 2026-03-04T15:26:10+00:00\n"
+"PO-Revision-Date: 2026-03-04 16:27+0100\n"
 "Last-Translator: Jan Eike Suchard <jan@gegenlicht.net>\n"
 "Language-Team: German <website@gegenlicht.net>\n"
 "Language: de\n"
@@ -643,6 +643,15 @@ msgstr "Veröffentlichungsjahr"
 #: src/post-types/movie.php:699
 msgid "Display Animated Image"
 msgstr "Zeige ein animiertes Bild an"
+
+#: src/post-types/movie.php:702
+msgid ""
+"If enabled, the featured image will be handled as an animation. The browser "
+"settings of the visitors are still respected."
+msgstr ""
+"Falls angewählt, werden die unten festgelegten Bilder als Animation "
+"angezeigt. Die Einstellungen der Besucher bezüglich der Barrierefreiheit "
+"werden respektiert."
 
 #: src/post-types/movie.php:708
 msgid "Animated Feature Image for Landscape"

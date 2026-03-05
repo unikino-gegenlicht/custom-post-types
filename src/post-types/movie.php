@@ -699,7 +699,7 @@ function movie_extended_info_meta_boxes( $meta_boxes ) {
 				'name' => esc_html__( 'Display Animated Image', 'ggl-post-types' ),
 				'id'   => 'use_animated_feature_image',
 				'std'  => 0,
-				'desc' => esc_html__( "If enabled, the featured image will be handled as an animation. The browser settings of the visitors are still respected." ),
+				'desc' => esc_html__( "If enabled, the featured image will be handled as an animation. The browser settings of the visitors are still respected.", 'ggl-post-types' ),
 				'tab'  => 'display'
 			],
 			[
