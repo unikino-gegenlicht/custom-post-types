@@ -159,18 +159,33 @@ function ggl_cpt__apply_event_program_filter( WP_Query $query ) {
 function event_extended_info_meta_boxes( $meta_boxes ) {
 	$meta_boxes[] = [
 		'title'      => esc_html__( 'Event Metaboxes', 'ggl-post-types' ),
-		'id'         => 'event_meta',
+		'id'         => 'event_meta_fields',
 		'context'    => 'form_top',
 		'style'      => 'seamless',
 		'post_types' => [ 'event' ],
 		'autosave'   => true,
 		'revision'   => true,
 		'tabs'       => [
-			"information"      => [ "label" => "Basic Information", "icon" => "dashicons-info-outline" ],
-			'youth-protection' => [ "label" => 'Youth Protection', "icon" => "dashicons-privacy" ],
-			'screening'        => [ "label" => "Screening Details", "icon" => "dashicons-calendar" ],
-			'admission'        => [ "label" => "Admission", "icon" => "dashicons-tickets" ],
-			'content-notice'   => [ "label" => "Content Notice", "icon" => "dashicons-warning" ],
+			"information"      => [
+				"label" => __( "Basic Information", "ggl-post-types" ),
+				"icon"  => "dashicons-info-outline"
+			],
+			'youth-protection' => [
+				"label" => __( 'Youth Protection', "ggl-post-types" ),
+				"icon"  => "dashicons-privacy"
+			],
+			'screening'        => [
+				"label" => __( "Screening Details", "ggl-post-types" ),
+				"icon"  => "dashicons-calendar"
+			],
+			'admission'        => [
+                    "label" => __( "Admission", "ggl-post-types" ),
+                    "icon" => "dashicons-tickets"
+            ],
+			'content-notice'   => [
+				"label" => esc_html__( "Content Notice", "ggl-post-types" ),
+				"icon"  => "dashicons-warning"
+			],
 		],
 		'fields'     => [
 			[
@@ -384,26 +399,24 @@ function event_extended_info_meta_boxes( $meta_boxes ) {
 				'revision' => true,
 				'tab'      => 'admission',
 			],
-		],
-		[
-			'type'     => 'checkbox',
-			'name'     => esc_html__( 'Show Content Notice', 'ggl-post-types' ),
-			'id'       => 'show_content_notice',
-			'std'      => 0,
-			'revision' => true,
-			'desc'     => esc_html__( 'If this box is ticked the below entered content notice will be displayed above the text for this movie.', 'ggl-post-types' ),
-			'tab'      => 'content-notice'
-		],
-		[
-			'type'                  => 'wysiwyg',
-			'id'                    => 'content_notice',
-			'required'              => false,
-			'add_to_wpseo_analysis' => false,
-			'dfw'                   => false,
-			'options'               => GGL_CPT__WYSIWYG_OPTIONS,
-			'revision'              => true,
-			'tab'                   => 'content-notice',
-			'textarea_rows'         => 5,
+			[
+				'type'     => 'checkbox',
+				'name'     => esc_html__( 'Show Content Notice', 'ggl-post-types' ),
+				'id'       => 'show_content_notice',
+				'std'      => 0,
+				'revision' => true,
+				'desc'     => esc_html__( 'If this box is ticked the below entered content notice will be displayed above the text for this movie.', 'ggl-post-types' ),
+				'tab'      => 'content-notice'
+			],
+			[
+				'type'                  => 'wysiwyg',
+				'id'                    => 'content_notice',
+				'required'              => false,
+				'add_to_wpseo_analysis' => false,
+				'options'               => GGL_CPT__WYSIWYG_OPTIONS,
+				'revision'              => true,
+				'tab'                   => 'content-notice',
+			],
 		],
 	];
 
@@ -412,7 +425,7 @@ function event_extended_info_meta_boxes( $meta_boxes ) {
 
 function event_additional_information_box( $meta_boxes ) {
 	$meta_boxes[] = [
-		'title'      => esc_html__( "Why it's worth seeing", 'ggl-post-types' ),
+		'title'      => esc_html__( "Textfelder", 'ggl-post-types' ),
 		'id'         => 'event_text_boxes',
 		'context'    => 'normal',
 		'post_types' => [ 'event' ],
