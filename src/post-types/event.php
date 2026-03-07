@@ -159,7 +159,7 @@ function ggl_cpt__apply_event_program_filter( WP_Query $query ) {
 function event_extended_info_meta_boxes( $meta_boxes ) {
 	$meta_boxes[] = [
 		'title'      => esc_html__( 'Event Metaboxes', 'ggl-post-types' ),
-		'id'         => 'event_meta_fields',
+		'id'         => 'event_meta',
 		'context'    => 'form_top',
 		'style'      => 'seamless',
 		'post_types' => [ 'event' ],
@@ -179,9 +179,9 @@ function event_extended_info_meta_boxes( $meta_boxes ) {
 				"icon"  => "dashicons-calendar"
 			],
 			'admission'        => [
-                    "label" => __( "Admission", "ggl-post-types" ),
-                    "icon" => "dashicons-tickets"
-            ],
+				"label" => __( "Admission", "ggl-post-types" ),
+				"icon"  => "dashicons-tickets"
+			],
 			'content-notice'   => [
 				"label" => esc_html__( "Content Notice", "ggl-post-types" ),
 				"icon"  => "dashicons-warning"
@@ -318,6 +318,7 @@ function event_extended_info_meta_boxes( $meta_boxes ) {
 				'post_type'   => 'team-member',
 				'field_type'  => 'select_advanced',
 				'add_new'     => true,
+				'multiple'    => true,
 				'placeholder' => esc_html__( 'Select a Team Member', 'ggl-post-types' ),
 				'query_args'  => [
 					'post_status'    => 'publish',
@@ -335,6 +336,7 @@ function event_extended_info_meta_boxes( $meta_boxes ) {
 				'field_type'  => 'select_advanced',
 				'placeholder' => esc_html__( 'Select a Cooperation Partner', 'ggl-post-types' ),
 				'add_new'     => true,
+				'multiple'    => true,
 				'query_args'  => [
 					'post_status'    => 'publish',
 					'posts_per_page' => - 1
