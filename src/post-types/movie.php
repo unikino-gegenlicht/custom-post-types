@@ -512,13 +512,7 @@ function movie_extended_info_meta_boxes( $meta_boxes ) {
 					'post_status'    => 'publish',
 					'posts_per_page' => - 1
 				],
-				'std'        => count( get_posts( [
-					"post_type"      => "screening-location",
-					"posts_per_page" => 1
-				] ) ) > 0 ? get_posts( [
-					"post_type"      => "screening-location",
-					"posts_per_page" => 1
-				] )[0]->ID : null,
+				'std'        => get_theme_mod( "main_screening_location" ) ?: null,
 				'ajax'       => true,
 				'add_new'    => false,
 				'revision'   => true,
@@ -707,14 +701,14 @@ function movie_extended_info_meta_boxes( $meta_boxes ) {
 				'id'   => 'landscape_animated_feature_image',
 				'name' => esc_html__( 'Animated Feature Image for Landscape', 'ggl-post-types' ),
 				'tab'  => 'display',
-				'desc' => esc_html__("Please select an Animation with a aspect ratio of 16:9 and a resolution of 800x450 px", 'ggl-post-types'),
+				'desc' => esc_html__( "Please select an Animation with a aspect ratio of 16:9 and a resolution of 800x450 px", 'ggl-post-types' ),
 			],
 			[
 				'type' => "single_image",
 				'id'   => 'portrait_animated_feature_image',
 				'name' => esc_html__( 'Animated Feature Image for Portrait Mode', 'ggl-post-types' ),
 				'tab'  => 'display',
-                'desc' => esc_html__("Please select an Animation with a aspect ratio of 4:5 and a resolution of 800x1000 px", 'ggl-post-types'),
+				'desc' => esc_html__( "Please select an Animation with a aspect ratio of 4:5 and a resolution of 800x1000 px", 'ggl-post-types' ),
 			]
 		],
 	];

@@ -292,6 +292,7 @@ function event_extended_info_meta_boxes( $meta_boxes ) {
 					'post_status'    => 'publish',
 					'posts_per_page' => - 1
 				],
+				'std'        => get_theme_mod( "main_screening_location" ) ?: null,
 				'ajax'       => true,
 				'add_new'    => false,
 				'revision'   => true,
