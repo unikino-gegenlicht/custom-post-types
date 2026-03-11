@@ -79,7 +79,7 @@ function team_member_register_meta_boxes( $meta_boxes ) {
 		'id'         => 'membership_information',
 		'context'    => 'before_permalink',
 		'style'      => 'seamless',
-		'revision'  => true,
+		'revision'   => true,
 		'post_types' => [ 'team-member' ],
 		'fields'     => [
 			[
@@ -93,8 +93,11 @@ function team_member_register_meta_boxes( $meta_boxes ) {
 				'options'  => [
 					'active' => esc_html__( 'Active', 'ggl-post-types' ),
 					'former' => esc_html__( 'Former', 'ggl-post-types' ),
+					'hidden_active' => esc_html__( 'Hidden (Active)', 'ggl-post-types' ),
+					'hidden_former' => esc_html__( 'Hidden (Former)', 'ggl-post-types' ),
 				],
-				'revision' => true
+				'revision' => true,
+                'desc' => __("If a member status is set to ")
 			],
 			[
 				'type' => 'heading',
@@ -127,17 +130,17 @@ function team_member_register_meta_boxes( $meta_boxes ) {
 	];
 
 	$meta_boxes[] = [
-		'title'     => esc_html__( "Teamie Description", 'ggl-post-types' ),
-		'id'        => 'team-description',
-		'context'   => 'before_permalink',
-		'style'     => 'seamless',
-		'revision'  => true,
+		'title'      => esc_html__( "Teamie Description", 'ggl-post-types' ),
+		'id'         => 'team-description',
+		'context'    => 'before_permalink',
+		'style'      => 'seamless',
+		'revision'   => true,
 		'post_types' => [ 'team-member' ],
-		'fields'    => [
+		'fields'     => [
 			[
 				'type' => 'heading',
 				'name' => esc_html__( 'Description', 'ggl-post-types' ),
-                "desc" => esc_html__("The following description will be displayed after the generic text which is displayed for everyone. Use this text to introduce yourself or what drove you to us. This text will usually be filled after the first semester you are with us.", "ggl-post-types"),
+				"desc" => esc_html__( "The following description will be displayed after the generic text which is displayed for everyone. Use this text to introduce yourself or what drove you to us. This text will usually be filled after the first semester you are with us.", "ggl-post-types" ),
 			],
 			[
 				'type'                  => 'wysiwyg',
@@ -157,7 +160,7 @@ function team_member_register_meta_boxes( $meta_boxes ) {
 		'id'         => 'manual-archive',
 		'context'    => 'before_permalink',
 		'style'      => 'seamless',
-		'revision'  => true,
+		'revision'   => true,
 		'post_types' => [ 'team-member' ],
 		'fields'     => [
 			[

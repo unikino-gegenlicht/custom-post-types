@@ -37,17 +37,22 @@ function ggl_post_type_event(): void {
 	] );
 }
 
+add_filter( 'manage_event_posts_columns', function( $columns ) {
+	$columns['title'] = __("German Title", "ggl-post-types");
+	return $columns;
+} );
+
 function generate_numerical_event_id( $post_id ): void {
 	$parent_id = wp_is_post_revision( $post_id );
 
 	if ( false !== $parent_id ) {
 		$post_id = $parent_id;
 	}
-	$german_title = $_POST['german_title'] ?: null;
-	$english_title = $_POST['english_title'] ?: null;
-	$post_title = "$german_title // $english_title";
 
 	$post = get_post( $post_id );
+
+	$post_title  = $_POST['german_title'] ?: get_post_meta($post->ID, "german_title", true) ?: null;
+
 	if ( $post->post_name == $post_id && $post->post_title == $post_title ) {
 		return;
 	}
@@ -104,64 +109,6 @@ function ggl_cpt__apply_event_semester_filter( WP_Query $query ) {
 
 }
 
-function ggl_cpt__add_event_program_filter( $post_type ): void {
-	if ( $post_type !== 'event' ) {
-		return;
-	}
-
-	$special_programs = get_terms( [
-		"taxonomy"   => "special-program",
-		"hide_empty" => true,
-		"orderby"    => "name",
-		"order"      => "ASC",
-	] );
-	?>
-    <select name="program">
-        <option value=""><?= esc_html__( "All Programs", "gegenlicht" ) ?></option>
-        <option value="main" <?= selected( "main", @ $_GET["program"], 0 ) ?>><?= esc_html__( "Main Program", "gegenlicht" ) ?></option>
-		<?php foreach ( $special_programs as $special_program ): ?>
-            <option value="<?= $special_program->slug ?>" <?= selected( $special_program->slug, @ $_GET["program"], 0 ) ?>><?= $special_program->name ?></option>
-		<?php endforeach; ?>
-    </select>
-	<?php
-
-}
-
-function ggl_cpt__apply_event_program_filter( WP_Query $query ) {
-	$cs = function_exists( 'get_current_screen' ) ? get_current_screen() : null;
-
-	// make sure we are on the right admin page
-	if ( ! is_admin() || empty( $cs->post_type ) || $cs->post_type != 'event' || $cs->id != 'edit-event' ) {
-		return;
-	}
-
-	if ( @ $_GET['program'] != - 1 && @ $_GET['program'] !== "" && @ $_GET['program'] !== null ) {
-		$selected_program = @ $_GET['program'] ?: null;
-		if ( $selected_program === "main" ) {
-			$query->set( "meta_query", [
-				[
-					"key"   => "program_type",
-					"value" => "main",
-				]
-			] );
-		} else {
-			$query->set( "meta_query", [
-				"key"   => "program_type",
-				"value" => "special_program",
-			] );
-			$query->set( "tax_query", [
-				[
-					"taxonomy" => "special-program",
-					"terms"    => $selected_program,
-					"field"    => "slug",
-				]
-			] );
-		}
-	}
-
-}
-
-
 function event_extended_info_meta_boxes( $meta_boxes ) {
 	$meta_boxes[] = [
 		'title'      => esc_html__( 'Event Metaboxes', 'ggl-post-types' ),
@@ -208,13 +155,21 @@ function event_extended_info_meta_boxes( $meta_boxes ) {
 				'tab'      => 'information',
 			],
 			[
-				'type'     => 'text',
-				'name'     => esc_html__( 'English Title', 'ggl-post-types' ),
-				'id'       => 'english_title',
-				'desc'     => esc_html__( 'Please enter the English title of the event here', 'ggl-post-types' ),
-				'required' => true,
-				'revision' => true,
-				'tab'      => 'information',
+				'type'          => 'text',
+				'name'          => esc_html__( 'English Title', 'ggl-post-types' ),
+				'id'            => 'english_title',
+				'desc'          => esc_html__( 'Please enter the English title of the event here', 'ggl-post-types' ),
+				'required'      => true,
+				'revision'      => true,
+				'tab'           => 'information',
+				'admin_columns' => [
+					'position'   => 'after title',
+					'link'       => 'none',
+
+					'sort'       => true,
+					'searchable' => true,
+					'filterable' => false,
+                ],
 			],
 			[
 				'type'     => 'number',
@@ -273,6 +228,13 @@ function event_extended_info_meta_boxes( $meta_boxes ) {
 				'add_new'     => true,
 				'revision'    => true,
 				'tab'         => 'screening',
+				'admin_columns' => [
+					'position'   => 'before date',
+					'link'       => 'none',
+					'sort'       => false,
+					'searchable' => false,
+					'filterable' => false,
+				]
 			],
 			[
 				'type'       => 'datetime',
@@ -285,6 +247,14 @@ function event_extended_info_meta_boxes( $meta_boxes ) {
 				'required'   => true,
 				'revision'   => true,
 				'tab'        => 'screening',
+				'admin_columns' => [
+					'position'   => 'replace date',
+					'title' => __("Screening Date", 'ggl-post-types'),
+					'link'       => 'none',
+					'sort'       => true,
+					'searchable' => false,
+					'filterable' => false,
+				]
 			],
 			[
 				'type'       => 'post',
@@ -364,6 +334,14 @@ function event_extended_info_meta_boxes( $meta_boxes ) {
 				],
 				'revision' => true,
 				'tab'      => 'screening',
+				'admin_columns' => [
+					'position'   => 'after semester',
+					'title' => __("Program Type", 'ggl-post-types'),
+					'link'       => 'none',
+					'sort'       => false,
+					'searchable' => false,
+					'filterable' => true,
+				]
 			],
 			[
 				'type'        => 'taxonomy',

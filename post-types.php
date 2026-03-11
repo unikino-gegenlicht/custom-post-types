@@ -68,19 +68,14 @@ require_once 'src/post-types/movie.php';
 add_action( 'init', 'ggl_post_type_movie' );
 add_action( 'restrict_manage_posts', 'ggl_cpt__add_movie_semester_filter' );
 add_action( 'pre_get_posts', 'ggl_cpt__apply_movie_semester_filter' );
-add_action( 'restrict_manage_posts', 'ggl_cpt__add_movie_program_filter' );
-add_action( 'pre_get_posts', 'ggl_cpt__apply_movie_program_filter' );
 add_filter( 'rwmb_meta_boxes', 'movie_extended_info_meta_boxes' );
 add_filter( 'rwmb_meta_boxes', 'movie_text_boxes' );
 add_action( 'save_post_movie', 'ensure_numerical_movie_link', 1 );
-add_action( "admin_head-edit.php", "ggl_cpt__replace_movie_title_in_table" );
 
 require_once 'src/post-types/event.php';
 add_action( 'init', 'ggl_post_type_event' );
 add_action( 'restrict_manage_posts', 'ggl_cpt__add_event_semester_filter' );
 add_action( 'pre_get_posts', 'ggl_cpt__apply_event_semester_filter' );
-add_action( 'restrict_manage_posts', 'ggl_cpt__add_event_program_filter' );
-add_action( 'pre_get_posts', 'ggl_cpt__apply_event_program_filter' );
 add_filter( 'rwmb_meta_boxes', 'event_extended_info_meta_boxes' );
 add_filter( 'rwmb_meta_boxes', 'event_additional_information_box' );
 add_action( 'save_post_event', 'generate_numerical_event_id' );
@@ -242,29 +237,44 @@ function ggl_cpt__migrate_metabox_values() {
 }
 
 function ggl_cpt__migrate_post_titles(): void {
-	$checkable_posts = get_posts( [
-		'post_type'      => [ 'movie', 'event' ],
+	$movies = get_posts( [
+		'post_type'      => [ 'movie' ],
 		'posts_per_page' => - 1,
 	] );
 
-	foreach ( $checkable_posts as $checkable_post ) {
-		$german_title = get_post_meta( $checkable_post->ID, 'german_title', true );
-		$english_title = get_post_meta( $checkable_post->ID, 'english_title', true );
-		$expected_title = "$german_title // $english_title";
-		$current_title = $checkable_post->post_title;
+	foreach ( $movies as $movie ) {
+		$expected_title = get_post_meta( $movie->ID, 'original_title', true );
+		$current_title = $movie->post_title;
 
 		if ($current_title != $expected_title) {
 			remove_action( 'save_post_movie', 'ensure_numerical_movie_link', 1 );
-			remove_action( 'save_post_event', 'generate_numerical_event_id', 1 );
 			wp_update_post( array(
-				'ID'         => $checkable_post->ID,
-				'post_name'  => $checkable_post->post_name,
+				'ID'         => $movie->ID,
+				'post_name'  => $movie->post_name,
 				'post_title' => $expected_title,
 			) );
 			add_action( 'save_post_movie', 'ensure_numerical_movie_link', 1 );
-			add_action( 'save_post_event', 'generate_numerical_event_id', 1 );
 		}
+	}
 
+	$events = get_posts( [
+		'post_type'      => [ 'event' ],
+		'posts_per_page' => - 1,
+	] );
+
+	foreach ( $events as $event ) {
+		$expected_title = get_post_meta( $event->ID, 'german_title', true );
+		$current_title = $event->post_title;
+
+		if ($current_title != $expected_title) {
+			remove_action( 'save_post_event', 'generate_numerical_event_id', 1 );
+			wp_update_post( array(
+				'ID'         => $event->ID,
+				'post_name'  => $event->post_name,
+				'post_title' => $expected_title,
+			) );
+			add_action( 'save_post_event', 'generate_numerical_event_id', 1 , );
+		}
 	}
 }
 
@@ -278,5 +288,3 @@ function wpster_remove_permalink_section() {
 	}
 
 }
-
-?>

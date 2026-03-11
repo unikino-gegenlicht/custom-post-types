@@ -39,24 +39,10 @@ function ggl_post_type_movie(): void {
 	] );
 }
 
-function ggl_cpt__replace_movie_title_in_table() {
-	$cs = function_exists( 'get_current_screen' ) ? get_current_screen() : null;
-
-	// make sure we are on the right admin page
-	if ( ! is_admin() || empty( $cs->post_type ) || $cs->post_type != 'movie' || $cs->id != 'edit-movie' ) {
-		return;
-	}
-
-	add_filter( "the_title", function ( $title, $id ) {
-		$post = get_post( $id );
-
-		$germanTitle  = rwmb_get_value( "german_title", post_id: $post->ID );
-		$englishTitle = rwmb_get_value( "english_title", post_id: $post->ID );
-
-		return "{$germanTitle} // {$englishTitle}";
-
-	}, 100, 2 );
-}
+add_filter( 'manage_movie_posts_columns', function( $columns ) {
+	$columns['title'] = __("Original Title", "ggl-post-types");
+	return $columns;
+} );
 
 function ggl_cpt__add_movie_semester_filter( $post_type ): void {
 	if ( $post_type !== 'movie' ) {
@@ -165,11 +151,11 @@ function ensure_numerical_movie_link( $post_id ): void {
 		$post_id = $parent_id;
 	}
 
-    $german_title = $_POST['german_title'] ?: null;
-    $english_title = $_POST['english_title'] ?: null;
-    $post_title = "$german_title // $english_title";
-
 	$post = get_post( $post_id );
+
+
+	$post_title  = $_POST['original_title'] ?: get_post_meta( $post->ID, 'original_title', true ) ?: null;
+
 	if ( $post->post_name == $post_id && $post->post_title == $post_title ) {
 		return;
 	}
@@ -233,33 +219,45 @@ function movie_extended_info_meta_boxes( $meta_boxes ) {
 		],
 		'fields'     => [
 			[
-				'type'     => 'text',
-				'name'     => esc_html__( 'German Title', 'ggl-post-types' ),
-				'id'       => 'german_title',
-				'desc'     => esc_html__( 'Please enter the German title of the movie here', 'ggl-post-types' ),
-				'required' => true,
-				'revision' => true,
-				'tab'      => 'information',
+				'type'          => 'text',
+				'name'          => esc_html__( 'German Title', 'ggl-post-types' ),
+				'id'            => 'german_title',
+				'desc'          => esc_html__( 'Please enter the German title of the movie here', 'ggl-post-types' ),
+				'required'      => true,
+				'revision'      => true,
+				'tab'           => 'information',
+				'admin_columns' => str_starts_with(get_locale(), "de") ? [
+					'position'   => 'after title',
+					'link'       => 'none',
+					'sort'       => true,
+					'searchable' => true,
+					'filterable' => false,
+				] : false
 			],
 			[
-				'type'     => 'text',
-				'name'     => esc_html__( 'English Title', 'ggl-post-types' ),
-				'id'       => 'english_title',
-				'desc'     => esc_html__( 'Please enter the English title of the movie here', 'ggl-post-types' ),
-				'required' => true,
-				'revision' => true,
-				'tab'      => 'information',
-
+				'type'          => 'text',
+				'name'          => esc_html__( 'English Title', 'ggl-post-types' ),
+				'id'            => 'english_title',
+				'desc'          => esc_html__( 'Please enter the English title of the movie here', 'ggl-post-types' ),
+				'required'      => true,
+				'revision'      => true,
+				'tab'           => 'information',
+				'admin_columns' => str_starts_with(get_locale(), "en") ? [
+					'position'   => 'after title',
+					'link'       => 'none',
+					'sort'       => true,
+					'searchable' => true,
+					'filterable' => false,
+				] : false
 			],
 			[
-				'type'     => 'text',
-				'name'     => esc_html__( 'Original Title', 'ggl-post-types' ),
-				'id'       => 'original_title',
-				'desc'     => __( 'Please enter the original title here. For Japanese/Chinese/etc. titles, please input the logographics and the romanized versions seperated by an em dash (<code>—</code>) surrounded by spaces', 'ggl-post-types' ),
-				'required' => true,
-				'revision' => true,
-				'tab'      => 'information',
-
+				'type'          => 'text',
+				'name'          => esc_html__( 'Original Title', 'ggl-post-types' ),
+				'id'            => 'original_title',
+				'desc'          => __( 'Please enter the original title here. For Japanese/Chinese/etc. titles, please input the logographics and the romanized versions seperated by an em dash (<code>—</code>) surrounded by spaces', 'ggl-post-types' ),
+				'required'      => true,
+				'revision'      => true,
+				'tab'           => 'information',
 			],
 			[
 				'type'     => 'select_advanced',
@@ -347,7 +345,7 @@ function movie_extended_info_meta_boxes( $meta_boxes ) {
 				],
 				'default'  => 'original',
 				'revision' => true,
-				'tab'      => 'sound'
+				'tab'      => 'sound',
 			],
 			[
 				'type'     => 'select_advanced',
@@ -357,7 +355,8 @@ function movie_extended_info_meta_boxes( $meta_boxes ) {
 				'options'  => generate_language_mapping(),
 				'required' => true,
 				'revision' => true,
-				'tab'      => 'sound'
+				'tab'      => 'sound',
+                'admin_columns' => true,
 			],
 			[
 				'type'     => 'select_advanced',
@@ -367,7 +366,8 @@ function movie_extended_info_meta_boxes( $meta_boxes ) {
 				'options'  => generate_language_mapping(),
 				'required' => true,
 				'revision' => true,
-				'tab'      => 'sound'
+				'tab'      => 'sound',
+                'admin_columns' => true,
 			],
 			[
 				'type'     => 'radio',
@@ -382,7 +382,14 @@ function movie_extended_info_meta_boxes( $meta_boxes ) {
 				],
 				'std'      => 'full',
 				'revision' => true,
-				'tab'      => 'licensing'
+				'tab'      => 'licensing',
+				'admin_columns' => [
+					'position'   => 'after date',
+					'link'       => 'none',
+					'sort'       => false,
+					'searchable' => false,
+					'filterable' => false,
+				]
 			],
 			[
 				"type"    => "custom_html",
@@ -437,7 +444,8 @@ function movie_extended_info_meta_boxes( $meta_boxes ) {
 				'std'      => - 2,
 				'required' => true,
 				'revision' => true,
-				'tab'      => 'youth-protection'
+				'tab'      => 'youth-protection',
+                'admin_columns' => true
 			],
 			[
 				'type'     => 'checkbox_list',
@@ -489,19 +497,34 @@ function movie_extended_info_meta_boxes( $meta_boxes ) {
 				'add_new'     => current_user_can( "edit_others_posts" ),
 				'ajax'        => true,
 				'revision'    => true,
-				'tab'         => 'screening'
+				'tab'         => 'screening',
+                'admin_columns' => [
+	                'position'   => 'before date',
+	                'link'       => 'none',
+	                'sort'       => false,
+	                'searchable' => false,
+	                'filterable' => false,
+                ]
 			],
 			[
-				'type'       => 'datetime',
-				'name'       => esc_html__( 'Date and Time', 'ggl-post-types' ),
-				'id'         => 'screening_date',
-				'timestamp'  => true,
-				'js_options' => [
+				'type'          => 'datetime',
+				'name'          => esc_html__( 'Date and Time', 'ggl-post-types' ),
+				'id'            => 'screening_date',
+				'timestamp'     => true,
+				'js_options'    => [
 					'dateFormat' => ( str_starts_with( get_locale(), "de" ) ? 'dd.mm.yy' : "mm/dd/yy" ),
 				],
-				'required'   => true,
-				'revision'   => true,
-				'tab'        => 'screening'
+				'required'      => true,
+				'revision'      => true,
+				'tab'           => 'screening',
+				'admin_columns' => [
+					'position'   => 'replace date',
+                    'title' => __("Screening Date", 'ggl-post-types'),
+					'link'       => 'none',
+					'sort'       => true,
+					'searchable' => false,
+					'filterable' => false,
+				]
 
 			],
 			[
@@ -550,8 +573,9 @@ function movie_extended_info_meta_boxes( $meta_boxes ) {
 					'posts_per_page' => - 1,
 					'meta_query'     => [
 						[
-							"key"   => "status",
-							"value" => "active",
+							"key"     => "status",
+							"value"   => [ "active", "hidden" ],
+							'compare' => 'IN',
 						]
 					],
 					'orderby'        => 'title',
@@ -561,7 +585,7 @@ function movie_extended_info_meta_boxes( $meta_boxes ) {
 				'ajax'        => true,
 				'revision'    => true,
 				'multiple'    => true,
-				'tab'         => 'screening'
+				'tab'         => 'screening',
 			],
 			[
 				'type'        => 'post',
@@ -595,7 +619,15 @@ function movie_extended_info_meta_boxes( $meta_boxes ) {
 				],
 				'std'      => 'main',
 				'revision' => true,
-				'tab'      => 'screening'
+				'tab'      => 'screening',
+				'admin_columns' => [
+					'position'   => 'after semester',
+					'title' => __("Program Type", 'ggl-post-types'),
+					'link'       => 'none',
+					'sort'       => false,
+					'searchable' => false,
+					'filterable' => true,
+				]
 			],
 			[
 				'type'        => 'taxonomy',
