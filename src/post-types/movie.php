@@ -165,8 +165,12 @@ function ensure_numerical_movie_link( $post_id ): void {
 		$post_id = $parent_id;
 	}
 
+    $german_title = $_POST['german_title'] ?: null;
+    $english_title = $_POST['english_title'] ?: null;
+    $post_title = "$german_title // $english_title";
+
 	$post = get_post( $post_id );
-	if ( $post->post_name == $post_id ) {
+	if ( $post->post_name == $post_id && $post->post_title == $post_title ) {
 		return;
 	}
 
@@ -174,7 +178,7 @@ function ensure_numerical_movie_link( $post_id ): void {
 	wp_update_post( array(
 		'ID'         => $post_id,
 		'post_name'  => $post_id,
-		'post_title' => ( array_key_exists( 'german_title', $_POST ) && array_key_exists( 'english_title', $_POST ) ) ? $_POST['german_title'] . " (" . $_POST['english_title'] . ")" : "TBA",
+		'post_title' => $post_title,
 	) );
 	add_action( 'save_post_movie', 'ensure_numerical_movie_link', 1 );
 }

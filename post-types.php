@@ -196,7 +196,9 @@ function ggl_cpt__migrate_meta_boxes( $upgrader_object, $options ): void {
 	if ( $options['action'] == 'update' && $options['type'] == 'plugin' ) {
 		foreach ( $options['plugins'] as $each_plugin ) {
 			if ( $each_plugin == $current_plugin_path_name ) {
+
 				ggl_cpt__migrate_metabox_values();
+				ggl_cpt__migrate_post_titles();
 			}
 		}
 	}
@@ -235,6 +237,33 @@ function ggl_cpt__migrate_metabox_values() {
 			update_post_meta( $checkable_post->ID, 'release_date', $release_date_ts );
 		}
 
+
+	}
+}
+
+function ggl_cpt__migrate_post_titles(): void {
+	$checkable_posts = get_posts( [
+		'post_type'      => [ 'movie', 'event' ],
+		'posts_per_page' => - 1,
+	] );
+
+	foreach ( $checkable_posts as $checkable_post ) {
+		$german_title = get_post_meta( $checkable_post->ID, 'german_title', true );
+		$english_title = get_post_meta( $checkable_post->ID, 'english_title', true );
+		$expected_title = "$german_title // $english_title";
+		$current_title = $checkable_post->post_title;
+
+		if ($current_title != $expected_title) {
+			remove_action( 'save_post_movie', 'ensure_numerical_movie_link', 1 );
+			remove_action( 'save_post_event', 'generate_numerical_event_id', 1 );
+			wp_update_post( array(
+				'ID'         => $checkable_post->ID,
+				'post_name'  => $checkable_post->post_name,
+				'post_title' => $expected_title,
+			) );
+			add_action( 'save_post_movie', 'ensure_numerical_movie_link', 1 );
+			add_action( 'save_post_event', 'generate_numerical_event_id', 1 );
+		}
 
 	}
 }
