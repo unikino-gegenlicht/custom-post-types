@@ -91,13 +91,13 @@ function team_member_register_meta_boxes( $meta_boxes ) {
 				'id'       => 'status',
 				'inline'   => true,
 				'options'  => [
-					'active' => esc_html__( 'Active', 'ggl-post-types' ),
-					'former' => esc_html__( 'Former', 'ggl-post-types' ),
-					'hidden_active' => esc_html__( 'Hidden (Active)', 'ggl-post-types' ),
-					'hidden_former' => esc_html__( 'Hidden (Former)', 'ggl-post-types' ),
+					'active'        => esc_html__( 'Active', 'ggl-post-types' ),
+					'former'        => esc_html__( 'Former', 'ggl-post-types' ),
+					'hidden_active' => esc_html__( 'Active (Hidden)', 'ggl-post-types' ),
+					'hidden_former' => esc_html__( 'Former (Hidden)', 'ggl-post-types' ),
 				],
 				'revision' => true,
-                'desc' => __("If a member status is set to ")
+				'desc'     => __( "If a member status is set to hidden it will not be shown on the team member page, but is still selectable in the backend", "ggl-post-types" ),
 			],
 			[
 				'type' => 'heading',
@@ -115,7 +115,7 @@ function team_member_register_meta_boxes( $meta_boxes ) {
 			[
 				'type'    => 'heading',
 				'name'    => esc_html__( 'Left In', 'ggl-post-types' ),
-				'visible' => [ 'status', '=', 'former' ],
+				'visible' => [ 'status', 'in', ['former', 'hidden_former'] ],
 			],
 			[
 				'type'     => 'number',
@@ -123,7 +123,7 @@ function team_member_register_meta_boxes( $meta_boxes ) {
 				'inline'   => true,
 				'step'     => 1,
 				'min'      => 0,
-				'visible'  => [ 'status', '=', 'former' ],
+				'visible' => [ 'status', 'in', ['former', 'hidden_former'] ],
 				'revision' => true
 			]
 		],
@@ -184,3 +184,21 @@ function team_member_register_meta_boxes( $meta_boxes ) {
 }
 
 
+add_filter( 'wpseo_exclude_from_sitemap_by_post_ids', 'ggl_cpt__remove_hidden_members_from_sitemap' );
+function ggl_cpt__remove_hidden_members_from_sitemap(): array {
+	$hidden_teamies = new WP_Query( [
+		'post_status'    => 'publish',
+		'posts_per_page' => - 1,
+		'meta_query'     => [
+			[
+				"key"     => "status",
+				"value"   => [ "hidden_active", "hidden_former" ],
+				'compare' => 'IN',
+			]
+		],
+		'orderby'        => 'title',
+		'order'          => 'ASC',
+	] );
+
+	return array_map(function($x) {return $x->ID;}, $hidden_teamies->posts);
+}

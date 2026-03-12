@@ -525,7 +525,6 @@ function movie_extended_info_meta_boxes( $meta_boxes ) {
 					'searchable' => false,
 					'filterable' => false,
 				]
-
 			],
 			[
 				'type'       => 'post',
@@ -574,7 +573,7 @@ function movie_extended_info_meta_boxes( $meta_boxes ) {
 					'meta_query'     => [
 						[
 							"key"     => "status",
-							"value"   => [ "active", "hidden" ],
+							"value"   => [ "active", "hidden_active" ],
 							'compare' => 'IN',
 						]
 					],
