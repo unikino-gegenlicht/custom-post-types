@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-03-12T07:52:16+00:00\n"
+"POT-Creation-Date: 2026-03-13T12:29:10+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: ggl-post-types\n"
@@ -782,6 +782,23 @@ msgstr ""
 
 #: src/post-types/screening-location.php:107
 msgid "Longitude"
+msgstr ""
+
+#: src/post-types/screening-location.php:117
+msgid "Identifiers"
+msgstr ""
+
+#: src/post-types/screening-location.php:123
+#: src/post-types/screening-location.php:127
+msgid "These identifiers help building platform dependent links to the location. If no identifier is specified for a place, a search will be initiated in most map services"
+msgstr ""
+
+#: src/post-types/screening-location.php:131
+msgid "Apple Maps Place ID"
+msgstr ""
+
+#: src/post-types/screening-location.php:137
+msgid "Google Maps Place ID"
 msgstr ""
 
 #: src/post-types/supporter.php:10

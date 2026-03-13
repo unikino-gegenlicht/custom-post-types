@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: unnamed project\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/custom-post-"
 "types\n"
-"POT-Creation-Date: 2026-03-12T07:52:16+00:00\n"
-"PO-Revision-Date: 2026-03-12 08:56+0100\n"
+"POT-Creation-Date: 2026-03-13T12:29:10+00:00\n"
+"PO-Revision-Date: 2026-03-13 13:30+0100\n"
 "Last-Translator: Jan Eike Suchard <jan@gegenlicht.net>\n"
 "Language-Team: German <website@gegenlicht.net>\n"
 "Language: de\n"
@@ -782,6 +782,29 @@ msgstr "Längengrad"
 #: src/post-types/screening-location.php:107
 msgid "Longitude"
 msgstr "Breitengrad"
+
+#: src/post-types/screening-location.php:117
+msgid "Identifiers"
+msgstr "Identifizierer"
+
+#: src/post-types/screening-location.php:123
+#: src/post-types/screening-location.php:127
+msgid ""
+"These identifiers help building platform dependent links to the location. If "
+"no identifier is specified for a place, a search will be initiated in most "
+"map services"
+msgstr ""
+"Diese Identifizierer helfen platformabhängige Links zu erstellen, die genau "
+"auf den Eintrag des Ortes zeigen. Sollte kein Identifizierer eingestellt "
+"sein, wird bei den meisten Kartenanwendungen eine Suche gestartet."
+
+#: src/post-types/screening-location.php:131
+msgid "Apple Maps Place ID"
+msgstr "Apple Maps Place ID"
+
+#: src/post-types/screening-location.php:137
+msgid "Google Maps Place ID"
+msgstr "Google Maps Place ID"
 
 #: src/post-types/supporter.php:10 src/post-types/supporter.php:12
 msgid "Supporters"

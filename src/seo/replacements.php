@@ -125,7 +125,7 @@ function ggl_pt_details() {
 	};
 
 	$countries  = rwmb_get_value( "country" );
-	$countryStr = join( "/", $countries );
+	$countryStr = join( "/", ggl_resolve_country_list($countries) );
 
 	$releaseYear = date( 'Y', strtotime( rwmb_get_value( 'release_date' ) ) );
 

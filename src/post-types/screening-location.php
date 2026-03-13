@@ -44,7 +44,7 @@ function location_register_meta_boxes( $meta_boxes ) {
 		'context'    => 'after_title',
 		'style'      => 'seamless',
 		'post_types' => [ 'screening-location' ],
-		'revision' => true,
+		'revision'   => true,
 		'fields'     => [
 			[
 				'type' => 'heading',
@@ -111,6 +111,34 @@ function location_register_meta_boxes( $meta_boxes ) {
 				'revision' => true
 			],
 		],
+	];
+
+	$meta_boxes[] = [
+		'title'      => esc_html__( 'Identifiers', "ggl-post-types" ),
+		'id'         => $prefix . 'identifiers',
+		'context'    => 'after_title',
+		'style'      => 'seamless',
+		'post_types' => [ 'screening-location' ],
+		'revisions'  => true,
+		'desc'       => esc_html__( "These identifiers help building platform dependent links to the location. If no identifier is specified for a place, a search will be initiated in most map services", "ggl-post-types" ),
+		'fields'     => [
+			[
+				'type' => 'heading',
+				'std'  => "<p>" . esc_html__( "These identifiers help building platform dependent links to the location. If no identifier is specified for a place, a search will be initiated in most map services", "ggl-post-types" ) . "</p>",
+			],
+			[
+				'type' => 'text',
+				'name' => esc_html__( 'Apple Maps Place ID', 'ggl-post-types' ),
+				'id'   => "apple_place_id",
+				'desc' => '<a target="_blank" href="https://developer.apple.com/maps/place-id-lookup/">' . esc_html__( "Lookup Place ID for Apple Maps" ) . '</a>'
+			],
+			[
+				'type' => 'text',
+				'name' => esc_html__( 'Google Maps Place ID', 'ggl-post-types' ),
+				'id'   => "google_place_id",
+				'desc' => '<a target="_blank" href="https://developers.google.com/maps/documentation/places/web-service/place-id#find-id">' . esc_html__( "Lookup Place ID for Google Maps" ) . '</a>'
+			]
+		]
 	];
 
 
