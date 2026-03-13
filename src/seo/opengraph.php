@@ -11,6 +11,9 @@
  * @return string Updated URL if the post is a movie or event
  */
 function ggl_cpt__change_opengraph_image_url( string $url ): string {
+	if (!is_singular(["movie", "event"])) {
+		return $url;
+	}
 	global $post;
 
 	if ( $post->post_type !== 'event' && $post->post_type !== 'movie' ) {
@@ -33,6 +36,9 @@ function ggl_cpt__change_opengraph_image_url( string $url ): string {
  * @return string the new height
  */
 function ggl_cpt__change_opengraph_image_height( string $height ): string {
+	if (!is_singular(["movie", "event"])) {
+		return $height;
+	}
 	global $post;
 	if ( $post->post_type !== 'event' && $post->post_type !== 'movie' ) {
 		return $height;
@@ -52,6 +58,9 @@ function ggl_cpt__change_opengraph_image_height( string $height ): string {
  * @return string the new width
  */
 function ggl_cpt__change_opengraph_image_width( string $width ): string {
+	if (!is_singular(["movie", "event"])) {
+		return $width;
+	}
 	global $post;
 	if ( $post->post_type !== 'event' && $post->post_type !== 'movie' ) {
 		return $width;
