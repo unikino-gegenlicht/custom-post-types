@@ -226,7 +226,7 @@ function movie_extended_info_meta_boxes( $meta_boxes ) {
 				'required'      => true,
 				'revision'      => true,
 				'tab'           => 'information',
-				'admin_columns' => str_starts_with(get_locale(), "de") ? [
+				'admin_columns' => str_starts_with(get_user_locale(), "de") ? [
 					'position'   => 'after title',
 					'link'       => 'none',
 					'sort'       => true,
@@ -242,7 +242,7 @@ function movie_extended_info_meta_boxes( $meta_boxes ) {
 				'required'      => true,
 				'revision'      => true,
 				'tab'           => 'information',
-				'admin_columns' => str_starts_with(get_locale(), "en") ? [
+				'admin_columns' => str_starts_with(get_user_locale(), "en") ? [
 					'position'   => 'after title',
 					'link'       => 'none',
 					'sort'       => true,
