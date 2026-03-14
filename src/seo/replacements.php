@@ -85,7 +85,7 @@ function ggl_pt_details() {
 			default => "OmU"
 		};
 		$versionName = match ( $subtitleLanguage ) {
-			"zxx" => "{$audioLanguage} Original",
+			"zxx" => "{$audioLanguage} Original ohne Untertitel",
 			default => "{$audioLanguage}. Original mit {$subtitleLanguage}. Untertiteln"
 		};
 	} else {
@@ -95,7 +95,7 @@ function ggl_pt_details() {
 			default => "SFmU"
 		};
 		$versionName = match ( $subtitleLanguage ) {
-			"zxx" => "{$audioLanguage} Synchronfassung",
+			"zxx" => "{$audioLanguage} Synchronfassung ohne Untertitel",
 			default => "{$audioLanguage}. Synchronfassung mit {$subtitleLanguage}. Untertiteln"
 		};
 	}

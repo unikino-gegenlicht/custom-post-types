@@ -88,7 +88,7 @@ function generate_language_mapping(): array {
 }
 
 function generate_country_mapping(): array {
-	$locale = get_locale();
+	$locale = get_user_locale();
 	$output_prepared = false;
 	$output = wp_cache_get("ggl__cc_mapping_" . $locale, "ggl", found: $output_prepared);
 	if ( $output_prepared ) {

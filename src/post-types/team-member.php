@@ -115,7 +115,7 @@ function team_member_register_meta_boxes( $meta_boxes ) {
 			[
 				'type'    => 'heading',
 				'name'    => esc_html__( 'Left In', 'ggl-post-types' ),
-				'visible' => [ 'status', 'in', ['former', 'hidden_former'] ],
+				'visible' => [ 'status', 'in', [ 'former', 'hidden_former' ] ],
 			],
 			[
 				'type'     => 'number',
@@ -123,7 +123,7 @@ function team_member_register_meta_boxes( $meta_boxes ) {
 				'inline'   => true,
 				'step'     => 1,
 				'min'      => 0,
-				'visible' => [ 'status', 'in', ['former', 'hidden_former'] ],
+				'visible'  => [ 'status', 'in', [ 'former', 'hidden_former' ] ],
 				'revision' => true
 			]
 		],
@@ -136,6 +136,14 @@ function team_member_register_meta_boxes( $meta_boxes ) {
 		'style'      => 'seamless',
 		'revision'   => true,
 		'post_types' => [ 'team-member' ],
+		'tabs'       => [
+			'german'  => [
+				"label" => __( "German" ),
+			],
+			'english' => [
+				"label" => __( "English" ),
+			]
+		],
 		'fields'     => [
 			[
 				'type' => 'heading',
@@ -151,7 +159,19 @@ function team_member_register_meta_boxes( $meta_boxes ) {
 				'options'               => GGL_CPT__WYSIWYG_OPTIONS,
 				'revision'              => true,
 				'textarea_rows'         => 5,
+				'tab'                   => "german"
 			],
+			[
+				'type'                  => 'wysiwyg',
+				'id'                    => 'description_en',
+				'required'              => false,
+				'add_to_wpseo_analysis' => true,
+				'dfw'                   => false,
+				'options'               => GGL_CPT__WYSIWYG_OPTIONS,
+				'revision'              => true,
+				'textarea_rows'         => 5,
+				'tab'                   => "english"
+			]
 		]
 	];
 
@@ -200,5 +220,7 @@ function ggl_cpt__remove_hidden_members_from_sitemap(): array {
 		'order'          => 'ASC',
 	] );
 
-	return array_map(function($x) {return $x->ID;}, $hidden_teamies->posts);
+	return array_map( function ( $x ) {
+		return $x->ID;
+	}, $hidden_teamies->posts );
 }
