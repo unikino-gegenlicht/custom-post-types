@@ -36,6 +36,98 @@ require_once( dirname( __FILE__ ) . "/src/functions.php" );
 
 add_filter( 'months_dropdown_results', '__return_empty_array' );
 
+/* Register plugin settings */
+add_action( "mb_settings_pages", "ggl_cpt__register_settings" );
+function ggl_cpt__register_settings( $settings_pages ): array {
+	$settings_pages[] = [
+		"id"          => "ggl_cpt__settings",
+		"option_name" => "ggl_cpt__settings",
+		"menu_title"  => esc_html__( 'Anonymization', 'ggl-post-types' ),
+		"page_title"  => esc_html__( 'Anonymization Settings', 'ggl-post-types' ),
+		"capability"  => "manage_options",
+		"icon_url"    => "dashicons-privacy",
+		'customizer'  => true,
+		"position"    => 11,
+		"style"       => "no-boxes",
+		"tabs"        => [
+			"movies"       => [
+				"label" => esc_html__( 'Movies', 'ggl-post-types' ),
+				"icon"  => "dashicons-editor-video",
+			],
+			"events"       => [
+				"label" => esc_html__( 'Events', 'ggl-post-types' ),
+				"icon"  => "dashicons-schedule",
+			],
+			"team-members" => [
+				"label" => esc_html__( 'Team Members', 'ggl-post-types' ),
+				"icon"  => "dashicons-businessperson",
+			]
+		]
+	];
+
+	return $settings_pages;
+}
+
+add_filter( "rwmb_meta_boxes", "ggl_cpt__settings_meta_boxes" );
+function ggl_cpt__settings_meta_boxes( $meta_boxes ): array {
+	$meta_boxes[] = [
+		"id"             => "movie_anonymization_settings",
+		"title"          => esc_html__( 'Movies', 'ggl-post-types' ),
+		"context"        => "normal",
+		"settings_pages" => "ggl_cpt__settings",
+		"tab"            => "movies",
+		"fields"         => [
+			[
+				"name" => esc_html__( 'Anonymization Image', 'ggl-post-types' ),
+				"type" => "single_image",
+				"desc" => esc_html__( "This image is used if the movie has no advertisement license and the user is not permitted to see the full details or no image is selected for a movie", "ggl-post-types" ),
+				"id"   => "movie_anonymous_movie_image",
+			],
+			[
+				"name"     => esc_html__( "Replacement Character", "ggl-post-types" ),
+				"type"     => "text",
+				"desc"     => esc_html__( "This character is used to replace the letters in director and actor names if the movie is to be anonymized", "ggl-post-types" ),
+				"id"       => "replacement_character",
+				"std"      => "█"
+			]
+		]
+	];
+
+	$meta_boxes[] = [
+		"id"             => "event_anonymization_settings",
+		"title"          => esc_html__( 'Events', 'ggl-post-types' ),
+		"context"        => "normal",
+		"settings_pages" => "ggl_cpt__settings",
+		"tab"            => "events",
+		"fields"         => [
+			[
+				"name" => esc_html__( 'Anonymization Image', 'ggl-post-types' ),
+				"type" => "single_image",
+				"desc" => esc_html__( "This image is used if the event has no advertisement license and the user is not permitted to see the full details or no image is selected for a event", "ggl-post-types" ),
+				"id"   => "event_anonymous_movie_image",
+			]
+		]
+	];
+
+	$meta_boxes[] = [
+		"id"             => "team_member_anonymization_settings",
+		"title"          => esc_html__( 'Team Member', 'ggl-post-types' ),
+		"context"        => "normal",
+		"settings_pages" => "ggl_cpt__settings",
+		"tab"            => "team-members",
+		"fields"         => [
+			[
+				"name" => esc_html__( 'Anonymization Image', 'ggl-post-types' ),
+				"type" => "single_image",
+				"id"   => "teamie_anonymous_movie_image",
+                "desc" => esc_html__("This image is displayed instead of a team members image if the team member post has no associated image", "ggl-post-types" ),
+			]
+		]
+	];
+
+	return $meta_boxes;
+}
+
 /* Register the taxonomies */
 require_once 'src/taxonomies/semester.php';
 unregister_taxonomy( 'semester' );
