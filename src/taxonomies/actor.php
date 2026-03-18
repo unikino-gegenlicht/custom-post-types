@@ -29,21 +29,3 @@ function ggl_taxonomy_actor(): void {
 		]
 	] );
 }
-
-function ggl_taxonomy_actor_meta_boxes( $meta_boxes ): mixed {
-	$meta_boxes[] = [
-		'title'      => "",
-		'id'         => 'actor_notices_1',
-		'taxonomies' => 'actor',
-		'context'    => 'form_top',
-		'style'      => 'seamless',
-		'fields'     => [
-			[
-				'type' => 'custom_html',
-				'std'  => '<div class="alert altert-warning">TEST</div>',
-			],
-		],
-	];
-
-	return $meta_boxes;
-}
