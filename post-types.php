@@ -27,7 +27,7 @@
  * Update URI:        false
  */
 
-require_once dirname( __FILE__ ) . '/src/inc/countries.php';
+require_once dirname(__FILE__) . "/src/public-functions.php";
 require_once dirname( __FILE__ ) . '/src/inc/languages.php';
 require_once dirname( __FILE__ ) . '/vendor/autoload.php';
 require_once dirname( __FILE__ ) . "/src/const.php";
@@ -117,9 +117,9 @@ function ggl_cpt__settings_meta_boxes( $meta_boxes ): array {
 		"tab"            => "team-members",
 		"fields"         => [
 			[
-				"name" => esc_html__( 'Anonymization Image', 'ggl-post-types' ),
+				"name" => esc_html__( 'Fallback Teamie Image', 'ggl-post-types' ),
 				"type" => "single_image",
-				"id"   => "teamie_anonymous_movie_image",
+				"id"   => "teamie_anonymous_image",
                 "desc" => esc_html__("This image is displayed instead of a team members image if the team member post has no associated image", "ggl-post-types" ),
 			]
 		]
@@ -143,16 +143,15 @@ add_action( "parse_term_query", "ggl_cpt__reorder_semesters", 2, 2 );
 
 require_once 'src/taxonomies/director.php';
 add_action( 'init', 'ggl_taxonomy_director' );
+add_action( "director_pre_add_form", "ggl_cpt__hide_edit_boxes" );
+add_action( "director_pre_edit_form", "ggl_cpt__hide_edit_boxes" );
 
 require_once 'src/taxonomies/actor.php';
 add_action( 'init', 'ggl_taxonomy_actor' );
-add_filter( 'rwmb_meta_boxes', 'ggl_taxonomy_actor_meta_boxes' );
-add_action( 'actor_pre_add_form', function ( $term ) {
-	echo '<div style="background-color: lightgoldenrodyellow; padding: 0.05rem 0.1rem; border-radius: 0.75rem;">
-	<h3 style="text-align: center; font-variant-caps: small-caps">' . esc_html__( "Notice" ) . '</h3>
-	<p>' . esc_html__( "Only add a new entry, if the one you want is not available. Adding values like 'multiple' or 'none' is not allowed and those entries will be removed without further notice" ) . '</p>
-</div>';
-}, 10, 2 );
+add_action( 'actor_pre_add_form', "ggl_cpt__hide_edit_boxes" );
+add_action( 'actor_pre_edit_form', "ggl_cpt__hide_edit_boxes" );
+
+
 
 
 /* Register the post types */
@@ -242,6 +241,16 @@ function ggl_cpt__change_title_text( $title ) {
 
 add_filter( 'enter_title_here', 'ggl_cpt__change_title_text' );
 
+function ggl_cpt__hide_edit_boxes() {
+	?>
+    <style>
+        .term-slug-wrap,
+        .term-description-wrap {
+            display: none;
+        }
+    </style>
+	<?php
+}
 
 add_action( 'rwmb_meta_boxes', function ( $meta_boxes ) {
 	$meta_boxes[] = [
@@ -275,100 +284,6 @@ add_action( 'rwmb_meta_boxes', function ( $meta_boxes ) {
 	return $meta_boxes;
 } );
 
-add_action( 'upgrader_process_complete', 'ggl_cpt__migrate_meta_boxes', 10, 2 );
-
-function ggl_cpt__migrate_meta_boxes( $upgrader_object, $options ): void {
-	$current_plugin_path_name = plugin_basename( __FILE__ );
-
-	if ( $options['action'] == 'update' && $options['type'] == 'plugin' ) {
-		foreach ( $options['plugins'] as $each_plugin ) {
-			if ( $each_plugin == $current_plugin_path_name ) {
-
-				ggl_cpt__migrate_metabox_values();
-				ggl_cpt__migrate_post_titles();
-			}
-		}
-	}
-}
-
-function ggl_cpt__migrate_metabox_values() {
-	$country_source_file_path = dirname( __FILE__ ) . "/assets/iso3166.csv";
-	$rows                     = array_map( 'str_getcsv', file( $country_source_file_path ) );
-	$header                   = array_shift( $rows );
-	$countries                = array();
-	foreach ( $rows as $row ) {
-		$countries[] = array_combine( $header, $row );
-	}
-
-	$checkable_posts = get_posts( [
-		'post_type'      => [ 'movie', 'event' ],
-		'posts_per_page' => - 1,
-	] );
-
-	foreach ( $checkable_posts as $checkable_post ) {
-		$cc = get_post_meta( $checkable_post->ID, 'country', true );
-		if ( preg_match( '/^[A-Z]{2}$/m', $cc ) ) {
-			foreach ( $countries as $country ) {
-				if ( $country["letter_code"] != $cc ) {
-					continue;
-				}
-				$num_code = $country["num_id"];
-				update_post_meta( $checkable_post->ID, 'country', $num_code );
-			}
-		}
-
-		$release_date       = get_post_meta( $checkable_post->ID, 'release_date', true );
-		$release_date_is_ts = preg_match( '/^[0-9]+$/', $release_date );
-		if ( ! $release_date_is_ts ) {
-			$release_date_ts = strtotime( $release_date );
-			update_post_meta( $checkable_post->ID, 'release_date', $release_date_ts );
-		}
-
-
-	}
-}
-
-function ggl_cpt__migrate_post_titles(): void {
-	$movies = get_posts( [
-		'post_type'      => [ 'movie' ],
-		'posts_per_page' => - 1,
-	] );
-
-	foreach ( $movies as $movie ) {
-		$expected_title = get_post_meta( $movie->ID, 'original_title', true );
-		$current_title = $movie->post_title;
-
-		if ($current_title != $expected_title) {
-			remove_action( 'save_post_movie', 'ensure_numerical_movie_link', 1 );
-			wp_update_post( array(
-				'ID'         => $movie->ID,
-				'post_name'  => $movie->post_name,
-				'post_title' => $expected_title,
-			) );
-			add_action( 'save_post_movie', 'ensure_numerical_movie_link', 1 );
-		}
-	}
-
-	$events = get_posts( [
-		'post_type'      => [ 'event' ],
-		'posts_per_page' => - 1,
-	] );
-
-	foreach ( $events as $event ) {
-		$expected_title = get_post_meta( $event->ID, 'german_title', true );
-		$current_title = $event->post_title;
-
-		if ($current_title != $expected_title) {
-			remove_action( 'save_post_event', 'generate_numerical_event_id', 1 );
-			wp_update_post( array(
-				'ID'         => $event->ID,
-				'post_name'  => $event->post_name,
-				'post_title' => $expected_title,
-			) );
-			add_action( 'save_post_event', 'generate_numerical_event_id', 1 , );
-		}
-	}
-}
 
 add_action( 'admin_head', 'wpster_remove_permalink_section' );
 function wpster_remove_permalink_section() {
