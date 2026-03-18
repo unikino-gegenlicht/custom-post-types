@@ -1,6 +1,6 @@
 <?php
 
-define( 'GGL_LANGUAGES', array(
+const GGL_LANGUAGES = array(
 	'aar',
 	'abk',
 	'ace',
@@ -486,4 +486,4 @@ define( 'GGL_LANGUAGES', array(
 	'zun',
 	'zxx',
 	'zza'
-) );
+);
