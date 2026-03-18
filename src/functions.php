@@ -1,6 +1,5 @@
 <?php
 
-use DateTimeZone as PhpDateTimeZone;
 use Eluceo\iCal\Domain\Entity\Calendar;
 use Eluceo\iCal\Domain\Entity\Event;
 use Eluceo\iCal\Domain\Entity\TimeZone;
@@ -14,6 +13,8 @@ use Eluceo\iCal\Domain\ValueObject\TimeSpan;
 use Eluceo\iCal\Domain\ValueObject\UniqueIdentifier;
 use Eluceo\iCal\Domain\ValueObject\Uri;
 use Eluceo\iCal\Presentation\Factory\CalendarFactory;
+
+require_once 'Country.php';
 
 function add_admin_menu_separator( int $atPosition ) {
 	global $menu;
@@ -87,7 +88,37 @@ function generate_language_mapping(): array {
 	return $output;
 }
 
+function generate_countries(): array {
+	$output_prepared = false;
+	$output = wp_cache_get("ggl_countries", "ggl", found: $output_prepared);
+	if ( $output_prepared ) {
+		return $output;
+	}
+
+	$country_source_file_path = dirname(__FILE__) . "/../assets/iso3166.csv";
+	$rows = array_map(function ($in) {
+		return str_getcsv($in, ",", escape: "");
+	}, file($country_source_file_path));
+	$header = array_shift($rows);
+	$definitions = array();
+	foreach ($rows as $row) {
+		$definitions[] = array_combine( $header, $row );
+	}
+
+	$countries = [];
+
+	foreach ($definitions as $definition) {
+		$countries[] = new Country($definition["num_id"], $definition["letter_code"], $definition["german_comment"], $definition["english_comment"], $definition["german_name"], $definition["official_german_name"], $definition["english_name"], $definition["official_english_name"]);
+	}
+
+	wp_cache_add("ggl_countries", $countries, "ggl");
+	return $countries;
+}
+
 function generate_country_mapping(): array {
+
+	$countries = generate_countries();
+
 	$locale = get_user_locale();
 	$output_prepared = false;
 	$output = wp_cache_get("ggl__cc_mapping_" . $locale, "ggl", found: $output_prepared);
@@ -95,16 +126,10 @@ function generate_country_mapping(): array {
 		return $output;
 	}
 
-	$country_source_file_path = dirname(__FILE__) . "/../assets/iso3166.csv";
-	$rows = array_map('str_getcsv', file($country_source_file_path));
-	$header = array_shift($rows);
-	$countries = array();
-	foreach ($rows as $row) {
-		$countries[] = array_combine($header, $row);
-	}
+	$output = array();
 
 	foreach ($countries as $country) {
-		$output[$country["num_id"]] = str_replace(" // ⚠️ )",")", ((str_starts_with($locale, "de") ? $country["german_name"] : $country["english_name"] ). "\n(". (str_starts_with($locale, "de") ? $country["official_german_name"] . " // ⚠️ " . $country["german_comment"] : $country["official_english_name"] . " // ⚠️ " . $country["english_comment"] ). ")"));
+		$output[$country->numerical] = str_replace(" // ⚠️ )",")", ((str_starts_with($locale, "de") ? $country->german_name : $country->english_name ). "\n(". (str_starts_with($locale, "de") ? $country->official_german_name . " // ⚠️ " . $country->german_comment : $country->official_english_name . " // ⚠️ " . $country->english_comment ). ")"));
 	}
 
 	$sorted = $output;
@@ -114,7 +139,7 @@ function generate_country_mapping(): array {
 
 	$mapping = [];
 
-	foreach ($sorted as $key => $value) {
+	foreach ($sorted as $value) {
 		$num_id = array_search($value, $output);
 
 		$mapping[$num_id] = $value;
@@ -437,4 +462,8 @@ function ggl_cpt__get_thumbnail_url( WP_Post|int $post = 0, string $size = "full
 function ggl_cpt__get_thumbnail_id(WP_Post|int $post = 0, string $size = "full"): int {
 	return attachment_url_to_postid(ggl_cpt__get_thumbnail_url($post, $size));
 
+}
+
+function ggl_cpt__anonymize_chars( string $chars ): string {
+	return preg_replace( '/\S/u', '█', $chars );
 }
