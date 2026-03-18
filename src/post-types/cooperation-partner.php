@@ -99,3 +99,77 @@ function cooperation_partner_register_meta_boxes( $meta_boxes ) {
 }
 
 
+/**
+ * Get the movies that are associated to the cooperation partner
+ *
+ * The list will contain any movie that has the cooperation partner listed as a proposing party and that is displayed as
+ * selected by a cooperation partner
+ *
+ * @param int|WP_Post $post Optional . Post ID or `WP_Post` object.
+ *     Defaults to global `$post`
+ *
+ * @return array
+ */
+function ggl_get_partner_movies( int|WP_Post $post = 0 ): array {
+	// Resolve the provided post or fall back to the global post
+	$post = get_post( $post, filter: 'display' );
+
+	// Return early if the post type is not supported by the function
+	if ( $post->post_type !== "cooperation-partner" ) {
+		return [];
+	}
+
+	$query = new WP_Query( [
+		"posts_per_page" => - 1,
+		"post_type"      => "movie",
+		"meta_query" => [
+			[
+				"key" => "selected_by",
+				"value" => "coop"
+			],
+			[
+				"key" => "cooperation_partner_id",
+				"value" => [$post->ID],
+				"compare" => "IN"
+			]
+		]
+	] );
+	return $query->posts;
+}
+
+/**
+ * Get the URL for the teamie picture or get the fallback variant
+ *
+ * @param int|WP_Post $post Optional . Post ID or `WP_Post` object.
+ *     Defaults to global `$post`
+ *
+ * @return string The URL pointing to the picture
+ */
+function ggl_get_partner_image_url( int|WP_Post $post = 0 ): string {
+	$post = get_post( $post, filter: 'display' );
+	if ( $post->post_type != "cooperation-partner" ) {
+		return "";
+	}
+
+	$anonymous_image = rwmb_meta( "teamie_anonymous_image", [ "object_type" => "setting" ], "ggl_cpt__settings" );
+
+	return get_the_post_thumbnail_url( $post, "member-crop" ) ?: $anonymous_image["sizes"]["member-crop"]["url"] ?? $anonymous_image["full_url"];
+}
+
+/**
+ * Output the markup for the team members image
+ *
+ * @param int|WP_Post $post
+ * @param string $classes
+ *
+ * @return void
+ */
+function ggl_the_partner_image( int|WP_Post $post = 0, string $classes = "image coop-logo", string $min_width = "" ): void {
+	$url         = ggl_get_partner_image_url( $post );
+	$teamie_name = ggl_get_title( $post );
+	$title       = sprintf( __( "This logo represents %s", "ggl-post-types" ), $teamie_name );
+	echo "<picture class='$classes' title='$title' style='min-width: $min_width !important; height: min-content;'>";
+	echo "<img src='$url' alt=''/>";
+	echo "</picture>";
+}
+

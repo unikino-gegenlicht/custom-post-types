@@ -224,3 +224,227 @@ function ggl_cpt__remove_hidden_members_from_sitemap(): array {
 		return $x->ID;
 	}, $hidden_teamies->posts );
 }
+
+
+/**
+ * Get the name of the team member
+ *
+ * @param int|WP_Post $post Optional . Post ID or `WP_Post` object.
+ *   Defaults to global `$post`
+ *
+ * @return string
+ */
+function ggl_get_teamie_name( int|WP_Post $post = 0 ): string {
+	$post = get_post( $post, filter: 'display' );
+	if ( $post->post_type != "team-member" ) {
+		return "";
+	}
+
+	return $post->post_title;
+}
+
+/**
+ * Output the team member's name
+ *
+ * @param int|WP_Post $post Optional . Post ID or `WP_Post` object.
+ *    Defaults to global `$post`
+ *
+ * @return void
+ */
+function ggl_the_teamie_name( int|WP_Post $post = 0 ): void {
+	echo ggl_get_teamie_name( $post );
+}
+
+function ggl_is_teamie_active( int|WP_Post $post = 0 ): bool {
+	$post = get_post( $post, filter: 'display' );
+	if ( $post->post_type != "team-member" ) {
+		return false;
+	}
+
+	return get_post_meta( $post->ID, "status", true ) === "active";
+}
+
+
+/**
+ * Get the URL for the teamie picture or get the fallback variant
+ *
+ * @param int|WP_Post $post Optional . Post ID or `WP_Post` object.
+ *     Defaults to global `$post`
+ *
+ * @return string The URL pointing to the picture
+ */
+function ggl_get_teamie_image_url( int|WP_Post $post = 0 ): string {
+	$post = get_post( $post, filter: 'display' );
+	if ( $post->post_type != "team-member" ) {
+		return "";
+	}
+
+	$anonymous_image = rwmb_meta( "teamie_anonymous_image", [ "object_type" => "setting" ], "ggl_cpt__settings" );
+
+	return get_the_post_thumbnail_url( $post, "member-crop" ) ?: $anonymous_image["sizes"]["member-crop"]["url"] ?? $anonymous_image["full_url"];
+}
+
+/**
+ * Output the markup for the team members image
+ *
+ * @param int|WP_Post $post Optional. Post ID or `WP_Post` object.
+ *     Defaults to global `$post`
+ * @param string $classes Optional. The CSS classes the printed <picture> element should have
+ *     Defaults to `image is-3by4 member-picture`
+ * @param string $min_height Optional. The minimum heigt of the image. Per default empty
+ *
+ * @return void
+ */
+function ggl_the_teamie_image( int|WP_Post $post = 0, string $classes = "image is-3by4 member-picture", string $min_height  = "" ): void {
+	$url         = ggl_get_teamie_image_url( $post );
+	$teamie_name = ggl_get_teamie_name( $post );
+	$title       = sprintf( __( "This beautiful person is %s", "ggl-post-types" ), $teamie_name );
+	echo "<picture class='$classes' title='$title'". (!empty(trim($min_height)) ? ' style="min-height: '. trim($min_height) . ' !important;">' : ">");
+	echo "<img src='$url' alt=''/>";
+	echo "</picture>";
+}
+
+/**
+ * Get the year in which the teamie joined the GEGENLICHT
+ *
+ * @param int|WP_Post $post Optional . Post ID or `WP_Post` object.
+ *     Defaults to global `$post`
+ *
+ * @return int Year in which the teamie joined
+ */
+function ggl_get_teamie_joined_in( int|WP_Post $post = 0 ): int {
+	$post = get_post( $post, filter: 'display' );
+	if ( $post->post_type != "team-member" ) {
+		return - 1;
+	}
+
+	return intval( get_post_meta( $post->ID, "joined_in", true ) );
+}
+
+/**
+ * Output the year since the teamie is a member
+ *
+ * @param int|WP_Post $post Optional . Post ID or `WP_Post` object.
+ *     Defaults to global `$post`
+ *
+ * @return void
+ */
+function ggl_teamie_joined_in( int|WP_Post $post = 0 ): void {
+	/* translators: %d year in which the teamie joined */
+	echo sprintf( __( "since %d", "ggl-post-types" ), ggl_get_teamie_joined_in( $post ) );
+}
+
+
+/**
+ * Get the year in which the teamie left the GEGENLICHT
+ *
+ * @param int|WP_Post $post Optional . Post ID or `WP_Post` object.
+ *     Defaults to global `$post`
+ *
+ * @return int Year
+ */
+function ggl_get_teamie_left_in( int|WP_Post $post = 0 ): int {
+	$post = get_post( $post, filter: 'display' );
+	if ( $post->post_type != "team-member" ) {
+		return - 1;
+	}
+
+	return intval( get_post_meta( $post->ID, "left_in", true ) );
+}
+
+function ggl_the_teamie_membership_duration( int|WP_Post $post = 0 ): void {
+	$post      = get_post( $post, filter: 'display' );
+	$joined_in = ggl_get_teamie_joined_in( $post );
+	$left_in   = ggl_get_teamie_left_in( $post );
+
+	echo $joined_in == $left_in ? $joined_in : "$joined_in &ndash; $left_in";
+}
+
+/**
+ * Get a localized variant of the Teamie Description
+ *
+ * The function will automatically return the description for a team member.
+ * As the description supports a German and an English version for the
+ * description, the function will automatically determine the correct language
+ * required for the returned content.
+ *
+ * If the provided post object is not of the type `team-member` the function
+ * will return an empty string.
+ *
+ * @param int|WP_Post $post Optional. Post ID or `WP_Post` object.
+ *  Defaults to global `$post`
+ *
+ * @return string The description of the teamie
+ *
+ * @since 3.9.0
+ */
+function ggl_get_teamie_description( int|WP_Post $post = 0 ): string {
+	// Resolve the provided post or fall back to the global post
+	$post = get_post( $post, filter: 'display' );
+
+	// Return early if the post type is not supported by the function
+	if ( $post->post_type !== "team-member" ) {
+		return "";
+	}
+
+	$desired_language = substr( get_user_locale(), 0, 2 );
+	$meta_key         = match ( $desired_language ) {
+		"de" => "description",
+		default => "description_en",
+	};
+
+	return get_post_meta( $post->ID, $meta_key, true );
+}
+
+/**
+ * Output the localized version of the teamie description
+ *
+ * @param int|WP_Post $post
+ *
+ * @return void
+ *
+ * @see ggl_get_teamie_description()
+ */
+function ggl_the_teamie_description( int|WP_Post $post = 0 ): void {
+	echo apply_filters( "the_content", ggl_get_teamie_description( $post ) );
+}
+
+/**
+ * Get the movies that are associated to the teamie
+ *
+ * The list will contain any movie that has the team member listed as a proposing party and that is displayed as
+ * selected by a teamie
+ *
+ * @param int|WP_Post $post Optional . Post ID or `WP_Post` object.
+ *     Defaults to global `$post`
+ *
+ * @return array
+ */
+function ggl_get_teamie_movies( int|WP_Post $post = 0 ): array {
+	// Resolve the provided post or fall back to the global post
+	$post = get_post( $post, filter: 'display' );
+
+	// Return early if the post type is not supported by the function
+	if ( $post->post_type !== "team-member" ) {
+		return [];
+	}
+
+	$query = new WP_Query( [
+		"posts_per_page" => - 1,
+		"post_type"      => "movie",
+		"meta_query" => [
+			[
+				"key" => "selected_by",
+                "value" => "member"
+			],
+            [
+                "key" => "team_member_id",
+                "value" => [$post->ID],
+                "compare" => "IN"
+            ]
+		]
+	] );
+    return $query->posts;
+}
+
+

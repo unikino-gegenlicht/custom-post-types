@@ -1,5 +1,8 @@
 <?php
-
+/**
+ * This file defines the custom post type `movie` and contains functions related
+ * to the retrieval of meta information about the movies
+ */
 
 function ggl_post_type_movie(): void {
 	register_post_type( 'movie', [
@@ -39,8 +42,9 @@ function ggl_post_type_movie(): void {
 	] );
 }
 
-add_filter( 'manage_movie_posts_columns', function( $columns ) {
-	$columns['title'] = __("Original Title", "ggl-post-types");
+add_filter( 'manage_movie_posts_columns', function ( $columns ) {
+	$columns['title'] = __( "Original Title", "ggl-post-types" );
+
 	return $columns;
 } );
 
@@ -87,63 +91,6 @@ function ggl_cpt__apply_movie_semester_filter( WP_Query $query ) {
 
 }
 
-function ggl_cpt__add_movie_program_filter( $post_type ): void {
-	if ( $post_type !== 'movie' ) {
-		return;
-	}
-
-	$special_programs = get_terms( [
-		"taxonomy"   => "special-program",
-		"hide_empty" => true,
-		"orderby"    => "name",
-		"order"      => "ASC",
-	] );
-	?>
-    <select name="program">
-        <option value=""><?= esc_html__( "All Programs", "ggl-post-types" ) ?></option>
-        <option value="main" <?= selected( "main", @ $_GET["program"], 0 ) ?>><?= esc_html__( "Main Program", "ggl-post-types" ) ?></option>
-		<?php foreach ( $special_programs as $special_program ): ?>
-            <option value="<?= $special_program->slug ?>" <?= selected( $special_program->slug, @ $_GET["program"], 0 ) ?>><?= $special_program->name ?></option>
-		<?php endforeach; ?>
-    </select>
-	<?php
-
-}
-
-function ggl_cpt__apply_movie_program_filter( WP_Query $query ) {
-	$cs = function_exists( 'get_current_screen' ) ? get_current_screen() : null;
-
-	// make sure we are on the right admin page
-	if ( ! is_admin() || empty( $cs->post_type ) || $cs->post_type != 'movie' || $cs->id != 'edit-movie' ) {
-		return;
-	}
-
-	if ( @ $_GET['program'] != - 1 && @ $_GET['program'] !== "" && @ $_GET['program'] !== null ) {
-		$selected_program = @ $_GET['program'] ?: null;
-		if ( $selected_program === "main" ) {
-			$query->set( "meta_query", [
-				[
-					"key"   => "program_type",
-					"value" => "main",
-				]
-			] );
-		} else {
-			$query->set( "meta_query", [
-				"key"   => "program_type",
-				"value" => "special_program",
-			] );
-			$query->set( "tax_query", [
-				[
-					"taxonomy" => "special-program",
-					"terms"    => $selected_program,
-					"field"    => "slug",
-				]
-			] );
-		}
-	}
-
-}
-
 function ensure_numerical_movie_link( $post_id ): void {
 	$parent_id = wp_is_post_revision( $post_id );
 
@@ -154,7 +101,7 @@ function ensure_numerical_movie_link( $post_id ): void {
 	$post = get_post( $post_id );
 
 
-	$post_title  = $_POST['original_title'] ?: get_post_meta( $post->ID, 'original_title', true ) ?: null;
+	$post_title = $_POST['original_title'] ?: get_post_meta( $post->ID, 'original_title', true ) ?: null;
 
 	if ( $post->post_name == $post_id && $post->post_title == $post_title ) {
 		return;
@@ -226,7 +173,7 @@ function movie_extended_info_meta_boxes( $meta_boxes ) {
 				'required'      => true,
 				'revision'      => true,
 				'tab'           => 'information',
-				'admin_columns' => str_starts_with(get_user_locale(), "de") ? [
+				'admin_columns' => str_starts_with( get_user_locale(), "de" ) ? [
 					'position'   => 'after title',
 					'link'       => 'none',
 					'sort'       => true,
@@ -242,7 +189,7 @@ function movie_extended_info_meta_boxes( $meta_boxes ) {
 				'required'      => true,
 				'revision'      => true,
 				'tab'           => 'information',
-				'admin_columns' => str_starts_with(get_user_locale(), "en") ? [
+				'admin_columns' => str_starts_with( get_user_locale(), "en" ) ? [
 					'position'   => 'after title',
 					'link'       => 'none',
 					'sort'       => true,
@@ -251,13 +198,13 @@ function movie_extended_info_meta_boxes( $meta_boxes ) {
 				] : false
 			],
 			[
-				'type'          => 'text',
-				'name'          => esc_html__( 'Original Title', 'ggl-post-types' ),
-				'id'            => 'original_title',
-				'desc'          => __( 'Please enter the original title here. For Japanese/Chinese/etc. titles, please input the logographics and the romanized versions seperated by an em dash (<code>—</code>) surrounded by spaces', 'ggl-post-types' ),
-				'required'      => true,
-				'revision'      => true,
-				'tab'           => 'information',
+				'type'     => 'text',
+				'name'     => esc_html__( 'Original Title', 'ggl-post-types' ),
+				'id'       => 'original_title',
+				'desc'     => __( 'Please enter the original title here. For Japanese/Chinese/etc. titles, please input the logographics and the romanized versions seperated by an em dash (<code>—</code>) surrounded by spaces', 'ggl-post-types' ),
+				'required' => true,
+				'revision' => true,
+				'tab'      => 'information',
 			],
 			[
 				'type'     => 'select_advanced',
@@ -348,41 +295,41 @@ function movie_extended_info_meta_boxes( $meta_boxes ) {
 				'tab'      => 'sound',
 			],
 			[
-				'type'     => 'select_advanced',
-				'name'     => esc_html__( 'Audio Language', 'ggl-post-types' ),
-				'id'       => 'audio_language',
-				'std'      => 'eng',
-				'options'  => generate_language_mapping(),
-				'required' => true,
-				'revision' => true,
-				'tab'      => 'sound',
-                'admin_columns' => true,
+				'type'          => 'select_advanced',
+				'name'          => esc_html__( 'Audio Language', 'ggl-post-types' ),
+				'id'            => 'audio_language',
+				'std'           => 'eng',
+				'options'       => generate_language_mapping(),
+				'required'      => true,
+				'revision'      => true,
+				'tab'           => 'sound',
+				'admin_columns' => true,
 			],
 			[
-				'type'     => 'select_advanced',
-				'name'     => esc_html__( 'Subtitle Language', 'ggl-post-types' ),
-				'id'       => 'subtitle_language',
-				'std'      => 'deu',
-				'options'  => generate_language_mapping(),
-				'required' => true,
-				'revision' => true,
-				'tab'      => 'sound',
-                'admin_columns' => true,
+				'type'          => 'select_advanced',
+				'name'          => esc_html__( 'Subtitle Language', 'ggl-post-types' ),
+				'id'            => 'subtitle_language',
+				'std'           => 'deu',
+				'options'       => generate_language_mapping(),
+				'required'      => true,
+				'revision'      => true,
+				'tab'           => 'sound',
+				'admin_columns' => true,
 			],
 			[
-				'type'     => 'radio',
-				'name'     => esc_html__( 'License Type', 'ggl-post-types' ),
-				'id'       => 'license_type',
-				'inline'   => true,
-				'required' => true,
-				'options'  => [
+				'type'          => 'radio',
+				'name'          => esc_html__( 'License Type', 'ggl-post-types' ),
+				'id'            => 'license_type',
+				'inline'        => true,
+				'required'      => true,
+				'options'       => [
 					'full' => esc_html__( 'Advertisement License', 'ggl-post-types' ),
 					'pool' => esc_html__( 'Pool License', 'ggl-post-types' ),
 					'none' => esc_html__( 'No License', 'ggl-post-types' ),
 				],
-				'std'      => 'full',
-				'revision' => true,
-				'tab'      => 'licensing',
+				'std'           => 'full',
+				'revision'      => true,
+				'tab'           => 'licensing',
 				'admin_columns' => [
 					'position'   => 'after date',
 					'link'       => 'none',
@@ -429,10 +376,10 @@ function movie_extended_info_meta_boxes( $meta_boxes ) {
 				'tab'  => 'youth-protection'
 			],
 			[
-				'type'     => 'select',
-				'name'     => esc_html__( 'Age Rating', 'ggl-post-types' ),
-				'id'       => 'age_rating',
-				'options'  => [
+				'type'          => 'select',
+				'name'          => esc_html__( 'Age Rating', 'ggl-post-types' ),
+				'id'            => 'age_rating',
+				'options'       => [
 					- 2 => esc_html__( 'unknown', 'ggl-post-types' ),
 					- 1 => esc_html__( 'Not rated', 'ggl-post-types' ),
 					0   => esc_html__( 'FSK 0', 'ggl-post-types' ),
@@ -441,11 +388,11 @@ function movie_extended_info_meta_boxes( $meta_boxes ) {
 					16  => esc_html__( 'FSK 16', 'ggl-post-types' ),
 					18  => esc_html__( 'FSK 18', 'ggl-post-types' ),
 				],
-				'std'      => - 2,
-				'required' => true,
-				'revision' => true,
-				'tab'      => 'youth-protection',
-                'admin_columns' => true
+				'std'           => - 2,
+				'required'      => true,
+				'revision'      => true,
+				'tab'           => 'youth-protection',
+				'admin_columns' => true
 			],
 			[
 				'type'     => 'checkbox_list',
@@ -470,20 +417,20 @@ function movie_extended_info_meta_boxes( $meta_boxes ) {
 				'tab'      => 'youth-protection'
 			],
 			[
-				'type'        => 'taxonomy',
-				'name'        => esc_html__( 'Semester', 'ggl-post-type' ),
-				'id'          => 'semester',
-				'placeholder' => esc_html__( 'Select a Semester', 'ggl-post-types' ),
-				'taxonomy'    => 'semester',
-				'required'    => false,
-				'field_type'  => 'select_advanced',
-				'query_args'  => [
+				'type'          => 'taxonomy',
+				'name'          => esc_html__( 'Semester', 'ggl-post-type' ),
+				'id'            => 'semester',
+				'placeholder'   => esc_html__( 'Select a Semester', 'ggl-post-types' ),
+				'taxonomy'      => 'semester',
+				'required'      => false,
+				'field_type'    => 'select_advanced',
+				'query_args'    => [
 					'number'   => 5,
 					'orderby'  => 'meta_value_num',
 					'meta_key' => 'semester_start',
 					'order'    => 'desc'
 				],
-				'std'         => count( get_terms( 'semester', [
+				'std'           => count( get_terms( 'semester', [
 					'number'   => 1,
 					'orderby'  => 'meta_value_num',
 					'meta_key' => 'semester_start',
@@ -494,17 +441,17 @@ function movie_extended_info_meta_boxes( $meta_boxes ) {
 					'meta_key' => 'semester_start',
 					'order'    => 'desc'
 				] )[0]->term_id : null,
-				'add_new'     => current_user_can( "edit_others_posts" ),
-				'ajax'        => true,
-				'revision'    => true,
-				'tab'         => 'screening',
-                'admin_columns' => [
-	                'position'   => 'before date',
-	                'link'       => 'none',
-	                'sort'       => false,
-	                'searchable' => false,
-	                'filterable' => false,
-                ]
+				'add_new'       => current_user_can( "edit_others_posts" ),
+				'ajax'          => true,
+				'revision'      => true,
+				'tab'           => 'screening',
+				'admin_columns' => [
+					'position'   => 'before date',
+					'link'       => 'none',
+					'sort'       => false,
+					'searchable' => false,
+					'filterable' => false,
+				]
 			],
 			[
 				'type'          => 'datetime',
@@ -519,7 +466,7 @@ function movie_extended_info_meta_boxes( $meta_boxes ) {
 				'tab'           => 'screening',
 				'admin_columns' => [
 					'position'   => 'replace date',
-                    'title' => __("Screening Date", 'ggl-post-types'),
+					'title'      => __( "Screening Date", 'ggl-post-types' ),
 					'link'       => 'none',
 					'sort'       => true,
 					'searchable' => false,
@@ -607,21 +554,21 @@ function movie_extended_info_meta_boxes( $meta_boxes ) {
 				'tab'         => 'screening'
 			],
 			[
-				'type'     => 'radio',
-				'name'     => esc_html__( 'Program Type', 'ggl-post-types' ),
-				'id'       => 'program_type',
-				'inline'   => true,
-				'required' => true,
-				'options'  => [
+				'type'          => 'radio',
+				'name'          => esc_html__( 'Program Type', 'ggl-post-types' ),
+				'id'            => 'program_type',
+				'inline'        => true,
+				'required'      => true,
+				'options'       => [
 					'main'            => esc_html__( 'Main Program', 'ggl-post-types' ),
 					'special_program' => esc_html__( 'Special Program', 'ggl-post-types' ),
 				],
-				'std'      => 'main',
-				'revision' => true,
-				'tab'      => 'screening',
+				'std'           => 'main',
+				'revision'      => true,
+				'tab'           => 'screening',
 				'admin_columns' => [
 					'position'   => 'after semester',
-					'title' => __("Program Type", 'ggl-post-types'),
+					'title'      => __( "Program Type", 'ggl-post-types' ),
 					'link'       => 'none',
 					'sort'       => false,
 					'searchable' => false,
@@ -830,4 +777,868 @@ function movie_text_boxes( $meta_boxes ) {
 	];
 
 	return $meta_boxes;
+}
+
+/**
+ * Get the summary for movies and events
+ *
+ * This function will automatically return the summary for a movie or an event.
+ * If the function determines, that the summary needs to the anonymized it will
+ * automatically return the anonymized summary.
+ *
+ * If the supplied post is neither an event nor a movie the function will return
+ * an empty string.
+ *
+ *
+ * @param int|WP_Post $post Optional. Post ID or `WP_Post` object.
+ *   Defaults to global `$post`
+ *
+ * @return string The summary for the entry.
+ */
+function ggl_get_summary( int|WP_Post $post = 0 ): string {
+	// Resolve the provided post or fall back to the global post
+	$post = get_post( $post, filter: 'display' );
+
+	// Return early if the post type is not supported by the function
+	if ( ! in_array( $post->post_type, [ "movie", "event" ] ) ) {
+		return "";
+	}
+
+	$show_details = apply_filters( "ggl__show_full_details", false, $post );
+	$meta_key     = $show_details ? "summary" : "anon_summary";
+
+	return get_post_meta( $post->ID, $meta_key, true );
+}
+
+/**
+ * Output the summary of the custom post type
+ *
+ * The function will output the result of `ggl_get_summary()`
+ *
+ * @param int|WP_Post $post Optional. Post ID or `WP_Post` object.
+ *  Defaults to global `$post`
+ *
+ *
+ * @see ggl_get_summary() for the retrieval of the summary
+ * @since 3.9.0
+ */
+function ggl_the_summary( int|WP_Post $post = 0 ): void {
+	echo apply_filters( "the_content", ggl_get_summary( $post ) );
+}
+
+/**
+ * Get the wroth to see/attend content for movies and events
+ *
+ * This function will automatically return the worth to see/attend text for a
+ * movie or an event.
+ * If the function determines, that the summary needs to the anonymized it will
+ * automatically return the anonymized summary.
+ *
+ * If the supplied post is neither an event nor a movie the function will return
+ * an empty string.
+ *
+ *
+ * @param int|WP_Post $post Optional. Post ID or `WP_Post` object.
+ *   Defaults to global `$post`
+ *
+ * @return string The summary for the entry.
+ */
+function ggl_get_worth_to_see( int|WP_Post $post = 0 ): string {
+	// Resolve the provided post or fall back to the global post
+	$post = get_post( $post, filter: 'display' );
+
+	// Return early if the post type is not supported by the function
+	if ( ! in_array( $post->post_type, [ "movie", "event" ] ) ) {
+		return "";
+	}
+
+	$show_details = apply_filters( "ggl__show_full_details", false, $post );
+	$meta_key     = $show_details ? "worth_to_see" : "anon_worth_to_see";
+
+	return get_post_meta( $post->ID, $meta_key, true );
+}
+
+/**
+ * Output the worth to see section of the custom post type
+ *
+ * The function will output the result of `ggl_get_worth_to_see()`
+ *
+ * @param int|WP_Post $post Optional. Post ID or `WP_Post` object.
+ *  Defaults to global `$post`
+ *
+ *
+ * @see ggl_get_worth_to_see() for the retrieval of the worth to see section
+ * @since 3.9.0
+ */
+function ggl_the_worth_to_see_section( int|WP_Post $post = 0 ): void {
+	echo apply_filters( "the_content", ggl_get_worth_to_see( $post ) );
+}
+
+/**
+ * Get the Admission Fee for the Movie or Event
+ *
+ * If an unsupported post type is provided the function will return an empty string
+ *
+ * @param int|WP_Post $post Optional. Post ID or `WP_Post` object.
+ *    Defaults to global `$post`
+ *
+ * @return string The admission fee for the movie or event.
+ */
+function ggl_get_admission_fee( int|WP_Post $post = 0 ): string {
+	// Resolve the provided post or fall back to the global post
+	$post = get_post( $post, filter: 'display' );
+
+	// Return early if the post type is not supported by the function
+	if ( ! in_array( $post->post_type, [ "movie", "event" ] ) ) {
+		return "";
+	}
+
+	$admission_type = get_post_meta( $post->ID, "admission_type", true );
+	switch ( $admission_type ) {
+		case "free":
+			return __( "Free", "ggl-post-types" );
+		case "donation":
+			return __( "Donations Welcome", "ggl-post-types" );
+		case "paid":
+			$admission_fee = floatval( get_post_meta( $post->ID, "admission_fee", true ) );
+
+			return number_format( $admission_fee, decimals: 2, decimal_separator: str_starts_with( get_user_locale(), "de" ) ? "," : "." ) . " €";
+		default:
+			return __( "Inquire at the Box Office", "ggl-post-types" );
+	}
+}
+
+/**
+ * Output the admission fee
+ *
+ * The function will output the result of `ggl_get_admission_fee()`
+ *
+ * @param int|WP_Post $post Optional. Post ID or `WP_Post` object.
+ *  Defaults to global `$post`
+ *
+ *
+ * @see ggl_get_admission_fee() for the retrieval of the worth to see section
+ * @since 3.9.0
+ */
+function ggl_the_admission_fee( int|WP_Post $post = 0 ): void {
+	echo ggl_get_admission_fee( $post );
+}
+
+
+/**
+ * Get a localized version of the starting time
+ *
+ * The starting time is formatted according to the
+ *
+ * @param int|WP_Post $post Optional. Post ID or `WP_Post` object.
+ *     Defaults to global `$post`
+ *
+ * @return DateTimeImmutable|null The starting time of the screening/event
+ *
+ * @throws DateMalformedStringException
+ * @see GGL_GERMAN_DATETIME_FORMAT German Format for screening start times
+ * @see GGL_FALLBACK_DATETIME_FORMAT Fallback format in case neither English nor German is acceptable as a language
+ * @see GGL_ENGLISH_DATETIME_FORMAT English Format for screening start times
+ */
+function ggl_get_starting_time( int|WP_Post $post = 0 ): null|DateTimeImmutable {
+	// Resolve the provided post or fall back to the global post
+	$post = get_post( $post, filter: 'display' );
+
+	// Return early if the post type is not supported by the function
+	if ( ! in_array( $post->post_type, [ "movie", "event" ] ) ) {
+		return null;
+	}
+
+	$starting_timestamp = get_post_meta( $post->ID, "screening_date", true );
+	$server_tz          = new DateTimeZone( "Europe/Berlin" );
+
+	return new DateTimeImmutable( date( "Y-m-d H:i:s", $starting_timestamp ), $server_tz );
+}
+
+/**
+ * Output the formatted starting time
+ *
+ * The function will output the result of `ggl_get_starting_time()`
+ *
+ * @param int|WP_Post $post Optional. Post ID or `WP_Post` object.
+ *  Defaults to global `$post`
+ *
+ *
+ * @throws DateMalformedStringException
+ * @since 3.9.0
+ * @see ggl_get_starting_time() for the retrieval of the worth to see section
+ */
+function ggl_the_starting_time( int|WP_Post $post = 0 ): void {
+	$desired_language = substr( get_user_locale(), 0, 2 );
+	$starting_time    = ggl_get_starting_time( $post );
+
+	echo match ( $desired_language ) {
+		"de" => $starting_time->format( GGL_GERMAN_DATETIME_FORMAT ),
+		"en" => $starting_time->format( GGL_ENGLISH_DATETIME_FORMAT ),
+		default => $starting_time->format( GGL_FALLBACK_DATETIME_FORMAT ),
+	};
+}
+
+/**
+ * Get the director of the movie
+ *
+ * This function automatically anonymizes the director name if required by the
+ * filters
+ *
+ * @param int|WP_Post $post Optional. Post ID or `WP_Post` object.
+ *     Defaults to global `$post`
+ *
+ * @return string (Anonymized) name of the director
+ *
+ */
+function ggl_get_movie_director( int|WP_Post $post = 0 ): string {
+	// Resolve the provided post or fall back to the global post
+	$post = get_post( $post, filter: 'display' );
+
+	// Return early if the post type is not supported by the function
+	if ( $post->post_type != "movie" ) {
+		return "";
+	}
+
+	$director_name = array_first( get_the_terms( $post, "director" ) )->name;
+	$show_details  = apply_filters( "ggl__show_full_details", false, $post );
+
+	return $show_details ? $director_name : ggl_cpt__anonymize_chars( $director_name );
+}
+
+/**
+ * Output the movie director's name
+ *
+ * @param int|WP_Post $post $post Optional. Post ID or `WP_Post` object.
+ *      Defaults to global `$post`
+ *
+ * @return void
+ */
+function ggl_the_movie_director( int|WP_Post $post = 0 ): void {
+	echo ggl_get_movie_director( $post );
+}
+
+/**
+ * Get the actors featured in the movie
+ *
+ * This function automatically anonymizes the actor names if required by the
+ * filters
+ *
+ * @param int|WP_Post $post Optional. Post ID or `WP_Post` object.
+ *     Defaults to global `$post`
+ *
+ * @return string[] (Anonymized) names of the actors
+ *
+ */
+function ggl_get_movie_actors( int|WP_Post $post = 0 ): array {
+	// Resolve the provided post or fall back to the global post
+	$post = get_post( $post, filter: 'display' );
+
+	// Return early if the post type is not supported by the function
+	if ( $post->post_type != "movie" ) {
+		return [];
+	}
+
+	$terms = get_the_terms( $post, "actor" );
+	if ( ! $terms ) {
+		return [];
+	}
+
+	$show_details = apply_filters( "ggl__show_full_details", false, $post );
+
+	return array_map( function ( $term ) use ( $show_details ) {
+		return $show_details ? $term->name : ggl_cpt__anonymize_chars( $term->name );
+	}, $terms );
+}
+
+/**
+ * Output the actors featured in the movie
+ *
+ * @param int|WP_Post $post Optional. Post ID or `WP_Post` object.
+ *      Defaults to global `$post`
+ *
+ * @return void
+ */
+function ggl_the_actors( int|WP_Post $post = 0 ): void {
+	$actors = ggl_get_movie_actors( $post );
+	if ( ! $actors || count( $actors ) < 1 ) {
+		return;
+	}
+
+	$comma_joined_actors = array_slice( $actors, 0, count( $actors ) - 1 );
+	$output              = esc_html__( "with", "ggl-post-types" ) . "&#x20;" . join( ", ", $comma_joined_actors );
+	$output              .= "&#x20;" . esc_html__( "and", "ggl-post-types" ) . "&#x20;" . array_last( $actors );
+	echo $output;
+}
+
+/**
+ * @param int|WP_Post $post Optional. Post ID or `WP_Post` object.
+ *       Defaults to global `$post`
+ * @param string $field The field that should be returned from the country definition
+ *
+ * @return array List of countries
+ *
+ * @see Country for defined fields
+ */
+function ggl_get_countries_of_origin( int|WP_Post $post = 0, string $field = "alpha2" ): array {
+	$post = get_post( $post, filter: 'display' );
+	if ( $post->post_type != "movie" ) {
+		return [];
+	}
+
+	$iso3166_numerical_codes = get_post_meta( $post->ID, "country", false );
+	$countries               = generate_countries();
+	$selected_countries      = [];
+	foreach ( $iso3166_numerical_codes as $numerical_code ) {
+		$country              = array_first( array_filter( $countries, function ( $country ) use ( $numerical_code ) {
+			return $country->numerical == $numerical_code;
+		} ) );
+		$selected_countries[] = $country->$field;
+	}
+
+	return $selected_countries;
+}
+
+/**
+ * Output the country/countries of origin separated by a slash
+ *
+ * @param int|WP_Post $post Optional. Post ID or `WP_Post` object.
+ *   Defaults to global `$post`
+ *
+ * @return void
+ */
+function ggl_the_countries_of_origin( int|WP_Post $post = 0 ): void {
+	$countries = ggl_get_countries_of_origin( $post );
+	echo join( "/", $countries );
+}
+
+/**
+ * Get the release date of the movie
+ *
+ * @param int|WP_Post $post
+ *
+ * @return DateTimeImmutable|null
+ */
+function ggl_get_release_date( int|WP_Post $post = 0 ): DateTimeImmutable|null {
+	$post = get_post( $post, filter: 'display' );
+	if ( $post->post_type != "movie" ) {
+		return null;
+	}
+
+	$release_date = get_post_meta( $post->ID, "release_date", true );
+	if ( ! $release_date ) {
+		return null;
+	}
+
+	return DateTimeImmutable::createFromTimestamp( $release_date );
+}
+
+
+/**
+ * Display the release date of the movie
+ *
+ * @param int|WP_Post $post Optional. Post ID or `WP_Post` object.
+ *    Defaults to global `$post`
+ * @param bool $year_only Optional. Show only the year and not the full date
+ *    Defaults to `true`
+ *
+ * @return void
+ */
+function ggl_the_release_date( int|WP_Post $post = 0, bool $year_only = true ): void {
+	$dt = ggl_get_release_date( $post );
+	if ( $year_only ) {
+		echo $dt->format( "Y" );
+
+		return;
+	}
+	$desired_language = substr( get_user_locale(), 0, 2 );
+	echo match ( $desired_language ) {
+		"de" => $dt->format( GGL_GERMAN_DATE_FORMAT ),
+		"en" => $dt->format( GGL_ENGLISH_DATE_FORMAT ),
+		default => $dt->format( GGL_FALLBACK_DATE_FORMAT ),
+	};
+}
+
+
+/**
+ * Get the running time of the movie/event
+ *
+ * @param int|WP_Post $post Optional. Post ID or `WP_Post` object.
+ *    Defaults to global `$post`
+ *
+ * @return int The running time/duration
+ */
+function ggl_get_running_time( int|WP_Post $post = 0 ): int {
+	$post = get_post( $post, filter: 'display' );
+	if ( ! in_array( $post->post_type, [ "movie", "event" ] ) ) {
+		return - 1;
+	}
+
+	return intval( get_post_meta( $post->ID, $post->post_type == "movie" ? "running_time" : "duration", true ) );
+}
+
+/**
+ * Output the running time/duration
+ *
+ * @param int|WP_Post $post Optional. Post ID or `WP_Post` object.
+ *    Defaults to global `$post`
+ *
+ * @return void
+ * @see ggl_get_running_time()
+ */
+function ggl_the_running_time( int|WP_Post $post = 0 ): void {
+	echo ggl_get_running_time( $post ) . " " . __( "Minutes", "ggl-post-types" );
+}
+
+/**
+ * Get the audio language for a movie
+ *
+ * @param int|WP_Post $post Optional. Post ID or `WP_Post` object.
+ * Defaults to global `$post`
+ *
+ * @return string The ISO639 Alpha 3 identifier for the language
+ */
+function ggl_get_audio_language( int|WP_Post $post = 0 ): string {
+	$post = get_post( $post, filter: 'display' );
+	if ( $post->post_type != "movie" ) {
+		return "";
+	}
+
+	return get_post_meta( $post->ID, "audio_language", true );
+}
+
+/**
+ * Get/Output the audio language name instead of the ISO639 identifier
+ *
+ * @param int|WP_Post $post Optional. Post ID or `WP_Post` object. Defaults to global `$post`
+ * @param bool $output Optional. Control if the function should directly output the content or if it should be returned
+ *
+ * @return string|null The translated language name, if `$output` is `false`
+ */
+function ggl_the_audio_language( int|WP_Post $post = 0, bool $output = true ): null|string {
+	if ( ! is_textdomain_loaded( "ggl-i18n" ) ) {
+		load_plugin_textdomain( 'ggl-i18n', false, dirname( plugin_basename( __FILE__ ) ) . '/languages' );
+	}
+	$audioLanguage = ggl_get_audio_language( $post );
+	if ( $output ) {
+		echo esc_html__( $audioLanguage, "ggl-i18n" );
+
+		return null;
+	} else {
+		return esc_html__( $audioLanguage, "ggl-i18n" );
+	}
+}
+
+/**
+ * Get the subtitle language for a movie
+ *
+ * @param int|WP_Post $post Optional. Post ID or `WP_Post` object.
+ * Defaults to global `$post`
+ *
+ * @return string The ISO639 Alpha 3 identifier for the language
+ */
+function ggl_get_subtitle_language( int|WP_Post $post = 0 ): string {
+	$post = get_post( $post, filter: 'display' );
+	if ( $post->post_type != "movie" ) {
+		return "";
+	}
+
+	return get_post_meta( $post->ID, "subtitle_language", true );
+}
+
+/**
+ * Get/Output the subtitle language name instead of the ISO639 identifier
+ *
+ * @param int|WP_Post $post Optional. Post ID or `WP_Post` object. Defaults to global `$post`
+ * @param bool $output Optional. Control if the function should directly output the content or if it should be returned
+ *
+ * @return string|null The translated language name, if `$output` is `false`
+ */
+function ggl_the_subtitle_language( int|WP_Post $post = 0, bool $output = true ): null|string {
+	if ( ! is_textdomain_loaded( "ggl-i18n" ) ) {
+		load_plugin_textdomain( 'ggl-i18n', false, dirname( plugin_basename( __FILE__ ) ) . '/languages' );
+	}
+	$subtitle_language = ggl_get_subtitle_language( $post );
+	if ( $output ) {
+		echo esc_html__( $subtitle_language, "ggl-i18n" );
+
+		return null;
+	} else {
+		return esc_html__( $subtitle_language, "ggl-i18n" );
+	}
+}
+
+/**
+ * Get the urls and media queries for the posts image generation
+ *
+ * @param int|WP_Post $post $post Optional . Post ID or `WP_Post` object.
+ *    Defaults to global `$post`
+ *
+ * @return array
+ */
+function ggl_get_movie_thumbnail_urls( int|WP_Post $post = 0 ): array {
+	// Resolve the provided post or fall back to the global post
+	$post = get_post( $post, filter: 'display' );
+
+	if ( $post->post_type != "movie" ) {
+		return [];
+	}
+
+	$anonymous_image = rwmb_meta( "movie_anonymous_movie_image", [ "object_type" => "setting" ], "ggl_cpt__settings" );
+
+	$show_details = apply_filters( "ggl__show_full_details", false, $post );
+	if ( ! $show_details ) {
+		return [
+			[
+				"url"         => $anonymous_image["sizes"]["mobile"]["url"] ?? $anonymous_image["url"],
+				"media_query" => "(width <= 768px)"
+			],
+
+			[
+				"url"         => $anonymous_image["sizes"]["desktop"]["url"] ?? $anonymous_image["url"],
+				"media_query" => "(width > 768px)"
+			]
+		];
+	}
+
+	$image_urls   = [];
+	$image_urls[] = [
+		"url"         => get_the_post_thumbnail_url( $post->ID, "mobile" ) ?? $anonymous_image["sizes"]["mobile"]["url"] ?? $anonymous_image["full_url"],
+		"media_query" => "(prefers-reduced-motion: reduce) and (width <= 768px)"
+	];
+	$image_urls[] = [
+		"url"         => get_the_post_thumbnail_url( $post->ID, "desktop" ) ?? $anonymous_image["sizes"]["desktop"]["url"] ?? $anonymous_image["full_url"],
+		"media_query" => "(prefers-reduced-motion: reduce) and (width > 768px)"
+	];
+
+	$has_animated_image = boolval( get_post_meta( $post->ID, "use_animated_feature_image", true ) );
+	if ( ! $has_animated_image ) {
+		for ( $i = 0; $i < count( $image_urls ); $i ++ ) {
+			$image_urls[ $i ]["media_query"] = trim( str_replace( "(prefers-reduced-motion: reduce) and", "", $image_urls[ $i ]["media_query"] ) );
+		}
+	} else {
+		$mobile_animated_image = rwmb_meta( "portrait_animated_feature_image" );
+		$image_urls[]          = [
+			"url"         => $mobile_animated_image["full_url"],
+			"media_query" => "(width <= 768px)"
+		];
+
+		$desktop_animated_image = rwmb_meta( "landscape_animated_feature_image" );
+		$image_urls[]           = [
+			"url"         => $desktop_animated_image["full_url"],
+			"media_query" => "(width > 768px)"
+		];
+	}
+
+	return $image_urls;
+}
+
+/**
+ * Output the movie thumbnail
+ *
+ * @param int|WP_Post $post Optional . Post ID or `WP_Post` object.
+ *   Defaults to global `$post`
+ * @param string $classes Optional. The classes for the `<picture>` element.
+ *   Defaults to `image movie-image`
+ *
+ * @return void
+ */
+function ggl_the_movie_thumbnail( int|WP_Post $post = 0, string $classes = "image movie-image" ): void {
+	$post = get_post( $post, filter: 'display' );
+
+	if ( $post->post_type != "movie" ) {
+		return;
+	}
+
+	$images = ggl_get_movie_thumbnail_urls( $post );
+	if ( empty( $images ) ) {
+		return;
+	}
+	$anonymous_image = rwmb_meta( "movie_anonymous_movie_image", [ "object_type" => "setting" ], "ggl_cpt__settings" );
+	?>
+    <picture class="<?= $classes ?>">
+		<?php foreach ( $images as $image ) : ?>
+            <source media="<?= $image['media_query'] ?>" srcset="<?= $image['url'] ?>"/>
+		<?php endforeach; ?>
+        <img alt="" width="800" height="1000"
+             src="<?= get_the_post_thumbnail_url( $post->ID, 'original' ) ?: $anonymous_image["full_url"] ?>"/>
+    </picture>
+	<?php
+}
+
+/**
+ * Get the urls and media queries for the event image generation
+ *
+ * @param int|WP_Post $post $post Optional . Post ID or `WP_Post` object.
+ *    Defaults to global `$post`
+ *
+ * @return array
+ */
+function ggl_get_event_thumbnail_urls( int|WP_Post $post = 0 ): array {
+	// Resolve the provided post or fall back to the global post
+	$post = get_post( $post, filter: 'display' );
+
+	if ( $post->post_type != "event" ) {
+		return [];
+	}
+
+	$anonymous_image = rwmb_meta( "event_anonymous_movie_image", [ "object_type" => "setting" ], "ggl_cpt__settings" );
+
+	$show_details = apply_filters( "ggl__show_full_details", false, $post );
+	if ( ! $show_details ) {
+		return [
+			[
+				"url"         => $anonymous_image["sizes"]["mobile"]["url"] ?? $anonymous_image["url"],
+				"media_query" => "(width <= 768px)"
+			],
+
+			[
+				"url"         => $anonymous_image["sizes"]["desktop"]["url"] ?? $anonymous_image["url"],
+				"media_query" => "(width > 768px)"
+			]
+		];
+	}
+
+	$image_urls   = [];
+	$image_urls[] = [
+		"url"         => get_the_post_thumbnail_url( $post->ID, "mobile" ) ?? $anonymous_image["sizes"]["mobile"]["url"] ?? $anonymous_image["full_url"],
+		"media_query" => "(prefers-reduced-motion: reduce) and (width <= 768px)"
+	];
+	$image_urls[] = [
+		"url"         => get_the_post_thumbnail_url( $post->ID, "desktop" ) ?? $anonymous_image["sizes"]["desktop"]["url"] ?? $anonymous_image["full_url"],
+		"media_query" => "(prefers-reduced-motion: reduce) and (width > 768px)"
+	];
+
+	$has_animated_image = boolval( get_post_meta( $post->ID, "use_animated_feature_image", true ) );
+	if ( ! $has_animated_image ) {
+		for ( $i = 0; $i < count( $image_urls ); $i ++ ) {
+			$image_urls[ $i ]["media_query"] = trim( str_replace( "(prefers-reduced-motion: reduce) and", "", $image_urls[ $i ]["media_query"] ) );
+		}
+	} else {
+		$mobile_animated_image = rwmb_meta( "portrait_animated_feature_image" );
+		$image_urls[]          = [
+			"url"         => $mobile_animated_image["full_url"],
+			"media_query" => "(width <= 768px)"
+		];
+
+		$desktop_animated_image = rwmb_meta( "landscape_animated_feature_image" );
+		$image_urls[]           = [
+			"url"         => $desktop_animated_image["full_url"],
+			"media_query" => "(width > 768px)"
+		];
+	}
+
+	return $image_urls;
+}
+
+/**
+ * Output the movie thumbnail
+ *
+ * @param int|WP_Post $post Optional . Post ID or `WP_Post` object.
+ *   Defaults to global `$post`
+ * @param string $classes Optional. The classes for the `<picture>` element.
+ *   Defaults to `image movie-image`
+ *
+ * @return void
+ */
+function ggl_the_event_thumbnail( int|WP_Post $post = 0, string $classes = "image movie-image" ): void {
+	$post = get_post( $post, filter: 'display' );
+
+	if ( $post->post_type != "event" ) {
+		return;
+	}
+
+	$images = ggl_get_event_thumbnail_urls( $post );
+	if ( empty( $images ) ) {
+		return;
+	}
+	$anonymous_image = rwmb_meta( "event_anonymous_movie_image", [ "object_type" => "setting" ], "ggl_cpt__settings" );
+	echo "<picture class=" . $classes . ">";
+	foreach ( $images as $image ) :
+		echo '<source media="' . $image['media_query'] . '" srcset="' . $image['url'] . '"/>';
+	endforeach;
+	echo '<img alt = "" width = "800" height = "1000" src="' . get_the_post_thumbnail_url( $post->ID, 'original' ) ?: $anonymous_image["full_url"] . '"/>';
+	echo '</picture>';
+}
+
+/**
+ * Check if a movie has a short movie that is shown before the start of the feature
+ *
+ * The function validates that the current visitor is allowed to see the detailed content via the
+ * `ggl__show_full_details` filter, if the short movie is enabled on the movie and if a short title
+ * is set.
+ *
+ * @param int|WP_Post $post Optional . Post ID or `WP_Post` object.
+ *    Defaults to global `$post`
+ *
+ * @return bool
+ */
+function ggl_movie_has_short( int|WP_Post $post = 0 ): bool {
+	$post = get_post( $post, filter: 'display' );
+	if ( $post->post_type != "movie" ) {
+		return false;
+	}
+
+	$show_details        = apply_filters( "ggl__show_full_details", false, $post );
+	$short_movie_enabled = filter_var( get_post_meta( $post->ID, "short_movie_screened", true ), FILTER_VALIDATE_BOOLEAN );
+
+	return $show_details && $short_movie_enabled && ! empty( ggl_get_short_movie_title( $post ) );
+}
+
+/**
+ * Get the title of the short movie that is shown
+ *
+ * @param int|WP_Post $post Optional . Post ID or `WP_Post` object.
+ *     Defaults to global `$post`
+ *
+ * @return string
+ */
+function ggl_get_short_movie_title( int|WP_Post $post = 0 ): string {
+	$post = get_post( $post, filter: 'display' );
+	if ( $post->post_type != "movie" ) {
+		return "";
+	}
+
+	return mb_trim( get_post_meta( $post->ID, "short_movie_title", true ) );
+}
+
+/**
+ * Output the short movie title
+ *
+ * @param int|WP_Post $post Optional . Post ID or `WP_Post` object.
+ *     Defaults to global `$post`
+ *
+ * @return void
+ */
+function ggl_the_short_movie_title( int|WP_Post $post = 0 ): void {
+	echo ggl_get_short_movie_title( $post );
+}
+
+/**
+ * Get the name of the director for the short movie
+ *
+ * @param int|WP_Post $post Optional . Post ID or `WP_Post` object.
+ *     Defaults to global `$post`
+ *
+ * @return string The director of the short movie
+ */
+function ggl_get_short_movie_director( int|WP_Post $post = 0 ): string {
+	$post = get_post( $post, filter: 'display' );
+	if ( $post->post_type != "movie" ) {
+		return "";
+	}
+
+	return mb_trim( get_post_meta( $post->ID, "short_movie_directed_by", true ) );
+}
+
+/**
+ * Output the director of the short movie
+ *
+ * @param int|WP_Post $post Optional . Post ID or `WP_Post` object.
+ *      Defaults to global `$post`
+ *
+ * @return void
+ */
+function ggl_the_short_movie_director( int|WP_Post $post = 0 ): void {
+	echo ggl_get_short_movie_director( $post );
+}
+
+/**
+ * Get the origin countries of the short movie
+ *
+ * @param int|WP_Post $post Optional . Post ID or `WP_Post` object.
+ *      Defaults to global `$post`
+ *
+ * @param string $field The field that should be returned from the country definition
+ *
+ * @return array List of Countries
+ */
+function ggl_get_short_movie_country_of_origin( int|WP_Post $post = 0, string $field = "alpha2" ): array {
+	$post = get_post( $post, filter: 'display' );
+	if ( $post->post_type != "movie" ) {
+		return [];
+	}
+
+	$iso3166_numerical_codes = get_post_meta( $post->ID, "short_movie_country", false );
+	$countries               = generate_countries();
+	$selected_countries      = [];
+	foreach ( $iso3166_numerical_codes as $numerical_code ) {
+		$country              = array_first( array_filter( $countries, function ( $country ) use ( $numerical_code ) {
+			return $country->numerical == $numerical_code;
+		} ) );
+		$selected_countries[] = $country->$field;
+	}
+
+	return $selected_countries;
+}
+
+/**
+ * Output a slash separated list of the origin countries
+ *
+ * @param int|WP_Post $post Optional . Post ID or `WP_Post` object.
+ *      Defaults to global `$post`
+ *
+ * @return void
+ */
+function ggl_the_short_movie_countries( int|WP_Post $post = 0 ): void {
+	$countries = ggl_get_short_movie_country_of_origin( $post );
+	echo join( "/", $countries );
+}
+
+/**
+ * Get the short movie release year
+ *
+ * @param int|WP_Post $post Optional . Post ID or `WP_Post` object.
+ *      Defaults to global `$post`
+ *
+ * @return int Release Year of the Short Movie
+ */
+function ggl_get_short_movie_release_year( int|WP_Post $post = 0 ): int {
+	$post = get_post( $post, filter: 'display' );
+	if ( $post->post_type != "movie" ) {
+		return - 1;
+	}
+
+	return intval( get_post_meta( $post->ID, "short_movie_release_year", true ) );
+}
+
+/**
+ * Output the release year of the short movie
+ *
+ * @param int|WP_Post $post Optional . Post ID or `WP_Post` object.
+ *      Defaults to global `$post`
+ *
+ * @return void
+ */
+function ggl_the_short_movie_release_year( int|WP_Post $post = 0 ): void {
+	echo ggl_get_short_movie_release_year( $post );
+}
+
+/**
+ * Get the short movies running time
+ *
+ * @param int|WP_Post $post Optional . Post ID or `WP_Post` object.
+ *      Defaults to global `$post`
+ *
+ * @return int The running time in minutes
+ */
+function ggl_get_short_movie_running_time( int|WP_Post $post = 0 ): int {
+	$post = get_post( $post, filter: 'display' );
+	if ( $post->post_type != "movie" ) {
+		return - 1;
+	}
+
+	return intval( get_post_meta( $post->ID, "short_movie_running_time", true ) );
+}
+
+/**
+ * Output the short movies running time
+ *
+ * @param int|WP_Post $post Optional . Post ID or `WP_Post` object.
+ *      Defaults to global `$post`
+ *
+ * @return void
+ */
+function ggl_the_short_movie_running_time( int|WP_Post $post = 0 ): void {
+	echo ggl_get_short_movie_running_time( $post ) . " " . esc_html__( "Minutes", "ggl-post-types" );
 }
