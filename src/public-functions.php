@@ -40,12 +40,13 @@ function ggl_get_title( int|WP_Post $post = 0 ): string {
 		return $post->post_title;
 	}
 
+	// Allow events to always display the title
+	if ( $post->post_type === "event" ) {
+		return ggl_get_localized_title( $post );
+	}
+
 	// Check if the function shall return the real titles for the movie/event
 	$show_details = apply_filters( "ggl__show_full_details", false, $post );
-
-	if ( $post->post_type === "event" ) {
-		return $show_details ? ggl_get_localized_title( $post ) : __( "An unnamed event", "ggl-post-types" );
-	}
 
 	if ( $show_details ) {
 		return get_post_meta( $post->ID, "original_title", true );
@@ -53,7 +54,7 @@ function ggl_get_title( int|WP_Post $post = 0 ): string {
 
 	$is_in_special_program = get_post_meta( $post->ID, "program_type", true ) === "special_program";
 	if ( ! $is_in_special_program ) {
-		return get_post_meta( $post->ID, "original_title", true );
+		return __("An unnamed movie", "ggl-post-types");
 	}
 
 	$assigned_special_program = array_first( wp_get_post_terms( $post->ID, "special-program" ) );
@@ -135,7 +136,7 @@ function ggl_get_localized_title( int|WP_Post $post = 0 ): string {
 
 	$is_in_special_program = get_post_meta( $post->ID, "program_type", true ) === "special_program";
 	if ( ! $is_in_special_program ) {
-		return get_post_meta( $post->ID, "original_title", true );
+		return __("An unnamed movie", "ggl-post-types");
 	}
 
 	$assigned_special_program = array_first( wp_get_post_terms( $post->ID, "special-program" ) );
