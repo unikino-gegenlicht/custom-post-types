@@ -295,11 +295,11 @@ function ggl_get_teamie_image_url( int|WP_Post $post = 0 ): string {
  *
  * @return void
  */
-function ggl_the_teamie_image( int|WP_Post $post = 0, string $classes = "image is-3by4 member-picture", string $min_height  = "" ): void {
+function ggl_the_teamie_image( int|WP_Post $post = 0, string $classes = "image is-3by4 member-picture", string $min_height = "" ): void {
 	$url         = ggl_get_teamie_image_url( $post );
 	$teamie_name = ggl_get_teamie_name( $post );
 	$title       = sprintf( __( "This beautiful person is %s", "ggl-post-types" ), $teamie_name );
-	echo "<picture class='$classes' title='$title'". (!empty(trim($min_height)) ? ' style="min-height: '. trim($min_height) . ' !important;">' : ">");
+	echo "<picture class='$classes' title='$title'" . ( ! empty( trim( $min_height ) ) ? ' style="min-height: ' . trim( $min_height ) . ' !important;">' : ">" );
 	echo "<img src='$url' alt=''/>";
 	echo "</picture>";
 }
