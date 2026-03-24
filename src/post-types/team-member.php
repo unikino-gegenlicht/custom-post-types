@@ -261,7 +261,7 @@ function ggl_is_teamie_active( int|WP_Post $post = 0 ): bool {
 		return false;
 	}
 
-	return get_post_meta( $post->ID, "status", true ) === "active";
+	return str_ends_with( get_post_meta( $post->ID, "status", true ), "active" );
 }
 
 
