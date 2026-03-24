@@ -297,3 +297,21 @@ function ggl_menu_order( array $order ) {
 function ggl_cpt__anonymize_chars( string $chars ): string {
 	return preg_replace( '/\S/u', '█', $chars );
 }
+
+function ggl_cpt__check_hidden_teamie_redirect(): void {
+	if ( ! is_singular( "team-member" ) ) {
+		return;
+	}
+
+	$allow_hidden_teamie_display = boolval( rwmb_meta( "teamie_allow_hidden_display", [ "object_type" => "setting" ], "ggl_cpt__settings" ) );
+	if ( $allow_hidden_teamie_display ) {
+		return;
+	}
+
+	$status = get_post_meta( get_the_ID(), "status", true );
+	if ( ! str_starts_with( $status, "hidden" ) ) {
+		return;
+	}
+
+	wp_safe_redirect( get_post_type_archive_link( "team-member" ) );
+}
