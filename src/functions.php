@@ -36,13 +36,154 @@ function add_admin_menu_separator( int $atPosition ) {
 
 }
 
-function refresh_permalinks() {
-	flush_rewrite_rules( false );
+function ggl_cpt__register_settings( $settings_pages ): array {
+	$settings_pages[] = [
+		"id"          => "ggl_cpt__settings",
+		"option_name" => "ggl_cpt__settings",
+		"menu_title"  => esc_html__( 'Anonymization', 'ggl-post-types' ),
+		"page_title"  => esc_html__( 'Anonymization Settings', 'ggl-post-types' ),
+		"capability"  => "manage_options",
+		"icon_url"    => "dashicons-privacy",
+		'customizer'  => true,
+		"position"    => 11,
+		"style"       => "no-boxes",
+		"tabs"        => [
+			"movies"       => [
+				"label" => esc_html__( 'Movies', 'ggl-post-types' ),
+				"icon"  => "dashicons-editor-video",
+			],
+			"events"       => [
+				"label" => esc_html__( 'Events', 'ggl-post-types' ),
+				"icon"  => "dashicons-schedule",
+			],
+			"team-members" => [
+				"label" => esc_html__( 'Team Members', 'ggl-post-types' ),
+				"icon"  => "dashicons-businessperson",
+			]
+		]
+	];
+
+	return $settings_pages;
 }
 
-function unregister_taxonomies() {
-	unregister_taxonomy( 'semester' );
-	unregister_taxonomy( 'special-program' );
+function ggl_cpt__settings_meta_boxes( $meta_boxes ): array {
+	$meta_boxes[] = [
+		"id"             => "movie_anonymization_settings",
+		"title"          => esc_html__( 'Movies', 'ggl-post-types' ),
+		"context"        => "normal",
+		"settings_pages" => "ggl_cpt__settings",
+		"tab"            => "movies",
+		"fields"         => [
+			[
+				"name" => esc_html__( 'Anonymization Image', 'ggl-post-types' ),
+				"type" => "single_image",
+				"desc" => esc_html__( "This image is used if the movie has no advertisement license and the user is not permitted to see the full details or no image is selected for a movie", "ggl-post-types" ),
+				"id"   => "movie_anonymous_movie_image",
+			],
+			[
+				"name" => esc_html__( "Replacement Character", "ggl-post-types" ),
+				"type" => "text",
+				"desc" => esc_html__( "This character is used to replace the letters in director and actor names if the movie is to be anonymized", "ggl-post-types" ),
+				"id"   => "replacement_character",
+				"std"  => "█"
+			]
+		]
+	];
+
+	$meta_boxes[] = [
+		"id"             => "event_anonymization_settings",
+		"title"          => esc_html__( 'Events', 'ggl-post-types' ),
+		"context"        => "normal",
+		"settings_pages" => "ggl_cpt__settings",
+		"tab"            => "events",
+		"fields"         => [
+			[
+				"name" => esc_html__( 'Anonymization Image', 'ggl-post-types' ),
+				"type" => "single_image",
+				"desc" => esc_html__( "This image is used if the event has no advertisement license and the user is not permitted to see the full details or no image is selected for a event", "ggl-post-types" ),
+				"id"   => "event_anonymous_movie_image",
+			]
+		]
+	];
+
+	$meta_boxes[] = [
+		"id"             => "team_member_anonymization_settings",
+		"title"          => esc_html__( 'Team Member', 'ggl-post-types' ),
+		"context"        => "normal",
+		"settings_pages" => "ggl_cpt__settings",
+		"tab"            => "team-members",
+		"tabs"           => [
+			"german"         => [ "label" => __( "German" ) ],
+			"german_former"  => [ "label" => __( "German" ) . " (" . __( "Former", "ggl-post-types" ) . ")" ],
+			"english"        => [ "label" => __( "English" ) ],
+			"english_former" => [ "label" => __( "English" ) . " (" . __( "Former", "ggl-post-types" ) . ")" ],
+		],
+		"fields"         => [
+			[
+				"name" => esc_html__( "Allow Access to hidden Teamies", "ggl-post-types" ),
+				"type" => "checkbox",
+				"id"   => "teamie_allow_hidden_display",
+				"desc" => esc_html__( "If this checkbox is ticked, the plugin will not redirect users away from hidden teamie entries", "ggl-post-types" ),
+				"std"  => false,
+			],
+			[
+				"name" => esc_html__( 'Fallback Teamie Image', 'ggl-post-types' ),
+				"type" => "single_image",
+				"id"   => "teamie_anonymous_image",
+				"desc" => esc_html__( "This image is displayed instead of a team members image if the team member post has no associated image", "ggl-post-types" ),
+			],
+			[
+				"type" => "custom_html",
+				"std"  => "<h3 style='margin: -20px 0'>" . __( "Generic Team Member Description", "ggl-post-types" ) . "</h3>",
+			],
+			[
+				"type" => "custom_html",
+				"std"  => '<div class="rwmb-field" style="padding: 0"><div class="rwmb-label">
+                                <label>' . esc_html__( "Available Placeholders", "ggl-post-types" ) . '</label>
+                               <p class="description">' . esc_html__( "The placeholders defined here can be used to dynamically change the content of the teamie descriptions", "ggl-post-types" ) . '</p>
+                           </div>
+                           <div class="rwmb-input">
+                                <dl>
+                                    <dt><code>{joined-in}</code></dt>
+                                    <dd>' . esc_html__( "The year the teamie joined the GEGENLICHT", "ggl-post-types" ) . '</dd>
+                                    <dt><code>{left-in}</code></dt>
+                                    <dd>' . esc_html__( "The year the teamie left the GEGENLICHT (only used for former members)", "ggl-post-types" ) . '</dd>
+                                    <dt><code>{name}</code></dt>
+                                    <dd>' . esc_html__( "The teamie's name", "ggl-post-types" ) . '</dd>
+                                    <dt><code>{movie-count}</code></dt>
+                                    <dd>' . esc_html__( "The number of movies the teamie screened", "ggl-post-types" ) . '</dd>
+                                </dl>
+                           </div></div>'
+
+			],
+			[
+				"type"    => "wysiwyg",
+				'options' => GGL_CPT__WYSIWYG_OPTIONS,
+				'tab'     => "german",
+				'id'      => "teamie_generic_description_de",
+			],
+			[
+				"type"    => "wysiwyg",
+				'options' => GGL_CPT__WYSIWYG_OPTIONS,
+				'tab'     => "german_former",
+				'id'      => "former_teamie_generic_description_de",
+			],
+			[
+				"type"    => "wysiwyg",
+				'options' => GGL_CPT__WYSIWYG_OPTIONS,
+				'tab'     => "english",
+				'id'      => "teamie_generic_description_en",
+			],
+			[
+				"type"    => "wysiwyg",
+				'options' => GGL_CPT__WYSIWYG_OPTIONS,
+				'tab'     => "english_former",
+				'id'      => "former_teamie_generic_description_en",
+			]
+		]
+	];
+
+	return $meta_boxes;
 }
 
 function ggl_post_types_load_textdomain() {
