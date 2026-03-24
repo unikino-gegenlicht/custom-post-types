@@ -186,6 +186,7 @@ function ggl_cpt__settings_meta_boxes( $meta_boxes ): array {
 	return $meta_boxes;
 }
 
+
 function ggl_post_types_load_textdomain() {
 	load_plugin_textdomain( 'ggl-post-types', false, dirname( plugin_basename( __FILE__ ) ) . '/languages' );
 	load_plugin_textdomain( 'ggl-i18n', false, dirname( plugin_basename( __FILE__ ) ) . '/languages' );
@@ -217,28 +218,29 @@ function generate_language_mapping(): array {
 
 function generate_countries(): array {
 	$output_prepared = false;
-	$output = wp_cache_get("ggl_countries", "ggl", found: $output_prepared);
+	$output          = wp_cache_get( "ggl_countries", "ggl", found: $output_prepared );
 	if ( $output_prepared ) {
 		return $output;
 	}
 
-	$country_source_file_path = dirname(__FILE__) . "/../assets/iso3166.csv";
-	$rows = array_map(function ($in) {
-		return str_getcsv($in, ",", escape: "");
-	}, file($country_source_file_path));
-	$header = array_shift($rows);
-	$definitions = array();
-	foreach ($rows as $row) {
+	$country_source_file_path = dirname( __FILE__ ) . "/../assets/iso3166.csv";
+	$rows                     = array_map( function ( $in ) {
+		return str_getcsv( $in, ",", escape: "" );
+	}, file( $country_source_file_path ) );
+	$header                   = array_shift( $rows );
+	$definitions              = array();
+	foreach ( $rows as $row ) {
 		$definitions[] = array_combine( $header, $row );
 	}
 
 	$countries = [];
 
-	foreach ($definitions as $definition) {
-		$countries[] = new Country($definition["num_id"], $definition["letter_code"], $definition["german_comment"], $definition["english_comment"], $definition["german_name"], $definition["official_german_name"], $definition["english_name"], $definition["official_english_name"]);
+	foreach ( $definitions as $definition ) {
+		$countries[] = new Country( $definition["num_id"], $definition["letter_code"], $definition["german_comment"], $definition["english_comment"], $definition["german_name"], $definition["official_german_name"], $definition["english_name"], $definition["official_english_name"] );
 	}
 
-	wp_cache_add("ggl_countries", $countries, "ggl");
+	wp_cache_add( "ggl_countries", $countries, "ggl" );
+
 	return $countries;
 }
 
@@ -246,33 +248,34 @@ function generate_country_mapping(): array {
 
 	$countries = generate_countries();
 
-	$locale = get_user_locale();
+	$locale          = get_user_locale();
 	$output_prepared = false;
-	$output = wp_cache_get("ggl__cc_mapping_" . $locale, "ggl", found: $output_prepared);
+	$output          = wp_cache_get( "ggl__cc_mapping_" . $locale, "ggl", found: $output_prepared );
 	if ( $output_prepared ) {
 		return $output;
 	}
 
 	$output = array();
 
-	foreach ($countries as $country) {
-		$output[$country->numerical] = str_replace(" // ⚠️ )",")", ((str_starts_with($locale, "de") ? $country->german_name : $country->english_name ). "\n(". (str_starts_with($locale, "de") ? $country->official_german_name . " // ⚠️ " . $country->german_comment : $country->official_english_name . " // ⚠️ " . $country->english_comment ). ")"));
+	foreach ( $countries as $country ) {
+		$output[ $country->numerical ] = str_replace( " // ⚠️ )", ")", ( ( str_starts_with( $locale, "de" ) ? $country->german_name : $country->english_name ) . "\n(" . ( str_starts_with( $locale, "de" ) ? $country->official_german_name . " // ⚠️ " . $country->german_comment : $country->official_english_name . " // ⚠️ " . $country->english_comment ) . ")" ) );
 	}
 
 	$sorted = $output;
 
-	$collator = new Collator($locale);
-	usort($sorted, fn($a,$b) => $collator->compare($a,$b));
+	$collator = new Collator( $locale );
+	usort( $sorted, fn( $a, $b ) => $collator->compare( $a, $b ) );
 
 	$mapping = [];
 
-	foreach ($sorted as $value) {
-		$num_id = array_search($value, $output);
+	foreach ( $sorted as $value ) {
+		$num_id = array_search( $value, $output );
 
-		$mapping[$num_id] = $value;
+		$mapping[ $num_id ] = $value;
 	}
 
-	wp_cache_set("ggl__cc_mapping_" . $locale, $mapping,"ggl", 0);
+	wp_cache_set( "ggl__cc_mapping_" . $locale, $mapping, "ggl", 0 );
+
 	return $mapping;
 }
 
