@@ -1191,8 +1191,25 @@ function ggl_get_movie_thumbnail_urls( int|WP_Post $post = 0 ): array {
 
 	$anonymous_image = rwmb_meta( "movie_anonymous_movie_image", [ "object_type" => "setting" ], "ggl_cpt__settings" );
 
-	$show_details = apply_filters( "ggl__show_full_details", false, $post );
+	$show_details             = apply_filters( "ggl__show_full_details", false, $post );
+	$is_in_special_program    = get_post_meta( $post->ID, "program_type", true ) === "special_program";
+	$assigned_special_program = array_first( wp_get_post_terms( $post->ID, "special-program" ) );
+
 	if ( ! $show_details ) {
+		if ( $is_in_special_program && $assigned_special_program != null ) {
+			return [
+				[
+					"url"         => ggl_get_special_program_anonymous_image_url($assigned_special_program, "mobile") ?? $anonymous_image["sizes"]["mobile"]["url"] ?? $anonymous_image["url"],
+					"media_query" => "(width <= 768px)"
+				],
+
+				[
+					"url"         => ggl_get_special_program_anonymous_image_url($assigned_special_program) ?? $anonymous_image["sizes"]["desktop"]["url"] ?? $anonymous_image["url"],
+					"media_query" => "(width > 768px)"
+				]
+			];
+		}
+
 		return [
 			[
 				"url"         => $anonymous_image["sizes"]["mobile"]["url"] ?? $anonymous_image["url"],
@@ -1205,6 +1222,7 @@ function ggl_get_movie_thumbnail_urls( int|WP_Post $post = 0 ): array {
 			]
 		];
 	}
+
 
 	$image_urls   = [];
 	$image_urls[] = [
@@ -1266,7 +1284,7 @@ function ggl_the_movie_thumbnail( int|WP_Post $post = 0, string $classes = "imag
             <source media="<?= $image['media_query'] ?>" srcset="<?= $image['url'] ?>"/>
 		<?php endforeach; ?>
         <img alt="" width="800" height="1000"
-             src="<?= get_the_post_thumbnail_url( $post->ID, 'original' ) ?: $anonymous_image["full_url"] ?>"/>
+             src="<?= $anonymous_image["full_url"] ?>"/>
     </picture>
 	<?php
 }
@@ -1452,4 +1470,39 @@ function ggl_get_short_movie_running_time( int|WP_Post $post = 0 ): int {
  */
 function ggl_the_short_movie_running_time( int|WP_Post $post = 0 ): void {
 	echo ggl_get_short_movie_running_time( $post ) . " " . esc_html__( "Minutes", "ggl-post-types" );
+}
+
+/**
+ * @param int|WP_Post $post
+ *
+ * @return WP_Term|null
+ */
+function ggl_get_movie_semester( int|WP_Post $post = 0 ): WP_Term|null {
+	$post = get_post( $post, filter: 'display' );
+	if ( $post->post_type != "movie" ) {
+		return null;
+	}
+
+	return array_first( wp_get_post_terms( $post->ID, 'semester' ) );
+}
+
+function ggl_the_movie_semester( int|WP_Post $post = 0 ): void {
+	$post = get_post( $post, filter: 'display' );
+	if ( $post->post_type != "movie" ) {
+		return;
+	}
+
+	$semester = ggl_get_movie_semester( $post );
+    echo __("screened in ", "ggl-post-types") . $semester->name;
+}
+
+function ggl_movie_is_special_feature( int|WP_Post $post = 0 ): bool {
+    $post = get_post( $post, filter: 'display' );
+    if ( $post->post_type != "movie" ) {
+        return false;
+    }
+
+	return get_post_meta( $post->ID, "program_type", true ) == "special_program";
+
+
 }
