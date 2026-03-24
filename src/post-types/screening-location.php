@@ -35,6 +35,9 @@ function ggl_post_type_screening_location(): void {
 	] );
 }
 
+const APPLE_MAPS_BASE_URL  = "https://maps.apple.com/";
+const GOOGLE_MAPS_BASE_URL = "https://google.com/maps/search/?";
+
 function location_register_meta_boxes( $meta_boxes ) {
 	$prefix = 'location_';
 
@@ -145,3 +148,40 @@ function location_register_meta_boxes( $meta_boxes ) {
 }
 
 
+function ggl_get_location_map_url( int|WP_Post $post = 0, $platform = "google-maps" ): string {
+	$post = get_post( $post, filter: 'display' );
+	if ( $post->post_type != "screening-location" ) {
+		return "";
+	}
+
+	$name        = $post->post_title;
+	$latitude    = get_post_meta( $post->ID, "lat", true );
+	$longitude   = get_post_meta( $post->ID, "long", true );
+	$street      = get_post_meta( $post->ID, "street", true );
+	$postal_code = get_post_meta( $post->ID, "postal_code", true );
+	$city        = get_post_meta( $post->ID, "city", true );
+
+	switch ( $platform ) {
+		case "apple-maps":
+			$place_id = get_post_meta( $post->ID, "apple_place_id", true );
+			$params   = [
+				"coordinate" => $place_id != null ? join( ",", [ $latitude, $longitude ] ) : null,
+				"center"     => $place_id == null ? join( ",", [ $latitude, $longitude ] ) : null,
+				"place-id"   => $place_id,
+				"query"      => $place_id == null ? ( mb_trim( "$street, $postal_code $city" ) != "" ? mb_trim( "$street, $postal_code $city" ) : null ) : null,
+			];
+
+			return APPLE_MAPS_BASE_URL . ( $place_id !== null ? "place" : "search" ) . "?" . http_build_query( $params );
+		case "google-maps":
+			$place_id     = get_post_meta( $post->ID, "google_place_id", true );
+			$query_params = [
+				"api"            => 1,
+				"query"          => $name . "," . ( ( $latitude != null && $longitude != null ) ? "$latitude, $longitude" : "" ),
+				"query_place_id" => $place_id,
+			];
+
+			return GOOGLE_MAPS_BASE_URL . http_build_query( $query_params );
+		default:
+			return "";
+	}
+}
