@@ -164,3 +164,98 @@ function ggl_get_localized_title( int|WP_Post $post = 0 ): string {
 function ggl_the_localized_title( int|WP_Post $post = 0 ): void {
 	echo ggl_get_localized_title( $post );
 }
+
+/**
+ * Get the summary for movies and events
+ *
+ * This function will automatically return the summary for a movie or an event.
+ * If the function determines, that the summary needs to the anonymized it will
+ * automatically return the anonymized summary.
+ *
+ * If the supplied post is neither an event nor a movie the function will return
+ * an empty string.
+ *
+ *
+ * @param int|WP_Post $post Optional. Post ID or `WP_Post` object.
+ *   Defaults to global `$post`
+ *
+ * @return string The summary for the entry.
+ */
+function ggl_get_summary( int|WP_Post $post = 0 ): string {
+	// Resolve the provided post or fall back to the global post
+	$post = get_post( $post, filter: 'display' );
+
+	// Return early if the post type is not supported by the function
+	if ( ! in_array( $post->post_type, [ "movie", "event" ] ) ) {
+		return "";
+	}
+
+	$show_details = apply_filters( "ggl__show_full_details", false, $post );
+	$meta_key     = $show_details || $post->post_type === "event" ? "summary" : "anon_summary";
+
+	return get_post_meta( $post->ID, $meta_key, true );
+}
+
+/**
+ * Output the summary of the custom post type
+ *
+ * The function will output the result of `ggl_get_summary()`
+ *
+ * @param int|WP_Post $post Optional. Post ID or `WP_Post` object.
+ *  Defaults to global `$post`
+ *
+ *
+ * @see ggl_get_summary() for the retrieval of the summary
+ * @since 3.9.0
+ */
+function ggl_the_summary( int|WP_Post $post = 0 ): void {
+	echo apply_filters( "the_content", ggl_get_summary( $post ) );
+}
+
+/**
+ * Get the wroth to see/attend content for movies and events
+ *
+ * This function will automatically return the worth to see/attend text for a
+ * movie or an event.
+ * If the function determines, that the summary needs to the anonymized it will
+ * automatically return the anonymized summary.
+ *
+ * If the supplied post is neither an event nor a movie the function will return
+ * an empty string.
+ *
+ *
+ * @param int|WP_Post $post Optional. Post ID or `WP_Post` object.
+ *   Defaults to global `$post`
+ *
+ * @return string The summary for the entry.
+ */
+function ggl_get_worth_to_see( int|WP_Post $post = 0 ): string {
+	// Resolve the provided post or fall back to the global post
+	$post = get_post( $post, filter: 'display' );
+
+	// Return early if the post type is not supported by the function
+	if ( ! in_array( $post->post_type, [ "movie", "event" ] ) ) {
+		return "";
+	}
+
+	$show_details = apply_filters( "ggl__show_full_details", false, $post );
+	$meta_key     = $show_details || $post->post_type === "event" ? "worth_to_see" : "anon_worth_to_see";
+
+	return get_post_meta( $post->ID, $meta_key, true );
+}
+
+/**
+ * Output the worth to see section of the custom post type
+ *
+ * The function will output the result of `ggl_get_worth_to_see()`
+ *
+ * @param int|WP_Post $post Optional. Post ID or `WP_Post` object.
+ *  Defaults to global `$post`
+ *
+ *
+ * @see ggl_get_worth_to_see() for the retrieval of the worth to see section
+ * @since 3.9.0
+ */
+function ggl_the_worth_to_see_section( int|WP_Post $post = 0 ): void {
+	echo apply_filters( "the_content", ggl_get_worth_to_see( $post ) );
+}
