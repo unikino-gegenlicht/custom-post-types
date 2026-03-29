@@ -109,3 +109,15 @@ function ggl_taxonomy_program_type_meta_boxes( $meta_boxes ): mixed {
 
 	return $meta_boxes;
 }
+
+function ggl_get_special_program_anonymous_image_url( WP_Term|int $term, $size = "desktop" ): string {
+	$term = get_term( $term );
+
+	if ( $term->taxonomy !== 'special-program' ) {
+		return '';
+	}
+	$anonymous_image_id = get_term_meta( $term->term_id, 'anonymous_image', true );
+	var_dump( $anonymous_image_id );
+
+	return wp_get_attachment_image_url( $anonymous_image_id, $size );
+}
