@@ -475,4 +475,28 @@ function ggl_get_teamie_movies( int|WP_Post $post = 0 ): array {
 	return $query->posts;
 }
 
+function ggl_get_teamie_manual_movie_entries( int|WP_Post $post = 0 ): array {
+	// Resolve the provided post or fall back to the global post
+	$post = get_post( $post, filter: 'display' );
+
+	// Return early if the post type is not supported by the function
+	if ( $post->post_type !== "team-member" ) {
+		return [];
+	}
+
+    $entries = get_post_meta( $post->ID, "team-member_shown_movies", true );
+    return $entries === "" ? [] : $entries;
+}
+
+function ggl_get_teamie_movie_count( int|WP_Post $post = 0 ): int {
+	$post = get_post( $post, filter: 'display' );
+	if ( $post->post_type !== "team-member" ) {
+		return 0;
+	}
+	$count         = count( ggl_get_teamie_movies( $post ) );
+	$count         += count( ggl_get_teamie_manual_movie_entries( $post ) );
+
+	return $count;
+}
+
 
