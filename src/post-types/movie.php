@@ -901,7 +901,7 @@ function ggl_get_movie_director( int|WP_Post $post = 0 ): string {
 	$post = get_post( $post, filter: 'display' );
 
 	// Return early if the post type is not supported by the function
-	if ( $post->post_type != "movie" ) {
+	if ( $post === null || $post->post_type != "movie" ) {
 		return "";
 	}
 
@@ -940,7 +940,7 @@ function ggl_get_movie_actors( int|WP_Post $post = 0 ): array {
 	$post = get_post( $post, filter: 'display' );
 
 	// Return early if the post type is not supported by the function
-	if ( $post->post_type != "movie" ) {
+	if ( $post === null || $post->post_type != "movie" ) {
 		return [];
 	}
 
@@ -987,7 +987,7 @@ function ggl_the_actors( int|WP_Post $post = 0 ): void {
  */
 function ggl_get_countries_of_origin( int|WP_Post $post = 0, string $field = "alpha2" ): array {
 	$post = get_post( $post, filter: 'display' );
-	if ( $post->post_type != "movie" ) {
+	if ( $post === null || $post->post_type != "movie" ) {
 		return [];
 	}
 
@@ -1026,7 +1026,7 @@ function ggl_the_countries_of_origin( int|WP_Post $post = 0 ): void {
  */
 function ggl_get_release_date( int|WP_Post $post = 0 ): DateTimeImmutable|null {
 	$post = get_post( $post, filter: 'display' );
-	if ( $post->post_type != "movie" ) {
+	if ( $post === null || $post->post_type != "movie" ) {
 		return null;
 	}
 
@@ -1105,7 +1105,7 @@ function ggl_the_running_time( int|WP_Post $post = 0 ): void {
  */
 function ggl_get_audio_language( int|WP_Post $post = 0 ): string {
 	$post = get_post( $post, filter: 'display' );
-	if ( $post->post_type != "movie" ) {
+	if ( $post === null || $post->post_type != "movie" ) {
 		return "";
 	}
 
@@ -1144,7 +1144,7 @@ function ggl_the_audio_language( int|WP_Post $post = 0, bool $output = true ): n
  */
 function ggl_get_subtitle_language( int|WP_Post $post = 0 ): string {
 	$post = get_post( $post, filter: 'display' );
-	if ( $post->post_type != "movie" ) {
+	if ( $post === null || $post->post_type != "movie" ) {
 		return "";
 	}
 
@@ -1185,7 +1185,7 @@ function ggl_get_movie_thumbnail_urls( int|WP_Post $post = 0 ): array {
 	// Resolve the provided post or fall back to the global post
 	$post = get_post( $post, filter: 'display' );
 
-	if ( $post->post_type != "movie" ) {
+	if ( $post === null || $post->post_type != "movie" ) {
 		return [];
 	}
 
@@ -1269,7 +1269,7 @@ function ggl_get_movie_thumbnail_urls( int|WP_Post $post = 0 ): array {
 function ggl_the_movie_thumbnail( int|WP_Post $post = 0, string $classes = "image movie-image" ): void {
 	$post = get_post( $post, filter: 'display' );
 
-	if ( $post->post_type != "movie" ) {
+	if ( $post === null || $post->post_type != "movie" ) {
 		return;
 	}
 
@@ -1304,7 +1304,7 @@ function ggl_the_movie_thumbnail( int|WP_Post $post = 0, string $classes = "imag
  */
 function ggl_movie_has_short( int|WP_Post $post = 0 ): bool {
 	$post = get_post( $post, filter: 'display' );
-	if ( $post->post_type != "movie" ) {
+	if ( $post === null || $post->post_type != "movie" ) {
 		return false;
 	}
 
@@ -1324,7 +1324,7 @@ function ggl_movie_has_short( int|WP_Post $post = 0 ): bool {
  */
 function ggl_get_short_movie_title( int|WP_Post $post = 0 ): string {
 	$post = get_post( $post, filter: 'display' );
-	if ( $post->post_type != "movie" ) {
+	if ( $post === null || $post->post_type != "movie" ) {
 		return "";
 	}
 
@@ -1353,7 +1353,7 @@ function ggl_the_short_movie_title( int|WP_Post $post = 0 ): void {
  */
 function ggl_get_short_movie_director( int|WP_Post $post = 0 ): string {
 	$post = get_post( $post, filter: 'display' );
-	if ( $post->post_type != "movie" ) {
+	if ( $post === null || $post->post_type != "movie" ) {
 		return "";
 	}
 
@@ -1384,7 +1384,7 @@ function ggl_the_short_movie_director( int|WP_Post $post = 0 ): void {
  */
 function ggl_get_short_movie_country_of_origin( int|WP_Post $post = 0, string $field = "alpha2" ): array {
 	$post = get_post( $post, filter: 'display' );
-	if ( $post->post_type != "movie" ) {
+	if ( $post === null || $post->post_type != "movie" ) {
 		return [];
 	}
 
@@ -1424,7 +1424,7 @@ function ggl_the_short_movie_countries( int|WP_Post $post = 0 ): void {
  */
 function ggl_get_short_movie_release_year( int|WP_Post $post = 0 ): int {
 	$post = get_post( $post, filter: 'display' );
-	if ( $post->post_type != "movie" ) {
+	if ( $post === null || $post->post_type != "movie" ) {
 		return - 1;
 	}
 
@@ -1453,7 +1453,7 @@ function ggl_the_short_movie_release_year( int|WP_Post $post = 0 ): void {
  */
 function ggl_get_short_movie_running_time( int|WP_Post $post = 0 ): int {
 	$post = get_post( $post, filter: 'display' );
-	if ( $post->post_type != "movie" ) {
+	if ( $post === null || $post->post_type != "movie" ) {
 		return - 1;
 	}
 
@@ -1479,7 +1479,7 @@ function ggl_the_short_movie_running_time( int|WP_Post $post = 0 ): void {
  */
 function ggl_get_movie_semester( int|WP_Post $post = 0 ): WP_Term|null {
 	$post = get_post( $post, filter: 'display' );
-	if ( $post->post_type != "movie" ) {
+	if ( $post === null || $post->post_type != "movie" ) {
 		return null;
 	}
 
@@ -1488,7 +1488,7 @@ function ggl_get_movie_semester( int|WP_Post $post = 0 ): WP_Term|null {
 
 function ggl_the_movie_semester( int|WP_Post $post = 0 ): void {
 	$post = get_post( $post, filter: 'display' );
-	if ( $post->post_type != "movie" ) {
+	if ( $post === null || $post->post_type != "movie" ) {
 		return;
 	}
 
@@ -1498,9 +1498,9 @@ function ggl_the_movie_semester( int|WP_Post $post = 0 ): void {
 
 function ggl_movie_is_special_feature( int|WP_Post $post = 0 ): bool {
 	$post = get_post( $post, filter: 'display' );
-	if ( $post->post_type != "movie" ) {
+	if ( $post === null || $post->post_type !== "movie" ) {
 		return false;
 	}
 
-	return get_post_meta( $post->ID, "program_type", true ) == "special_program";
+	return is_singular( "movie" ) && get_post_meta( $post->ID, "program_type", true ) == "special_program";
 }
