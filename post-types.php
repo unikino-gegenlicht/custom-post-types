@@ -27,7 +27,7 @@
  * Update URI:        false
  */
 
-require_once dirname(__FILE__) . "/src/public-functions.php";
+require_once dirname( __FILE__ ) . "/src/public-functions.php";
 require_once dirname( __FILE__ ) . '/src/inc/languages.php';
 require_once dirname( __FILE__ ) . '/vendor/autoload.php';
 require_once dirname( __FILE__ ) . "/src/const.php";
@@ -52,6 +52,7 @@ unregister_taxonomy( 'program-type' );
 add_action( 'init', 'ggl_taxonomy_program_type' );
 add_filter( 'rwmb_meta_boxes', 'ggl_taxonomy_program_type_meta_boxes' );
 add_action( "parse_term_query", "ggl_cpt__reorder_semesters", 2, 2 );
+add_action( "saved_special-program", "ggl_special_program_pregenerate_stylesheet", 1, 1 );
 
 require_once 'src/taxonomies/director.php';
 add_action( 'init', 'ggl_taxonomy_director' );
@@ -62,8 +63,6 @@ require_once 'src/taxonomies/actor.php';
 add_action( 'init', 'ggl_taxonomy_actor' );
 add_action( 'actor_pre_add_form', "ggl_cpt__hide_edit_boxes" );
 add_action( 'actor_pre_edit_form', "ggl_cpt__hide_edit_boxes" );
-
-
 
 
 /* Register the post types */
@@ -96,6 +95,7 @@ add_action( 'init', 'ggl_post_type_team_member' );
 add_action( "restrict_manage_posts", "ggl_cpt__add_team_member_status_filter" );
 add_action( "pre_get_posts", "ggl_cpt__apply_team_member_status_filter" );
 add_filter( 'rwmb_meta_boxes', 'team_member_register_meta_boxes' );
+add_action( "pre_get_posts", "ggl_cpt__check_hidden_teamie_redirect" );
 
 require_once 'src/post-types/screening-location.php';
 add_action( 'init', 'ggl_post_type_screening_location' );
@@ -108,7 +108,7 @@ add_action( 'admin_menu', 'ggl_cpt__spaceout_admin_menu' );
 
 add_action( 'plugins_loaded', 'ggl_post_types_load_textdomain' );
 
-
+/*
 require_once "src/seo/opengraph.php";
 add_filter( "wpseo_opengraph_image", "ggl_cpt__change_opengraph_image_url", 11 );
 add_filter( "wpseo_opengraph_image_height", "ggl_cpt__change_opengraph_image_height", 11 );
@@ -124,6 +124,7 @@ add_action( "wpseo_register_extra_replacements", function () {
 
 require_once "src/seo/oembed.php";
 add_filter( 'oembed_response_data', 'ggl_cpt__update_oembed_data', 10, 4 );
+*/
 
 add_action( "after_setup_theme", function () {
 	add_image_size( 'opengraph', 1200, 675, crop: true );
