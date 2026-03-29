@@ -550,21 +550,27 @@ function ggl_get_teamie_social_links( int|WP_Post $post = 0 ): array {
 	$urls = [];
 
 	$letterboxd_url_base = rwmb_meta( "letterboxd_base_url", [ "object_type" => "setting" ], "ggl_cpt__settings" );
+	$letterboxd_uri = UriString::parse( $letterboxd_url_base );
 	$letterboxd_username = get_post_meta( $post->ID, "letterboxd_username", true );
 	if ( mb_trim( $letterboxd_username ) !== "" ) {
-		$urls["letterboxd"] = UriString::resolve( "/" . $letterboxd_username, $letterboxd_url_base ) . "?" . $query_params;
+		$base_path          = $letterboxd_uri["path"] == "" ? "/" : $letterboxd_uri["path"];
+		$urls["letterboxd"] = UriString::buildUri( $letterboxd_uri["scheme"], UriString::buildAuthority( $letterboxd_uri ), $base_path . $letterboxd_username, $query_params );
 	}
 
 	$trakt_tv_url_base = rwmb_meta( "traktv_tv_base_url", [ "object_type" => "setting" ], "ggl_cpt__settings" );
+	$trakt_uri = UriString::parse( $trakt_tv_url_base );
 	$trakt_tv_username = get_post_meta( $post->ID, "trakt_tv_username", true );
 	if ( mb_trim( $trakt_tv_username ) !== "" ) {
-		$urls["trakt"] = UriString::resolve( "/" . $trakt_tv_username, $trakt_tv_url_base ) . "?" . $query_params;
+		$base_path     = $trakt_uri["path"] == "" ? "/" : $trakt_uri["path"];
+		$urls["trakt"] = UriString::buildUri( $trakt_uri["scheme"], UriString::buildAuthority( $trakt_uri ), $base_path . $trakt_tv_username, $query_params );
 	}
 
 	$instagram_url_base = rwmb_meta( "instagram_base_url", [ "object_type" => "setting" ], "ggl_cpt__settings" );
 	$instagram_username = get_post_meta( $post->ID, "instagram_username", true );
+	$instagram_uri = UriString::parse( $instagram_url_base );
 	if ( mb_trim( $instagram_username ) !== "" ) {
-		$urls["instagram"] = UriString::resolve( "/" . $instagram_username, $instagram_url_base ) . "?" . $query_params;
+		$base_path         = $instagram_uri["path"] == "" ? "/" : $instagram_uri["path"];
+		$urls["instagram"] = UriString::buildUri( $instagram_uri["scheme"], UriString::buildAuthority( $instagram_uri ), $base_path . $instagram_username, $query_params );
 	}
 
 	return $urls;
