@@ -54,7 +54,7 @@ function ggl_get_title( int|WP_Post $post = 0 ): string {
 
 	$is_in_special_program = get_post_meta( $post->ID, "program_type", true ) === "special_program";
 	if ( ! $is_in_special_program ) {
-		return __("An unnamed movie", "ggl-post-types");
+		return __( "An unnamed movie", "ggl-post-types" );
 	}
 
 	$assigned_special_program = array_first( wp_get_post_terms( $post->ID, "special-program" ) );
@@ -136,7 +136,7 @@ function ggl_get_localized_title( int|WP_Post $post = 0 ): string {
 
 	$is_in_special_program = get_post_meta( $post->ID, "program_type", true ) === "special_program";
 	if ( ! $is_in_special_program ) {
-		return __("An unnamed movie", "ggl-post-types");
+		return __( "An unnamed movie", "ggl-post-types" );
 	}
 
 	$assigned_special_program = array_first( wp_get_post_terms( $post->ID, "special-program" ) );
