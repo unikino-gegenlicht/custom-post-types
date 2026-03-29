@@ -470,11 +470,11 @@ function ggl_get_event_thumbnail_urls( int|WP_Post $post = 0 ): array {
 	$image_urls   = [];
 	$image_urls[] = [
 		"url"         => get_the_post_thumbnail_url( $post->ID, "mobile" ) ?? $anonymous_image["sizes"]["mobile"]["url"] ?? $anonymous_image["full_url"],
-		"media_query" => "(prefers-reduced-motion: reduce) and (width <= 768px)"
+		"media_query" => "(width <= 768px)"
 	];
 	$image_urls[] = [
 		"url"         => get_the_post_thumbnail_url( $post->ID, "desktop" ) ?? $anonymous_image["sizes"]["desktop"]["url"] ?? $anonymous_image["full_url"],
-		"media_query" => "(prefers-reduced-motion: reduce) and (width > 768px)"
+		"media_query" => "(width > 768px)"
 	];
 
 	return $image_urls;
