@@ -13,7 +13,7 @@ function ggl_taxonomy_actor(): void {
 			'new_item_name' => __( 'New Actor', 'ggl-post-types' ),
 		],
 		'public'         => false,
-		'show_in_menu'   => current_user_can( "manage_options" ),
+		'show_in_menu'  => current_user_can( "edit_others_posts" ),
 		'show_ui'        => true,
 		'show_in_rest'   => true,
 		'show_tag_cloud' => false,

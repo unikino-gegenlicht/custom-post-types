@@ -7,39 +7,39 @@
 
 function ggl_taxonomy_program_type(): void {
 	register_taxonomy( 'special-program', null, [
-			'label'         => __( 'Special Programs', 'ggl-post-types' ),
-			'description'   => 'This is the special programs category, if you have a movie which is falls into a special program, create it here first and then assign it to the movie',
-			'labels'        => [
-				'name'          => __( 'Special Programs', 'ggl-post-types' ),
-				'singular_name' => __( 'Special Program', 'ggl-post-types' ),
-				'search_items'  => __( 'Search Special Programs', 'ggl-post-types' ),
-				'all_items'     => __( 'All Special Programs', 'ggl-post-types' ),
-				'edit_item'     => __( 'Edit Special Program', 'ggl-post-types' ),
-				'update_item'   => __( 'Update Special Program', 'ggl-post-types' ),
-				'add_new_item'  => __( 'Add New Special Program', 'ggl-post-types' ),
-				'new_item_name' => __( 'New Special Program Name', 'ggl-post-types' ),
-				'menu_name'     => __( 'Special Programs', 'ggl-post-types' ),
-			],
-			'show_ui'       => true,
-			'show_in_menu'  => current_user_can( "manage_options" ),
-			'public'        => true,
-			'show_tagcloud' => false,
-			'hierarchical'  => false,
-			'show_in_rest'  => true,
-			'meta_box_cb'     => false,
-			'query_var'     => true,
-			'rewrite'       => [
-				'slug'         => 'special-program',
-				'hierarchical' => false,
-				'with_front'   => false,
-			],
-			"capabilities"  => [
-				"manage_terms" => "publish_posts",
-				"edit_terms"   => "publish_posts",
-				"assign_terms" => "publish_posts",
-				"delete_terms" => "edit_others_posts",
-			]
-		] );
+		'label'         => __( 'Special Programs', 'ggl-post-types' ),
+		'description'   => 'This is the special programs category, if you have a movie which is falls into a special program, create it here first and then assign it to the movie',
+		'labels'        => [
+			'name'          => __( 'Special Programs', 'ggl-post-types' ),
+			'singular_name' => __( 'Special Program', 'ggl-post-types' ),
+			'search_items'  => __( 'Search Special Programs', 'ggl-post-types' ),
+			'all_items'     => __( 'All Special Programs', 'ggl-post-types' ),
+			'edit_item'     => __( 'Edit Special Program', 'ggl-post-types' ),
+			'update_item'   => __( 'Update Special Program', 'ggl-post-types' ),
+			'add_new_item'  => __( 'Add New Special Program', 'ggl-post-types' ),
+			'new_item_name' => __( 'New Special Program Name', 'ggl-post-types' ),
+			'menu_name'     => __( 'Special Programs', 'ggl-post-types' ),
+		],
+		'show_ui'       => true,
+		'show_in_menu'  => current_user_can( "edit_others_posts" ),
+		'public'        => true,
+		'show_tagcloud' => false,
+		'hierarchical'  => false,
+		'show_in_rest'  => true,
+		'meta_box_cb'   => false,
+		'query_var'     => true,
+		'rewrite'       => [
+			'slug'         => 'special-program',
+			'hierarchical' => false,
+			'with_front'   => false,
+		],
+		"capabilities"  => [
+			"manage_terms" => "publish_posts",
+			"edit_terms"   => "publish_posts",
+			"assign_terms" => "publish_posts",
+			"delete_terms" => "edit_others_posts",
+		]
+	] );
 }
 
 function ggl_taxonomy_program_type_meta_boxes( $meta_boxes ): mixed {

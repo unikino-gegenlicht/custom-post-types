@@ -14,7 +14,7 @@ function ggl_taxonomy_semester(): void {
 		],
 		'description'   => __( 'Semesters keep things organized', 'ggl-post-types' ),
 		'public'        => true,
-		'show_in_menu'  => current_user_can( "manage_options" ),
+		'show_in_menu'  => current_user_can( "edit_others_posts" ),
 		'hierarchical'  => false,
 		'meta_box_cb'     => false,
 		'show_tagcloud' => false,
