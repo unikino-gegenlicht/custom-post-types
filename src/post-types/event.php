@@ -523,7 +523,7 @@ function ggl_the_event_thumbnail( int|WP_Post $post = 0, string $classes = "imag
  */
 function ggl_get_event_language( int|WP_Post $post = 0 ): string {
 	$post = get_post( $post, filter: 'display' );
-	if ( $post === null || $post->post_type != "movie" ) {
+	if ( $post === null || $post->post_type != "event" ) {
 		return "";
 	}
 
