@@ -459,19 +459,20 @@ function ggl_get_teamie_movies( int|WP_Post $post = 0 ): array {
 	$query = new WP_Query( [
 		"posts_per_page" => - 1,
 		"post_type"      => "movie",
-		"meta_query" => [
+		"meta_query"     => [
 			[
-				"key" => "selected_by",
-                "value" => "member"
+				"key"   => "selected_by",
+				"value" => "member"
 			],
-            [
-                "key" => "team_member_id",
-                "value" => [$post->ID],
-                "compare" => "IN"
-            ]
+			[
+				"key"     => "team_member_id",
+				"value"   => [ $post->ID ],
+				"compare" => "IN"
+			]
 		]
 	] );
-    return $query->posts;
+
+	return $query->posts;
 }
 
 
