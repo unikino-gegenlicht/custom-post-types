@@ -98,9 +98,9 @@ function ggl_cpt__settings_meta_boxes( $meta_boxes ): array {
 		"tab"            => "events",
 		"fields"         => [
 			[
-				"name" => esc_html__( 'Anonymization Image', 'ggl-post-types' ),
+				"name" => esc_html__( 'Fallback Image', 'ggl-post-types' ),
 				"type" => "single_image",
-				"desc" => esc_html__( "This image is used if the event has no advertisement license and the user is not permitted to see the full details or no image is selected for a event", "ggl-post-types" ),
+				"desc" => esc_html__( "This image is used if the event has no featured image set", "ggl-post-types" ),
 				"id"   => "event_anonymous_movie_image",
 			]
 		]
@@ -131,6 +131,28 @@ function ggl_cpt__settings_meta_boxes( $meta_boxes ): array {
 				"type" => "single_image",
 				"id"   => "teamie_anonymous_image",
 				"desc" => esc_html__( "This image is displayed instead of a team members image if the team member post has no associated image", "ggl-post-types" ),
+			],
+			[
+				"type" => "custom_html",
+				"std"  => "<h3 style='margin: -20px 0'>" . __( "Social Media Base URLs", "ggl-post-types" ) . "</h3>",
+			],
+			[
+				"type" => "url",
+				"name" => "Letterboxd",
+				"id"   => "letterboxd_base_url",
+				"std"  => "https://letterboxd.com/",
+			],
+			[
+				"type" => "url",
+				"name" => "Trakt.tv",
+				"id"   => "traktv_tv_base_url",
+				"std"  => "https://app.trakt.tv/profile/",
+			],
+			[
+				"type" => "url",
+				"name" => "Instagram",
+				"id"   => "instagram_base_url",
+				"std"  => "https://instagram.com/",
 			],
 			[
 				"type" => "custom_html",

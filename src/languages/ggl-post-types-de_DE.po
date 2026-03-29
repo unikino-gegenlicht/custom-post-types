@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: unnamed project\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/custom-post-"
 "types\n"
-"POT-Creation-Date: 2026-03-24T08:06:58+00:00\n"
-"PO-Revision-Date: 2026-03-24 09:08+0100\n"
+"POT-Creation-Date: 2026-03-29T18:22:12+00:00\n"
+"PO-Revision-Date: 2026-03-29 20:23+0200\n"
 "Last-Translator: Jan Eike Suchard <jan@gegenlicht.net>\n"
 "Language-Team: German <website@gegenlicht.net>\n"
 "Language: de\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.8\n"
+"X-Generator: Poedit 3.9\n"
 
 #. Plugin Name of the plugin
 #: post-types.php
@@ -43,152 +43,34 @@ msgstr "Jan Eike Suchard"
 msgid "https://suchard.cloud"
 msgstr "https://suchard.cloud"
 
-#: post-types.php:45
-msgid "Anonymization"
-msgstr "Anonymisierung"
-
-#: post-types.php:46
-msgid "Anonymization Settings"
-msgstr "Einstellungen für die Anonymisierung"
-
-#: post-types.php:54 post-types.php:75 src/post-types/movie.php:9
-#: src/post-types/movie.php:11
-msgid "Movies"
-msgstr "Filme"
-
-#: post-types.php:58 post-types.php:98 src/post-types/event.php:5
-#: src/post-types/event.php:7
-msgid "Events"
-msgstr "Events"
-
-#: post-types.php:62 src/post-types/team-member.php:10
-#: src/post-types/team-member.php:12
-msgid "Team Members"
-msgstr "Teammitglieder"
-
-#: post-types.php:81 post-types.php:104
-msgid "Anonymization Image"
-msgstr "Anonymisiertes Bild"
-
-#: post-types.php:83
-msgid ""
-"This image is used if the movie has no advertisement license and the user is "
-"not permitted to see the full details or no image is selected for a movie"
-msgstr ""
-"Dieses Bild wird genutzt, wenn der Film keine Werbelizenz hat und ein "
-"Websitebesucher nicht die Rechte hat trotzdem die Details zu sehen oder wenn "
-"kein Bild für den Film festgelegt ist"
-
-#: post-types.php:87
-msgid "Replacement Character"
-msgstr "Ersetzungszeichen"
-
-#: post-types.php:89
-msgid ""
-"This character is used to replace the letters in director and actor names if "
-"the movie is to be anonymized"
-msgstr ""
-"Dieses Zeichen wird genutzt um die Buchstaben von Schauspieler:innen und "
-"Regisseur:innen zu ersetzen, wenn ein Film anonymisiert wird"
-
-#: post-types.php:106
-msgid ""
-"This image is used if the event has no advertisement license and the user is "
-"not permitted to see the full details or no image is selected for a event"
-msgstr ""
-"Dieses Bild wird genutzt, wenn das Event keine Werbelizenz hat und ein "
-"Websitebesucher nicht die Rechte hat trotzdem die Details zu sehen"
-
-#: post-types.php:114 post-types.php:323 src/post-types/event.php:284
-#: src/post-types/event.php:293 src/post-types/movie.php:501
-#: src/post-types/movie.php:511 src/post-types/team-member.php:13
-#: src/post-types/team-member.php:14
-msgid "Team Member"
-msgstr "Teammitglied"
-
-#: post-types.php:120 post-types.php:122 src/post-types/team-member.php:95
-msgid "Former"
-msgstr "Ehemalig"
-
-#: post-types.php:126
-msgid "Allow Access to hidden Teamies"
-msgstr "Erlaube Zugriff auf versteckte Teamies"
-
-#: post-types.php:129
-msgid ""
-"If this checkbox is ticked, the plugin will not redirect users away from "
-"hidden teamie entries"
-msgstr ""
-"Wenn diese Checkbox ausgewählt ist, werden Besucher der Website nicht von "
-"dem Teamieeintrag umgeleitet"
-
-#: post-types.php:133
-msgid "Fallback Teamie Image"
-msgstr "Ersatzbild für Teammitglieder"
-
-#: post-types.php:136
-msgid ""
-"This image is displayed instead of a team members image if the team member "
-"post has no associated image"
-msgstr ""
-"Dieses Bild wird für ein Teamie angezeigt, falls das Teammitglied kein Bild "
-"gesetzt hat"
-
-#: post-types.php:140
-msgid "Generic Team Member Description"
-msgstr "Generische Teamie Beschreibung"
-
-#: post-types.php:145
-msgid "Available Placeholders"
-msgstr "Verfügbare Platzhalter"
-
-#: post-types.php:146
-msgid ""
-"The placeholders defined here can be used to dynamically change the content "
-"of the teamie descriptions"
-msgstr ""
-"Die folgenden Platzhalter können benutzt werden um dynamische Inhalte in die "
-"Beschreibungen einzufügen"
-
-#: post-types.php:151
-msgid "The year the teamie joined the GEGENLICHT"
-msgstr "Das Jahr in dem das Teammitglied dem GEGENLICHT beigetreten ist"
-
-#: post-types.php:153
-msgid "The year the teamie left the GEGENLICHT (only used for former members)"
-msgstr ""
-"Das Jahr in dem das Teammitglied das GEGENLICHT verlassen hat (nur bei "
-"ehemaligen Mitgliedern genutzt)"
-
-#: post-types.php:155
-msgid "The teamie's name"
-msgstr "Der Name des Teamies"
-
-#: post-types.php:157
-msgid "The number of movies the teamie screened"
-msgstr "Die Zahl der Filme die das Teammitglied gezegit hat"
-
-#: post-types.php:286
+#: post-types.php:137
 msgid "Enter Name of the Teamie"
 msgstr "Gebe den Namen des Teamie ein"
 
-#: post-types.php:290
+#: post-types.php:141
 msgid "Enter Name of the Cooperation Partner"
 msgstr "Name des Kooperationspartners eingeben"
 
-#: post-types.php:294
+#: post-types.php:145
 msgid "Enter Name of the Supporter"
 msgstr "Gebe den Namen der/des Supporterin/Supporters ein"
 
-#: post-types.php:298
+#: post-types.php:149
 msgid "Enter Name of the Screening Location"
 msgstr "Name des Veranstaltungsortes eingeben"
 
-#: post-types.php:319
+#: post-types.php:170
 msgid "Extended Settings"
 msgstr "Erweiterte Informationen"
 
-#: post-types.php:341
+#: post-types.php:174 src/functions.php:111 src/post-types/event.php:284
+#: src/post-types/event.php:293 src/post-types/movie.php:501
+#: src/post-types/movie.php:511 src/post-types/team-member.php:15
+#: src/post-types/team-member.php:16
+msgid "Team Member"
+msgstr "Teammitglied"
+
+#: post-types.php:192
 msgid ""
 "Select the team member that shall be linked with your account. This will "
 "automatically set you as the person who selected a movie/event during the "
@@ -197,6 +79,129 @@ msgstr ""
 "Wähle das Teammitglied aus, das mit deinem Benutzeraccount verknüpft werden "
 "soll. Die hier ausgewählte Person wird automatisch als Vorschlagende Person "
 "hinterlegt beim Erstellen eines neuen Entrags"
+
+#: src/functions.php:43
+msgid "Anonymization"
+msgstr "Anonymisierung"
+
+#: src/functions.php:44
+msgid "Anonymization Settings"
+msgstr "Einstellungen für die Anonymisierung"
+
+#: src/functions.php:52 src/functions.php:72 src/post-types/movie.php:9
+#: src/post-types/movie.php:11
+msgid "Movies"
+msgstr "Filme"
+
+#: src/functions.php:56 src/functions.php:95 src/post-types/event.php:5
+#: src/post-types/event.php:7
+msgid "Events"
+msgstr "Events"
+
+#: src/functions.php:60 src/post-types/team-member.php:12
+#: src/post-types/team-member.php:14
+msgid "Team Members"
+msgstr "Teammitglieder"
+
+#: src/functions.php:78
+msgid "Anonymization Image"
+msgstr "Anonymisiertes Bild"
+
+#: src/functions.php:80
+msgid ""
+"This image is used if the movie has no advertisement license and the user is "
+"not permitted to see the full details or no image is selected for a movie"
+msgstr ""
+"Dieses Bild wird genutzt, wenn der Film keine Werbelizenz hat und ein "
+"Websitebesucher nicht die Rechte hat trotzdem die Details zu sehen oder wenn "
+"kein Bild für den Film festgelegt ist"
+
+#: src/functions.php:84
+msgid "Replacement Character"
+msgstr "Ersetzungszeichen"
+
+#: src/functions.php:86
+msgid ""
+"This character is used to replace the letters in director and actor names if "
+"the movie is to be anonymized"
+msgstr ""
+"Dieses Zeichen wird genutzt um die Buchstaben von Schauspieler:innen und "
+"Regisseur:innen zu ersetzen, wenn ein Film anonymisiert wird"
+
+#: src/functions.php:101
+msgid "Fallback Image"
+msgstr "Ersatzbild"
+
+#: src/functions.php:103
+msgid "This image is used if the event has no featured image set"
+msgstr "Dieses Bild wird genutzt, wenn das Event kein Beitragsbild hat"
+
+#: src/functions.php:117 src/functions.php:119
+#: src/post-types/team-member.php:97
+msgid "Former"
+msgstr "Ehemalig"
+
+#: src/functions.php:123
+msgid "Allow Access to hidden Teamies"
+msgstr "Erlaube Zugriff auf versteckte Teamies"
+
+#: src/functions.php:126
+msgid ""
+"If this checkbox is ticked, the plugin will not redirect users away from "
+"hidden teamie entries"
+msgstr ""
+"Wenn diese Checkbox ausgewählt ist, werden Besucher der Website nicht von "
+"dem Teamieeintrag umgeleitet"
+
+#: src/functions.php:130
+msgid "Fallback Teamie Image"
+msgstr "Ersatzbild für Teammitglieder"
+
+#: src/functions.php:133
+msgid ""
+"This image is displayed instead of a team members image if the team member "
+"post has no associated image"
+msgstr ""
+"Dieses Bild wird für ein Teamie angezeigt, falls das Teammitglied kein Bild "
+"gesetzt hat"
+
+#: src/functions.php:137
+msgid "Social Media Base URLs"
+msgstr "Social Media Basis-URIs"
+
+#: src/functions.php:159
+msgid "Generic Team Member Description"
+msgstr "Generische Teamie Beschreibung"
+
+#: src/functions.php:164
+msgid "Available Placeholders"
+msgstr "Verfügbare Platzhalter"
+
+#: src/functions.php:165
+msgid ""
+"The placeholders defined here can be used to dynamically change the content "
+"of the teamie descriptions"
+msgstr ""
+"Die folgenden Platzhalter können benutzt werden um dynamische Inhalte in die "
+"Beschreibungen einzufügen"
+
+#: src/functions.php:170
+msgid "The year the teamie joined the GEGENLICHT"
+msgstr "Das Jahr in dem das Teammitglied dem GEGENLICHT beigetreten ist"
+
+#: src/functions.php:172
+msgid "The year the teamie left the GEGENLICHT (only used for former members)"
+msgstr ""
+"Das Jahr in dem das Teammitglied das GEGENLICHT verlassen hat (nur bei "
+"ehemaligen Mitgliedern genutzt)"
+
+#: src/functions.php:174
+msgid "The teamie's name"
+msgstr "Der Name des Teamies"
+
+#: src/functions.php:176
+msgid "The number of movies the teamie screened"
+msgstr "Die Zahl der Filme die das Teammitglied gezegit hat"
 
 #: src/post-types/cooperation-partner.php:12
 #: src/post-types/cooperation-partner.php:14
@@ -252,12 +257,12 @@ msgid "Website"
 msgstr "Website"
 
 #: src/post-types/cooperation-partner.php:73
-#: src/post-types/cooperation-partner.php:83 src/post-types/team-member.php:179
-#: src/post-types/team-member.php:188 src/taxonomies/semester.php:67
+#: src/post-types/cooperation-partner.php:83 src/post-types/team-member.php:212
+#: src/post-types/team-member.php:221 src/taxonomies/semester.php:67
 msgid "Archival Data"
 msgstr "Archiveinträge"
 
-#: src/post-types/cooperation-partner.php:88 src/post-types/team-member.php:193
+#: src/post-types/cooperation-partner.php:88 src/post-types/team-member.php:226
 msgid ""
 "When filling in this archival list the given values are added to the "
 "automatically read values"
@@ -858,30 +863,30 @@ msgstr "Minuten"
 msgid "screened in "
 msgstr "gezeigt in "
 
-#: src/post-types/screening-location.php:11
 #: src/post-types/screening-location.php:14
-#: src/post-types/screening-location.php:15
+#: src/post-types/screening-location.php:17
+#: src/post-types/screening-location.php:18
 msgid "Screening Location"
 msgstr "Veranstaltungsort"
 
-#: src/post-types/screening-location.php:13
+#: src/post-types/screening-location.php:16
 msgid "Screening Locations"
 msgstr "Veranstaltungsorte"
 
-#: src/post-types/screening-location.php:16
-#: src/post-types/screening-location.php:17
+#: src/post-types/screening-location.php:19
+#: src/post-types/screening-location.php:20
 msgid "Add Screening Location"
 msgstr "Veranstaltungsort hinzufügen"
 
-#: src/post-types/screening-location.php:18
+#: src/post-types/screening-location.php:21
 msgid "Edit Screening Location"
 msgstr "Veranstaltungsort bearbeiten"
 
-#: src/post-types/screening-location.php:19
+#: src/post-types/screening-location.php:22
 msgid "View Screening Location"
 msgstr "Veranstaltungsort anzeigen"
 
-#: src/post-types/screening-location.php:20
+#: src/post-types/screening-location.php:23
 msgid "All Screening Locations"
 msgstr "Alle Veranstaltungsorte"
 
@@ -970,67 +975,67 @@ msgstr "Alle Unterstützer"
 msgid "Display on Top"
 msgstr "Als erstes Anzeigen"
 
-#: src/post-types/team-member.php:15 src/post-types/team-member.php:16
+#: src/post-types/team-member.php:17 src/post-types/team-member.php:18
 msgid "Add Team Member"
 msgstr "Teammitglied hinzufügen"
 
-#: src/post-types/team-member.php:17
+#: src/post-types/team-member.php:19
 msgid "Edit Team Member"
 msgstr "Teammitglied bearbeiten"
 
-#: src/post-types/team-member.php:18
+#: src/post-types/team-member.php:20
 msgid "View Team Member"
 msgstr "Teammitglied anzeigen"
 
-#: src/post-types/team-member.php:19
+#: src/post-types/team-member.php:21
 msgid "All Team Members"
 msgstr "Alle Teammitglieder"
 
-#: src/post-types/team-member.php:20
+#: src/post-types/team-member.php:22
 msgid "Photo"
 msgstr "Bild"
 
-#: src/post-types/team-member.php:21
+#: src/post-types/team-member.php:23
 msgid "Set Photo"
 msgstr "Bild festlegen"
 
-#: src/post-types/team-member.php:22
+#: src/post-types/team-member.php:24
 msgid "Remove Photo"
 msgstr "Bild entfernen"
 
-#: src/post-types/team-member.php:23
+#: src/post-types/team-member.php:25
 msgid "Upload Photo"
 msgstr "Bild hochladen"
 
-#: src/post-types/team-member.php:52
+#: src/post-types/team-member.php:54
 msgid "Active and Former"
 msgstr "Aktive und ehemalige Mitglieder"
 
-#: src/post-types/team-member.php:53
+#: src/post-types/team-member.php:55
 msgid "Active only"
 msgstr "Nur Aktive"
 
-#: src/post-types/team-member.php:54
+#: src/post-types/team-member.php:56
 msgid "Former only"
 msgstr "Nur Ehemalige"
 
-#: src/post-types/team-member.php:78 src/post-types/team-member.php:87
+#: src/post-types/team-member.php:80 src/post-types/team-member.php:89
 msgid "Membership Type"
 msgstr "Mitgliedsstatus"
 
-#: src/post-types/team-member.php:94
+#: src/post-types/team-member.php:96
 msgid "Active"
 msgstr "Aktiv"
 
-#: src/post-types/team-member.php:96
+#: src/post-types/team-member.php:98
 msgid "Active (Hidden)"
 msgstr "Aktiv (Versteckt)"
 
-#: src/post-types/team-member.php:97
+#: src/post-types/team-member.php:99
 msgid "Former (Hidden)"
 msgstr "Ehemalig (Versteckt)"
 
-#: src/post-types/team-member.php:100
+#: src/post-types/team-member.php:102
 msgid ""
 "If a member status is set to hidden it will not be shown on the team member "
 "page, but is still selectable in the backend"
@@ -1039,23 +1044,47 @@ msgstr ""
 "auf der Teamie Übersicht, Suchergebnissen und weiteren Anzeigebreichen "
 "ausgeblendet, ist jedoch weiterhin auswählbar im Backend"
 
-#: src/post-types/team-member.php:104
+#: src/post-types/team-member.php:106
 msgid "Joined In"
 msgstr "Beigetreten in"
 
-#: src/post-types/team-member.php:117
+#: src/post-types/team-member.php:119
 msgid "Left In"
 msgstr "Ausgeschieden in"
 
-#: src/post-types/team-member.php:133
+#: src/post-types/team-member.php:135 src/post-types/team-member.php:144
+msgid "Social Media Accounts"
+msgstr "Social Media Konten"
+
+#: src/post-types/team-member.php:145
+msgid ""
+"The accounts listed here are displayed below the teamies image as linked "
+"icons"
+msgstr ""
+"Die hier eingestellten Konten werden auf den Detailseiten als Icon-"
+"Verlinkungen angezeigt"
+
+#: src/post-types/team-member.php:149
+msgid "Letterboxd Username"
+msgstr "Letterboxd Benutzername"
+
+#: src/post-types/team-member.php:154
+msgid "Trakt.tv Username"
+msgstr "Trakt.tv Benutzername"
+
+#: src/post-types/team-member.php:159
+msgid "Instagram Username"
+msgstr "Instagram Benutzername"
+
+#: src/post-types/team-member.php:166
 msgid "Teamie Description"
 msgstr "Beschreibung des Teamies"
 
-#: src/post-types/team-member.php:150
+#: src/post-types/team-member.php:183
 msgid "Description"
 msgstr "Beschreibung"
 
-#: src/post-types/team-member.php:151
+#: src/post-types/team-member.php:184
 msgid ""
 "The following description will be displayed after the generic text which is "
 "displayed for everyone. Use this text to introduce yourself or what drove "
@@ -1067,35 +1096,31 @@ msgstr ""
 "vorzustellen, was dich zu uns geführt hat, oder anderes. Der Text wird "
 "normalerweise von einem Teamie nach deinem ersten Semester befüllt."
 
-#: src/post-types/team-member.php:301
+#: src/post-types/team-member.php:335
 #, php-format
 msgid "This beautiful person is %s"
 msgstr "Diese wunderschöne Person ist %s"
 
 #. translators: %d year in which the teamie joined
-#: src/post-types/team-member.php:334
+#: src/post-types/team-member.php:368
 #, php-format
 msgid "since %d"
 msgstr "seit %d"
 
-#: src/post-types/team-member.php:402
+#: src/post-types/team-member.php:437
 #, php-format
 msgid "%s movie"
 msgid_plural "%s movies"
 msgstr[0] "%s Film"
 msgstr[1] "%s Filme"
 
-#: src/public-functions.php:57 src/public-functions.php:139
+#: src/public-functions.php:57 src/public-functions.php:135
 msgid "An unnamed movie"
 msgstr "Ein ungenannter Film"
 
-#: src/public-functions.php:62 src/public-functions.php:144
+#: src/public-functions.php:62 src/public-functions.php:140
 msgid "An unnamed special"
 msgstr "Ein ungenanntes Special"
-
-#: src/public-functions.php:133
-msgid "An unnamed event"
-msgstr "Ein ungenanntes Event"
 
 #: src/taxonomies/actor.php:6 src/taxonomies/actor.php:7
 msgid "Actors"
@@ -1329,6 +1354,17 @@ msgstr ""
 #: src/taxonomies/special-program.php:103
 msgid "Image for Anonymized Detail Pages"
 msgstr "Anonymisierendes Bild"
+
+#~ msgid ""
+#~ "This image is used if the event has no advertisement license and the user "
+#~ "is not permitted to see the full details or no image is selected for a "
+#~ "event"
+#~ msgstr ""
+#~ "Dieses Bild wird genutzt, wenn das Event keine Werbelizenz hat und ein "
+#~ "Websitebesucher nicht die Rechte hat trotzdem die Details zu sehen"
+
+#~ msgid "An unnamed event"
+#~ msgstr "Ein ungenanntes Event"
 
 #~ msgid "All Programs"
 #~ msgstr "Alle Programmarten"
