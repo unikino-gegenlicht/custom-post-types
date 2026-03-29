@@ -5,74 +5,32 @@
  * This file registers some replacements for Yoast-SEO to enhance the social media display for the custom post types
  */
 
-function ggl_pt_get_title() {
+
+function ggl_cpt__seo_title() {
 	global $post;
-	$post = get_post( $post );
 
-	$title        = rwmb_get_value( "german_title", post_id: $post->ID );
-	$englishTitle = rwmb_get_value( "english_title", post_id: $post->ID );
-
-	if ( $post->post_type === 'event' ) {
-		if ( $title === $englishTitle ) {
-			return $title;
-		} else {
-			return "{$title} // {$englishTitle}";
-		}
-	}
-
-	$anonymize = rwmb_get_value( "license_type", post_id: $post->ID ) !== "full";
-	if ( ! $anonymize ) {
-		return "{$title} // {$englishTitle}";
-	}
-
-	$inSpecialProgram = rwmb_get_value( "program_type", post_id: $post->ID ) === "special_program";
-	if ( $inSpecialProgram ) {
-		$specialProgram = rwmb_get_value( "special_program", post_id: $post->ID );
-
-		return $specialProgram->name;
-	}
-
-	if ( $post->post_type === "movie" ) {
-		return "Ein ungenannter Film // A secret Movie";
-	} else {
-		return "Ein ungenanntes Event // A secret event";
-	}
+	return ggl_get_localized_title( $post );
 }
 
-function ggl_pt_screening_date() {
+function ggl_cpt__seo_date() {
 	global $post;
-	$post = get_post( $post );
 
-
-	$screeningStart = (int) rwmb_get_value( "screening_date", post_id: $post->ID );
-
-	return date( "d.m.Y \u\m H:i", $screeningStart );
+	return ggl_get_starting_time( $post )->format( "d.m.Y \u\m H:i" );
 }
 
-function ggl_pt_text() {
+function ggl_cpt__seo_summary() {
 	global $post;
-	$post = get_post( $post );
 
-	$anonymize     = rwmb_get_value( "license_type", post_id: $post->ID ) !== "full";
-	$original_text = match ( $anonymize ) {
-		false => rwmb_get_value( "summary", post_id: $post->ID ),
-		true => rwmb_get_value( "anon_summary", post_id: $post->ID )
-	};
+	$summary = mb_trim( strip_tags( ggl_get_summary( $post ) ) );
 
-	$return_string = "";
-	$words         = explode( " ", $original_text );
-	foreach ( $words as $word ) {
-		if ( ( strlen( $return_string ) + strlen( $word ) ) < 150 ) {
-			$return_string .= " {$word}";
-		}
-	}
-	$sentences = array_slice( explode( ".", $return_string ), 0, count( explode( ".", $return_string ) ) == 1 ? 1 : - 1 );
+	return substr( $summary, 0, 147 ) . "…";
 
-	return join( ".", $sentences ) . "…";
+
 }
 
-function ggl_pt_details() {
+function ggl_cpt__seo_tagline() {
 	global $post;
+
 	$post             = get_post();
 	$audioType        = rwmb_meta( 'audio_type' );
 	$audioLanguage    = rwmb_meta( 'audio_language' );
@@ -100,7 +58,7 @@ function ggl_pt_details() {
 		};
 	}
 
-	$running_time = rwmb_get_value( 'running_time' );
+	$running_time = ggl_get_running_time( $post );
 
 	$ageRating = match ( (int) rwmb_get_value( "age_rating" ) ) {
 		- 3, - 2, - 1 => "ohne/unbekannt",
@@ -125,7 +83,7 @@ function ggl_pt_details() {
 	};
 
 	$countries  = rwmb_get_value( "country" );
-	$countryStr = join( "/", ggl_resolve_country_list($countries) );
+	$countryStr   = join( "/", ggl_resolve_country_list( $countries ) );
 
 	$releaseYear = date( 'Y', strtotime( rwmb_get_value( 'release_date' ) ) );
 

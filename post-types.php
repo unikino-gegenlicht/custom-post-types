@@ -120,18 +120,18 @@ require_once "src/seo/opengraph.php";
 add_filter( "wpseo_opengraph_image", "ggl_cpt__change_opengraph_image_url", 11 );
 add_filter( "wpseo_opengraph_image_height", "ggl_cpt__change_opengraph_image_height", 11 );
 add_filter( "wpseo_opengraph_image_width", "ggl_cpt__change_opengraph_image_width", 11 );
-
+*/
 require_once "src/seo/replacements.php";
 add_action( "wpseo_register_extra_replacements", function () {
-	wpseo_register_var_replacement( "%%ggl_title%%", "ggl_pt_get_title", "advanced", "The protected title of a movie or event" );
-	wpseo_register_var_replacement( "%%ggl_date%%", "ggl_pt_screening_date", "advanced", "The formatted screening date for the entry" );
-	wpseo_register_var_replacement( "%%ggl_details%%", "ggl_pt_details", "advanced", "The protected text for the entry" );
-	wpseo_register_var_replacement( "%%ggl_text%%", "ggl_pt_text", "advanced", "The protected text for the entry" );
+	wpseo_register_var_replacement( "%%ggl_title%%", "ggl_cpt__seo_title", "advanced", "The protected title of a movie or event" );
+	wpseo_register_var_replacement( "%%ggl_date%%", "ggl_cpt__seo_date", "advanced", "The formatted screening date for the entry" );
+	wpseo_register_var_replacement( "%%ggl_details%%", "ggl_cpt__seo_tagline", "advanced", "The protected text for the entry" );
+	wpseo_register_var_replacement( "%%ggl_text%%", "ggl_cpt__seo_summary", "advanced", "The protected text for the entry" );
 } );
 
 require_once "src/seo/oembed.php";
 add_filter( 'oembed_response_data', 'ggl_cpt__update_oembed_data', 10, 4 );
-*/
+
 
 add_action( "after_setup_theme", function () {
 	add_image_size( 'opengraph', 1200, 675, crop: true );
