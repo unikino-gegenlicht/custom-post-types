@@ -5,6 +5,8 @@
  * Please see the LICENSE file for your rights.
  */
 
+use MatthiasMullie\Minify;
+
 function ggl_taxonomy_program_type(): void {
 	register_taxonomy( 'special-program', null, [
 		'label'         => __( 'Special Programs', 'ggl-post-types' ),
@@ -120,4 +122,99 @@ function ggl_get_special_program_anonymous_image_url( WP_Term|int $term, $size =
 	var_dump( $anonymous_image_id );
 
 	return wp_get_attachment_image_url( $anonymous_image_id, $size );
+}
+
+function ggl_get_special_program_colors( WP_Term|int $term ): array {
+	$term = get_term( $term );
+	if ( $term->taxonomy !== 'special-program' ) {
+		return [];
+	}
+
+	return [
+		"lightMode" => [
+			"foregroundColor" => get_term_meta( $term->term_id, 'text_color', true ),
+			"backgroundColor" => get_term_meta( $term->term_id, 'background_color', true ),
+		],
+		"darkMode"  => [
+			"foregroundColor" => get_term_meta( $term->term_id, 'dark_text_color', true ),
+			"backgroundColor" => get_term_meta( $term->term_id, 'dark_background_color', true ),
+		]
+	];
+}
+
+function ggl_special_program_pregenerate_stylesheet( int $term_id ): void {
+	$term = get_term( $term_id );
+	if ( $term->taxonomy !== 'special-program' ) {
+		return;
+	}
+	$colors          = ggl_get_special_program_colors( $term );
+	$destination_dir = path_join( WP_CONTENT_DIR, "cpt-styles" );
+	wp_mkdir_p( $destination_dir );
+	$destination_path = path_join( $destination_dir, "special-program.$term->slug.overrides.min.css" );
+
+	ob_start();
+	?>
+    .special-program {
+    --bulma-body-color: <?= $colors["lightMode"]["foregroundColor"] ?> !important;
+    --bulma-body-background-color: <?= $colors["lightMode"]["backgroundColor"] ?> !important;
+    }
+
+    @media (prefers-color-scheme: dark) {
+    .special-program {
+    --bulma-body-color: <?= $colors["darkMode"]["foregroundColor"] ?> !important;
+    --bulma-body-background-color: <?= $colors["darkMode"]["backgroundColor"] ?> !important;
+    }
+    }
+
+    #special-program_<?= $term->slug ?>,
+    #special-program_<?= $term->term_id ?>{
+    --bulma-body-color: <?= $colors["lightMode"]["foregroundColor"] ?> !important;
+    --bulma-body-background-color: <?= $colors["lightMode"]["backgroundColor"] ?> !important;
+    }
+
+    @media (prefers-color-scheme: dark) {
+    #special-program_<?= $term->slug ?>,
+    #special-program_<?= $term->term_id ?>{
+    --bulma-body-color: <?= $colors["darkMode"]["foregroundColor"] ?> !important;
+    --bulma-body-background-color: <?= $colors["darkMode"]["backgroundColor"] ?> !important;
+    }
+    }
+	<?php
+	$stylesheet = ob_get_clean();
+	$minifier   = new Minify\CSS();
+	$minifier->add( $stylesheet );
+	$minifier->minify( $destination_path );
+}
+
+function ggl_special_program_get_stylesheet_url( WP_Term|int $term ): string {
+	$term = get_term( $term );
+	if ( $term->taxonomy !== 'special-program' ) {
+		return '';
+	}
+
+	$expected_fs_path = path_join( WP_CONTENT_DIR, "cpt-styles/special-program.$term->slug.overrides.min.css" );
+
+	if ( ! file_exists( $expected_fs_path ) ) {
+		ggl_special_program_pregenerate_stylesheet( $term->term_id );
+	}
+
+	return content_url( "cpt-styles/special-program.$term->slug.overrides.min.css" );
+}
+
+function ggl_special_program_get_stylesheet_path( WP_Term|int $term ): string {
+	$term = get_term( $term );
+	if ( $term->taxonomy !== 'special-program' ) {
+		return '';
+	}
+
+	$mode = is_singular( [ "movie", "event" ] ) ? "detail-page" : "content-block";
+
+
+	$expected_fs_path = path_join( WP_CONTENT_DIR, "cpt-styles/special-program.$term->slug.overrides.min.css" );
+
+	if ( ! file_exists( $expected_fs_path ) ) {
+		ggl_special_program_pregenerate_stylesheet( $term->term_id );
+	}
+
+	return $expected_fs_path;
 }
