@@ -255,3 +255,64 @@ function ggl_get_worth_to_see( int|WP_Post $post = 0 ): string {
 function ggl_the_worth_to_see_section( int|WP_Post $post = 0 ): void {
 	echo apply_filters( "the_content", ggl_get_worth_to_see( $post ) );
 }
+
+function ggl_get_feature_image_url( int|WP_Post $post = 0 ): string {
+	$post = get_post( $post, filter: 'display' );
+	if ( $post === null || ! in_array( $post->post_type, [ "movie", "event" ] ) ) {
+		return '';
+	}
+	$mov_anonymous_image   = rwmb_meta( "movie_anonymous_movie_image", [ "object_type" => "setting" ], "ggl_cpt__settings" );
+	$event_anonymous_image = rwmb_meta( "event_anonymous_movie_image", [ "object_type" => "setting" ], "ggl_cpt__settings" );
+
+	$show_details             = apply_filters( "ggl__show_full_details", false, $post );
+	$is_in_special_program    = get_post_meta( $post->ID, "program_type", true ) === "special_program";
+	$assigned_special_program = array_first( wp_get_post_terms( $post->ID, "special-program" ) );
+
+	if ( ! $show_details && $post->post_type !== "event" ) {
+		if ( $is_in_special_program && $assigned_special_program != null ) {
+			return ggl_get_special_program_anonymous_image_url( $assigned_special_program, "full" );
+		}
+
+		return $mov_anonymous_image["full_url"];
+	}
+
+	return get_the_post_thumbnail_url( $post->ID, "full" ) ?: ( $post->post_type === "movie" ? $mov_anonymous_image["full_url"] : $event_anonymous_image["full_url"] );
+
+}
+
+
+function ggl_get_assigned_location( int|WP_Post $post = 0 ): WP_Post|null {
+	$post = get_post( $post, filter: 'display' );
+	if ( $post === null || ! in_array( $post->post_type, [ "movie", "event" ], true ) ) {
+		return null;
+	}
+
+	return get_post( get_post_meta( $post->ID, "screening_location", true ) );
+}
+
+function ggl_get_proposed_by( int|WP_Post $post = 0 ): string {
+	$post = get_post( $post, filter: 'display' );
+	if ( $post === null || ! in_array( $post->post_type, [ "movie", "event" ], true ) ) {
+		return "";
+	}
+
+	return get_post_meta( $post->ID, "selected_by", true );
+}
+
+function ggl_get_proposers( int|WP_Post $post = 0 ): array {
+	$post = get_post( $post, filter: 'display' );
+	if ( $post === null || ! in_array( $post->post_type, [ "movie", "event" ], true ) ) {
+		return [];
+	}
+
+	return match ( ggl_get_proposed_by( $post ) ) {
+		"coop" => array_map( function ( $id ) {
+			return get_post( $id, filter: 'display' );
+		}, get_post_meta( $post->ID, "cooperation_partner_id" ) ),
+		"member" => array_map( function ( $id ) {
+			return get_post( $id, filter: 'display' );
+		}, get_post_meta( $post->ID, "team_member_id" ) ),
+		default => []
+	};
+
+}

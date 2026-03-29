@@ -31,6 +31,7 @@ require_once dirname( __FILE__ ) . "/src/public-functions.php";
 require_once dirname( __FILE__ ) . '/src/inc/languages.php';
 require_once dirname( __FILE__ ) . '/vendor/autoload.php';
 require_once dirname( __FILE__ ) . "/src/const.php";
+require_once dirname( __FILE__ ) . "/src/seo/schema-classes/Event.php";
 
 require_once( dirname( __FILE__ ) . "/src/functions.php" );
 
@@ -73,6 +74,12 @@ add_action( 'pre_get_posts', 'ggl_cpt__apply_movie_semester_filter' );
 add_filter( 'rwmb_meta_boxes', 'movie_extended_info_meta_boxes' );
 add_filter( 'rwmb_meta_boxes', 'movie_text_boxes' );
 add_action( 'save_post_movie', 'ensure_numerical_movie_link', 1 );
+add_filter( "wpseo_schema_graph_pieces", "add_event_for_movie", 15, 2 );
+function add_event_for_movie( $pieces, $context ) {
+	$pieces[] = new Event( $context );
+
+	return $pieces;
+}
 
 require_once 'src/post-types/event.php';
 add_action( 'init', 'ggl_post_type_event' );

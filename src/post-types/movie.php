@@ -829,6 +829,27 @@ function ggl_the_admission_fee( int|WP_Post $post = 0 ): void {
 	echo ggl_get_admission_fee( $post );
 }
 
+function ggl_get_numerical_admission_fee( int|WP_Post $post = 0 ): float {
+	// Resolve the provided post or fall back to the global post
+	$post = get_post( $post, filter: 'display' );
+
+	// Return early if the post type is not supported by the function
+	if ( ! in_array( $post->post_type, [ "movie", "event" ] ) ) {
+		return 0.00;
+	}
+
+	$admission_type = get_post_meta( $post->ID, "admission_type", true );
+	switch ( $admission_type ) {
+		case "donation":
+		case "free":
+			return 0.00;
+		case "paid":
+			return floatval( get_post_meta( $post->ID, "admission_fee", true ) );
+		default:
+			return 3.00;
+	}
+}
+
 
 /**
  * Get a localized version of the starting time
@@ -1504,3 +1525,4 @@ function ggl_movie_is_special_feature( int|WP_Post $post = 0 ): bool {
 
 	return is_singular( "movie" ) && get_post_meta( $post->ID, "program_type", true ) == "special_program";
 }
+

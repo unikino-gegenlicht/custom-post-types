@@ -196,3 +196,26 @@ function ggl_get_location_map_url( int|WP_Post $post = 0, $platform = "google-ma
 			return "";
 	}
 }
+
+function ggl_get_location_schema_markup_data( int|WP_Post $post = 0 ): array {
+	$post = get_post( $post, filter: 'display' );
+	if ( $post->post_type != "screening-location" ) {
+		return [];
+	}
+
+	$countries = generate_countries();
+	$country   = array_first( array_filter( $countries, function ( $country ) use ( $post ) {
+		return $country->numerical == get_post_meta( $post->ID, "country", true );
+	} ) );
+
+	return [
+		"@type"   => "Place",
+		"name"    => $post->post_title,
+		"address" => [
+			"streetAddress"  => get_post_meta( $post->ID, "street", true ),
+			"locality"       => get_post_meta( $post->ID, "city", true ),
+			"postalCode"     => get_post_meta( $post->ID, "postal_code", true ),
+			"addressCountry" => $country->alpha2,
+		]
+	];
+}
