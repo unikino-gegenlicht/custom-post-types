@@ -6,6 +6,9 @@
  * Please see the LICENSE file for your rights.
  */
 
+use League\Uri\QueryString;
+use League\Uri\UriString;
+
 function ggl_post_type_screening_location(): void {
 	register_post_type( 'screening-location', [
 		'label'               => __( 'Screening Location', 'ggl-post-types' ),
@@ -34,9 +37,6 @@ function ggl_post_type_screening_location(): void {
 		'rewrite'             => false,
 	] );
 }
-
-const APPLE_MAPS_BASE_URL  = "https://maps.apple.com/";
-const GOOGLE_MAPS_BASE_URL = "https://google.com/maps/search/?";
 
 function location_register_meta_boxes( $meta_boxes ) {
 	$prefix = 'location_';
@@ -163,24 +163,35 @@ function ggl_get_location_map_url( int|WP_Post $post = 0, $platform = "google-ma
 
 	switch ( $platform ) {
 		case "apple-maps":
-			$place_id = get_post_meta( $post->ID, "apple_place_id", true );
-			$params   = [
-				"coordinate" => $place_id != null ? join( ",", [ $latitude, $longitude ] ) : null,
-				"center"     => $place_id == null ? join( ",", [ $latitude, $longitude ] ) : null,
-				"place-id"   => $place_id,
-				"query"      => $place_id == null ? ( mb_trim( "$street, $postal_code $city" ) != "" ? mb_trim( "$street, $postal_code $city" ) : null ) : null,
+			$place_id         = get_post_meta( $post->ID, "apple_place_id", true );
+			$place_id_present = $place_id !== '';
+			$params           = [
+				[ "coordinate", $place_id != null ? join( ",", [ $latitude, $longitude ] ) : null ],
+				[ "center", $place_id == null ? join( ",", [ $latitude, $longitude ] ) : null ],
+				[ "place-id", $place_id ],
+				[
+					"query",
+					$place_id == null ? ( mb_trim( "$street, $postal_code $city" ) != "" ? mb_trim( "$street, $postal_code $city" ) : null ) : null
+				],
 			];
 
-			return APPLE_MAPS_BASE_URL . ( $place_id !== null ? "place" : "search" ) . "?" . http_build_query( $params );
+			$qs = QueryString::build( $params );
+
+			return UriString::buildUri( "https", "maps.apple.com", $place_id_present ? '/place' : '/search', $qs );
 		case "google-maps":
 			$place_id     = get_post_meta( $post->ID, "google_place_id", true );
 			$query_params = [
-				"api"            => 1,
-				"query"          => $name . "," . ( ( $latitude != null && $longitude != null ) ? "$latitude, $longitude" : "" ),
-				"query_place_id" => $place_id,
+				[ "api", 1 ],
+				[
+					"query",
+					$name . "," . ( ( $latitude != null && $longitude != null ) ? "$latitude, $longitude" : "" )
+				],
+				[ "query_place_id", $place_id ],
 			];
 
-			return GOOGLE_MAPS_BASE_URL . http_build_query( $query_params );
+			$qs = QueryString::build( $query_params );
+
+			return UriString::buildUri( "https", "www.google.com", "/maps/search/", $qs );
 		default:
 			return "";
 	}

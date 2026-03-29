@@ -4,11 +4,95 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-  "content-hash": "5040b0800c23b054f561d473a874fdca",
+  "content-hash": "7b5386871d8573dc5dff4aad33e48d46",
     "packages": [
         {
-          "name": "matthiasmullie/minify",
-          "version": "1.3.75",
+          "name": "league/uri-interfaces",
+          "version": "7.8.1",
+          "source": {
+            "type": "git",
+            "url": "https://github.com/thephpleague/uri-interfaces.git",
+            "reference": "85d5c77c5d6d3af6c54db4a78246364908f3c928"
+          },
+          "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/thephpleague/uri-interfaces/zipball/85d5c77c5d6d3af6c54db4a78246364908f3c928",
+            "reference": "85d5c77c5d6d3af6c54db4a78246364908f3c928",
+            "shasum": ""
+          },
+          "require": {
+            "ext-filter": "*",
+            "php": "^8.1",
+            "psr/http-message": "^1.1 || ^2.0"
+          },
+          "suggest": {
+            "ext-bcmath": "to improve IPV4 host parsing",
+            "ext-gmp": "to improve IPV4 host parsing",
+            "ext-intl": "to handle IDN host with the best performance",
+            "php-64bit": "to improve IPV4 host parsing",
+            "rowbot/url": "to handle URLs using the WHATWG URL Living Standard specification",
+            "symfony/polyfill-intl-idn": "to handle IDN host via the Symfony polyfill if ext-intl is not present"
+          },
+          "type": "library",
+          "extra": {
+            "branch-alias": {
+              "dev-master": "7.x-dev"
+            }
+          },
+          "autoload": {
+            "psr-4": {
+              "League\\Uri\\": ""
+            }
+          },
+          "notification-url": "https://packagist.org/downloads/",
+          "license": [
+            "MIT"
+          ],
+          "authors": [
+            {
+              "name": "Ignace Nyamagana Butera",
+              "email": "nyamsprod@gmail.com",
+              "homepage": "https://nyamsprod.com"
+            }
+          ],
+          "description": "Common tools for parsing and resolving RFC3987/RFC3986 URI",
+          "homepage": "https://uri.thephpleague.com",
+          "keywords": [
+            "data-uri",
+            "file-uri",
+            "ftp",
+            "hostname",
+            "http",
+            "https",
+            "parse_str",
+            "parse_url",
+            "psr-7",
+            "query-string",
+            "querystring",
+            "rfc3986",
+            "rfc3987",
+            "rfc6570",
+            "uri",
+            "url",
+            "ws"
+          ],
+          "support": {
+            "docs": "https://uri.thephpleague.com",
+            "forum": "https://thephpleague.slack.com",
+            "issues": "https://github.com/thephpleague/uri-src/issues",
+            "source": "https://github.com/thephpleague/uri-interfaces/tree/7.8.1"
+          },
+          "funding": [
+            {
+              "url": "https://github.com/sponsors/nyamsprod",
+              "type": "github"
+            }
+          ],
+          "time": "2026-03-08T20:05:35+00:00"
+        },
+      {
+        "name": "matthiasmullie/minify",
+        "version": "1.3.75",
             "source": {
                 "type": "git",
               "url": "https://github.com/matthiasmullie/minify.git",
@@ -30,13 +114,13 @@
               "matthiasmullie/scrapbook": ">=1.3",
               "phpunit/phpunit": ">=4.8"
             },
-          "suggest": {
-            "psr/cache-implementation": "Cache implementation to use with Minify::cache"
-          },
-          "bin": [
-            "bin/minifycss",
-            "bin/minifyjs"
-          ],
+        "suggest": {
+          "psr/cache-implementation": "Cache implementation to use with Minify::cache"
+        },
+        "bin": [
+          "bin/minifycss",
+          "bin/minifyjs"
+        ],
             "type": "library",
             "autoload": {
                 "psr-4": {
@@ -55,8 +139,8 @@
                     "role": "Developer"
                 }
             ],
-          "description": "CSS & JavaScript minifier, in PHP. Removes whitespace, strips comments, combines files (incl. @import statements and small assets in CSS files), and optimizes/shortens a few common programming patterns.",
-          "homepage": "https://github.com/matthiasmullie/minify",
+        "description": "CSS & JavaScript minifier, in PHP. Removes whitespace, strips comments, combines files (incl. @import statements and small assets in CSS files), and optimizes/shortens a few common programming patterns.",
+        "homepage": "https://github.com/matthiasmullie/minify",
             "keywords": [
               "JS",
               "css",
@@ -68,13 +152,13 @@
               "issues": "https://github.com/matthiasmullie/minify/issues",
               "source": "https://github.com/matthiasmullie/minify/tree/1.3.75"
             },
-          "funding": [
-            {
-              "url": "https://github.com/matthiasmullie",
-              "type": "github"
-            }
-          ],
-          "time": "2025-06-25T09:56:19+00:00"
+        "funding": [
+          {
+            "url": "https://github.com/matthiasmullie",
+            "type": "github"
+          }
+        ],
+        "time": "2025-06-25T09:56:19+00:00"
         },
         {
           "name": "matthiasmullie/path-converter",
@@ -128,6 +212,59 @@
               "source": "https://github.com/matthiasmullie/path-converter/tree/1.1.3"
             },
           "time": "2019-02-05T23:41:09+00:00"
+        },
+      {
+        "name": "psr/http-message",
+        "version": "2.0",
+        "source": {
+          "type": "git",
+          "url": "https://github.com/php-fig/http-message.git",
+          "reference": "402d35bcb92c70c026d1a6a9883f06b2ead23d71"
+        },
+        "dist": {
+          "type": "zip",
+          "url": "https://api.github.com/repos/php-fig/http-message/zipball/402d35bcb92c70c026d1a6a9883f06b2ead23d71",
+          "reference": "402d35bcb92c70c026d1a6a9883f06b2ead23d71",
+          "shasum": ""
+        },
+        "require": {
+          "php": "^7.2 || ^8.0"
+        },
+        "type": "library",
+        "extra": {
+          "branch-alias": {
+            "dev-master": "2.0.x-dev"
+          }
+        },
+        "autoload": {
+          "psr-4": {
+            "Psr\\Http\\Message\\": "src/"
+          }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+          "MIT"
+        ],
+        "authors": [
+          {
+            "name": "PHP-FIG",
+            "homepage": "https://www.php-fig.org/"
+          }
+        ],
+        "description": "Common interface for HTTP messages",
+        "homepage": "https://github.com/php-fig/http-message",
+        "keywords": [
+          "http",
+          "http-message",
+          "psr",
+          "psr-7",
+          "request",
+          "response"
+        ],
+        "support": {
+          "source": "https://github.com/php-fig/http-message/tree/2.0"
+        },
+        "time": "2023-04-04T09:54:51+00:00"
         }
     ],
     "packages-dev": [],
