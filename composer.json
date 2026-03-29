@@ -1,13 +1,13 @@
 {
-    "name": "unikino-gegenlicht/custom-post-types",
-    "authors": [
-        {
-            "name": "Jan Eike Suchard",
-            "email": "60288203+dr4hcu5-jan@users.noreply.github.com"
-        }
-    ],
-    "require": {
-        "eluceo/ical": "^2.15",
-      "ext-intl": "*"
+  "name": "unikino-gegenlicht/custom-post-types",
+  "authors": [
+    {
+      "name": "Jan Eike Suchard",
+      "email": "60288203+dr4hcu5-jan@users.noreply.github.com"
     }
+  ],
+  "require": {
+    "ext-intl": "*",
+    "matthiasmullie/minify": "^1.3"
+  }
 }
