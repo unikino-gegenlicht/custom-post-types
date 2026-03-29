@@ -393,6 +393,33 @@ function ggl_get_teamie_description( int|WP_Post $post = 0 ): string {
 		default => "description_en",
 	};
 
+
+	$customized_description = get_post_meta( $post->ID, $meta_key, true );
+	if ( mb_trim( $customized_description ) === "" ) {
+		$replacement_data = [
+			"{name}"        => ggl_get_title( $post ),
+			"{joined-in}"   => ggl_get_teamie_joined_in( $post ),
+			"{left-in}"     => ggl_get_teamie_left_in( $post ),
+			"{movie-count}" => sprintf( _n( "%s movie", "%s movies", ggl_get_teamie_movie_count( $post ), "ggl-post-types" ), number_format_i18n( ggl_get_teamie_movie_count( $post ) ) ),
+		];
+
+		$teamie_status    = get_post_meta( $post->ID, "status", true );
+		$is_former_member = str_ends_with( $teamie_status, "former" );
+		if ( $is_former_member ) {
+			$template = match ( $desired_language ) {
+				"de" => rwmb_meta( "former_teamie_generic_description_de", [ "object_type" => "setting" ], "ggl_cpt__settings" ),
+				default => rwmb_meta( "former_teamie_generic_description_en", [ "object_type" => "setting" ], "ggl_cpt__settings" )
+			};
+		} else {
+			$template = match ( $desired_language ) {
+				"de" => rwmb_meta( "teamie_generic_description_de", [ "object_type" => "setting" ], "ggl_cpt__settings" ),
+				default => rwmb_meta( "teamie_generic_description_en", [ "object_type" => "setting" ], "ggl_cpt__settings" )
+			};
+		}
+
+		return str_replace( array_keys( $replacement_data ), array_values( $replacement_data ), $template );
+	}
+
 	return get_post_meta( $post->ID, $meta_key, true );
 }
 
