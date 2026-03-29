@@ -512,3 +512,42 @@ function ggl_the_event_thumbnail( int|WP_Post $post = 0, string $classes = "imag
     </picture>
 	<?php
 }
+
+/**
+ * Get the event language
+ *
+ * @param int|WP_Post $post Optional. Post ID or `WP_Post` object.
+ * Defaults to global `$post`
+ *
+ * @return string The ISO639 Alpha 3 identifier for the language
+ */
+function ggl_get_event_language( int|WP_Post $post = 0 ): string {
+	$post = get_post( $post, filter: 'display' );
+	if ( $post === null || $post->post_type != "movie" ) {
+		return "";
+	}
+
+	return get_post_meta( $post->ID, "language", true );
+}
+
+/**
+ * Get/Output the event language name instead of the ISO639 identifier
+ *
+ * @param int|WP_Post $post Optional. Post ID or `WP_Post` object. Defaults to global `$post`
+ * @param bool $output Optional. Control if the function should directly output the content or if it should be returned
+ *
+ * @return string|null The translated language name, if `$output` is `false`
+ */
+function ggl_the_event_language( int|WP_Post $post = 0, bool $output = true ): null|string {
+	if ( ! is_textdomain_loaded( "ggl-i18n" ) ) {
+		load_plugin_textdomain( 'ggl-i18n', false, dirname( plugin_basename( __FILE__ ) ) . '/languages' );
+	}
+	$audioLanguage = ggl_get_event_language( $post );
+	if ( $output ) {
+		echo esc_html__( $audioLanguage, "ggl-i18n" );
+
+		return null;
+	} else {
+		return esc_html__( $audioLanguage, "ggl-i18n" );
+	}
+}
