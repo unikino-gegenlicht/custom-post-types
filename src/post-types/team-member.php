@@ -5,6 +5,8 @@
  * Please see the LICENSE file for your rights.
  */
 
+use League\Uri\UriString;
+
 function ggl_post_type_team_member(): void {
 	register_post_type( 'team-member', [
 		'label'               => __( 'Team Members', 'ggl-post-types' ),
@@ -130,6 +132,37 @@ function team_member_register_meta_boxes( $meta_boxes ) {
 	];
 
 	$meta_boxes[] = [
+		'title'      => esc_html__( 'Social Media Accounts', 'ggl-post-types' ),
+		'id'         => 'social-media-accounts',
+		'context'    => 'before_permalink',
+		'style'      => 'seamless',
+		'revision'   => true,
+		'post_types' => [ 'team-member' ],
+		'fields'     => [
+			[
+				'type' => 'heading',
+				'name' => esc_html__( 'Social Media Accounts', 'ggl-post-types' ),
+				'dsc'  => esc_html__( "The accounts listed here are displayed below the teamies image as linked icons", "ggl-post-types" ),
+			],
+			[
+				'type' => 'text',
+				'name' => __( "Letterboxd Username", 'ggl-post-types' ),
+				'id'   => "letterboxd_username",
+			],
+			[
+				'type' => 'text',
+				'name' => __( "Trakt.tv Username", 'ggl-post-types' ),
+				'id'   => "trakt_tv_username",
+			],
+			[
+				'type' => 'text',
+				'name' => __( "Instagram Username", 'ggl-post-types' ),
+				'id'   => "instagram_username",
+			]
+		]
+	];
+
+	$meta_boxes[] = [
 		'title'      => esc_html__( "Teamie Description", 'ggl-post-types' ),
 		'id'         => 'team-description',
 		'context'    => 'before_permalink',
@@ -199,6 +232,7 @@ function team_member_register_meta_boxes( $meta_boxes ) {
 			],
 		],
 	];
+
 
 	return $meta_boxes;
 }
@@ -484,8 +518,9 @@ function ggl_get_teamie_manual_movie_entries( int|WP_Post $post = 0 ): array {
 		return [];
 	}
 
-    $entries = get_post_meta( $post->ID, "team-member_shown_movies", true );
-    return $entries === "" ? [] : $entries;
+	$entries = get_post_meta( $post->ID, "team-member_shown_movies", true );
+
+	return $entries === "" ? [] : $entries;
 }
 
 function ggl_get_teamie_movie_count( int|WP_Post $post = 0 ): int {
@@ -493,10 +528,45 @@ function ggl_get_teamie_movie_count( int|WP_Post $post = 0 ): int {
 	if ( $post->post_type !== "team-member" ) {
 		return 0;
 	}
-	$count         = count( ggl_get_teamie_movies( $post ) );
-	$count         += count( ggl_get_teamie_manual_movie_entries( $post ) );
+	$count = count( ggl_get_teamie_movies( $post ) );
+	$count += count( ggl_get_teamie_manual_movie_entries( $post ) );
 
 	return $count;
 }
 
+function ggl_get_teamie_social_links( int|WP_Post $post = 0 ): array {
+	$post = get_post( $post, filter: 'display' );
+	if ( $post->post_type !== "team-member" ) {
+		return [];
+	}
+
+	$utm_tags     = [
+		"utm_source"   => get_post_permalink( $post ),
+		"utm_medium"   => "referral",
+		"utm_campaign" => "teamie-page",
+	];
+	$query_params = http_build_query( $utm_tags );
+
+	$urls = [];
+
+	$letterboxd_url_base = rwmb_meta( "letterboxd_base_url", [ "object_type" => "setting" ], "ggl_cpt__settings" );
+	$letterboxd_username = get_post_meta( $post->ID, "letterboxd_username", true );
+	if ( mb_trim( $letterboxd_username ) !== "" ) {
+		$urls["letterboxd"] = UriString::resolve( "/" . $letterboxd_username, $letterboxd_url_base ) . "?" . $query_params;
+	}
+
+	$trakt_tv_url_base = rwmb_meta( "traktv_tv_base_url", [ "object_type" => "setting" ], "ggl_cpt__settings" );
+	$trakt_tv_username = get_post_meta( $post->ID, "trakt_tv_username", true );
+	if ( mb_trim( $trakt_tv_username ) !== "" ) {
+		$urls["trakt"] = UriString::resolve( "/" . $trakt_tv_username, $trakt_tv_url_base ) . "?" . $query_params;
+	}
+
+	$instagram_url_base = rwmb_meta( "instagram_base_url", [ "object_type" => "setting" ], "ggl_cpt__settings" );
+	$instagram_username = get_post_meta( $post->ID, "instagram_username", true );
+	if ( mb_trim( $instagram_username ) !== "" ) {
+		$urls["instagram"] = UriString::resolve( "/" . $instagram_username, $instagram_url_base ) . "?" . $query_params;
+	}
+
+	return $urls;
+}
 
