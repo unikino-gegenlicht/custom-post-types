@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: unnamed project\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/custom-post-"
 "types\n"
-"POT-Creation-Date: 2026-03-18T13:32:54+00:00\n"
-"PO-Revision-Date: 2026-03-18 15:28+0100\n"
+"POT-Creation-Date: 2026-03-24T08:06:58+00:00\n"
+"PO-Revision-Date: 2026-03-24 09:08+0100\n"
 "Last-Translator: Jan Eike Suchard <jan@gegenlicht.net>\n"
 "Language-Team: German <website@gegenlicht.net>\n"
 "Language: de\n"
@@ -99,18 +99,34 @@ msgstr ""
 "Dieses Bild wird genutzt, wenn das Event keine Werbelizenz hat und ein "
 "Websitebesucher nicht die Rechte hat trotzdem die Details zu sehen"
 
-#: post-types.php:114 post-types.php:260 src/post-types/event.php:284
+#: post-types.php:114 post-types.php:323 src/post-types/event.php:284
 #: src/post-types/event.php:293 src/post-types/movie.php:501
 #: src/post-types/movie.php:511 src/post-types/team-member.php:13
 #: src/post-types/team-member.php:14
 msgid "Team Member"
 msgstr "Teammitglied"
 
-#: post-types.php:120
+#: post-types.php:120 post-types.php:122 src/post-types/team-member.php:95
+msgid "Former"
+msgstr "Ehemalig"
+
+#: post-types.php:126
+msgid "Allow Access to hidden Teamies"
+msgstr "Erlaube Zugriff auf versteckte Teamies"
+
+#: post-types.php:129
+msgid ""
+"If this checkbox is ticked, the plugin will not redirect users away from "
+"hidden teamie entries"
+msgstr ""
+"Wenn diese Checkbox ausgewählt ist, werden Besucher der Website nicht von "
+"dem Teamieeintrag umgeleitet"
+
+#: post-types.php:133
 msgid "Fallback Teamie Image"
 msgstr "Ersatzbild für Teammitglieder"
 
-#: post-types.php:123
+#: post-types.php:136
 msgid ""
 "This image is displayed instead of a team members image if the team member "
 "post has no associated image"
@@ -118,27 +134,61 @@ msgstr ""
 "Dieses Bild wird für ein Teamie angezeigt, falls das Teammitglied kein Bild "
 "gesetzt hat"
 
-#: post-types.php:233
+#: post-types.php:140
+msgid "Generic Team Member Description"
+msgstr "Generische Teamie Beschreibung"
+
+#: post-types.php:145
+msgid "Available Placeholders"
+msgstr "Verfügbare Platzhalter"
+
+#: post-types.php:146
+msgid ""
+"The placeholders defined here can be used to dynamically change the content "
+"of the teamie descriptions"
+msgstr ""
+"Die folgenden Platzhalter können benutzt werden um dynamische Inhalte in die "
+"Beschreibungen einzufügen"
+
+#: post-types.php:151
+msgid "The year the teamie joined the GEGENLICHT"
+msgstr "Das Jahr in dem das Teammitglied dem GEGENLICHT beigetreten ist"
+
+#: post-types.php:153
+msgid "The year the teamie left the GEGENLICHT (only used for former members)"
+msgstr ""
+"Das Jahr in dem das Teammitglied das GEGENLICHT verlassen hat (nur bei "
+"ehemaligen Mitgliedern genutzt)"
+
+#: post-types.php:155
+msgid "The teamie's name"
+msgstr "Der Name des Teamies"
+
+#: post-types.php:157
+msgid "The number of movies the teamie screened"
+msgstr "Die Zahl der Filme die das Teammitglied gezegit hat"
+
+#: post-types.php:286
 msgid "Enter Name of the Teamie"
 msgstr "Gebe den Namen des Teamie ein"
 
-#: post-types.php:237
+#: post-types.php:290
 msgid "Enter Name of the Cooperation Partner"
 msgstr "Name des Kooperationspartners eingeben"
 
-#: post-types.php:241
+#: post-types.php:294
 msgid "Enter Name of the Supporter"
 msgstr "Gebe den Namen der/des Supporterin/Supporters ein"
 
-#: post-types.php:245
+#: post-types.php:298
 msgid "Enter Name of the Screening Location"
 msgstr "Name des Veranstaltungsortes eingeben"
 
-#: post-types.php:256
+#: post-types.php:319
 msgid "Extended Settings"
 msgstr "Erweiterte Informationen"
 
-#: post-types.php:278
+#: post-types.php:341
 msgid ""
 "Select the team member that shall be linked with your account. This will "
 "automatically set you as the person who selected a movie/event during the "
@@ -374,7 +424,7 @@ msgstr "Hauptprogramm"
 
 #: src/post-types/event.php:333 src/post-types/event.php:348
 #: src/post-types/movie.php:564 src/post-types/movie.php:580
-#: src/taxonomies/special-program.php:14
+#: src/taxonomies/special-program.php:16
 msgid "Special Program"
 msgstr "Sonderprogramm"
 
@@ -387,7 +437,7 @@ msgid "Admission Type"
 msgstr "Eintrittstyp"
 
 #: src/post-types/event.php:370 src/post-types/movie.php:354
-#: src/post-types/movie.php:899
+#: src/post-types/movie.php:804
 msgid "Free"
 msgstr "Kostenlos"
 
@@ -784,25 +834,29 @@ msgstr ""
 "klar hinweisende Namen beinhalten, die den Film für eine Suchmaschine "
 "identifizierbar machen."
 
-#: src/post-types/movie.php:901
+#: src/post-types/movie.php:806
 msgid "Donations Welcome"
 msgstr "Gegen Spende"
 
-#: src/post-types/movie.php:907
+#: src/post-types/movie.php:812
 msgid "Inquire at the Box Office"
 msgstr "An Abendkasse angegeben"
 
-#: src/post-types/movie.php:1069
+#: src/post-types/movie.php:974
 msgid "with"
 msgstr "mit"
 
-#: src/post-types/movie.php:1070
+#: src/post-types/movie.php:975
 msgid "and"
 msgstr "und"
 
-#: src/post-types/movie.php:1190 src/post-types/movie.php:1643
+#: src/post-types/movie.php:1095 src/post-types/movie.php:1472
 msgid "Minutes"
 msgstr "Minuten"
+
+#: src/post-types/movie.php:1496
+msgid "screened in "
+msgstr "gezeigt in "
 
 #: src/post-types/screening-location.php:11
 #: src/post-types/screening-location.php:14
@@ -831,46 +885,46 @@ msgstr "Veranstaltungsort anzeigen"
 msgid "All Screening Locations"
 msgstr "Alle Veranstaltungsorte"
 
-#: src/post-types/screening-location.php:42
-#: src/post-types/screening-location.php:51
+#: src/post-types/screening-location.php:45
+#: src/post-types/screening-location.php:54
 msgid "Address Details"
 msgstr "Adressdaten"
 
-#: src/post-types/screening-location.php:55
+#: src/post-types/screening-location.php:58
 msgid "Street"
 msgstr "Straße"
 
-#: src/post-types/screening-location.php:62
+#: src/post-types/screening-location.php:65
 msgid "Postal Code"
 msgstr "Postleitzahl"
 
-#: src/post-types/screening-location.php:69
+#: src/post-types/screening-location.php:72
 msgid "City"
 msgstr "Stadt"
 
-#: src/post-types/screening-location.php:77
+#: src/post-types/screening-location.php:80
 msgid "Country"
 msgstr "Land"
 
-#: src/post-types/screening-location.php:86
-#: src/post-types/screening-location.php:95
+#: src/post-types/screening-location.php:89
+#: src/post-types/screening-location.php:98
 msgid "Coordinates"
 msgstr "Koordinaten"
 
-#: src/post-types/screening-location.php:99
+#: src/post-types/screening-location.php:102
 msgid "Latitude"
 msgstr "Längengrad"
 
-#: src/post-types/screening-location.php:107
+#: src/post-types/screening-location.php:110
 msgid "Longitude"
 msgstr "Breitengrad"
 
-#: src/post-types/screening-location.php:117
+#: src/post-types/screening-location.php:120
 msgid "Identifiers"
 msgstr "Identifizierer"
 
-#: src/post-types/screening-location.php:123
-#: src/post-types/screening-location.php:127
+#: src/post-types/screening-location.php:126
+#: src/post-types/screening-location.php:130
 msgid ""
 "These identifiers help building platform dependent links to the location. If "
 "no identifier is specified for a place, a search will be initiated in most "
@@ -880,11 +934,11 @@ msgstr ""
 "auf den Eintrag des Ortes zeigen. Sollte kein Identifizierer eingestellt "
 "sein, wird bei den meisten Kartenanwendungen eine Suche gestartet"
 
-#: src/post-types/screening-location.php:131
+#: src/post-types/screening-location.php:134
 msgid "Apple Maps Place ID"
 msgstr "Apple Maps Place ID"
 
-#: src/post-types/screening-location.php:137
+#: src/post-types/screening-location.php:140
 msgid "Google Maps Place ID"
 msgstr "Google Maps Place ID"
 
@@ -968,10 +1022,6 @@ msgstr "Mitgliedsstatus"
 msgid "Active"
 msgstr "Aktiv"
 
-#: src/post-types/team-member.php:95
-msgid "Former"
-msgstr "Ehemalig"
-
 #: src/post-types/team-member.php:96
 msgid "Active (Hidden)"
 msgstr "Aktiv (Versteckt)"
@@ -1028,17 +1078,24 @@ msgstr "Diese wunderschöne Person ist %s"
 msgid "since %d"
 msgstr "seit %d"
 
-#: src/public-functions.php:47 src/public-functions.php:120
-msgid "An unnamed event"
-msgstr "Ein ungenanntes Event"
+#: src/post-types/team-member.php:402
+#, php-format
+msgid "%s movie"
+msgid_plural "%s movies"
+msgstr[0] "%s Film"
+msgstr[1] "%s Filme"
 
-#: src/public-functions.php:61
+#: src/public-functions.php:57 src/public-functions.php:139
+msgid "An unnamed movie"
+msgstr "Ein ungenannter Film"
+
+#: src/public-functions.php:62 src/public-functions.php:144
 msgid "An unnamed special"
 msgstr "Ein ungenanntes Special"
 
-#: src/public-functions.php:122
-msgid "An unnamed movie"
-msgstr "Ein ungenannter Film"
+#: src/public-functions.php:133
+msgid "An unnamed event"
+msgstr "Ein ungenanntes Event"
 
 #: src/taxonomies/actor.php:6 src/taxonomies/actor.php:7
 msgid "Actors"
@@ -1172,64 +1229,64 @@ msgstr ""
 "deaktiviert für das gegebene Semester. Die Einträge werden nach dem "
 "angegebenen Datum sortiert."
 
-#: src/taxonomies/special-program.php:10 src/taxonomies/special-program.php:13
-#: src/taxonomies/special-program.php:21
+#: src/taxonomies/special-program.php:12 src/taxonomies/special-program.php:15
+#: src/taxonomies/special-program.php:23
 msgid "Special Programs"
 msgstr "Sonderprogramme"
 
-#: src/taxonomies/special-program.php:15
+#: src/taxonomies/special-program.php:17
 msgid "Search Special Programs"
 msgstr "Sonderprogramme durchsuchen"
 
-#: src/taxonomies/special-program.php:16
+#: src/taxonomies/special-program.php:18
 msgid "All Special Programs"
 msgstr "Alle Sonderprogramme"
 
-#: src/taxonomies/special-program.php:17
+#: src/taxonomies/special-program.php:19
 msgid "Edit Special Program"
 msgstr "Sonderprogramm bearbeiten"
 
-#: src/taxonomies/special-program.php:18
+#: src/taxonomies/special-program.php:20
 msgid "Update Special Program"
 msgstr "Sonderprogramm aktualisieren"
 
-#: src/taxonomies/special-program.php:19
+#: src/taxonomies/special-program.php:21
 msgid "Add New Special Program"
 msgstr "Neues Sonderprogramm hinzufügen"
 
-#: src/taxonomies/special-program.php:20
+#: src/taxonomies/special-program.php:22
 msgid "New Special Program Name"
 msgstr "Name des neuen Sonderprogramms"
 
-#: src/taxonomies/special-program.php:49
+#: src/taxonomies/special-program.php:51
 msgid "Extended Configuration"
 msgstr "Erweiterte Konfiguration"
 
-#: src/taxonomies/special-program.php:56
+#: src/taxonomies/special-program.php:58
 msgid "Background Color"
 msgstr "Hintergrundfarbe"
 
-#: src/taxonomies/special-program.php:58
+#: src/taxonomies/special-program.php:60
 msgid ""
 "The color used as the background for content related the special programm"
 msgstr "Diese Farbe wird als Hintergrundfarbe für das Sonderprogramm genutzt"
 
-#: src/taxonomies/special-program.php:63
+#: src/taxonomies/special-program.php:65
 msgid "Text Color"
 msgstr "Textfarbe"
 
-#: src/taxonomies/special-program.php:65
+#: src/taxonomies/special-program.php:67
 msgid ""
 "The color used for the text on the special programme program related pages"
 msgstr ""
 "Die Textfarbe für das Sonderprogramm und auf Detailseiten für das "
 "Sonderprogramm"
 
-#: src/taxonomies/special-program.php:70
+#: src/taxonomies/special-program.php:72
 msgid "Background Color (Dark Mode)"
 msgstr "Hintergrundfarbe (Dark Mode)"
 
-#: src/taxonomies/special-program.php:72
+#: src/taxonomies/special-program.php:74
 msgid ""
 "The color used as the background in dark mode for content related the "
 "special programm"
@@ -1237,31 +1294,31 @@ msgstr ""
 "Diese Farbe wird als Hintergrundfarbe im Dark Mode für das Sonderprogramm "
 "genutzt"
 
-#: src/taxonomies/special-program.php:78
+#: src/taxonomies/special-program.php:80
 msgid "Text Color (Dark Mode)"
 msgstr "Textfarbe (Dark Mode)"
 
-#: src/taxonomies/special-program.php:80
+#: src/taxonomies/special-program.php:82
 msgid ""
 "The color used for the text in dark mode on the special programm related "
 "pages"
 msgstr ""
 "Diese Farbe wird als Textfarbe im Dark Mode für das Sonderprogramm genutzt"
 
-#: src/taxonomies/special-program.php:85
+#: src/taxonomies/special-program.php:87
 msgid "Program Logo"
 msgstr "Sonderprogrammlogo"
 
-#: src/taxonomies/special-program.php:88
+#: src/taxonomies/special-program.php:90
 msgid ""
 "This logo is displayed on the front page to identify the special program"
 msgstr "Dieses Logo wird auf der Startseite angezeigt"
 
-#: src/taxonomies/special-program.php:93
+#: src/taxonomies/special-program.php:95
 msgid "Program Logo (Dark Mode)"
 msgstr "Sonderprogrammlogo (Dark Mode)"
 
-#: src/taxonomies/special-program.php:96
+#: src/taxonomies/special-program.php:98
 msgid ""
 "This logo is displayed on the front page to identify the special program if "
 "the dark mode is active"
@@ -1269,7 +1326,7 @@ msgstr ""
 "Dieses Logo wird auf der Startseite angezeigt, wenn der Client im Darkmode "
 "ist)"
 
-#: src/taxonomies/special-program.php:101
+#: src/taxonomies/special-program.php:103
 msgid "Image for Anonymized Detail Pages"
 msgstr "Anonymisierendes Bild"
 
