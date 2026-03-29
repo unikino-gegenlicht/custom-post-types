@@ -1199,12 +1199,12 @@ function ggl_get_movie_thumbnail_urls( int|WP_Post $post = 0 ): array {
 		if ( $is_in_special_program && $assigned_special_program != null ) {
 			return [
 				[
-					"url"         => ggl_get_special_program_anonymous_image_url($assigned_special_program, "mobile") ?? $anonymous_image["sizes"]["mobile"]["url"] ?? $anonymous_image["url"],
+					"url"         => ggl_get_special_program_anonymous_image_url( $assigned_special_program, "mobile" ) ?? $anonymous_image["sizes"]["mobile"]["url"] ?? $anonymous_image["url"],
 					"media_query" => "(width <= 768px)"
 				],
 
 				[
-					"url"         => ggl_get_special_program_anonymous_image_url($assigned_special_program) ?? $anonymous_image["sizes"]["desktop"]["url"] ?? $anonymous_image["url"],
+					"url"         => ggl_get_special_program_anonymous_image_url( $assigned_special_program ) ?? $anonymous_image["sizes"]["desktop"]["url"] ?? $anonymous_image["url"],
 					"media_query" => "(width > 768px)"
 				]
 			];
@@ -1493,16 +1493,14 @@ function ggl_the_movie_semester( int|WP_Post $post = 0 ): void {
 	}
 
 	$semester = ggl_get_movie_semester( $post );
-    echo __("screened in ", "ggl-post-types") . $semester->name;
+	echo __( "screened in ", "ggl-post-types" ) . $semester->name;
 }
 
 function ggl_movie_is_special_feature( int|WP_Post $post = 0 ): bool {
-    $post = get_post( $post, filter: 'display' );
-    if ( $post->post_type != "movie" ) {
-        return false;
-    }
+	$post = get_post( $post, filter: 'display' );
+	if ( $post->post_type != "movie" ) {
+		return false;
+	}
 
 	return get_post_meta( $post->ID, "program_type", true ) == "special_program";
-
-
 }
