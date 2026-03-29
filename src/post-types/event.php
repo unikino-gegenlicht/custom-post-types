@@ -466,20 +466,6 @@ function ggl_get_event_thumbnail_urls( int|WP_Post $post = 0 ): array {
 
 	$anonymous_image = rwmb_meta( "event_anonymous_movie_image", [ "object_type" => "setting" ], "ggl_cpt__settings" );
 
-	$show_details = apply_filters( "ggl__show_full_details", false, $post );
-	if ( ! $show_details ) {
-		return [
-			[
-				"url"         => $anonymous_image["sizes"]["mobile"]["url"] ?? $anonymous_image["url"],
-				"media_query" => "(width <= 768px)"
-			],
-
-			[
-				"url"         => $anonymous_image["sizes"]["desktop"]["url"] ?? $anonymous_image["url"],
-				"media_query" => "(width > 768px)"
-			]
-		];
-	}
 
 	$image_urls   = [];
 	$image_urls[] = [
@@ -490,25 +476,6 @@ function ggl_get_event_thumbnail_urls( int|WP_Post $post = 0 ): array {
 		"url"         => get_the_post_thumbnail_url( $post->ID, "desktop" ) ?? $anonymous_image["sizes"]["desktop"]["url"] ?? $anonymous_image["full_url"],
 		"media_query" => "(prefers-reduced-motion: reduce) and (width > 768px)"
 	];
-
-	$has_animated_image = boolval( get_post_meta( $post->ID, "use_animated_feature_image", true ) );
-	if ( ! $has_animated_image ) {
-		for ( $i = 0; $i < count( $image_urls ); $i ++ ) {
-			$image_urls[ $i ]["media_query"] = trim( str_replace( "(prefers-reduced-motion: reduce) and", "", $image_urls[ $i ]["media_query"] ) );
-		}
-	} else {
-		$mobile_animated_image = rwmb_meta( "portrait_animated_feature_image" );
-		$image_urls[]          = [
-			"url"         => $mobile_animated_image["full_url"],
-			"media_query" => "(width <= 768px)"
-		];
-
-		$desktop_animated_image = rwmb_meta( "landscape_animated_feature_image" );
-		$image_urls[]           = [
-			"url"         => $desktop_animated_image["full_url"],
-			"media_query" => "(width > 768px)"
-		];
-	}
 
 	return $image_urls;
 }

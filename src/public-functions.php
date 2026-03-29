@@ -115,7 +115,7 @@ function ggl_get_localized_title( int|WP_Post $post = 0 ): string {
 
 	// Check if the function shall return the real titles for the movie/event
 	$show_details = apply_filters( "ggl__show_full_details", false, $post );
-	if ( $show_details ) {
+	if ( $show_details || $post->post_type === "event" ) {
 		// as we only want to get the language for the localization we take a
 		// substring of the first two characters here as those are the
 		// language part of the BCP 47 tag that are returned by get_user_locale
@@ -127,10 +127,6 @@ function ggl_get_localized_title( int|WP_Post $post = 0 ): string {
 
 		// now return the appropriate post metadata
 		return get_post_meta( $post->ID, $meta_prefix . "_title", true );
-	}
-
-	if ( $post->post_type === "event" ) {
-		return __( "An unnamed event", "ggl-post-types" );
 	}
 
 
