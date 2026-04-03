@@ -119,7 +119,6 @@ function ggl_get_special_program_anonymous_image_url( WP_Term|int $term, $size =
 		return '';
 	}
 	$anonymous_image_id = get_term_meta( $term->term_id, 'anonymous_image', true );
-	var_dump( $anonymous_image_id );
 
 	return wp_get_attachment_image_url( $anonymous_image_id, $size );
 }
@@ -206,9 +205,6 @@ function ggl_special_program_get_stylesheet_path( WP_Term|int $term ): string {
 	if ( $term->taxonomy !== 'special-program' ) {
 		return '';
 	}
-
-	$mode = is_singular( [ "movie", "event" ] ) ? "detail-page" : "content-block";
-
 
 	$expected_fs_path = path_join( WP_CONTENT_DIR, "cpt-styles/special-program.$term->slug.overrides.min.css" );
 
