@@ -156,6 +156,20 @@ function ggl_get_partner_image_url( int|WP_Post $post = 0 ): string {
 	return get_the_post_thumbnail_url( $post, "member-crop" ) ?: $anonymous_image["sizes"]["member-crop"]["url"] ?? $anonymous_image["full_url"];
 }
 
+function ggl_get_partner_manual_movie_entries( int|WP_Post $post = 0 ): array {
+	// Resolve the provided post or fall back to the global post
+	$post = get_post( $post, filter: 'display' );
+
+	// Return early if the post type is not supported by the function
+	if ( $post->post_type !== "cooperation-partner" ) {
+		return [];
+	}
+
+	$entries = get_post_meta( $post->ID, "cooperation-partner_shown_movies", true );
+
+	return $entries === "" ? [] : $entries;
+}
+
 /**
  * Output the markup for the team members image
  *

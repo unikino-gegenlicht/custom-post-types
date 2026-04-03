@@ -217,12 +217,6 @@ function ggl_post_types_load_textdomain() {
 function ggl_cpt__spaceout_admin_menu() {
 	remove_menu_page( 'edit.php' ); // Posts
 	remove_menu_page( 'edit-comments.php' ); // Comments
-	global $menu;
-
-	$menu[5] = $menu[6];
-	$menu[6] = $menu[7];
-	$menu[7] = $menu[11];
-	unset( $menu[11] );
 
 	add_admin_menu_separator( 10 );
 	add_admin_menu_separator( 20 );
