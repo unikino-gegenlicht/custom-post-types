@@ -58,7 +58,7 @@ class Event {
 
 		$data = [
 			"@type"                           => "Event",
-			"@id"                             => $meta->canonical . '#/screening',
+			"@id"                             => "$meta->canonical#/schema/Event/$post->ID",
 			"name"                            => ggl_get_localized_title(),
 			"mainEntityOfPage"                => [ '@id' => $meta->canonical ],
 			"description"                     => mb_trim( strip_tags( ggl_get_summary() ) ),
@@ -70,18 +70,24 @@ class Event {
 			"startDate"                       => $starting_time->format( DATE_ATOM ),
 			"endDate"                         => $ending_time->format( DATE_ATOM ),
 			"offers"                          => [
-				"@type"         => "Offer",
-				"price"         => ggl_get_numerical_admission_fee( $post ),
-				"priceCurrency" => "EUR",
-				"url"           => ggl_get_event_booking_url( $post ),
-				"availability"  => "https://schema.org/InStock",
-				"validFrom"     => $offer_start_time->format( DATE_ATOM ),
+				"@type"              => "Offer",
+				"@id"                => "$meta->canonical#/schema/Offer/ticket_$post->ID",
+				"priceSpecification" => [
+					"@type"                 => "PriceSpecification",
+					"price"                 => ggl_get_numerical_admission_fee( $post ),
+					"priceCurrency"         => "EUR",
+					"valueAddedTaxIncluded" => "true"
+				],
+				"url"                => ggl_get_event_booking_url( $post ),
+				"availability"       => "https://schema.org/InStock",
+				"validFrom"          => $offer_start_time->format( DATE_ATOM ),
+				"seller"             => [
+					"@id" => "$meta->site_url/#organization"
+				]
 			],
 			"location"                        => ggl_get_location_schema_markup_data( ggl_get_assigned_location( $post ) ),
 			"organizer"                       => [
-				"@type" => "Organization",
-				"name"  => "Unikino GEGENLICHT",
-				"url"   => get_home_url( scheme: "https" )
+				"@id" => "$meta->site_url/#organization"
 			],
 			"performer"                       => $performer
 		];

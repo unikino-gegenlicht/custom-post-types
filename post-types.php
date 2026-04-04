@@ -115,12 +115,12 @@ add_action( 'admin_menu', 'ggl_cpt__spaceout_admin_menu' );
 
 add_action( 'plugins_loaded', 'ggl_post_types_load_textdomain' );
 
-/*
+
 require_once "src/seo/opengraph.php";
 add_filter( "wpseo_opengraph_image", "ggl_cpt__change_opengraph_image_url", 11 );
 add_filter( "wpseo_opengraph_image_height", "ggl_cpt__change_opengraph_image_height", 11 );
 add_filter( "wpseo_opengraph_image_width", "ggl_cpt__change_opengraph_image_width", 11 );
-*/
+
 require_once "src/seo/replacements.php";
 add_action( "wpseo_register_extra_replacements", function () {
 	wpseo_register_var_replacement( "%%ggl_title%%", "ggl_cpt__seo_title", "advanced", "The protected title of a movie or event" );

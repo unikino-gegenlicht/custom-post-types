@@ -256,7 +256,7 @@ function ggl_the_worth_to_see_section( int|WP_Post $post = 0 ): void {
 	echo apply_filters( "the_content", ggl_get_worth_to_see( $post ) );
 }
 
-function ggl_get_feature_image_url( int|WP_Post $post = 0 ): string {
+function ggl_get_feature_image_url( int|WP_Post $post = 0, $size = "full" ): string {
 	$post = get_post( $post, filter: 'display' );
 	if ( $post === null || ! in_array( $post->post_type, [ "movie", "event" ] ) ) {
 		return '';
@@ -270,13 +270,16 @@ function ggl_get_feature_image_url( int|WP_Post $post = 0 ): string {
 
 	if ( ! $show_details && $post->post_type !== "event" ) {
 		if ( $is_in_special_program && $assigned_special_program != null ) {
-			return ggl_get_special_program_anonymous_image_url( $assigned_special_program, "full" );
+			return ggl_get_special_program_anonymous_image_url( $assigned_special_program, $size );
 		}
 
-		return $mov_anonymous_image["full_url"];
+		return $mov_anonymous_image['sizes'][ $size ]["url"];
 	}
 
-	return get_the_post_thumbnail_url( $post->ID, "full" ) ?: ( $post->post_type === "movie" ? $mov_anonymous_image["full_url"] : $event_anonymous_image["full_url"] );
+	$anon_movie_image_url = $size == "full" ? $mov_anonymous_image["full_url"] : $mov_anonymous_image["sizes"][ $size ]["url"];
+	$anon_event_image_url = $size == "full" ? $event_anonymous_image["full_url"] : $event_anonymous_image["sizes"][ $size ]["url"];
+
+	return get_the_post_thumbnail_url( $post->ID, $size ) ?: ( $post->post_type === "movie" ? $anon_movie_image_url : $anon_event_image_url );
 
 }
 
@@ -314,5 +317,4 @@ function ggl_get_proposers( int|WP_Post $post = 0 ): array {
 		}, get_post_meta( $post->ID, "team_member_id" ) ),
 		default => []
 	};
-
 }

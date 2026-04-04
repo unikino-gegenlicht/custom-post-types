@@ -20,9 +20,7 @@ function ggl_cpt__change_opengraph_image_url( string $url ): string {
 		return $url;
 	}
 
-	$url = ggl_cpt__get_thumbnail_url( $post, "opengraph" );
-
-	return $url;
+	return ggl_get_feature_image_url( $post->ID, "opengraph" );
 }
 
 
@@ -43,8 +41,8 @@ function ggl_cpt__change_opengraph_image_height( string $height ): string {
 	if ( $post->post_type !== 'event' && $post->post_type !== 'movie' ) {
 		return $height;
 	}
-	$image_meta = wp_get_attachment_metadata( ggl_cpt__get_thumbnail_id( $post , "opengraph") );
-	return $image_meta['sizes']['opengraph']['height'] ?: $height;
+
+	return 1200;
 }
 
 
@@ -65,6 +63,6 @@ function ggl_cpt__change_opengraph_image_width( string $width ): string {
 	if ( $post->post_type !== 'event' && $post->post_type !== 'movie' ) {
 		return $width;
 	}
-	$image_meta = wp_get_attachment_metadata( ggl_cpt__get_thumbnail_id( $post, "opengraph" ) );
-	return $image_meta['sizes']['opengraph']['width'] ?: $width;
+
+	return 675;
 }

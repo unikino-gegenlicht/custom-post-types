@@ -14,7 +14,7 @@ function ggl_cpt__update_oembed_data( array $data, WP_Post $_post, int $width, i
 
 	// switch over to the link oembed type and set the fullsize thumbnail
 	$data['type']          = "link";
-	$data['thumbnail_url'] = ggl_cpt__get_thumbnail_url( $post, "opengraph" );
+	$data['thumbnail_url'] = ggl_get_thumbnail_url( $post, "opengraph" );
 
 	$image_meta = wp_get_attachment_metadata( ggl_cpt__get_thumbnail_id( $post ) );
 	$data['thumbnail_width']  = $image_meta['sizes']['opengraph']['width'];
