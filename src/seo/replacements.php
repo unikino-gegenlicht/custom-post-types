@@ -85,7 +85,7 @@ function ggl_cpt__seo_tagline() {
 	$countries  = rwmb_get_value( "country" );
 	$countryStr   = join( "/", ggl_resolve_country_list( $countries ) );
 
-	$releaseYear = date( 'Y', strtotime( rwmb_get_value( 'release_date' ) ) );
+	$releaseYear = ggl_get_release_date( $post )->format( "Y" );
 
 	return "{$versionTag} ($versionName) | {$countryStr} {$releaseYear} | Laufzeit: {$running_time} Minuten | FSK: {$ageRating} {$proposer_string}";
 }
