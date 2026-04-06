@@ -1304,7 +1304,7 @@ function ggl_the_movie_thumbnail( int|WP_Post $post = 0, string $classes = "imag
 		<?php foreach ( $images as $image ) : ?>
             <source media="<?= $image['media_query'] ?>" srcset="<?= $image['url'] ?>"/>
 		<?php endforeach; ?>
-        <img alt="" width="800" height="1000"
+        <img fetchpriority="high" alt="" width="800" height="1000"
              src="<?= $anonymous_image["full_url"] ?>"/>
     </picture>
 	<?php
