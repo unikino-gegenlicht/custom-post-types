@@ -218,7 +218,7 @@ function ggl_cpt__spaceout_admin_menu() {
 	remove_menu_page( 'edit.php' ); // Posts
 	remove_menu_page( 'edit-comments.php' ); // Comments
 
-	add_admin_menu_separator( 10 );
+	add_admin_menu_separator( 13 );
 	add_admin_menu_separator( 20 );
 }
 
