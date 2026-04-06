@@ -135,6 +135,8 @@ add_filter( 'oembed_response_data', 'ggl_cpt__update_oembed_data', 10, 4 );
 
 add_action( "after_setup_theme", function () {
 	add_image_size( 'opengraph', 1200, 675, crop: true );
+	add_image_size( 'member-crop', 450, 600, crop: true );
+	add_image_size( 'small-member-crop', 210, 280, crop: true );
 } );
 
 function ggl_cpt__change_title_text( $title ) {
