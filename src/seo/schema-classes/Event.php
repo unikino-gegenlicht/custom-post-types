@@ -72,6 +72,8 @@ class Event {
 			"offers"                          => [
 				"@type"              => "Offer",
 				"@id"                => "$meta->canonical#/schema/Offer/ticket_$post->ID",
+				"price"              => ggl_get_numerical_admission_fee( $post ),
+				"priceCurrency"      => "EUR",
 				"priceSpecification" => [
 					"@type"                 => "PriceSpecification",
 					"price"                 => ggl_get_numerical_admission_fee( $post ),
@@ -82,12 +84,18 @@ class Event {
 				"availability"       => "https://schema.org/InStock",
 				"validFrom"          => $offer_start_time->format( DATE_ATOM ),
 				"seller"             => [
-					"@id" => "$meta->site_url/#organization"
+					"@id"  => "$meta->site_url#organization",
+					"type" => "Organization",
+					"url"  => $meta->site_url,
+					"name" => "Unikino GEGENLICHT"
 				]
 			],
 			"location"                        => ggl_get_location_schema_markup_data( ggl_get_assigned_location( $post ) ),
 			"organizer"                       => [
-				"@id" => "$meta->site_url/#organization"
+				"@id"  => "$meta->site_url#organization",
+				"type" => "Organization",
+				"url"  => $meta->site_url,
+				"name" => "Unikino GEGENLICHT"
 			],
 			"performer"                       => $performer
 		];
