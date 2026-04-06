@@ -307,7 +307,7 @@ function ggl_is_teamie_active( int|WP_Post $post = 0 ): bool {
  *
  * @return string The URL pointing to the picture
  */
-function ggl_get_teamie_image_url( int|WP_Post $post = 0 ): string {
+function ggl_get_teamie_image_url( int|WP_Post $post = 0, string $size = "member-crop" ): string {
 	$post = get_post( $post, filter: 'display' );
 	if ( $post->post_type != "team-member" ) {
 		return "";
@@ -315,8 +315,33 @@ function ggl_get_teamie_image_url( int|WP_Post $post = 0 ): string {
 
 	$anonymous_image = rwmb_meta( "teamie_anonymous_image", [ "object_type" => "setting" ], "ggl_cpt__settings" );
 
-	return get_the_post_thumbnail_url( $post, "member-crop" ) ?: $anonymous_image["sizes"]["member-crop"]["url"] ?? $anonymous_image["full_url"];
+	return get_the_post_thumbnail_url( $post, $size ) ?: $anonymous_image["sizes"]["member-crop"]["url"] ?? $anonymous_image["full_url"];
 }
+
+function ggl_get_teamie_image_srcset( int|WP_Post $post = 0, string $size = "member-crop" ): string {
+	$post = get_post( $post, filter: 'display' );
+	if ( $post->post_type != "team-member" ) {
+		return "";
+	}
+
+	$anonymous_image        = rwmb_meta( "teamie_anonymous_image", [ "object_type" => "setting" ], "ggl_cpt__settings" );
+	$anonymous_image_srcset = wp_get_attachment_image_srcset( $anonymous_image["ID"], $size, get_post_thumbnail_id( $anonymous_image["ID"] ) );
+
+	return wp_get_attachment_image_srcset( get_post_thumbnail_id( $post ), $size, wp_get_attachment_metadata( get_post_thumbnail_id( $post ) ) ) ?: $anonymous_image_srcset;
+}
+
+function ggl_get_teamie_image_sizes( int|WP_Post $post = 0, string $size = "member-crop" ): string {
+	$post = get_post( $post, filter: 'display' );
+	if ( $post->post_type != "team-member" ) {
+		return "";
+	}
+
+	$anonymous_image       = rwmb_meta( "teamie_anonymous_image", [ "object_type" => "setting" ], "ggl_cpt__settings" );
+	$anonymous_image_sizes = wp_get_attachment_image_sizes( $anonymous_image["ID"], $size, get_post_thumbnail_id( $anonymous_image["ID"] ) );
+
+	return wp_get_attachment_image_sizes( get_post_thumbnail_id( $post ), $size, wp_get_attachment_metadata( get_post_thumbnail_id( $post ) ) ) ?: $anonymous_image_sizes;
+}
+
 
 /**
  * Output the markup for the team members image
@@ -329,8 +354,8 @@ function ggl_get_teamie_image_url( int|WP_Post $post = 0 ): string {
  *
  * @return void
  */
-function ggl_the_teamie_image( int|WP_Post $post = 0, string $classes = "image is-3by4 member-picture", string $min_height = "" ): void {
-	$url         = ggl_get_teamie_image_url( $post );
+function ggl_the_teamie_image( int|WP_Post $post = 0, string $size = 'member-crop', string $classes = "image is-3by4 member-picture", string $min_height = "" ): void {
+	$url         = ggl_get_teamie_image_url( $post, $size );
 	$teamie_name = ggl_get_teamie_name( $post );
 	$title       = sprintf( __( "This beautiful person is %s", "ggl-post-types" ), $teamie_name );
 	echo "<picture class='$classes' title='$title'" . ( ! empty( trim( $min_height ) ) ? ' style="min-height: ' . trim( $min_height ) . ' !important;">' : ">" );
