@@ -273,7 +273,7 @@ function ggl_get_feature_image_url( int|WP_Post $post = 0, $size = "full" ): str
 			return ggl_get_special_program_anonymous_image_url( $assigned_special_program, $size );
 		}
 
-		return $mov_anonymous_image['sizes'][ $size ]["url"];
+		return $size == "full" ? $mov_anonymous_image["full_url"] : $mov_anonymous_image["sizes"][ $size ]["url"];
 	}
 
 	$anon_movie_image_url = $size == "full" ? $mov_anonymous_image["full_url"] : $mov_anonymous_image["sizes"][ $size ]["url"];
