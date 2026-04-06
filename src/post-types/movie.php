@@ -1221,12 +1221,12 @@ function ggl_get_movie_thumbnail_urls( int|WP_Post $post = 0 ): array {
 			return [
 				[
 					"url"         => ggl_get_special_program_anonymous_image_url( $assigned_special_program, "mobile" ) ?? $anonymous_image["sizes"]["mobile"]["url"] ?? $anonymous_image["url"],
-					"media_query" => "(width <= 768px)"
+					"media_query" => "(width <= 560px)"
 				],
 
 				[
 					"url"         => ggl_get_special_program_anonymous_image_url( $assigned_special_program ) ?? $anonymous_image["sizes"]["desktop"]["url"] ?? $anonymous_image["url"],
-					"media_query" => "(width > 768px)"
+					"media_query" => "(width > 560px)"
 				]
 			];
 		}
@@ -1234,12 +1234,12 @@ function ggl_get_movie_thumbnail_urls( int|WP_Post $post = 0 ): array {
 		return [
 			[
 				"url"         => $anonymous_image["sizes"]["mobile"]["url"] ?? $anonymous_image["url"],
-				"media_query" => "(width <= 768px)"
+				"media_query" => "(width <= 560px)"
 			],
 
 			[
 				"url"         => $anonymous_image["sizes"]["desktop"]["url"] ?? $anonymous_image["url"],
-				"media_query" => "(width > 768px)"
+				"media_query" => "(width > 560px)"
 			]
 		];
 	}
