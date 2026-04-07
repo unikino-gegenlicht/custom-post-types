@@ -16,7 +16,7 @@ function ggl_taxonomy_semester(): void {
 		'public'        => true,
 		'show_in_menu'  => current_user_can( "edit_others_posts" ),
 		'hierarchical'  => false,
-		'meta_box_cb'     => false,
+		'meta_box_cb' => false,
 		'show_tagcloud' => false,
 		'show_in_rest'  => true,
 		'query_var'     => true,
@@ -68,6 +68,7 @@ function ggl_taxonomy_semester_meta_boxes( $meta_boxes ): mixed {
 		'id'         => 'archival-information',
 		'taxonomies' => 'semester',
 		'context'    => 'normal',
+		'visible' => [ $prefix . 'add_archival_data', "=", "yes" ],
 		'fields'     => [
 			[
 				'type'      => 'switch',
@@ -92,5 +93,82 @@ function ggl_taxonomy_semester_meta_boxes( $meta_boxes ): mixed {
 		],
 	];
 
+	$meta_boxes[] = [
+		"title"      => esc_html__( 'Archival Data', 'ggl-post-types' ),
+		"id"         => "archive-movies",
+		'taxonomies' => 'semester',
+		'context'    => 'normal',
+		"fields"     => [
+			[
+				'id'          => $prefix . 'archived_screenings',
+				'type'        => 'group',
+				'title'       => esc_html__( 'Archive Movie', 'ggl-post-types' ),
+				'clone'       => true,
+				'sort_clone'  => false,
+				'group_title' => ' Movie {#} – {title}',
+				'collapsible' => true,
+				'fields'      => [
+					[
+						'name'     => __( "German Title", "ggl-post-types" ),
+						'id'       => 'title',
+						'required' => true,
+					],
+					[
+						'name'        => __( "Screened On", "ggl-post-types" ),
+						'id'          => 'screening_date',
+						'type'        => 'datetime',
+						'save_format' => 'Y-m-d H:i:s',
+						'required'    => true,
+						'js_options'  => [
+							'dateFormat' => 'dd.mm.yy',
+							'hour'       => 20
+						]
+					]
+				]
+			]
+		]
+	];
+
 	return $meta_boxes;
+}
+
+/**
+ * @param WP_Term|int $term
+ *
+ * @return array An associative array with a date and the title for the manually
+ * created screenings. The array contains a unix timestamp as key and each key
+ * has an array associated to it
+ */
+function ggl_get_semester_archived_screenings( WP_Term|int $term ): array {
+	$term = get_term( $term );
+
+	if ( $term->taxonomy !== 'semester' ) {
+		return [];
+	}
+
+	$old_archival_data = get_term_meta( $term->term_id, 'semester_shown_movies', true );
+	$new_archival_data = get_term_meta( $term->term_id, 'semester_archived_screenings', true );
+
+	if ( $old_archival_data == "" ) {
+		$old_archival_data = [];
+	}
+
+	if ( $new_archival_data == "" ) {
+		$new_archival_data = [];
+	}
+
+	$archived_screenings = [];
+	foreach ( $old_archival_data as $entry ) {
+		$date                                = date_parse_from_format( "d.m.Y", $entry[0] );
+		$timestamp                           = mktime( 20, 0, null, $date['month'], $date['day'], $date['year'] );
+		$archived_screenings[ $timestamp ][] = [ $entry[1] ];
+	}
+
+	foreach ( $new_archival_data as $entry ) {
+		$datetime                            = date_parse_from_format( "d.m.Y H:i", $entry['screening_date'] );
+		$timestamp                           = mktime( $datetime['hour'], $datetime['minute'], 0, $datetime['month'], $datetime['day'], $datetime['year'] );
+		$archived_screenings[ $timestamp ][] = [ $entry['title'] ];
+	}
+
+	return $archived_screenings;
 }
