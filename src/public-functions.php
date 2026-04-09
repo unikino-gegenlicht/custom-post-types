@@ -31,7 +31,7 @@ function ggl_get_title( int|WP_Post $post = 0 ): string {
 	$post = get_post( $post, filter: 'display' );
 
 	// Return early if the post type is not supported by the function
-	if ( ! in_array( $post->post_type, GGL_COMPATIBLE_POST_TYPES ) ) {
+	if ( $post == null || ! in_array( $post->post_type, GGL_COMPATIBLE_POST_TYPES ) ) {
 		return get_the_title( $post );
 	}
 
@@ -109,7 +109,7 @@ function ggl_get_localized_title( int|WP_Post $post = 0 ): string {
 	$post = get_post( $post, filter: 'display' );
 
 	// Return early if the post type is not supported by the function
-	if ( ! in_array( $post->post_type, [ "movie", "event" ] ) ) {
+	if ( $post == null || ! in_array( $post->post_type, [ "movie", "event" ] ) ) {
 		return ggl_get_title( $post );
 	}
 
@@ -182,7 +182,7 @@ function ggl_get_summary( int|WP_Post $post = 0 ): string {
 	$post = get_post( $post, filter: 'display' );
 
 	// Return early if the post type is not supported by the function
-	if ( ! in_array( $post->post_type, [ "movie", "event" ] ) ) {
+	if ( $post == null || ! in_array( $post->post_type, [ "movie", "event" ] ) ) {
 		return "";
 	}
 
@@ -230,7 +230,7 @@ function ggl_get_worth_to_see( int|WP_Post $post = 0 ): string {
 	$post = get_post( $post, filter: 'display' );
 
 	// Return early if the post type is not supported by the function
-	if ( ! in_array( $post->post_type, [ "movie", "event" ] ) ) {
+	if ( $post == null || ! in_array( $post->post_type, [ "movie", "event" ] ) ) {
 		return "";
 	}
 
