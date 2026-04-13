@@ -1216,17 +1216,23 @@ function ggl_get_movie_thumbnail_urls( int|WP_Post $post = 0 ): array {
 	$is_in_special_program    = get_post_meta( $post->ID, "program_type", true ) === "special_program";
 	$assigned_special_program = array_first( wp_get_post_terms( $post->ID, "special-program" ) );
 
+	$image_sizes                = wp_get_additional_image_sizes();
+
 	if ( ! $show_details ) {
 		if ( $is_in_special_program && $assigned_special_program != null ) {
 			return [
 				[
 					"url"         => ggl_get_special_program_anonymous_image_url( $assigned_special_program, "mobile" ) ?? $anonymous_image["sizes"]["mobile"]["url"] ?? $anonymous_image["url"],
-					"media_query" => "(width <= 560px)"
+					"media_query" => "(width <= 560px)",
+					"width"       => $image_sizes["mobile"]["width"] ?? 450,
+					"height"      => $image_sizes["mobile"]["height"] ?? 1000,
 				],
 
 				[
 					"url"         => ggl_get_special_program_anonymous_image_url( $assigned_special_program ) ?? $anonymous_image["sizes"]["desktop"]["url"] ?? $anonymous_image["url"],
-					"media_query" => "(width > 560px)"
+					"media_query" => "(width > 560px)",
+					"width"       => $image_sizes["desktop"]["width"] ?? 450,
+					"height"      => $image_sizes["desktop"]["height"] ?? 800,
 				]
 			];
 		}
@@ -1234,12 +1240,16 @@ function ggl_get_movie_thumbnail_urls( int|WP_Post $post = 0 ): array {
 		return [
 			[
 				"url"         => $anonymous_image["sizes"]["mobile"]["url"] ?? $anonymous_image["url"],
-				"media_query" => "(width <= 560px)"
+				"media_query" => "(width <= 560px)",
+				"width"       => $image_sizes["mobile"]["width"] ?? 450,
+				"height"      => $image_sizes["mobile"]["height"] ?? 1000,
 			],
 
 			[
 				"url"         => $anonymous_image["sizes"]["desktop"]["url"] ?? $anonymous_image["url"],
-				"media_query" => "(width > 560px)"
+				"media_query" => "(width > 560px)",
+				"width"       => $anonymous_image["sizes"]["desktop"]["width"] ?? 800,
+				"height"      => $anonymous_image["sizes"]["desktop"]["height"] ?? 450,
 			]
 		];
 	}
@@ -1248,11 +1258,15 @@ function ggl_get_movie_thumbnail_urls( int|WP_Post $post = 0 ): array {
 	$image_urls   = [];
 	$image_urls[] = [
 		"url"         => get_the_post_thumbnail_url( $post->ID, "mobile" ) ?? $anonymous_image["sizes"]["mobile"]["url"] ?? $anonymous_image["full_url"],
-		"media_query" => "(prefers-reduced-motion: reduce) and (width <= 768px)"
+		"media_query" => "(prefers-reduced-motion: reduce) and (width <=560px)",
+		"width"       => $image_sizes["mobile"]["width"] ?? 450,
+		"height"      => $image_sizes["mobile"]["height"] ?? 1000,
 	];
 	$image_urls[] = [
 		"url"         => get_the_post_thumbnail_url( $post->ID, "desktop" ) ?? $anonymous_image["sizes"]["desktop"]["url"] ?? $anonymous_image["full_url"],
-		"media_query" => "(prefers-reduced-motion: reduce) and (width > 768px)"
+		"media_query" => "(prefers-reduced-motion: reduce) and (width > 560px)",
+		"width"       => $anonymous_image["sizes"]["desktop"]["width"] ?? 800,
+		"height"      => $anonymous_image["sizes"]["desktop"]["height"] ?? 450,
 	];
 
 	$has_animated_image = boolval( get_post_meta( $post->ID, "use_animated_feature_image", true ) );
@@ -1264,13 +1278,17 @@ function ggl_get_movie_thumbnail_urls( int|WP_Post $post = 0 ): array {
 		$mobile_animated_image = rwmb_meta( "portrait_animated_feature_image" );
 		$image_urls[]          = [
 			"url"         => $mobile_animated_image["full_url"],
-			"media_query" => "(width <= 768px)"
+			"media_query" => "(width <= 560px)",
+			"width"       => $image_sizes["mobile"]["width"] ?? 450,
+			"height"      => $image_sizes["mobile"]["height"] ?? 1000,
 		];
 
 		$desktop_animated_image = rwmb_meta( "landscape_animated_feature_image" );
 		$image_urls[]           = [
 			"url"         => $desktop_animated_image["full_url"],
-			"media_query" => "(width > 768px)"
+			"media_query" => "(width > 560px)",
+			"width"       => $anonymous_image["sizes"]["desktop"]["width"] ?? 800,
+			"height"      => $anonymous_image["sizes"]["desktop"]["height"] ?? 450,
 		];
 	}
 
@@ -1302,9 +1320,10 @@ function ggl_the_movie_thumbnail( int|WP_Post $post = 0, string $classes = "imag
 	?>
     <picture class="<?= $classes ?>">
 		<?php foreach ( $images as $image ) : ?>
-            <source media="<?= $image['media_query'] ?>" srcset="<?= $image['url'] ?>"/>
+            <source media="<?= $image['media_query'] ?>" srcset="<?= $image['url'] ?>" width="<?= $image['width'] ?>"
+                    height="<?= $image['height'] ?>"/>
 		<?php endforeach; ?>
-        <img fetchpriority="high" alt="" width="800" height="1000"
+        <img loading="lazy" decoding="async" fetchpriority="high" alt="" width="800" height="1000"
              src="<?= $anonymous_image["full_url"] ?>"/>
     </picture>
 	<?php
