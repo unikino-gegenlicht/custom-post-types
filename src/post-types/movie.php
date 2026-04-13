@@ -1323,7 +1323,7 @@ function ggl_the_movie_thumbnail( int|WP_Post $post = 0, string $classes = "imag
             <source media="<?= $image['media_query'] ?>" srcset="<?= $image['url'] ?>" width="<?= $image['width'] ?>"
                     height="<?= $image['height'] ?>"/>
 		<?php endforeach; ?>
-        <img loading="lazy" decoding="async" fetchpriority="high" alt="" width="800" height="1000"
+        <img decoding="async" fetchpriority="high" alt="" width="800" height="1000"
              src="<?= $anonymous_image["full_url"] ?>"/>
     </picture>
 	<?php
