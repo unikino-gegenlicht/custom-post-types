@@ -86,6 +86,18 @@ function ggl_cpt__settings_meta_boxes( $meta_boxes ): array {
 				"desc" => esc_html__( "This character is used to replace the letters in director and actor names if the movie is to be anonymized", "ggl-post-types" ),
 				"id"   => "replacement_character",
 				"std"  => "█"
+			],
+			[
+				'name' => esc_html__( "English Explanation for Anonymized Movies", "ggl-post-types" ),
+				'type' => 'textarea',
+				'desc' => esc_html__( "This explanative text is displayed English visitors if a movie has been anonymized", "ggl-post-types" ),
+				'id'   => "en_movie_anonymization",
+			],
+			[
+				'name' => esc_html__( "German Explanation for Anonymized Movies", "ggl-post-types" ),
+				'type' => 'textarea',
+				'desc' => esc_html__( "This explanative text is displayed German visitors if a movie has been anonymized", "ggl-post-types" ),
+				'id'   => "de_movie_anonymization",
 			]
 		]
 	];
