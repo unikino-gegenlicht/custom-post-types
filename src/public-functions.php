@@ -276,8 +276,8 @@ function ggl_get_feature_image_url( int|WP_Post $post = 0, $size = "full" ): str
 		return $size == "full" ? $mov_anonymous_image["full_url"] : $mov_anonymous_image["sizes"][ $size ]["url"];
 	}
 
-	$anon_movie_image_url = $size == "full" ? $mov_anonymous_image["full_url"] : $mov_anonymous_image["sizes"][ $size ]["url"];
-	$anon_event_image_url = $size == "full" ? $event_anonymous_image["full_url"] : $event_anonymous_image["sizes"][ $size ]["url"];
+	$anon_movie_image_url = $size == "full" ? $mov_anonymous_image["full_url"] : $mov_anonymous_image["sizes"][ $size ]["url"] ?? $mov_anonymous_image["full_url"];
+	$anon_event_image_url = $size == "full" ? $event_anonymous_image["full_url"] : $event_anonymous_image["sizes"][ $size ]["url"] ?? $mov_anonymous_image["full_url"];
 
 	return get_the_post_thumbnail_url( $post->ID, $size ) ?: ( $post->post_type === "movie" ? $anon_movie_image_url : $anon_event_image_url );
 
