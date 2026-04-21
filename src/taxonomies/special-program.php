@@ -123,6 +123,17 @@ function ggl_get_special_program_anonymous_image_url( WP_Term|int $term, $size =
 	return wp_get_attachment_image_url( $anonymous_image_id, $size );
 }
 
+function ggl_get_special_program_anonymous_image_path( WP_Term|int $term, $size = "desktop" ): string {
+	$term = get_term( $term );
+
+	if ( $term->taxonomy !== 'special-program' ) {
+		return '';
+	}
+	$anonymous_image_id = get_term_meta( $term->term_id, 'anonymous_image', true );
+
+	return get_attached_file( $anonymous_image_id, $size );
+}
+
 function ggl_get_special_program_colors( WP_Term|int $term ): array {
 	$term = get_term( $term );
 	if ( $term->taxonomy !== 'special-program' ) {

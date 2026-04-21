@@ -115,7 +115,6 @@ function ggl_get_localized_title( int|WP_Post $post = 0, $force_anonymized = fal
 
 	// Check if the function shall return the real titles for the movie/event
 	$show_details = apply_filters( "ggl__show_full_details", false, $post ) && ! $force_anonymized;
-	var_dump( $show_details );
 	if ( $show_details || $post->post_type === "event" ) {
 		// as we only want to get the language for the localization we take a
 		// substring of the first two characters here as those are the
@@ -284,6 +283,17 @@ function ggl_get_feature_image_url( int|WP_Post $post = 0, $size = "full", bool 
 
 }
 
+function ggl_get_feature_image_path( int|WP_Post $post = 0, $size = "full", bool $force_anonymized = false ): string {
+	$post = get_post( $post, filter: 'display' );
+	if ( $post === null || ! in_array( $post->post_type, [ "movie", "event" ] ) ) {
+		return '';
+	}
+	$url      = ggl_get_feature_image_url( $post->ID, $size );
+	$rel_path = str_replace( get_home_url( "/" ), "", $url );
+
+	return ABSPATH . $rel_path;
+}
+
 
 function ggl_get_assigned_location( int|WP_Post $post = 0 ): WP_Post|null {
 	$post = get_post( $post, filter: 'display' );
@@ -318,4 +328,13 @@ function ggl_get_proposers( int|WP_Post $post = 0 ): array {
 		}, get_post_meta( $post->ID, "team_member_id" ) ),
 		default => []
 	};
+}
+
+function ggl_get_licensing_type( int|WP_Post $post = 0 ): string {
+	$post = get_post( $post, filter: 'display' );
+	if ( $post === null || ! in_array( $post->post_type, [ "movie", "event" ], true ) ) {
+		return "";
+	}
+
+	return $post->post_type === "event" ? "full" : get_post_meta( $post->ID, "license_type", true );
 }
