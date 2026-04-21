@@ -25,7 +25,7 @@
  * @see GGL_COMPATIBLE_POST_TYPES for compatible post types
  * @since 3.9.0
  */
-function ggl_get_title( int|WP_Post $post = 0 ): string {
+function ggl_get_title( int|WP_Post $post = 0, bool $force_anonymized = false ): string {
 
 	// Resolve the provided post or fall back to the global post
 	$post = get_post( $post, filter: 'display' );
@@ -42,11 +42,11 @@ function ggl_get_title( int|WP_Post $post = 0 ): string {
 
 	// Allow events to always display the title
 	if ( $post->post_type === "event" ) {
-		return ggl_get_localized_title( $post );
+		return ggl_get_localized_title( $post, $force_anonymized );
 	}
 
 	// Check if the function shall return the real titles for the movie/event
-	$show_details = apply_filters( "ggl__show_full_details", false, $post );
+	$show_details = apply_filters( "ggl__show_full_details", false, $post ) && ! $force_anonymized;
 
 	if ( $show_details ) {
 		return get_post_meta( $post->ID, "original_title", true );
@@ -77,8 +77,8 @@ function ggl_get_title( int|WP_Post $post = 0 ): string {
  * @see ggl_get_title() for the retrieval of the title
  * @since 3.9.0
  */
-function ggl_the_title( int|WP_Post $post = 0 ): void {
-	echo ggl_get_title( $post );
+function ggl_the_title( int|WP_Post $post = 0, bool $force_anonymized = false ): void {
+	echo ggl_get_title( $post, $force_anonymized );
 }
 
 /**
@@ -104,7 +104,7 @@ function ggl_the_title( int|WP_Post $post = 0 ): void {
  * @see GGL_COMPATIBLE_POST_TYPES for compatible post types
  * @since 3.9.0
  */
-function ggl_get_localized_title( int|WP_Post $post = 0 ): string {
+function ggl_get_localized_title( int|WP_Post $post = 0, $force_anonymized = false ): string {
 	// Resolve the provided post or fall back to the global post
 	$post = get_post( $post, filter: 'display' );
 
@@ -114,7 +114,8 @@ function ggl_get_localized_title( int|WP_Post $post = 0 ): string {
 	}
 
 	// Check if the function shall return the real titles for the movie/event
-	$show_details = apply_filters( "ggl__show_full_details", false, $post );
+	$show_details = apply_filters( "ggl__show_full_details", false, $post ) && ! $force_anonymized;
+	var_dump( $show_details );
 	if ( $show_details || $post->post_type === "event" ) {
 		// as we only want to get the language for the localization we take a
 		// substring of the first two characters here as those are the
@@ -157,8 +158,8 @@ function ggl_get_localized_title( int|WP_Post $post = 0 ): string {
  * @see ggl_get_localized_title() for the retrieval of the title
  * @since 3.9.0
  */
-function ggl_the_localized_title( int|WP_Post $post = 0 ): void {
-	echo ggl_get_localized_title( $post );
+function ggl_the_localized_title( int|WP_Post $post = 0, $force_anonymized = false ): void {
+	echo ggl_get_localized_title( $post, $force_anonymized );
 }
 
 /**
@@ -177,7 +178,7 @@ function ggl_the_localized_title( int|WP_Post $post = 0 ): void {
  *
  * @return string The summary for the entry.
  */
-function ggl_get_summary( int|WP_Post $post = 0 ): string {
+function ggl_get_summary( int|WP_Post $post = 0, bool $force_anonymized = false ): string {
 	// Resolve the provided post or fall back to the global post
 	$post = get_post( $post, filter: 'display' );
 
@@ -186,8 +187,8 @@ function ggl_get_summary( int|WP_Post $post = 0 ): string {
 		return "";
 	}
 
-	$show_details = apply_filters( "ggl__show_full_details", false, $post );
-	$meta_key     = $show_details || $post->post_type === "event" ? "summary" : "anon_summary";
+	$show_details = apply_filters( "ggl__show_full_details", false, $post ) && ! $force_anonymized;
+	$meta_key     = ( $show_details || $post->post_type === "event" ) ? "summary" : "anon_summary";
 
 	return get_post_meta( $post->ID, $meta_key, true );
 }
@@ -204,8 +205,8 @@ function ggl_get_summary( int|WP_Post $post = 0 ): string {
  * @see ggl_get_summary() for the retrieval of the summary
  * @since 3.9.0
  */
-function ggl_the_summary( int|WP_Post $post = 0 ): void {
-	echo apply_filters( "the_content", ggl_get_summary( $post ) );
+function ggl_the_summary( int|WP_Post $post = 0, bool $force_anonymized = false ): void {
+	echo apply_filters( "the_content", ggl_get_summary( $post, $force_anonymized ) );
 }
 
 /**
@@ -225,7 +226,7 @@ function ggl_the_summary( int|WP_Post $post = 0 ): void {
  *
  * @return string The summary for the entry.
  */
-function ggl_get_worth_to_see( int|WP_Post $post = 0 ): string {
+function ggl_get_worth_to_see( int|WP_Post $post = 0, bool $force_anonymized = false ): string {
 	// Resolve the provided post or fall back to the global post
 	$post = get_post( $post, filter: 'display' );
 
@@ -234,7 +235,7 @@ function ggl_get_worth_to_see( int|WP_Post $post = 0 ): string {
 		return "";
 	}
 
-	$show_details = apply_filters( "ggl__show_full_details", false, $post );
+	$show_details = apply_filters( "ggl__show_full_details", false, $post ) && ! $force_anonymized;
 	$meta_key     = $show_details || $post->post_type === "event" ? "worth_to_see" : "anon_worth_to_see";
 
 	return get_post_meta( $post->ID, $meta_key, true );
@@ -256,7 +257,7 @@ function ggl_the_worth_to_see_section( int|WP_Post $post = 0 ): void {
 	echo apply_filters( "the_content", ggl_get_worth_to_see( $post ) );
 }
 
-function ggl_get_feature_image_url( int|WP_Post $post = 0, $size = "full" ): string {
+function ggl_get_feature_image_url( int|WP_Post $post = 0, $size = "full", bool $force_anonymized = false ): string {
 	$post = get_post( $post, filter: 'display' );
 	if ( $post === null || ! in_array( $post->post_type, [ "movie", "event" ] ) ) {
 		return '';
@@ -264,7 +265,7 @@ function ggl_get_feature_image_url( int|WP_Post $post = 0, $size = "full" ): str
 	$mov_anonymous_image   = rwmb_meta( "movie_anonymous_movie_image", [ "object_type" => "setting" ], "ggl_cpt__settings" );
 	$event_anonymous_image = rwmb_meta( "event_anonymous_movie_image", [ "object_type" => "setting" ], "ggl_cpt__settings" );
 
-	$show_details             = apply_filters( "ggl__show_full_details", false, $post );
+	$show_details = apply_filters( "ggl__show_full_details", false, $post ) && ! $force_anonymized;
 	$is_in_special_program    = get_post_meta( $post->ID, "program_type", true ) === "special_program";
 	$assigned_special_program = array_first( wp_get_post_terms( $post->ID, "special-program" ) );
 
