@@ -46,7 +46,10 @@ function ggl_get_title( int|WP_Post $post = 0, bool $force_anonymized = false ):
 	}
 
 	// Check if the function shall return the real titles for the movie/event
-	$show_details = apply_filters( "ggl__show_full_details", false, $post ) && ! $force_anonymized;
+	$show_details = apply_filters( "ggl__show_full_details", false, $post );
+	if ( $force_anonymized ) {
+		$show_details = false;
+	}
 
 	if ( $show_details ) {
 		return get_post_meta( $post->ID, "original_title", true );
@@ -114,7 +117,10 @@ function ggl_get_localized_title( int|WP_Post $post = 0, $force_anonymized = fal
 	}
 
 	// Check if the function shall return the real titles for the movie/event
-	$show_details = apply_filters( "ggl__show_full_details", false, $post ) && ! $force_anonymized;
+	$show_details = apply_filters( "ggl__show_full_details", false, $post );
+	if ( $force_anonymized ) {
+		$show_details = false;
+	}
 	if ( $show_details || $post->post_type === "event" ) {
 		// as we only want to get the language for the localization we take a
 		// substring of the first two characters here as those are the
@@ -186,8 +192,11 @@ function ggl_get_summary( int|WP_Post $post = 0, bool $force_anonymized = false 
 		return "";
 	}
 
-	$show_details = apply_filters( "ggl__show_full_details", false, $post ) && ! $force_anonymized;
-	$meta_key     = ( $show_details || $post->post_type === "event" ) ? "summary" : "anon_summary";
+	$show_details = apply_filters( "ggl__show_full_details", false, $post );
+	if ( $force_anonymized ) {
+		$show_details = false;
+	}
+	$meta_key = ( $show_details || $post->post_type === "event" ) ? "summary" : "anon_summary";
 
 	return get_post_meta( $post->ID, $meta_key, true );
 }
@@ -234,7 +243,10 @@ function ggl_get_worth_to_see( int|WP_Post $post = 0, bool $force_anonymized = f
 		return "";
 	}
 
-	$show_details = apply_filters( "ggl__show_full_details", false, $post ) && ! $force_anonymized;
+	$show_details = apply_filters( "ggl__show_full_details", false, $post );
+	if ( $force_anonymized ) {
+		$show_details = false;
+	}
 	$meta_key     = $show_details || $post->post_type === "event" ? "worth_to_see" : "anon_worth_to_see";
 
 	return get_post_meta( $post->ID, $meta_key, true );
@@ -264,7 +276,10 @@ function ggl_get_feature_image_url( int|WP_Post $post = 0, $size = "full", bool 
 	$mov_anonymous_image   = rwmb_meta( "movie_anonymous_movie_image", [ "object_type" => "setting" ], "ggl_cpt__settings" );
 	$event_anonymous_image = rwmb_meta( "event_anonymous_movie_image", [ "object_type" => "setting" ], "ggl_cpt__settings" );
 
-	$show_details = apply_filters( "ggl__show_full_details", false, $post ) && ! $force_anonymized;
+	$show_details = apply_filters( "ggl__show_full_details", false, $post );
+	if ( $force_anonymized ) {
+		$show_details = false;
+	}
 	$is_in_special_program    = get_post_meta( $post->ID, "program_type", true ) === "special_program";
 	$assigned_special_program = array_first( wp_get_post_terms( $post->ID, "special-program" ) );
 
@@ -288,7 +303,7 @@ function ggl_get_feature_image_path( int|WP_Post $post = 0, $size = "full", bool
 	if ( $post === null || ! in_array( $post->post_type, [ "movie", "event" ] ) ) {
 		return '';
 	}
-	$url      = ggl_get_feature_image_url( $post->ID, $size );
+	$url = ggl_get_feature_image_url( $post->ID, $size, $force_anonymized );
 	$rel_path = str_replace( get_home_url( "/" ), "", $url );
 
 	return ABSPATH . $rel_path;
