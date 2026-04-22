@@ -85,7 +85,7 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           generate_release_notes: true
-          draft: true
+          draft: false
           files: |
             ggl-post-types.${{ github.ref_name }}.zip
             LICENSE
