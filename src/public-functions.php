@@ -51,20 +51,23 @@ function ggl_get_title( int|WP_Post $post = 0, bool $force_anonymized = false ):
 		$show_details = false;
 	}
 
+	$is_cancelled = boolval( get_post_meta( $post->ID, "screening_cancelled", true ) );
+
+
 	if ( $show_details ) {
-		return get_post_meta( $post->ID, "original_title", true );
+		return ( $is_cancelled ? "[" . __( "Cancelled", "ggl-post-types" ) . "] " : "" ) . get_post_meta( $post->ID, "original_title", true );
 	}
 
 	$is_in_special_program = get_post_meta( $post->ID, "program_type", true ) === "special_program";
 	if ( ! $is_in_special_program ) {
-		return __( "An unnamed movie", "ggl-post-types" );
+		return ( $is_cancelled ? "[" . __( "Cancelled", "ggl-post-types" ) . "] " : "" ) . __( "An unnamed movie", "ggl-post-types" );
 	}
 
 	$assigned_special_program = array_first( wp_get_post_terms( $post->ID, "special-program" ) );
 	if ( $assigned_special_program === null ) {
-		return __( "An unnamed special", "ggl-post-types" );
+		return ( $is_cancelled ? "[" . __( "Cancelled", "ggl-post-types" ) . "] " : "" ) . __( "An unnamed special", "ggl-post-types" );
 	} else {
-		return $assigned_special_program->name;
+		return ( $is_cancelled ? "[" . __( "Cancelled", "ggl-post-types" ) . "] " : "" ) . $assigned_special_program->name;
 	}
 }
 
@@ -121,6 +124,9 @@ function ggl_get_localized_title( int|WP_Post $post = 0, $force_anonymized = fal
 	if ( $force_anonymized ) {
 		$show_details = false;
 	}
+
+	$is_cancelled = boolval( get_post_meta( $post->ID, "screening_cancelled", true ) );
+
 	if ( $show_details || $post->post_type === "event" ) {
 		// as we only want to get the language for the localization we take a
 		// substring of the first two characters here as those are the
@@ -132,20 +138,20 @@ function ggl_get_localized_title( int|WP_Post $post = 0, $force_anonymized = fal
 		};
 
 		// now return the appropriate post metadata
-		return get_post_meta( $post->ID, $meta_prefix . "_title", true );
+		return ( $is_cancelled ? "[" . __( "Cancelled", "ggl-post-types" ) . "] " : "" ) . get_post_meta( $post->ID, $meta_prefix . "_title", true );
 	}
 
 
 	$is_in_special_program = get_post_meta( $post->ID, "program_type", true ) === "special_program";
 	if ( ! $is_in_special_program ) {
-		return __( "An unnamed movie", "ggl-post-types" );
+		return ( $is_cancelled ? "[" . __( "Cancelled", "ggl-post-types" ) . "] " : "" ) . __( "An unnamed movie", "ggl-post-types" );
 	}
 
 	$assigned_special_program = array_first( wp_get_post_terms( $post->ID, "special-program" ) );
 	if ( $assigned_special_program === null ) {
-		return __( "An unnamed special", "ggl-post-types" );
+		return ( $is_cancelled ? "[" . __( "Cancelled", "ggl-post-types" ) . "] " : "" ) . __( "An unnamed special", "ggl-post-types" );
 	} else {
-		return $assigned_special_program->name;
+		return ( $is_cancelled ? "[" . __( "Cancelled", "ggl-post-types" ) . "] " : "" ) . $assigned_special_program->name;
 	}
 
 
