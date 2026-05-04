@@ -1390,8 +1390,8 @@ function ggl_the_movie_thumbnail( int|WP_Post $post = 0, string $classes = "imag
 	<?php if ( $cancelled ): ?>
         <div class="reason">
             <h4 class="no-separator has-text-primary"><?= esc_html__( "Screening cancelled", "ggl-post-types" ) ?></h4>
-            <p class="is-size-5"><?= esc_html__( "Reason for the cancellation", "ggl-post-types" ) ?>
-                :&nbsp;<?= esc_html( $reason ) ?></p>
+            <p class="is-size-5">
+		        <?= esc_html__( "Reason for the cancellation", "ggl-post-types" ) ?>:&nbsp;<?= esc_html( $reason ) ?></p>
         </div>
         </div>
 	<?php endif; ?>
