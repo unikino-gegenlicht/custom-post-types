@@ -1261,7 +1261,7 @@ function ggl_get_movie_thumbnail_urls( int|WP_Post $post = 0 ): array {
 
 	$image_sizes = wp_get_additional_image_sizes();
 
-	if ( ! $show_details ) {
+	if ( ! $show_details || !has_post_thumbnail( $post->ID ) ) {
 		if ( $is_in_special_program && $assigned_special_program != null ) {
 			return [
 				[
@@ -1296,6 +1296,7 @@ function ggl_get_movie_thumbnail_urls( int|WP_Post $post = 0 ): array {
 			]
 		];
 	}
+
 
 
 	$image_urls   = [];
@@ -1360,6 +1361,7 @@ function ggl_the_movie_thumbnail( int|WP_Post $post = 0, string $classes = "imag
 		return;
 	}
 	$anonymous_image = rwmb_meta( "movie_anonymous_movie_image", [ "object_type" => "setting" ], "ggl_cpt__settings" );
+
 	$cancelled = boolval( rwmb_meta( "screening_cancelled" ) );
 	$reasons   = rwmb_get_field_settings( "cancellation_reason" )["options"];
 	$reason    = rwmb_meta( "cancellation_reason" );
@@ -1387,8 +1389,8 @@ function ggl_the_movie_thumbnail( int|WP_Post $post = 0, string $classes = "imag
     </picture>
 	<?php if ( $cancelled ): ?>
         <div class="reason">
-            <h4 class="no-separator has-text-primary"><?= esc_html__( "Screening cancelled", "ggl-post-types" ) ?></h4>
-            <p class="is-size-5">
+            <h4 class="is-size-2 no-separator has-text-primary"><?= esc_html__( "Screening cancelled", "ggl-post-types" ) ?></h4>
+            <p class="is-size-4 mt-3">
 		        <?= esc_html__( "Reason for the cancellation", "ggl-post-types" ) ?>:&nbsp;<?= esc_html( $reason ) ?></p>
         </div>
         </div>
