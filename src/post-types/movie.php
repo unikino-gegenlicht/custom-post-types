@@ -1385,8 +1385,6 @@ function ggl_the_movie_thumbnail( int|WP_Post $post = 0, string $classes = "imag
         <img decoding="async" fetchpriority="high" alt="" width="800" height="1000"
              src="<?= $anonymous_image["full_url"] ?>"/>
     </picture>
-    <div class="red-backdrop">
-    </div>
 	<?php if ( $cancelled ): ?>
         <div class="reason">
             <h4 class="no-separator has-text-primary"><?= esc_html__( "Screening cancelled", "ggl-post-types" ) ?></h4>
