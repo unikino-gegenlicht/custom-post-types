@@ -162,6 +162,10 @@ function movie_extended_info_meta_boxes( $meta_boxes ) {
 			'display'          => [
 				"label" => esc_html__( "Display Options", "ggl-post-types" ),
 				"icon"  => "dashicons-visibility"
+			],
+			'cancellation'     => [
+				"label" => esc_html__( "Cancellation", "ggl-post-types" ),
+				"icon"  => "dashicons-dismiss"
 			]
 		],
 		'fields'     => [
@@ -691,6 +695,45 @@ function movie_extended_info_meta_boxes( $meta_boxes ) {
 				'name' => esc_html__( 'Animated Feature Image for Portrait Mode', 'ggl-post-types' ),
 				'tab'  => 'display',
 				'desc' => esc_html__( "Please select an Animation with a aspect ratio of 4:5 and a resolution of 800x1000 px", 'ggl-post-types' ),
+			],
+			[
+				'type' => "checkbox",
+				"id"   => "screening_cancelled",
+				"name" => esc_html__( "Cancel Screening", "ggl-post-types" ),
+				"tab"  => "cancellation",
+				"desc" => esc_html__( "If ticked, the screening will show up as cancelled on the website" )
+			],
+			[
+				"type"    => "select",
+				"id"      => "cancellation_reason",
+				"name"    => esc_html__( "Reason for cancellation", "ggl-post-types" ),
+				"tab"     => "cancellation",
+				"options" => [
+					"technical_difficulties" => __( 'Technical Difficulties', 'ggl-post-types' ),
+					"sickness"               => __( 'Sickness', 'ggl-post-types' ),
+					"custom"                 => __( 'Custom', 'ggl-post-types' ),
+				],
+				"visible" => [ "screening_cancelled", true ]
+			],
+			[
+				"type"    => "text",
+				"name"    => esc_html__( "Custom Reason (German)", "ggl-post-types" ),
+				"id"      => "custom_cancellation_reason_de",
+				"tab"     => "cancellation",
+				"visible" => [
+					[ "screening_cancelled", true ],
+					[ "cancellation_reason", "=", "custom" ],
+				]
+			],
+			[
+				"type"    => "text",
+				"name"    => esc_html__( "Custom Reason (English)", "ggl-post-types" ),
+				"id"      => "custom_cancellation_reason_en",
+				"tab"     => "cancellation",
+				"visible" => [
+					[ "screening_cancelled", true ],
+					[ "cancellation_reason", "=", "custom" ],
+				]
 			]
 		],
 	];
@@ -1216,9 +1259,9 @@ function ggl_get_movie_thumbnail_urls( int|WP_Post $post = 0 ): array {
 	$is_in_special_program    = get_post_meta( $post->ID, "program_type", true ) === "special_program";
 	$assigned_special_program = array_first( wp_get_post_terms( $post->ID, "special-program" ) );
 
-	$image_sizes                = wp_get_additional_image_sizes();
+	$image_sizes = wp_get_additional_image_sizes();
 
-	if ( ! $show_details ) {
+	if ( ! $show_details || !has_post_thumbnail( $post->ID ) ) {
 		if ( $is_in_special_program && $assigned_special_program != null ) {
 			return [
 				[
@@ -1253,6 +1296,7 @@ function ggl_get_movie_thumbnail_urls( int|WP_Post $post = 0 ): array {
 			]
 		];
 	}
+
 
 
 	$image_urls   = [];
@@ -1317,15 +1361,40 @@ function ggl_the_movie_thumbnail( int|WP_Post $post = 0, string $classes = "imag
 		return;
 	}
 	$anonymous_image = rwmb_meta( "movie_anonymous_movie_image", [ "object_type" => "setting" ], "ggl_cpt__settings" );
+
+	$cancelled = boolval( rwmb_meta( "screening_cancelled" ) );
+	$reasons   = rwmb_get_field_settings( "cancellation_reason" )["options"];
+	$reason    = rwmb_meta( "cancellation_reason" );
+	if ( $reason === "custom" ) {
+		$reason = match ( substr( get_user_locale(), 0, 2 ) ) {
+			"de" => rwmb_meta( "custom_cancellation_reason_de" ),
+			default => rwmb_meta( "custom_cancellation_reason_en" ),
+		};
+	} else {
+		$reason = $reasons[ $reason ];
+	}
 	?>
+	<?php if ( $cancelled ): ?>
+        <div class="cancelled">
+
+	<?php endif; ?>
     <picture class="<?= $classes ?>">
 		<?php foreach ( $images as $image ) : ?>
-            <source media="<?= $image['media_query'] ?>" srcset="<?= $image['url'] ?>" width="<?= $image['width'] ?>"
+            <source media="<?= $image['media_query'] ?>" srcset="<?= $image['url'] ?>"
+                    width="<?= $image['width'] ?>"
                     height="<?= $image['height'] ?>"/>
 		<?php endforeach; ?>
         <img decoding="async" fetchpriority="high" alt="" width="800" height="1000"
              src="<?= $anonymous_image["full_url"] ?>"/>
     </picture>
+	<?php if ( $cancelled ): ?>
+        <div class="reason">
+            <h4 class="is-size-2 no-separator has-text-primary"><?= esc_html__( "Screening cancelled", "ggl-post-types" ) ?></h4>
+            <p class="is-size-4 mt-3">
+		        <?= esc_html__( "Reason for the cancellation", "ggl-post-types" ) ?>:&nbsp;<?= esc_html( $reason ) ?></p>
+        </div>
+        </div>
+	<?php endif; ?>
 	<?php
 }
 
