@@ -1371,7 +1371,7 @@ function ggl_the_movie_thumbnail( int|WP_Post $post = 0, string $classes = "imag
 			default => rwmb_meta( "custom_cancellation_reason_en" ),
 		};
 	} else {
-		$reason = $reasons[ $reason ];
+		$reason = $reasons[ $reason ] ?? __("unknown");
 	}
 	?>
 	<?php if ( $cancelled ): ?>

@@ -109,6 +109,41 @@ function ggl_taxonomy_program_type_meta_boxes( $meta_boxes ): mixed {
 		],
 	];
 
+	$meta_boxes[] = [
+		'title'          => esc_html__( 'Overwrite Page Themes', 'ggl-post-types' ),
+		'id'             => 'overwrite-page-themes',
+		'post_types'     => "page",
+		"closed"         => true,
+		"default_hidden" => true,
+		"context"        => "side",
+		"autosave"       => true,
+		"fields"         => [
+			[
+				"type" => "checkbox",
+				"name" => esc_html__( "Overwrite Page Color Theme", "ggl-post-types" ),
+				"id"   => "overwrite_page_styles",
+			],
+			[
+				'type'        => 'taxonomy',
+				'name'        => esc_html__( 'Special Program to use Color Scheme from', 'ggl-post-types' ),
+				'placeholder' => esc_html__( 'Select a Special Program', 'ggl-post-types' ),
+				'id'          => 'special_program',
+				'taxonomy'    => 'special-program',
+				'required'    => false,
+				'field_type'  => 'select_advanced',
+				'add_new'     => true,
+				'query_args'  => [
+					'number' => 10,
+				],
+				'visible'     => [ 'overwrite_page_styles', true ],
+				'ajax'        => true,
+				'revision'    => true,
+				'tab'         => 'screening'
+			],
+
+		]
+	];
+
 	return $meta_boxes;
 }
 
@@ -224,4 +259,15 @@ function ggl_special_program_get_stylesheet_path( WP_Term|int $term ): string {
 	}
 
 	return $expected_fs_path;
+}
+
+function ggl_special_program_apply_to_page( WP_Post|int $page = 0 ): bool {
+	$post = get_post( $page, filter: 'display' );
+	if ( $post === null || $post->post_type !== "page" ) {
+		return false;
+	}
+
+	return boolval(get_post_meta( $post->ID, "overwrite_page_styles", true ));
+
+
 }
