@@ -36,6 +36,7 @@ function ggl_post_type_movie(): void {
 		'supports'            => [ 'thumbnail', 'revisions', 'autosave', 'author' ],
 		'taxonomies'          => [ 'semester', 'special-program', 'director', 'actor' ],
 		'rewrite'             => [
+            'slug' => '%semester%',
 			'with_front' => true,
 			'pages'      => false,
 		]
@@ -91,6 +92,26 @@ function ggl_cpt__apply_movie_semester_filter( WP_Query $query ) {
 
 }
 
+function ggl_cpt__replace_semester_category(string $post_link, WP_Post|int $post): string {
+    $post = get_post( $post );
+    if (!is_object( $post )) {
+        return $post_link;
+    }
+
+    if (!in_array($post->post_type, [ 'movie', 'event' ])) {
+        return $post_link;
+    }
+
+    $semester = wp_get_object_terms($post->ID, 'semester');
+    if ( ! empty( $semester ) ) {
+        return str_replace("%semester%", $semester[0]->slug, $post_link);
+    } else {
+        return str_replace("%semester%", "special", $post_link);
+    }
+}
+add_filter( 'post_type_link', 'ggl_cpt__replace_semester_category', 1, 3 );
+
+
 function ensure_numerical_movie_link( $post_id ): void {
 	$parent_id = wp_is_post_revision( $post_id );
 
@@ -100,17 +121,51 @@ function ensure_numerical_movie_link( $post_id ): void {
 
 	$post = get_post( $post_id );
 
-
 	$post_title = $_POST['original_title'] ?: get_post_meta( $post->ID, 'original_title', true ) ?: null;
 
-	if ( $post->post_name == $post_id && $post->post_title == $post_title ) {
+	$advertisable_screening = $_POST['license_type'] === 'full';
+	if ( $advertisable_screening ) {
+		$post_name = wp_unique_post_slug( strtolower( $_POST['english_title'] ), $post->ID, $post->post_status, "movie", $post->post_parent );
+		remove_action( 'save_post_movie', 'ensure_numerical_movie_link', 1 );
+		wp_update_post( array(
+			'ID'         => $post_id,
+			'post_name'  => $post_name,
+			'post_title' => $post_title,
+		) );
+		add_action( 'save_post_movie', 'ensure_numerical_movie_link', 1 );
+
 		return;
+	}
+
+	$special_program_screening = $_POST['program_type'] === 'special_program';
+	if ( $special_program_screening ) {
+		$special_program_id = $_POST['special_program'] ?: null;
+		if ( $special_program_id ) {
+			$special_program = get_term( $special_program_id );
+			remove_action( 'save_post_movie', 'ensure_numerical_movie_link', 1 );
+			wp_update_post( array(
+				'ID'         => $post_id,
+				'post_name'  => wp_unique_post_slug( $special_program->slug, $post->ID, $post->post_status, "movie", $post->post_parent ),
+				'post_title' => $post_title,
+			) );
+			add_action( 'save_post_movie', 'ensure_numerical_movie_link', 1 );
+
+			return;
+		} else {
+			remove_action( 'save_post_movie', 'ensure_numerical_movie_link', 1 );
+			wp_update_post( array(
+				'ID'         => $post_id,
+				'post_name'  => wp_unique_post_slug( "unnamed-special", $post->ID, $post->post_status, "movie", $post->post_parent ),
+				'post_title' => $post_title,
+			) );
+			add_action( 'save_post_movie', 'ensure_numerical_movie_link', 1 );
+        }
 	}
 
 	remove_action( 'save_post_movie', 'ensure_numerical_movie_link', 1 );
 	wp_update_post( array(
 		'ID'         => $post_id,
-		'post_name'  => $post_id,
+		'post_name'  => wp_unique_post_slug("sneak", $post->ID, $post->post_status, "movie", $post->post_parents),
 		'post_title' => $post_title,
 	) );
 	add_action( 'save_post_movie', 'ensure_numerical_movie_link', 1 );
@@ -1261,7 +1316,7 @@ function ggl_get_movie_thumbnail_urls( int|WP_Post $post = 0 ): array {
 
 	$image_sizes = wp_get_additional_image_sizes();
 
-	if ( ! $show_details || !has_post_thumbnail( $post->ID ) ) {
+	if ( ! $show_details || ! has_post_thumbnail( $post->ID ) ) {
 		if ( $is_in_special_program && $assigned_special_program != null ) {
 			return [
 				[
@@ -1296,7 +1351,6 @@ function ggl_get_movie_thumbnail_urls( int|WP_Post $post = 0 ): array {
 			]
 		];
 	}
-
 
 
 	$image_urls   = [];
@@ -1371,7 +1425,7 @@ function ggl_the_movie_thumbnail( int|WP_Post $post = 0, string $classes = "imag
 			default => rwmb_meta( "custom_cancellation_reason_en" ),
 		};
 	} else {
-		$reason = $reasons[ $reason ] ?? __("unknown");
+		$reason = $reasons[ $reason ] ?? __( "unknown" );
 	}
 	?>
 	<?php if ( $cancelled ): ?>
@@ -1391,7 +1445,8 @@ function ggl_the_movie_thumbnail( int|WP_Post $post = 0, string $classes = "imag
         <div class="reason">
             <h4 class="is-size-2 no-separator has-text-primary"><?= esc_html__( "Screening cancelled", "ggl-post-types" ) ?></h4>
             <p class="is-size-4 mt-3">
-		        <?= esc_html__( "Reason for the cancellation", "ggl-post-types" ) ?>:&nbsp;<?= esc_html( $reason ) ?></p>
+				<?= esc_html__( "Reason for the cancellation", "ggl-post-types" ) ?>
+                :&nbsp;<?= esc_html( $reason ) ?></p>
         </div>
         </div>
 	<?php endif; ?>

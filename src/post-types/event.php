@@ -31,14 +31,16 @@ function ggl_post_type_event(): void {
 		'supports'            => [ 'thumbnail', 'revisions' ],
 		'taxonomies'          => [ 'semester', 'special-program' ],
 		'rewrite'             => [
+			'slug'       => '%semester%',
 			'with_front' => true,
 			'pages'      => false,
 		]
 	] );
 }
 
-add_filter( 'manage_event_posts_columns', function( $columns ) {
-	$columns['title'] = __("German Title", "ggl-post-types");
+add_filter( 'manage_event_posts_columns', function ( $columns ) {
+	$columns['title'] = __( "German Title", "ggl-post-types" );
+
 	return $columns;
 } );
 
@@ -51,20 +53,18 @@ function generate_numerical_event_id( $post_id ): void {
 
 	$post = get_post( $post_id );
 
-	$post_title  = $_POST['german_title'] ?: get_post_meta($post->ID, "german_title", true) ?: null;
+	$post_title = $_POST['english_title'];
 
-	if ( $post->post_name == $post_id && $post->post_title == $post_title ) {
-		return;
-	}
-
+	$post_name = wp_unique_post_slug( strtolower( $post_title ), $post->ID, $post->post_status, "movie", $post->post_parent );
 	remove_action( 'save_post_event', 'generate_numerical_event_id' );
 	wp_update_post( array(
 		'ID'         => $post_id,
-		'post_name'  => $post_id,
+		'post_name'  => $post_name,
 		'post_title' => $post_title,
 	) );
-	add_action( 'save_post_event', 'generate_numerical_event_id' );
+	add_action( 'save_post_event', 'generate_numerical_event_id'  );
 }
+
 
 function ggl_cpt__add_event_semester_filter( $post_type ): void {
 	if ( $post_type !== 'event' ) {
@@ -163,13 +163,13 @@ function event_extended_info_meta_boxes( $meta_boxes ) {
 				'revision'      => true,
 				'tab'           => 'information',
 				'admin_columns' => [
-					'position'   => 'after title',
-					'link'       => 'none',
+					'position' => 'after title',
+					'link'     => 'none',
 
 					'sort'       => true,
 					'searchable' => true,
 					'filterable' => false,
-                ],
+				],
 			],
 			[
 				'type'     => 'number',
@@ -215,19 +215,19 @@ function event_extended_info_meta_boxes( $meta_boxes ) {
 				'tab'      => "youth-protection",
 			],
 			[
-				'type'        => 'taxonomy',
-				'name'        => esc_html__( 'Semester', 'ggl-post-type' ),
-				'id'          => 'semester',
-				'placeholder' => esc_html__( 'Select a Semester', 'ggl-post-types' ),
-				'taxonomy'    => 'semester',
-				'required'    => false,
-				'field_type'  => 'select_advanced',
-				'query_args'  => [
+				'type'          => 'taxonomy',
+				'name'          => esc_html__( 'Semester', 'ggl-post-type' ),
+				'id'            => 'semester',
+				'placeholder'   => esc_html__( 'Select a Semester', 'ggl-post-types' ),
+				'taxonomy'      => 'semester',
+				'required'      => false,
+				'field_type'    => 'select_advanced',
+				'query_args'    => [
 					'number' => 10,
 				],
-				'add_new'     => true,
-				'revision'    => true,
-				'tab'         => 'screening',
+				'add_new'       => true,
+				'revision'      => true,
+				'tab'           => 'screening',
 				'admin_columns' => [
 					'position'   => 'before date',
 					'link'       => 'none',
@@ -237,19 +237,19 @@ function event_extended_info_meta_boxes( $meta_boxes ) {
 				]
 			],
 			[
-				'type'       => 'datetime',
-				'name'       => esc_html__( 'Date and Time', 'ggl-post-types' ),
-				'id'         => 'screening_date',
-				'timestamp'  => true,
-				'js_options' => [
+				'type'          => 'datetime',
+				'name'          => esc_html__( 'Date and Time', 'ggl-post-types' ),
+				'id'            => 'screening_date',
+				'timestamp'     => true,
+				'js_options'    => [
 					'dateFormat' => 'dd.mm.yy',
 				],
-				'required'   => true,
-				'revision'   => true,
-				'tab'        => 'screening',
+				'required'      => true,
+				'revision'      => true,
+				'tab'           => 'screening',
 				'admin_columns' => [
 					'position'   => 'replace date',
-					'title' => __("Screening Date", 'ggl-post-types'),
+					'title'      => __( "Screening Date", 'ggl-post-types' ),
 					'link'       => 'none',
 					'sort'       => true,
 					'searchable' => false,
@@ -323,20 +323,20 @@ function event_extended_info_meta_boxes( $meta_boxes ) {
 				'tab'         => 'screening',
 			],
 			[
-				'type'     => 'radio',
-				'name'     => esc_html__( 'Program Type', 'ggl-post-types' ),
-				'id'       => 'program_type',
-				'inline'   => true,
-				'required' => true,
-				'options'  => [
+				'type'          => 'radio',
+				'name'          => esc_html__( 'Program Type', 'ggl-post-types' ),
+				'id'            => 'program_type',
+				'inline'        => true,
+				'required'      => true,
+				'options'       => [
 					'main'            => esc_html__( 'Main Program', 'ggl-post-types' ),
 					'special_program' => esc_html__( 'Special Program', 'ggl-post-types' ),
 				],
-				'revision' => true,
-				'tab'      => 'screening',
+				'revision'      => true,
+				'tab'           => 'screening',
 				'admin_columns' => [
 					'position'   => 'after semester',
-					'title' => __("Program Type", 'ggl-post-types'),
+					'title'      => __( "Program Type", 'ggl-post-types' ),
 					'link'       => 'none',
 					'sort'       => false,
 					'searchable' => false,
