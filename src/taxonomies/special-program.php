@@ -267,7 +267,7 @@ function ggl_special_program_apply_to_page( WP_Post|int $page = 0 ): bool {
 		return false;
 	}
 
-	return boolval(get_post_meta( $post->ID, "overwrite_page_styles", true ));
+	return boolval( get_post_meta( $post->ID, "overwrite_page_styles", true ) );
 
 
 }
