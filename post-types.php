@@ -67,20 +67,6 @@ add_action( 'actor_pre_edit_form', "ggl_cpt__hide_edit_boxes" );
 
 
 /* Register the post types */
-require_once 'src/post-types/movie.php';
-add_action( 'init', 'ggl_post_type_movie' );
-add_action( 'restrict_manage_posts', 'ggl_cpt__add_movie_semester_filter' );
-add_action( 'pre_get_posts', 'ggl_cpt__apply_movie_semester_filter' );
-add_filter( 'rwmb_meta_boxes', 'movie_extended_info_meta_boxes' );
-add_filter( 'rwmb_meta_boxes', 'movie_text_boxes' );
-add_action( 'save_post_movie', 'ensure_numerical_movie_link', 1 );
-add_filter( "wpseo_schema_graph_pieces", "add_event_for_movie", 15, 2 );
-function add_event_for_movie( $pieces, $context ) {
-	$pieces[] = new Event( $context );
-
-	return $pieces;
-}
-
 require_once 'src/post-types/event.php';
 add_action( 'init', 'ggl_post_type_event' );
 add_action( 'restrict_manage_posts', 'ggl_cpt__add_event_semester_filter' );
@@ -107,6 +93,20 @@ add_action( "pre_get_posts", "ggl_cpt__check_hidden_teamie_redirect" );
 require_once 'src/post-types/screening-location.php';
 add_action( 'init', 'ggl_post_type_screening_location' );
 add_filter( 'rwmb_meta_boxes', 'location_register_meta_boxes' );
+
+require_once 'src/post-types/movie.php';
+add_action( 'init', 'ggl_post_type_movie' );
+add_action( 'restrict_manage_posts', 'ggl_cpt__add_movie_semester_filter' );
+add_action( 'pre_get_posts', 'ggl_cpt__apply_movie_semester_filter' );
+add_filter( 'rwmb_meta_boxes', 'movie_extended_info_meta_boxes' );
+add_filter( 'rwmb_meta_boxes', 'movie_text_boxes' );
+add_action( 'save_post_movie', 'ensure_numerical_movie_link', 1 );
+add_filter( "wpseo_schema_graph_pieces", "add_event_for_movie", 15, 2 );
+function add_event_for_movie( $pieces, $context ) {
+	$pieces[] = new Event( $context );
+
+	return $pieces;
+}
 
 add_filter( 'custom_menu_order', '__return_true' );
 add_filter( 'menu_order', 'ggl_menu_order' );
@@ -217,3 +217,32 @@ function wpster_remove_permalink_section() {
 	}
 
 }
+
+// Assign value to %location% rewrite tag
+add_filter('post_link', 'my_filter_post_link', 10, 2 );
+function my_filter_post_link( $permalink, $post ) {
+
+	// bail if %location% tag is not present in the url:
+	if ( ! str_contains( $permalink, '%semester%' ) ) {
+		return $permalink;
+	}
+	$terms = wp_get_post_terms( $post->ID, 'semester' );
+	// set location, if no location is found, provide a default value.
+	if ( 0 < count( $terms ) ) {
+		$location = $terms[0]->slug;
+	} else {
+		$location = 'special';
+		$location = urlencode( $location );
+		$permalink = str_replace('%semester%', $location , $permalink );
+	}
+	return $permalink;
+}
+
+add_filter('rewrite_rules_array', function($rules) {
+	foreach ($rules as $rule => $url) {
+		if (strpos($url, 'attachment') !== false) {
+			unset($rules[$rule]);
+		}
+	}
+	return $rules;
+});

@@ -111,14 +111,14 @@ function ggl_taxonomy_semester_meta_boxes( $meta_boxes ): mixed {
 					[
 						'name'     => __( "German Title", "ggl-post-types" ),
 						'id'       => 'title',
-						'required' => true,
+						'required' => false,
 					],
 					[
 						'name'        => __( "Screened On", "ggl-post-types" ),
 						'id'          => 'screening_date',
 						'type'        => 'datetime',
 						'save_format' => 'Y-m-d H:i:s',
-						'required'    => true,
+						'required'    => false,
 						'js_options'  => [
 							'dateFormat' => 'dd.mm.yy',
 							'hour'       => 20

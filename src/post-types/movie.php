@@ -36,8 +36,8 @@ function ggl_post_type_movie(): void {
 		'supports'            => [ 'thumbnail', 'revisions', 'autosave', 'author' ],
 		'taxonomies'          => [ 'semester', 'special-program', 'director', 'actor' ],
 		'rewrite'             => [
-            'slug' => '%semester%',
-			'with_front' => true,
+			'slug'       => '%semester%',
+			'with_front' => false,
 			'pages'      => false,
 		]
 	] );
@@ -92,25 +92,24 @@ function ggl_cpt__apply_movie_semester_filter( WP_Query $query ) {
 
 }
 
-function ggl_cpt__replace_semester_category(string $post_link, WP_Post|int $post): string {
-    $post = get_post( $post );
-    if (!is_object( $post )) {
-        return $post_link;
-    }
+function ggl_cpt__replace_semester_category( string $post_link, WP_Post|int $post ): string {
+	$post = get_post( $post );
+	if ( ! is_object( $post ) ) {
+		return $post_link;
+	}
 
-    if (!in_array($post->post_type, [ 'movie', 'event' ])) {
-        return $post_link;
-    }
+	if ( ! in_array( $post->post_type, [ 'movie', 'event' ] ) ) {
+		return $post_link;
+	}
 
-    $semester = wp_get_object_terms($post->ID, 'semester');
-    if ( ! empty( $semester ) ) {
-        return str_replace("%semester%", $semester[0]->slug, $post_link);
-    } else {
-        return str_replace("%semester%", "special", $post_link);
-    }
+	$semester = wp_get_object_terms( $post->ID, 'semester' );
+	if ( ! empty( $semester ) ) {
+		return str_replace( "%semester%", $semester[0]->slug, $post_link );
+	} else {
+		return str_replace( "%semester%", "special", $post_link );
+	}
 }
 add_filter( 'post_type_link', 'ggl_cpt__replace_semester_category', 1, 3 );
-
 
 function ensure_numerical_movie_link( $post_id ): void {
 	$parent_id = wp_is_post_revision( $post_id );
@@ -123,9 +122,21 @@ function ensure_numerical_movie_link( $post_id ): void {
 
 	$post_title = $_POST['original_title'] ?: get_post_meta( $post->ID, 'original_title', true ) ?: null;
 
+    $manual_slug = mb_trim($_POST['manual_slug']) ?: null;
+    if (!empty($manual_slug)) {
+	    remove_action( 'save_post_movie', 'ensure_numerical_movie_link', 1 );
+	    wp_update_post( array(
+		    'ID'         => $post_id,
+		    'post_name'  => $manual_slug,
+		    'post_title' => $post_title,
+	    ) );
+	    add_action( 'save_post_movie', 'ensure_numerical_movie_link', 1 );
+        return;
+    }
+
 	$advertisable_screening = $_POST['license_type'] === 'full';
 	if ( $advertisable_screening ) {
-		$post_name = wp_unique_post_slug( strtolower( $_POST['english_title'] ), $post->ID, $post->post_status, "movie", $post->post_parent );
+		$post_name = empty(mb_trim($_POST['manual_slug'])) ? wp_unique_post_slug( strtolower( $_POST['english_title'] ), $post->ID, $post->post_status, "movie", $post->post_parent ) : wp_unique_post_slug( strtolower( mb_trim($_POST['manual_slug']) ), $post->ID, $post->post_status, "movie", $post->post_parent );
 		remove_action( 'save_post_movie', 'ensure_numerical_movie_link', 1 );
 		wp_update_post( array(
 			'ID'         => $post_id,
@@ -159,13 +170,13 @@ function ensure_numerical_movie_link( $post_id ): void {
 				'post_title' => $post_title,
 			) );
 			add_action( 'save_post_movie', 'ensure_numerical_movie_link', 1 );
-        }
+		}
 	}
 
 	remove_action( 'save_post_movie', 'ensure_numerical_movie_link', 1 );
 	wp_update_post( array(
 		'ID'         => $post_id,
-		'post_name'  => wp_unique_post_slug("sneak", $post->ID, $post->post_status, "movie", $post->post_parents),
+		'post_name'  => wp_unique_post_slug( "sneak", $post->ID, $post->post_status, "movie", $post->post_parents ),
 		'post_title' => $post_title,
 	) );
 	add_action( 'save_post_movie', 'ensure_numerical_movie_link', 1 );
@@ -750,6 +761,13 @@ function movie_extended_info_meta_boxes( $meta_boxes ) {
 				'name' => esc_html__( 'Animated Feature Image for Portrait Mode', 'ggl-post-types' ),
 				'tab'  => 'display',
 				'desc' => esc_html__( "Please select an Animation with a aspect ratio of 4:5 and a resolution of 800x1000 px", 'ggl-post-types' ),
+			],
+			[
+				'type' => "text",
+				'id'   => "manual_slug",
+				'name' => esc_html__( 'Manual Slug', 'ggl-post-types' ),
+				'tab'  => 'display',
+				'desc' => esc_html__( "A custom slug for the movie that overwrites the automatically generated slug" ),
 			],
 			[
 				'type' => "checkbox",

@@ -37,9 +37,9 @@ function ggl_post_type_team_member(): void {
 		'menu_icon'           => 'dashicons-groups',
 		'supports'            => [ 'title', 'thumbnail', 'revisions', 'autosave', 'author' ],
 		'rewrite'             => [
-			'slug'       => 'team',
+			'slug'       => 'teamie',
 			'with_front' => true,
-			'pages'      => false,
+			'pages'      => true,
 		],
 	] );
 }

@@ -17,7 +17,7 @@ function ggl_post_type_event(): void {
 			'all_items'          => __( 'All Events', 'ggl-post-types' ),
 		],
 		'public'              => true,
-		'has_archive'         => 'event-archive',
+		'has_archive'         => false,
 		'exclude_from_search' => false,
 		'publicly_queryable'  => true,
 		'capability_type'     => 'post',
@@ -31,7 +31,7 @@ function ggl_post_type_event(): void {
 		'supports'            => [ 'thumbnail', 'revisions' ],
 		'taxonomies'          => [ 'semester', 'special-program' ],
 		'rewrite'             => [
-			'slug'       => '%semester%',
+			'slug'       => '%semester%/event',
 			'with_front' => true,
 			'pages'      => false,
 		]
@@ -54,6 +54,18 @@ function generate_numerical_event_id( $post_id ): void {
 	$post = get_post( $post_id );
 
 	$post_title = $_POST['english_title'];
+
+	$manual_slug = mb_trim($_POST['manual_slug']) ?: null;
+	if (!empty($manual_slug)) {
+		remove_action( 'save_post_event', 'generate_numerical_event_id', 1 );
+		wp_update_post( array(
+			'ID'         => $post_id,
+			'post_name'  => $manual_slug,
+			'post_title' => $post_title,
+		) );
+		add_action( 'save_post_event', 'generate_numerical_event_id', 1 );
+        return;
+	}
 
 	$post_name = wp_unique_post_slug( strtolower( $post_title ), $post->ID, $post->post_status, "movie", $post->post_parent );
 	remove_action( 'save_post_event', 'generate_numerical_event_id' );
@@ -139,6 +151,14 @@ function event_extended_info_meta_boxes( $meta_boxes ) {
 				"label" => esc_html__( "Content Notice", "ggl-post-types" ),
 				"icon"  => "dashicons-warning"
 			],
+			'display'          => [
+				"label" => esc_html__( "Display Options", "ggl-post-types" ),
+				"icon"  => "dashicons-visibility"
+			],
+			'cancellation'     => [
+				"label" => esc_html__( "Cancellation", "ggl-post-types" ),
+				"icon"  => "dashicons-dismiss"
+			]
 		],
 		'fields'     => [
 			[
@@ -404,6 +424,52 @@ function event_extended_info_meta_boxes( $meta_boxes ) {
 				'revision'              => true,
 				'tab'                   => 'content-notice',
 			],
+			[
+				'type' => "text",
+				'id'   => "manual_slug",
+				'name' => esc_html__( 'Manual Slug', 'ggl-post-types' ),
+				'tab'  => 'display',
+				'desc' => esc_html__( "A custom slug for the movie that overwrites the automatically generated slug" ),
+			],
+			[
+				'type' => "checkbox",
+				"id"   => "screening_cancelled",
+				"name" => esc_html__( "Cancel Screening", "ggl-post-types" ),
+				"tab"  => "cancellation",
+				"desc" => esc_html__( "If ticked, the screening will show up as cancelled on the website" )
+			],
+			[
+				"type"    => "select",
+				"id"      => "cancellation_reason",
+				"name"    => esc_html__( "Reason for cancellation", "ggl-post-types" ),
+				"tab"     => "cancellation",
+				"options" => [
+					"technical_difficulties" => __( 'Technical Difficulties', 'ggl-post-types' ),
+					"sickness"               => __( 'Sickness', 'ggl-post-types' ),
+					"custom"                 => __( 'Custom', 'ggl-post-types' ),
+				],
+				"visible" => [ "screening_cancelled", true ]
+			],
+			[
+				"type"    => "text",
+				"name"    => esc_html__( "Custom Reason (German)", "ggl-post-types" ),
+				"id"      => "custom_cancellation_reason_de",
+				"tab"     => "cancellation",
+				"visible" => [
+					[ "screening_cancelled", true ],
+					[ "cancellation_reason", "=", "custom" ],
+				]
+			],
+			[
+				"type"    => "text",
+				"name"    => esc_html__( "Custom Reason (English)", "ggl-post-types" ),
+				"id"      => "custom_cancellation_reason_en",
+				"tab"     => "cancellation",
+				"visible" => [
+					[ "screening_cancelled", true ],
+					[ "cancellation_reason", "=", "custom" ],
+				]
+			]
 		],
 	];
 

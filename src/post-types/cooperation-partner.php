@@ -25,7 +25,7 @@ function ggl_post_type_cooperation_partner(): void {
 			'upload_featured_image' => __( 'Upload Logo', 'ggl-post-types' ),
 		],
 		'public'              => true,
-		'has_archive'         => 'cooperation-partners',
+		'has_archive'         => 'cooperations',
 		'exclude_from_search' => true,
 		'publicly_queryable'  => true,
 		'capability_type'     => 'post',
@@ -37,7 +37,7 @@ function ggl_post_type_cooperation_partner(): void {
 		'menu_icon'           => IconHandshake,
 		'supports'            => [ 'title', 'thumbnail', 'editor', 'revisions' ],
 		'rewrite'             => [
-			'slug'       => 'cooperation-partners',
+			'slug'       => 'cooperation-partner',
 			'with_front' => false,
 			'pages'      => false,
 		]
