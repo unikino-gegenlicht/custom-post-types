@@ -202,12 +202,14 @@ function ggl_special_program_pregenerate_stylesheet( int $term_id ): void {
     .special-program {
     --bulma-body-color: <?= $colors["lightMode"]["foregroundColor"] ?> !important;
     --bulma-body-background-color: <?= $colors["lightMode"]["backgroundColor"] ?> !important;
+    --bulma-link-text: var(--bulma-body-color) !important;
     }
 
     @media (prefers-color-scheme: dark) {
     .special-program {
     --bulma-body-color: <?= $colors["darkMode"]["foregroundColor"] ?> !important;
     --bulma-body-background-color: <?= $colors["darkMode"]["backgroundColor"] ?> !important;
+    --bulma-link-text: var(--bulma-body-color) !important;
     }
     }
 
@@ -215,6 +217,7 @@ function ggl_special_program_pregenerate_stylesheet( int $term_id ): void {
     #special-program_<?= $term->term_id ?>{
     --bulma-body-color: <?= $colors["lightMode"]["foregroundColor"] ?> !important;
     --bulma-body-background-color: <?= $colors["lightMode"]["backgroundColor"] ?> !important;
+    --bulma-link-text: var(--bulma-body-color) !important;
     }
 
     @media (prefers-color-scheme: dark) {
@@ -222,6 +225,7 @@ function ggl_special_program_pregenerate_stylesheet( int $term_id ): void {
     #special-program_<?= $term->term_id ?>{
     --bulma-body-color: <?= $colors["darkMode"]["foregroundColor"] ?> !important;
     --bulma-body-background-color: <?= $colors["darkMode"]["backgroundColor"] ?> !important;
+    --bulma-link-text: var(--bulma-body-color) !important;
     }
     }
 	<?php
