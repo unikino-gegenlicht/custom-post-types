@@ -151,7 +151,7 @@ function ggl_get_partner_image_url( int|WP_Post $post = 0 ): string {
 		return "";
 	}
 
-	$anonymous_image = rwmb_meta( "teamie_anonymous_image", [ "object_type" => "setting" ], "ggl_cpt__settings" );
+	$anonymous_image = rwmb_meta( "coop_partner_fallback_image", [ "object_type" => "setting" ], "ggl_cpt__settings" );
 
 	return get_the_post_thumbnail_url( $post, "member-crop" ) ?: $anonymous_image["sizes"]["member-crop"]["url"] ?? $anonymous_image["full_url"];
 }

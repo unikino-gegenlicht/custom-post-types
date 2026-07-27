@@ -48,17 +48,21 @@ function ggl_cpt__register_settings( $settings_pages ): array {
 		"position"    => 11,
 		"style"       => "no-boxes",
 		"tabs"        => [
-			"movies"       => [
+			"movies"               => [
 				"label" => esc_html__( 'Movies', 'ggl-post-types' ),
 				"icon"  => "dashicons-editor-video",
 			],
-			"events"       => [
+			"events"               => [
 				"label" => esc_html__( 'Events', 'ggl-post-types' ),
 				"icon"  => "dashicons-schedule",
 			],
-			"team-members" => [
+			"team-members"         => [
 				"label" => esc_html__( 'Team Members', 'ggl-post-types' ),
 				"icon"  => "dashicons-businessperson",
+			],
+			"cooperation-partners" => [
+				"label" => esc_html__("Cooperation Partners", "ggl-post-types"),
+				"icon"  => plugin_dir_url( __FILE__ ) . "../assets/handshake.svg",
 			]
 		]
 	];
@@ -213,6 +217,22 @@ function ggl_cpt__settings_meta_boxes( $meta_boxes ): array {
 				'options' => GGL_CPT__WYSIWYG_OPTIONS,
 				'tab'     => "english_former",
 				'id'      => "former_teamie_generic_description_en",
+			]
+		]
+	];
+
+	$meta_boxes[] = [
+		"id" => "cooperation_partner_settings",
+		"title" => esc_html__("Cooperation Partner", "ggl-post-types"),
+		"context" => "normal",
+		"settings_pages" => "ggl_cpt__settings",
+		"tab" => "cooperation-partners",
+		"fields" => [
+			[
+				"id" => "coop_partner_fallback_image",
+				"type" => "single_image",
+				"name" => esc_html__("Fallback Cooperation Partner Logo", "ggl-post-types"),
+				"desc" => esc_html__("Upload a fallback cooperation partner which is used if no logo has been set for a cooperation partner", "ggl-post-types"),
 			]
 		]
 	];
