@@ -38,6 +38,7 @@ function ggl_post_type_supporter(): void {
 			'slug'       => 'supporter',
 			'with_front' => false,
 			'pages'      => false,
+			'feeds'      => false,
 		]
 	] );
 }

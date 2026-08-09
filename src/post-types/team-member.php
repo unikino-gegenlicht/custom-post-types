@@ -38,8 +38,9 @@ function ggl_post_type_team_member(): void {
 		'supports'            => [ 'title', 'thumbnail', 'revisions', 'autosave', 'author' ],
 		'rewrite'             => [
 			'slug'       => 'teamie',
-			'with_front' => true,
-			'pages'      => true,
+			'with_front' => false,
+			'pages'      => false,
+            'feeds'      => false,
 		],
 	] );
 }

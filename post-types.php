@@ -74,6 +74,9 @@ add_action( 'pre_get_posts', 'ggl_cpt__apply_event_semester_filter' );
 add_filter( 'rwmb_meta_boxes', 'event_extended_info_meta_boxes' );
 add_filter( 'rwmb_meta_boxes', 'event_additional_information_box' );
 add_action( 'save_post_event', 'generate_numerical_event_id' );
+add_action('registered_post_type_event', function () {
+	add_rewrite_rule("^event/(special|(?:(?:wise|sose)-[0-9]{4}(?:-[0-9]{4})?))/([^/]+)/?$", 'index.php?post_type=event&name=$matches[2]', 'top');
+});
 
 require_once 'src/post-types/supporter.php';
 add_action( 'init', 'ggl_post_type_supporter' );
@@ -96,6 +99,11 @@ add_filter( 'rwmb_meta_boxes', 'location_register_meta_boxes' );
 
 require_once 'src/post-types/movie.php';
 add_action( 'init', 'ggl_post_type_movie' );
+add_action('registered_post_type_movie', function () {
+    add_rewrite_rule("^(special|(?:(?:wise|sose)-[0-9]{4}(?:-[0-9]{4})?))/([^/]+)/?$", 'index.php?post_type=movie&name=$matches[2]', 'top');
+    add_rewrite_rule("^archive/?$", 'index.php?post_type=movie', 'top');
+});
+
 add_action( 'restrict_manage_posts', 'ggl_cpt__add_movie_semester_filter' );
 add_action( 'pre_get_posts', 'ggl_cpt__apply_movie_semester_filter' );
 add_filter( 'rwmb_meta_boxes', 'movie_extended_info_meta_boxes' );
@@ -245,4 +253,8 @@ add_filter('rewrite_rules_array', function($rules) {
 		}
 	}
 	return $rules;
+});
+
+add_action('posts_selection', function( $query ) {
+    //var_dump( $query );
 });

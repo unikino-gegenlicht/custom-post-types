@@ -17,7 +17,7 @@ function ggl_post_type_event(): void {
 			'all_items'          => __( 'All Events', 'ggl-post-types' ),
 		],
 		'public'              => true,
-		'has_archive'         => false,
+		'has_archive'         => true,
 		'exclude_from_search' => false,
 		'publicly_queryable'  => true,
 		'capability_type'     => 'post',
@@ -30,11 +30,7 @@ function ggl_post_type_event(): void {
 		'menu_icon'           => 'dashicons-schedule',
 		'supports'            => [ 'thumbnail', 'revisions' ],
 		'taxonomies'          => [ 'semester', 'special-program' ],
-		'rewrite'             => [
-			'slug'       => '%semester%/event',
-			'with_front' => true,
-			'pages'      => false,
-		]
+		'rewrite'             => false
 	] );
 }
 
@@ -57,13 +53,13 @@ function generate_numerical_event_id( $post_id ): void {
 
 	$manual_slug = mb_trim($_POST['manual_slug']) ?: null;
 	if (!empty($manual_slug)) {
-		remove_action( 'save_post_event', 'generate_numerical_event_id', 1 );
+		remove_action( 'save_post_event', 'generate_numerical_event_id');
 		wp_update_post( array(
 			'ID'         => $post_id,
 			'post_name'  => $manual_slug,
 			'post_title' => $post_title,
 		) );
-		add_action( 'save_post_event', 'generate_numerical_event_id', 1 );
+		add_action( 'save_post_event', 'generate_numerical_event_id' );
         return;
 	}
 

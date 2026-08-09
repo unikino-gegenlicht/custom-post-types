@@ -35,13 +35,17 @@ function ggl_post_type_movie(): void {
 		'menu_icon'           => 'dashicons-editor-video',
 		'supports'            => [ 'thumbnail', 'revisions', 'autosave', 'author' ],
 		'taxonomies'          => [ 'semester', 'special-program', 'director', 'actor' ],
-		'rewrite'             => [
-			'slug'       => '%semester%',
-			'with_front' => false,
-			'pages'      => false,
-		]
+		'rewrite'             => false
 	] );
 }
+
+add_filter('post_type_archive_link', function ($link, $post_type) {
+    if ($post_type === 'movie' || $post_type === 'event') {
+        return get_home_url() . "/archive";
+    }
+
+    return $link;
+}, 10, 2);
 
 add_filter( 'manage_movie_posts_columns', function ( $columns ) {
 	$columns['title'] = __( "Original Title", "ggl-post-types" );
@@ -97,19 +101,32 @@ function ggl_cpt__replace_semester_category( string $post_link, WP_Post|int $pos
 	if ( ! is_object( $post ) ) {
 		return $post_link;
 	}
-
 	if ( ! in_array( $post->post_type, [ 'movie', 'event' ] ) ) {
 		return $post_link;
 	}
-
 	$semester = wp_get_object_terms( $post->ID, 'semester' );
+	switch ( $post->post_type ) {
+		case 'movie':
+			if ( ! empty( $semester ) ) {
+				return get_home_url() . "/" . $semester[0]->slug . "/" . $post->post_name;
+			} else {
+				return get_home_url() . "/special/" . $post->post_name;
+			}
+		case 'event':
+			if ( ! empty( $semester ) ) {
+				return get_home_url() . "/event" . "/" . $semester[0]->slug . "/" . $post->post_name;
+			} else {
+				return get_home_url() . "/event/special/" . $post->post_name;
+			}
+	}
 	if ( ! empty( $semester ) ) {
-		return str_replace( "%semester%", $semester[0]->slug, $post_link );
+		return get_home_url() . $post->post_type === "event" ? "/event" : "" . "/" . $semester[0]->slug . "/" . $post->post_name;
 	} else {
-		return str_replace( "%semester%", "special", $post_link );
+		return get_home_url() . $post->post_type === "event" ? "/event" : "" . "/special/" . $post->post_name;
 	}
 }
-add_filter( 'post_type_link', 'ggl_cpt__replace_semester_category', 1, 3 );
+
+add_filter( 'post_type_link', 'ggl_cpt__replace_semester_category', 10, 2 );
 
 function ensure_numerical_movie_link( $post_id ): void {
 	$parent_id = wp_is_post_revision( $post_id );
@@ -122,21 +139,22 @@ function ensure_numerical_movie_link( $post_id ): void {
 
 	$post_title = $_POST['original_title'] ?: get_post_meta( $post->ID, 'original_title', true ) ?: null;
 
-    $manual_slug = mb_trim($_POST['manual_slug']) ?: null;
-    if (!empty($manual_slug)) {
-	    remove_action( 'save_post_movie', 'ensure_numerical_movie_link', 1 );
-	    wp_update_post( array(
-		    'ID'         => $post_id,
-		    'post_name'  => $manual_slug,
-		    'post_title' => $post_title,
-	    ) );
-	    add_action( 'save_post_movie', 'ensure_numerical_movie_link', 1 );
-        return;
-    }
+	$manual_slug = mb_trim( $_POST['manual_slug'] ) ?: null;
+	if ( ! empty( $manual_slug ) ) {
+		remove_action( 'save_post_movie', 'ensure_numerical_movie_link', 1 );
+		wp_update_post( array(
+			'ID'         => $post_id,
+			'post_name'  => $manual_slug,
+			'post_title' => $post_title,
+		) );
+		add_action( 'save_post_movie', 'ensure_numerical_movie_link', 1 );
+
+		return;
+	}
 
 	$advertisable_screening = $_POST['license_type'] === 'full';
 	if ( $advertisable_screening ) {
-		$post_name = empty(mb_trim($_POST['manual_slug'])) ? wp_unique_post_slug( strtolower( $_POST['english_title'] ), $post->ID, $post->post_status, "movie", $post->post_parent ) : wp_unique_post_slug( strtolower( mb_trim($_POST['manual_slug']) ), $post->ID, $post->post_status, "movie", $post->post_parent );
+		$post_name = empty( mb_trim( $_POST['manual_slug'] ) ) ? wp_unique_post_slug( strtolower( $_POST['english_title'] ), $post->ID, $post->post_status, "movie", $post->post_parent ) : wp_unique_post_slug( strtolower( mb_trim( $_POST['manual_slug'] ) ), $post->ID, $post->post_status, "movie", $post->post_parent );
 		remove_action( 'save_post_movie', 'ensure_numerical_movie_link', 1 );
 		wp_update_post( array(
 			'ID'         => $post_id,
