@@ -7,15 +7,10 @@
 </div>
 
 > [!WARNING]
-> This WordPress plugin does not support automatic updates as it is supposed to used as a [must-use plugin].
+> This WordPress plugin does not support automatic updates. Please check for new releases regularly on this site
 >
->
-
-[must-use plugin]: https://developer.wordpress.org/advanced-administration/plugins/mu-plugins/
 
 ## Installation
 
 1. Download Current Release from the releases tab
-2. Create a folder called `mu-plugins` in your `wp-contents` folder
-3. Copy the current release directly into the `mu-plugins` directory
-4. Update your Permalink structure by just clicking the `Save` button in your WordPress permalink settings
+2. Upload the downloaded zip file as a new plugin to your WordPress installation
