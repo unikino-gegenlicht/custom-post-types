@@ -137,9 +137,9 @@ function ensure_numerical_movie_link( $post_id ): void {
 
 	$post = get_post( $post_id );
 
-	$post_title = $_POST['original_title'] ?: get_post_meta( $post->ID, 'original_title', true ) ?: null;
+	$post_title = $_POST['original_title'] ?? get_post_meta( $post->ID, 'original_title', true ) ?: null;
 
-	$manual_slug = mb_trim( $_POST['manual_slug'] ) ?: null;
+	$manual_slug = mb_trim( $_POST['manual_slug'] ?? "" ) ?: null;
 	if ( ! empty( $manual_slug ) ) {
 		remove_action( 'save_post_movie', 'ensure_numerical_movie_link', 1 );
 		wp_update_post( array(
@@ -152,7 +152,7 @@ function ensure_numerical_movie_link( $post_id ): void {
 		return;
 	}
 
-	$advertisable_screening = $_POST['license_type'] === 'full';
+	$advertisable_screening = $_POST['license_type'] ?? "unknown" === 'full';
 	if ( $advertisable_screening ) {
 		$post_name = empty( mb_trim( $_POST['manual_slug'] ) ) ? wp_unique_post_slug( strtolower( $_POST['english_title'] ), $post->ID, $post->post_status, "movie", $post->post_parent ) : wp_unique_post_slug( strtolower( mb_trim( $_POST['manual_slug'] ) ), $post->ID, $post->post_status, "movie", $post->post_parent );
 		remove_action( 'save_post_movie', 'ensure_numerical_movie_link', 1 );
@@ -166,7 +166,7 @@ function ensure_numerical_movie_link( $post_id ): void {
 		return;
 	}
 
-	$special_program_screening = $_POST['program_type'] === 'special_program';
+	$special_program_screening = $_POST['program_type'] ?? "main" === 'special_program';
 	if ( $special_program_screening ) {
 		$special_program_id = $_POST['special_program'] ?: null;
 		if ( $special_program_id ) {
