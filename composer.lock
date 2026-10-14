@@ -4,127 +4,127 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-  "content-hash": "7b5386871d8573dc5dff4aad33e48d46",
+    "content-hash": "12ccccc3710f3ca6ff458287d49225c3",
     "packages": [
         {
-          "name": "league/uri-interfaces",
-          "version": "7.8.1",
-          "source": {
-            "type": "git",
-            "url": "https://github.com/thephpleague/uri-interfaces.git",
-            "reference": "85d5c77c5d6d3af6c54db4a78246364908f3c928"
-          },
-          "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/thephpleague/uri-interfaces/zipball/85d5c77c5d6d3af6c54db4a78246364908f3c928",
-            "reference": "85d5c77c5d6d3af6c54db4a78246364908f3c928",
-            "shasum": ""
-          },
-          "require": {
-            "ext-filter": "*",
-            "php": "^8.1",
-            "psr/http-message": "^1.1 || ^2.0"
-          },
-          "suggest": {
-            "ext-bcmath": "to improve IPV4 host parsing",
-            "ext-gmp": "to improve IPV4 host parsing",
-            "ext-intl": "to handle IDN host with the best performance",
-            "php-64bit": "to improve IPV4 host parsing",
-            "rowbot/url": "to handle URLs using the WHATWG URL Living Standard specification",
-            "symfony/polyfill-intl-idn": "to handle IDN host via the Symfony polyfill if ext-intl is not present"
-          },
-          "type": "library",
-          "extra": {
-            "branch-alias": {
-              "dev-master": "7.x-dev"
-            }
-          },
-          "autoload": {
-            "psr-4": {
-              "League\\Uri\\": ""
-            }
-          },
-          "notification-url": "https://packagist.org/downloads/",
-          "license": [
-            "MIT"
-          ],
-          "authors": [
-            {
-              "name": "Ignace Nyamagana Butera",
-              "email": "nyamsprod@gmail.com",
-              "homepage": "https://nyamsprod.com"
-            }
-          ],
-          "description": "Common tools for parsing and resolving RFC3987/RFC3986 URI",
-          "homepage": "https://uri.thephpleague.com",
-          "keywords": [
-            "data-uri",
-            "file-uri",
-            "ftp",
-            "hostname",
-            "http",
-            "https",
-            "parse_str",
-            "parse_url",
-            "psr-7",
-            "query-string",
-            "querystring",
-            "rfc3986",
-            "rfc3987",
-            "rfc6570",
-            "uri",
-            "url",
-            "ws"
-          ],
-          "support": {
-            "docs": "https://uri.thephpleague.com",
-            "forum": "https://thephpleague.slack.com",
-            "issues": "https://github.com/thephpleague/uri-src/issues",
-            "source": "https://github.com/thephpleague/uri-interfaces/tree/7.8.1"
-          },
-          "funding": [
-            {
-              "url": "https://github.com/sponsors/nyamsprod",
-              "type": "github"
-            }
-          ],
-          "time": "2026-03-08T20:05:35+00:00"
-        },
-      {
-        "name": "matthiasmullie/minify",
-        "version": "1.3.75",
+            "name": "league/uri-interfaces",
+            "version": "7.8.1",
             "source": {
                 "type": "git",
-              "url": "https://github.com/matthiasmullie/minify.git",
-              "reference": "76ba4a5f555fd7bf4aa408af608e991569076671"
+                "url": "https://github.com/thephpleague/uri-interfaces.git",
+                "reference": "85d5c77c5d6d3af6c54db4a78246364908f3c928"
             },
             "dist": {
                 "type": "zip",
-              "url": "https://api.github.com/repos/matthiasmullie/minify/zipball/76ba4a5f555fd7bf4aa408af608e991569076671",
-              "reference": "76ba4a5f555fd7bf4aa408af608e991569076671",
+                "url": "https://api.github.com/repos/thephpleague/uri-interfaces/zipball/85d5c77c5d6d3af6c54db4a78246364908f3c928",
+                "reference": "85d5c77c5d6d3af6c54db4a78246364908f3c928",
                 "shasum": ""
             },
             "require": {
-              "ext-pcre": "*",
-              "matthiasmullie/path-converter": "~1.1",
-              "php": ">=5.3.0"
+                "ext-filter": "*",
+                "php": "^8.1",
+                "psr/http-message": "^1.1 || ^2.0"
+            },
+            "suggest": {
+                "ext-bcmath": "to improve IPV4 host parsing",
+                "ext-gmp": "to improve IPV4 host parsing",
+                "ext-intl": "to handle IDN host with the best performance",
+                "php-64bit": "to improve IPV4 host parsing",
+                "rowbot/url": "to handle URLs using the WHATWG URL Living Standard specification",
+                "symfony/polyfill-intl-idn": "to handle IDN host via the Symfony polyfill if ext-intl is not present"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "7.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "League\\Uri\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Ignace Nyamagana Butera",
+                    "email": "nyamsprod@gmail.com",
+                    "homepage": "https://nyamsprod.com"
+                }
+            ],
+            "description": "Common tools for parsing and resolving RFC3987/RFC3986 URI",
+            "homepage": "https://uri.thephpleague.com",
+            "keywords": [
+                "data-uri",
+                "file-uri",
+                "ftp",
+                "hostname",
+                "http",
+                "https",
+                "parse_str",
+                "parse_url",
+                "psr-7",
+                "query-string",
+                "querystring",
+                "rfc3986",
+                "rfc3987",
+                "rfc6570",
+                "uri",
+                "url",
+                "ws"
+            ],
+            "support": {
+                "docs": "https://uri.thephpleague.com",
+                "forum": "https://thephpleague.slack.com",
+                "issues": "https://github.com/thephpleague/uri-src/issues",
+                "source": "https://github.com/thephpleague/uri-interfaces/tree/7.8.1"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/sponsors/nyamsprod",
+                    "type": "github"
+                }
+            ],
+            "time": "2026-03-08T20:05:35+00:00"
+        },
+        {
+            "name": "matthiasmullie/minify",
+            "version": "1.3.75",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/matthiasmullie/minify.git",
+                "reference": "76ba4a5f555fd7bf4aa408af608e991569076671"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/matthiasmullie/minify/zipball/76ba4a5f555fd7bf4aa408af608e991569076671",
+                "reference": "76ba4a5f555fd7bf4aa408af608e991569076671",
+                "shasum": ""
+            },
+            "require": {
+                "ext-pcre": "*",
+                "matthiasmullie/path-converter": "~1.1",
+                "php": ">=5.3.0"
             },
             "require-dev": {
-              "friendsofphp/php-cs-fixer": ">=2.0",
-              "matthiasmullie/scrapbook": ">=1.3",
-              "phpunit/phpunit": ">=4.8"
+                "friendsofphp/php-cs-fixer": ">=2.0",
+                "matthiasmullie/scrapbook": ">=1.3",
+                "phpunit/phpunit": ">=4.8"
             },
-        "suggest": {
-          "psr/cache-implementation": "Cache implementation to use with Minify::cache"
-        },
-        "bin": [
-          "bin/minifycss",
-          "bin/minifyjs"
-        ],
+            "suggest": {
+                "psr/cache-implementation": "Cache implementation to use with Minify::cache"
+            },
+            "bin": [
+                "bin/minifycss",
+                "bin/minifyjs"
+            ],
             "type": "library",
             "autoload": {
                 "psr-4": {
-                  "MatthiasMullie\\Minify\\": "src/"
+                    "MatthiasMullie\\Minify\\": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -133,59 +133,59 @@
             ],
             "authors": [
                 {
-                  "name": "Matthias Mullie",
-                  "email": "minify@mullie.eu",
-                  "homepage": "https://www.mullie.eu",
+                    "name": "Matthias Mullie",
+                    "email": "minify@mullie.eu",
+                    "homepage": "https://www.mullie.eu",
                     "role": "Developer"
                 }
             ],
-        "description": "CSS & JavaScript minifier, in PHP. Removes whitespace, strips comments, combines files (incl. @import statements and small assets in CSS files), and optimizes/shortens a few common programming patterns.",
-        "homepage": "https://github.com/matthiasmullie/minify",
+            "description": "CSS & JavaScript minifier, in PHP. Removes whitespace, strips comments, combines files (incl. @import statements and small assets in CSS files), and optimizes/shortens a few common programming patterns.",
+            "homepage": "https://github.com/matthiasmullie/minify",
             "keywords": [
-              "JS",
-              "css",
-              "javascript",
-              "minifier",
-              "minify"
+                "JS",
+                "css",
+                "javascript",
+                "minifier",
+                "minify"
             ],
             "support": {
-              "issues": "https://github.com/matthiasmullie/minify/issues",
-              "source": "https://github.com/matthiasmullie/minify/tree/1.3.75"
+                "issues": "https://github.com/matthiasmullie/minify/issues",
+                "source": "https://github.com/matthiasmullie/minify/tree/1.3.75"
             },
-        "funding": [
-          {
-            "url": "https://github.com/matthiasmullie",
-            "type": "github"
-          }
-        ],
-        "time": "2025-06-25T09:56:19+00:00"
+            "funding": [
+                {
+                    "url": "https://github.com/matthiasmullie",
+                    "type": "github"
+                }
+            ],
+            "time": "2025-06-25T09:56:19+00:00"
         },
         {
-          "name": "matthiasmullie/path-converter",
-          "version": "1.1.3",
+            "name": "matthiasmullie/path-converter",
+            "version": "1.1.3",
             "source": {
                 "type": "git",
-              "url": "https://github.com/matthiasmullie/path-converter.git",
-              "reference": "e7d13b2c7e2f2268e1424aaed02085518afa02d9"
+                "url": "https://github.com/matthiasmullie/path-converter.git",
+                "reference": "e7d13b2c7e2f2268e1424aaed02085518afa02d9"
             },
             "dist": {
                 "type": "zip",
-              "url": "https://api.github.com/repos/matthiasmullie/path-converter/zipball/e7d13b2c7e2f2268e1424aaed02085518afa02d9",
-              "reference": "e7d13b2c7e2f2268e1424aaed02085518afa02d9",
+                "url": "https://api.github.com/repos/matthiasmullie/path-converter/zipball/e7d13b2c7e2f2268e1424aaed02085518afa02d9",
+                "reference": "e7d13b2c7e2f2268e1424aaed02085518afa02d9",
                 "shasum": ""
             },
             "require": {
-              "ext-pcre": "*",
-              "php": ">=5.3.0"
+                "ext-pcre": "*",
+                "php": ">=5.3.0"
             },
-          "require-dev": {
-            "phpunit/phpunit": "~4.8"
+            "require-dev": {
+                "phpunit/phpunit": "~4.8"
             },
             "type": "library",
             "autoload": {
-              "psr-4": {
-                "MatthiasMullie\\PathConverter\\": "src/"
-              }
+                "psr-4": {
+                    "MatthiasMullie\\PathConverter\\": "src/"
+                }
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -193,89 +193,444 @@
             ],
             "authors": [
                 {
-                  "name": "Matthias Mullie",
-                  "email": "pathconverter@mullie.eu",
-                  "homepage": "http://www.mullie.eu",
-                  "role": "Developer"
+                    "name": "Matthias Mullie",
+                    "email": "pathconverter@mullie.eu",
+                    "homepage": "http://www.mullie.eu",
+                    "role": "Developer"
                 }
             ],
-          "description": "Relative path converter",
-          "homepage": "http://github.com/matthiasmullie/path-converter",
-          "keywords": [
-            "converter",
-            "path",
-            "paths",
-            "relative"
-          ],
+            "description": "Relative path converter",
+            "homepage": "http://github.com/matthiasmullie/path-converter",
+            "keywords": [
+                "converter",
+                "path",
+                "paths",
+                "relative"
+            ],
             "support": {
-              "issues": "https://github.com/matthiasmullie/path-converter/issues",
-              "source": "https://github.com/matthiasmullie/path-converter/tree/1.1.3"
+                "issues": "https://github.com/matthiasmullie/path-converter/issues",
+                "source": "https://github.com/matthiasmullie/path-converter/tree/1.1.3"
             },
-          "time": "2019-02-05T23:41:09+00:00"
+            "time": "2019-02-05T23:41:09+00:00"
         },
-      {
-        "name": "psr/http-message",
-        "version": "2.0",
-        "source": {
-          "type": "git",
-          "url": "https://github.com/php-fig/http-message.git",
-          "reference": "402d35bcb92c70c026d1a6a9883f06b2ead23d71"
+        {
+            "name": "psr/http-message",
+            "version": "2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/php-fig/http-message.git",
+                "reference": "402d35bcb92c70c026d1a6a9883f06b2ead23d71"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/php-fig/http-message/zipball/402d35bcb92c70c026d1a6a9883f06b2ead23d71",
+                "reference": "402d35bcb92c70c026d1a6a9883f06b2ead23d71",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.2 || ^8.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Psr\\Http\\Message\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "PHP-FIG",
+                    "homepage": "https://www.php-fig.org/"
+                }
+            ],
+            "description": "Common interface for HTTP messages",
+            "homepage": "https://github.com/php-fig/http-message",
+            "keywords": [
+                "http",
+                "http-message",
+                "psr",
+                "psr-7",
+                "request",
+                "response"
+            ],
+            "support": {
+                "source": "https://github.com/php-fig/http-message/tree/2.0"
+            },
+            "time": "2023-04-04T09:54:51+00:00"
         },
-        "dist": {
-          "type": "zip",
-          "url": "https://api.github.com/repos/php-fig/http-message/zipball/402d35bcb92c70c026d1a6a9883f06b2ead23d71",
-          "reference": "402d35bcb92c70c026d1a6a9883f06b2ead23d71",
-          "shasum": ""
+        {
+            "name": "sokil/php-isocodes",
+            "version": "4.4.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/sokil/php-isocodes.git",
+                "reference": "e8287cd6afaf2d663f63def3977c0aa92b85da25"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/sokil/php-isocodes/zipball/e8287cd6afaf2d663f63def3977c0aa92b85da25",
+                "reference": "e8287cd6afaf2d663f63def3977c0aa92b85da25",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "php": ">=7.4"
+            },
+            "require-dev": {
+                "ext-gettext": "*",
+                "infection/infection": ">=0.11.5",
+                "php-coveralls/php-coveralls": "^2.1",
+                "phpmd/phpmd": "@stable",
+                "phpunit/phpunit": ">=7.5.20",
+                "sokil/php-isocodes-db-i18n": "^4.0.0",
+                "squizlabs/php_codesniffer": "^3.4",
+                "symfony/translation": "^4.4.17|^5.2",
+                "vimeo/psalm": "^4.3"
+            },
+            "suggest": {
+                "ext-gettext": "Required for gettext translation driver",
+                "phpbench/phpbench": "Required to run benchmarks",
+                "sokil/php-isocodes-db-i18n": "If frequent database updates is not necessary, and database with localization is required.",
+                "sokil/php-isocodes-db-only": "If frequent database updates is not necessary, and only database without localization is required.",
+                "symfony/translation": "Translation driver by Symfont project"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Sokil\\IsoCodes\\": [
+                        "src/"
+                    ]
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Dmytro Sokil",
+                    "email": "dmytro.sokil@gmail.com"
+                }
+            ],
+            "description": "ISO country, subdivision, language, currency and script definitions and their translations. Based on pythons pycountry and Debian's iso-codes.",
+            "support": {
+                "issues": "https://github.com/sokil/php-isocodes/issues",
+                "source": "https://github.com/sokil/php-isocodes/tree/4.4.0"
+            },
+            "time": "2025-09-16T18:13:24+00:00"
         },
-        "require": {
-          "php": "^7.2 || ^8.0"
+        {
+            "name": "sokil/php-isocodes-db-i18n",
+            "version": "4.0.29",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/sokil/php-isocodes-db-i18n.git",
+                "reference": "debdd0ee74df019c39e4583253788c6d817e2656"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/sokil/php-isocodes-db-i18n/zipball/debdd0ee74df019c39e4583253788c6d817e2656",
+                "reference": "debdd0ee74df019c39e4583253788c6d817e2656",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "php": ">=7.1"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^9.5",
+                "sokil/php-isocodes": "^4.1.1"
+            },
+            "type": "library",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Dmytro Sokil",
+                    "email": "dmytro.sokil@gmail.com"
+                }
+            ],
+            "description": "Database and internationalisation filed for ISO country, subdivision, language, currency and script definitions and their translations. Based on pythons pycountry and Debian's iso-codes.",
+            "support": {
+                "issues": "https://github.com/sokil/php-isocodes-db-i18n/issues",
+                "source": "https://github.com/sokil/php-isocodes-db-i18n/tree/4.0.29"
+            },
+            "time": "2026-09-19T13:54:30+00:00"
         },
-        "type": "library",
-        "extra": {
-          "branch-alias": {
-            "dev-master": "2.0.x-dev"
-          }
-        },
-        "autoload": {
-          "psr-4": {
-            "Psr\\Http\\Message\\": "src/"
-          }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-          "MIT"
-        ],
-        "authors": [
-          {
-            "name": "PHP-FIG",
-            "homepage": "https://www.php-fig.org/"
-          }
-        ],
-        "description": "Common interface for HTTP messages",
-        "homepage": "https://github.com/php-fig/http-message",
-        "keywords": [
-          "http",
-          "http-message",
-          "psr",
-          "psr-7",
-          "request",
-          "response"
-        ],
-        "support": {
-          "source": "https://github.com/php-fig/http-message/tree/2.0"
-        },
-        "time": "2023-04-04T09:54:51+00:00"
+        {
+            "name": "spatie/schema-org",
+            "version": "5.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/spatie/schema-org.git",
+                "reference": "8c4fe7ed874a1f8bb4de62c70d41bed0b9e3114a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/spatie/schema-org/zipball/8c4fe7ed874a1f8bb4de62c70d41bed0b9e3114a",
+                "reference": "8c4fe7ed874a1f8bb4de62c70d41bed0b9e3114a",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "php": "^8.4"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "^3.88.2",
+                "graham-campbell/analyzer": "^5.0.0",
+                "illuminate/collections": "^10",
+                "league/flysystem": "^3.30",
+                "pestphp/pest": "^5.0.4",
+                "symfony/console": "^6.0 || ^7.3.4",
+                "twig/twig": "^3.21.1"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Spatie\\SchemaOrg\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Sebastian De Deyne",
+                    "email": "sebastian@spatie.be",
+                    "homepage": "https://spatie.be",
+                    "role": "Developer"
+                },
+                {
+                    "name": "Tom Witkowski",
+                    "email": "dev.gummibeer@gmail.com",
+                    "homepage": "https://gummibeer.de",
+                    "role": "Developer"
+                }
+            ],
+            "description": "A fluent builder Schema.org types and ld+json generator",
+            "homepage": "https://github.com/spatie/schema-org",
+            "keywords": [
+                "schema-org",
+                "spatie"
+            ],
+            "support": {
+                "issues": "https://github.com/spatie/schema-org/issues",
+                "source": "https://github.com/spatie/schema-org/tree/5.0.2"
+            },
+            "funding": [
+                {
+                    "url": "https://spatie.be/open-source/support-us",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/spatie",
+                    "type": "github"
+                }
+            ],
+            "time": "2026-09-30T06:09:48+00:00"
         }
     ],
-    "packages-dev": [],
+    "packages-dev": [
+        {
+            "name": "php-stubs/wordpress-stubs",
+            "version": "v7.1.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/php-stubs/wordpress-stubs.git",
+                "reference": "6926c5156431a3ff909d43faa16a92a0bc0c2428"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/php-stubs/wordpress-stubs/zipball/6926c5156431a3ff909d43faa16a92a0bc0c2428",
+                "reference": "6926c5156431a3ff909d43faa16a92a0bc0c2428",
+                "shasum": ""
+            },
+            "conflict": {
+                "phpdocumentor/reflection-docblock": "5.6.1"
+            },
+            "require-dev": {
+                "dealerdirect/phpcodesniffer-composer-installer": "^1.0",
+                "nikic/php-parser": "^5.5",
+                "php": "^7.4 || ^8.0",
+                "php-stubs/generator": "^0.9",
+                "phpdocumentor/reflection-docblock": "^6.0",
+                "phpstan/phpstan": "^2.2",
+                "phpunit/phpunit": "^9.5",
+                "symfony/polyfill-php80": "*",
+                "szepeviktor/phpcs-psr-12-neutron-hybrid-ruleset": "^1.2",
+                "wp-coding-standards/wpcs": "3.4.1 as 2.3.0"
+            },
+            "suggest": {
+                "paragonie/sodium_compat": "Pure PHP implementation of libsodium",
+                "symfony/polyfill-php80": "Symfony polyfill backporting some PHP 8.0+ features to lower PHP versions",
+                "szepeviktor/phpstan-wordpress": "WordPress extensions for PHPStan"
+            },
+            "type": "library",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "WordPress function and class declaration stubs for static analysis.",
+            "homepage": "https://github.com/php-stubs/wordpress-stubs",
+            "keywords": [
+                "PHPStan",
+                "static analysis",
+                "wordpress"
+            ],
+            "support": {
+                "issues": "https://github.com/php-stubs/wordpress-stubs/issues",
+                "source": "https://github.com/php-stubs/wordpress-stubs/tree/v7.1.2"
+            },
+            "time": "2026-10-06T06:59:21+00:00"
+        },
+        {
+            "name": "phpstan/phpstan",
+            "version": "2.3.1",
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/6155239b488e95d26d1ebd95c6b4bb294d7f09db",
+                "reference": "6155239b488e95d26d1ebd95c6b4bb294d7f09db",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.4|^8.0"
+            },
+            "conflict": {
+                "phpstan/phpstan-shim": "*"
+            },
+            "bin": [
+                "phpstan",
+                "phpstan.phar"
+            ],
+            "type": "library",
+            "autoload": {
+                "files": [
+                    "bootstrap.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Ondřej Mirtes"
+                },
+                {
+                    "name": "Markus Staab"
+                },
+                {
+                    "name": "Vincent Langlet"
+                }
+            ],
+            "description": "PHPStan - PHP Static Analysis Tool",
+            "keywords": [
+                "dev",
+                "static analysis"
+            ],
+            "support": {
+                "docs": "https://phpstan.org/user-guide/getting-started",
+                "forum": "https://github.com/phpstan/phpstan/discussions",
+                "issues": "https://github.com/phpstan/phpstan/issues",
+                "security": "https://github.com/phpstan/phpstan/security/policy",
+                "source": "https://github.com/phpstan/phpstan-src"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/ondrejmirtes",
+                    "type": "github"
+                },
+                {
+                    "url": "https://github.com/phpstan",
+                    "type": "github"
+                }
+            ],
+            "time": "2026-10-08T21:09:11+00:00"
+        },
+        {
+            "name": "szepeviktor/phpstan-wordpress",
+            "version": "v2.0.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/szepeviktor/phpstan-wordpress.git",
+                "reference": "84577e2ea1e4c2a95537fe5ea2ac8e18f4ceab1a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/szepeviktor/phpstan-wordpress/zipball/84577e2ea1e4c2a95537fe5ea2ac8e18f4ceab1a",
+                "reference": "84577e2ea1e4c2a95537fe5ea2ac8e18f4ceab1a",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.4 || ^8.0",
+                "php-stubs/wordpress-stubs": ">=6.6.2",
+                "phpstan/phpstan": "^2.0"
+            },
+            "require-dev": {
+                "composer/composer": "^2.1.14",
+                "composer/semver": "^3.4",
+                "dealerdirect/phpcodesniffer-composer-installer": "^1.0",
+                "php-parallel-lint/php-parallel-lint": "^1.1",
+                "phpstan/phpstan-strict-rules": "^2.0",
+                "phpunit/phpunit": "^9.0",
+                "szepeviktor/phpcs-psr-12-neutron-hybrid-ruleset": "^1.0",
+                "wp-coding-standards/wpcs": "3.1.0 as 2.3.0"
+            },
+            "suggest": {
+                "swissspidy/phpstan-no-private": "Detect usage of internal core functions, classes and methods"
+            },
+            "type": "phpstan-extension",
+            "extra": {
+                "phpstan": {
+                    "includes": [
+                        "extension.neon"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "SzepeViktor\\PHPStan\\WordPress\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "WordPress extensions for PHPStan",
+            "keywords": [
+                "PHPStan",
+                "code analyse",
+                "code analysis",
+                "static analysis",
+                "wordpress"
+            ],
+            "support": {
+                "issues": "https://github.com/szepeviktor/phpstan-wordpress/issues",
+                "source": "https://github.com/szepeviktor/phpstan-wordpress/tree/v2.0.4"
+            },
+            "time": "2026-05-22T16:22:09+00:00"
+        }
+    ],
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {},
     "prefer-stable": false,
     "prefer-lowest": false,
-  "platform": {
-    "ext-intl": "*"
-  },
+    "platform": {
+        "ext-intl": "*",
+        "ext-gettext": "*"
+    },
     "platform-dev": {},
-  "plugin-api-version": "2.9.0"
+    "plugin-api-version": "2.9.0"
 }
