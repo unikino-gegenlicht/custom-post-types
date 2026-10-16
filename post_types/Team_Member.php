@@ -46,7 +46,7 @@ class Team_Member implements Post_Type {
 				'item_trashed'             => __( 'Team member trashed', 'cine-press' ),
 				'item_scheduled'           => __( 'Team member scheduled', 'cine-press' ),
 				'item_updated'             => __( 'Team member updated', 'cine-press' ),
-				'item_linked'              => __( 'Team member linked', 'cine-press' ),
+				'item_link'              => __( 'Team member linked', 'cine-press' ),
 				'item_link_description'    => __( 'Link to a team member', 'cine-press' ),
 			),
 			'public'              => true,
@@ -56,7 +56,6 @@ class Team_Member implements Post_Type {
 			'show_in_nav_menus'   => true,
 			'show_in_rest'        => true,
 			'rest_namespace'      => 'cinema-press',
-			'capability_type'     => array( 'team-member', 'team-members' ),
 			'supports'            => array( 'title', 'thumbnail', 'revisions', 'autosave' ),
 			'has_archive'         => 'team',
 			'rewrite'             => array(
@@ -64,7 +63,9 @@ class Team_Member implements Post_Type {
 				'with_front' => false,
 				'feeds'      => false,
 				'pages'      => false,
-			)
+			),
+			'menu_position'       => - 10,
+			'menu_icon'           => 'dashicons-buddicons-buddypress-logo',
 		);
 	}
 
@@ -72,6 +73,105 @@ class Team_Member implements Post_Type {
 	 * @inheritDoc
 	 */
 	public static function meta_boxes( array $meta_boxes ): array {
-		// TODO: Implement meta_boxes() method.
+		$meta_boxes[] = array(
+			'title'       => __( 'Membership Status', "cine-press" ),
+			'id'          => 'cinema_press-membership_status',
+			'context'     => 'normal',
+			'style'       => 'seamless',
+			'post_types'  => array( 'team_member' ),
+			'autosave'    => true,
+			'revision'    => true,
+			'translation' => 'advanced',
+			'fields'      => array(
+				[
+					'type' => 'heading',
+					'name' => __( 'Membership Status', "cine-press" ),
+				],
+				[
+					'id'      => 'status',
+					'type'    => 'radio',
+					'label'   => __( 'Status', "cine-press" ),
+					'options' => array(
+						'active'   => __( 'Active', "cine-press" ),
+						'former'   => __( 'Former', "cine-press" ),
+						'honorary' => __( 'Honorary', "cine-press" ),
+					),
+					'translation' => 'copy',
+				],
+				[
+					'type' => 'heading',
+					'name' => __( 'Membership Details', "cine-press" ),
+				],
+				[
+					'id'   => 'joined_in',
+					'type' => 'number',
+					'name' => __( 'Joined in', "cine-press" ),
+					'std'  => intval( date( 'Y' ) ),
+					'step' => 1,
+					'min'  => 0,
+					'translation' => 'copy',
+				],
+				[
+					'id'      => 'left_in',
+					'type'    => 'number',
+					'name'    => __( 'Left in', "cine-press" ),
+					'step'    => 1,
+					'min'     => 0,
+					'visible' => [ 'status', 'in', [ 'former', 'honorary' ] ],
+					'translation' => 'copy',
+				],
+				[
+					'id'      => 'honorary_since',
+					'type'    => 'number',
+					'name'    => __( 'Honorary Member since', "cine-press" ),
+					'step'    => 1,
+					'min'     => 0,
+					'visible' => [ 'status', 'honorary' ],
+					'translation' => 'copy',
+				],
+				[
+					'type' => 'heading',
+					'name' => __( 'Social Media Accounts', "cine-press" ),
+					'desc' => __( 'If you enter a handle to a social media account the account might be linked in themes and schema data. The social media profiles listed here are the most commonly used ones. If you are missing one, just contact <a href="mailto:it@gegenlicht.net">it@gegenlicht.net</a> and the social media profile might be added in a future release', 'cine-press' ),
+				],
+				[
+					'id'      => 'letterboxd_username',
+					'type'    => 'text',
+					'name'    => __( 'Letterboxd Username', "cine-press" ),
+					'prepend' => "https://letterboxd.com/",
+					'translation' => 'copy',
+				],
+				[
+					'id'      => 'instagram_username',
+					'type'    => 'text',
+					'name'    => __( 'Instagram Username', "cine-press" ),
+					'prepend' => "https://instagram.com/",
+					'translation' => 'copy',
+				],
+				[
+					'id'      => 'trakt.tv_username',
+					'type'    => 'text',
+					'name'    => __( 'Trakt TV Username', "cine-press" ),
+					'prepend' => "https://app.trakt.tv/profile/",
+					'translation' => 'copy',
+				],
+				[
+					'type' => 'heading',
+					'name' => __( 'Personalized Teamie Descriptions', "cine-press" ),
+					'desc' => __( 'The description that has been entered here will override the default text set in the plugin settings', 'cine-press' ),
+				],
+				[
+					'id'                    => 'description',
+					'type'                  => 'wysiwyg',
+					'add_to_wpseo_analysis' => true,
+					'dfw'                   => false,
+					'options'               => CinemaPress_WYSIWYG_OPTIONS,
+					'textarea_rows'         => 20,
+					'translation'           => 'translate'
+				]
+			)
+		);
+
+		return $meta_boxes;
 	}
 }
