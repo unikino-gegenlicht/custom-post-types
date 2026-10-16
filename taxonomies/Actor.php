@@ -55,6 +55,7 @@ class Actor implements Taxonomy {
 				'slug'       => 'actor',
 				'with_front' => false,
 			),
+			'meta_box_cb'        => false,
 			'default_term'       => array(
 				'name'        => 'Alan Smithee',
 				'slug'        => 'alan-smithee',
