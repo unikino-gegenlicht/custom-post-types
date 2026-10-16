@@ -14,7 +14,8 @@
     "sokil/php-isocodes": "^4.4",
     "ext-gettext": "*",
     "spatie/schema-org": "^5.0",
-    "symfony/config": "^8.1"
+    "symfony/config": "^8.1",
+    "symfony/translation": "^8.1"
   },
   "require-dev": {
     "php-stubs/wordpress-stubs": "^7.1",
