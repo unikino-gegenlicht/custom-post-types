@@ -57,7 +57,6 @@ class Screening implements Post_Type {
 			'show_in_nav_menus'   => true,
 			'show_in_rest'        => true,
 			'rest_namespace'      => 'cinema-press',
-			'capability_type'     => array( 'screening', 'screenings' ),
 			'supports'            => array( 'revisions', 'thumbnail', 'autosave', 'authors' ),
 			'has_archive'         => true,
 			'rewrite'             => array(
@@ -68,6 +67,8 @@ class Screening implements Post_Type {
 			),
 			'query_var'           => 'screening',
 			'delete_with_user'    => false,
+			'menu_position'       => 5,
+			'menu_icon'           => 'dashicons-calendar'
 		);
 	}
 
@@ -78,69 +79,144 @@ class Screening implements Post_Type {
 		$meta_boxes[] = array(
 			'title'      => __( 'Screening Details', 'cinema-press' ),
 			'id'         => 'cinema_press-screening_details',
-			'context'    => 'form_top',
+			'context'    => 'normal',
 			'style'      => 'seamless',
 			'post_types' => array( 'screening' ),
 			'autosave'   => true,
 			'revision'   => true,
 			'fields'     => array(
 				[
-					'id'          => 'movie',
-					'type'        => 'post',
-					'name'        => __( 'Movie', 'cinema-press' ),
-					'desc'        => __( 'Select the movie that will be screened', 'cinema-press' ),
-					'placeholder' => __( 'Select a movie', 'cinema-press' ),
-					'required'    => true,
-					'revision'    => true,
-					'post_type'   => 'movie',
-					'query_args'  => array(
+					'id'                => 'movie',
+					'type'              => 'post',
+					'name'              => __( 'Movie', 'cinema-press' ),
+					'label_description' => __( 'Select the movie that will be screened', 'cinema-press' ),
+					'placeholder'       => __( 'Select a movie', 'cinema-press' ),
+					'required'          => true,
+					'revision'          => true,
+					'post_type'         => 'movie',
+					'query_args'        => array(
 						'post_status'    => 'publish',
 						'posts_per_page' => 10
 					),
-					'js_options'  => [
+					'js_options'        => [
 						'minimumInputLength' => 1,
 					],
-					'ajax'        => true,
+					'ajax'              => true,
+					'add_new'           => true,
 				],
 				[
-					'id'            => 'screening_start',
-					'type'          => 'datetime',
-					'name'          => __( 'Start Date and Time', 'cinema-press' ),
-					'required'      => true,
-					'revision'      => true,
-					'timestamp'     => false,
-					'js_options'    => array(
-						'dateFormat' => 'dd.mm.yyyy'
+					'id'                => 'screening_start',
+					'type'              => 'datetime',
+					'name'              => __( 'Start Date and Time', 'cinema-press' ),
+					'label_description' => __( 'The time the program for the screening starts', 'cinema-press' ),
+					'required'          => true,
+					'revision'          => true,
+					'timestamp'         => false,
+					'js_options'        => array(
+						'dateFormat' => 'dd.mm.yy'
 					),
-					'save_format'   => 'Y-m-d H:i',
-					'admin_columns' => array(
-						'position'   => 'replace date',
-						'title'      => __( "Screening Date", 'cinema-press' ),
-						'link'       => 'none',
-						'sort'       => true,
-						'searchable' => false,
-						'filterable' => false,
+					'save_format'       => 'Y-m-d H:i',
+					'admin_columns'     => array(
+						'position' => "replace date",
+						'sort' => "numeric"
 					)
 				],
 				[
-					'id'          => 'location',
-					'type'        => 'post',
-					'name'        => __( 'Screening Location', 'cinema-press' ),
-					'desc'        => __( 'The location the screening will happen in', 'cinema-press' ),
-					'placeholder' => __( 'Select a location', 'cinema-press' ),
-					'required'    => true,
-					'revision'    => true,
-					'post_type'   => 'screening_location',
-					'query_args'  => array(
+					'id'                => 'location',
+					'type'              => 'post',
+					'name'              => __( 'Screening Location', 'cinema-press' ),
+					'label_description' => __( 'The location the screening will happen in', 'cinema-press' ),
+					'placeholder'       => __( 'Select a location', 'cinema-press' ),
+					'required'          => true,
+					'revision'          => true,
+					'post_type'         => 'screening_location',
+					'query_args'        => array(
 						'post_status'    => 'publish',
 						'posts_per_page' => 10
 					),
-					'js_options'  => [
+					'js_options'        => [
 						'minimumInputLength' => 1,
 					],
-					'ajax'        => true,
-					'add_new'     => true
-				]
+					'ajax'              => true,
+					'add_new'           => true,
+					'admin_columns'     => array(
+						'position'   => 'after date',
+						'title'      => __( "Screening Location", 'cinema-press' ),
+						'sort'       => false,
+						'searchable' => false,
+						'link'       => false
+					)
+				],
+				[
+					'id'                => 'admission_types',
+					'type'              => 'post',
+					'name'              => __( 'Admission Types', 'cinema-press' ),
+					'label_description' => __( 'The admission types that are being offered for this screening', 'cinema-press' ),
+					'placeholder'       => __( 'Select one or more admission types', 'cinema-press' ),
+					'required'          => true,
+					'revision'          => true,
+					'post_type'         => 'admission_type',
+					'query_args'        => array(
+						'post_status'    => 'publish',
+						'posts_per_page' => 10
+					),
+					'ajax'              => true,
+					'multiple'          => true,
+					'admin_columns'     => 'after screening_location'
+				],
+				get_option( 'cinema-press' )["enable_teamie_screening_assignment"] === 1 ? [
+					'id'                => 'proposed_by',
+					'type'              => 'post',
+					'name'              => __( 'Proposed By', 'cinema-press' ),
+					'label_description' => __( 'Select the team member that has proposed the movie', 'cinema-press' ),
+					'post_type'         => 'team_member',
+					'field_type'        => 'select_advanced',
+					'query_args'        => array(
+						'post_status'    => 'publish',
+						'posts_per_page' => 10
+					),
+					'js_options'        => [
+						'minimumInputLength' => 1,
+					],
+					'ajax'              => true,
+					'add_new'           => true,
+					'admin_columns'     => array(
+						'position'   => 'after date',
+						'title'      => __( "Proposed By", 'cinema-press' ),
+						'sort'       => false,
+						'searchable' => false,
+						'link'       => false
+					)
+				] : [
+					'type' => 'custom_html',
+					'std'  => ""
+				],
+				[
+					'type' => 'heading',
+					'name' => __( "Summary", 'cinema-press' ),
+					'desc' => __( 'Below this field you can now enter the movies summary for the screening', 'cinema-press' ),
+				],
+				[
+					'id'                    => 'summary',
+					'type'                  => 'wysiwyg',
+					'required'              => true,
+					'add_to_wpseo_analysis' => true,
+					'options'               => CinemaPress_WYSIWYG_OPTIONS,
+					'revision'              => true,
+				],
+				[
+					'type' => 'heading',
+					'name' => __( "Why is the movie worth to be seen?", 'cinema-press' ),
+					'desc' => __( 'Below this field you can now enter why the movie is worth to be seen by your visitors', 'cinema-press' ),
+				],
+				[
+					'id'                    => 'worth_to_be_seen',
+					'type'                  => 'wysiwyg',
+					'required'              => true,
+					'add_to_wpseo_analysis' => true,
+					'options'               => CinemaPress_WYSIWYG_OPTIONS,
+					'revision'              => true,
+				],
 			)
 		);
 
