@@ -59,7 +59,6 @@ class Movie implements Post_Type {
 			'show_in_nav_menus'   => false,
 			'show_in_rest'        => true,
 			'rest_namespace'      => 'cinema-press',
-			'capability_type'     => array( 'movie', 'movies' ),
 			'supports'            => array( 'revisions', 'thumbnail', 'autosave' ),
 			'has_archive'         => true,
 			'rewrite'             => array(
@@ -70,6 +69,8 @@ class Movie implements Post_Type {
 			),
 			'query_var'           => false,
 			'delete_with_user'    => false,
+			'menu_position'       => 4,
+			'menu_icon'           => 'dashicons-format-video'
 		);
 	}
 
@@ -80,12 +81,16 @@ class Movie implements Post_Type {
 		$meta_boxes[] = array(
 			'title'      => __( 'Movie Data', 'cinema-press' ),
 			'id'         => 'cinema_press-movie_base_data',
-			'context'    => 'form_top',
+			'context'    => 'after_title',
 			'style'      => 'seamless',
 			'post_types' => array( 'movie' ),
 			'autosave'   => true,
 			'revision'   => true,
 			'fields'     => array(
+				[
+					"type" => "heading",
+					"name" => __( "Basic Information", 'cinema-press' ),
+				],
 				[
 					'id'            => 'german_title',
 					'type'          => 'text',
@@ -131,20 +136,11 @@ class Movie implements Post_Type {
 					'desc'     => __( 'Select the country/countries of origin for this movie', 'cinema-press' ),
 					'required' => true,
 					'revision' => true,
-					'options'  => cp_county_mapping()
+					'options'  => cp_county_mapping(),
+					'multiple' => true,
 				],
 				[
-					'id'       => 'german_release_year',
-					'type'     => 'number',
-					'name'     => __( 'Release Year in Germany', 'cinema-press' ),
-					'required' => true,
-					'revision' => true,
-					'std'      => intval( date( 'Y' ) ),
-					'min'      => 0,
-					'step'     => 1
-				],
-				[
-					'id'       => 'local_release_year',
+					'id'       => 'release_year',
 					'type'     => 'number',
 					'name'     => __( 'Release Year in the Country of Origin', 'cinema-press' ),
 					'desc'     => __( 'In case of multiple countries of origin, select the earliest year you can find.', 'cinema-press' ),
@@ -152,7 +148,14 @@ class Movie implements Post_Type {
 					'revision' => true,
 					'std'      => intval( date( 'Y' ) ),
 					'min'      => 0,
-					'step'     => 1
+					'step'     => 1,
+                    'admin_columns' => array(
+                        'position'   => 'replace date',
+                        'title'      => __( 'Released In', 'cinema-press' ),
+                        'sort'       => true,
+                        'searchable' => true,
+                        'link'       => false
+                    )
 				],
 				[
 					'id'       => 'running_time',
