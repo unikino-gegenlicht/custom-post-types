@@ -118,7 +118,7 @@ class Screening implements Post_Type {
 					'save_format'       => 'Y-m-d H:i',
 					'admin_columns'     => array(
 						'position' => "replace date",
-						'sort' => "numeric"
+						'sort'     => "numeric"
 					)
 				],
 				[
@@ -164,7 +164,7 @@ class Screening implements Post_Type {
 					'multiple'          => true,
 					'admin_columns'     => 'after screening_location'
 				],
-				get_option( 'cinema-press' )["enable_teamie_screening_assignment"] === 1 ? [
+				(get_option( 'cinema-press' )["enable_teamie_screening_assignment"] ?? 0) === 1 ? [
 					'id'                => 'proposed_by',
 					'type'              => 'post',
 					'name'              => __( 'Proposed By', 'cinema-press' ),
