@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: CinemaPress CINEMA_PRESS_PLUGIN_VERSION\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/cinema-press\n"
 "POT-Creation-Date: 2026-10-17T10:53:20+00:00\n"
-"PO-Revision-Date: 2026-10-17 12:04+0200\n"
+"PO-Revision-Date: 2026-10-17 14:55+0200\n"
 "Last-Translator: Jan Eike Suchard <jan@suchard.cloud>\n"
 "Language-Team: \n"
 "Language: de_DE\n"
@@ -663,7 +663,7 @@ msgid ""
 "and series."
 msgstr ""
 "Zusatzhinweise werden seit 2023 von der FSK gemeinsam mit den Alterfreigaben "
-"veröffentlicht"
+"veröffentlicht."
 
 #: post_types/Movie.php:233
 msgid "Sexual Violence"
@@ -847,520 +847,528 @@ msgstr "Wähle einen Film"
 
 #: post_types/Screening.php:110
 msgid "Start Date and Time"
-msgstr ""
+msgstr "Startdatum und -uhrzeit der Vorstellung"
 
 #: post_types/Screening.php:111
 msgid "The time the program for the screening starts"
-msgstr ""
+msgstr "Die Uhrzeit bei der das Vorprogramm der Vorstellung beginnt"
 
 #: post_types/Screening.php:127 post_types/Screening.php:144
 #: post_types/Screening_Location.php:22 post_types/Screening_Location.php:25
 msgid "Screening Location"
-msgstr ""
+msgstr "Vorstellungsort"
 
 #: post_types/Screening.php:128
 msgid "The location the screening will happen in"
-msgstr ""
+msgstr "Ort an dem die Vorstellung stattfindet"
 
 #: post_types/Screening.php:129
 msgid "Select a location"
-msgstr ""
+msgstr "Ort auswählen"
 
 #: post_types/Screening.php:154
 msgid "The admission types that are being offered for this screening"
-msgstr ""
+msgstr "Die Kartentypen die für diese Vorstellung angeboten werden"
 
 #: post_types/Screening.php:155
 msgid "Select one or more admission types"
-msgstr ""
+msgstr "Wähle einen oder mehrere Kartentypen aus"
 
 #: post_types/Screening.php:170 post_types/Screening.php:185
 msgid "Proposed By"
-msgstr ""
+msgstr "Vorgeschlagen von"
 
 #: post_types/Screening.php:171
 msgid "Select the team member that has proposed the movie"
-msgstr ""
+msgstr "Wähle die Mitglieder aus, die den Film vorgeschlagen haben"
 
 #: post_types/Screening.php:196
 msgid "Summary"
-msgstr ""
+msgstr "Inhaltszusammenfassung"
 
 #: post_types/Screening.php:197
 msgid "Below this field you can now enter the movies summary for the screening"
-msgstr ""
+msgstr "Hier kannst du nun eine Zusammenfassung des Filmes eingeben"
 
 #: post_types/Screening.php:209
 msgid "Why is the movie worth to be seen?"
-msgstr ""
+msgstr "Warum ist der Film sehenswert?"
 
 #: post_types/Screening.php:210
 msgid ""
 "Below this field you can now enter why the movie is worth to be seen by your "
 "visitors"
-msgstr ""
+msgstr "Hier kannst du nun eingeben, warum der Film sehenswert ist"
 
 #: post_types/Screening_Location.php:24 post_types/Screening_Location.php:35
 msgid "Screening Locations"
-msgstr ""
+msgstr "Vorstellungsorte"
 
 #: post_types/Screening_Location.php:26 post_types/Screening_Location.php:27
 msgid "Add Screening Location"
-msgstr ""
+msgstr "Vorstellungsort hinzufügen"
 
 #: post_types/Screening_Location.php:28
 msgid "Edit Screening Location"
-msgstr ""
+msgstr "Vorstellungsort bearbeiten"
 
 #: post_types/Screening_Location.php:29
 msgid "New Screening Location"
-msgstr ""
+msgstr "Neuer Vorstellungsort"
 
 #: post_types/Screening_Location.php:30
 msgid "View Screening Location"
-msgstr ""
+msgstr "Vorstellungsort anzeigen"
 
 #: post_types/Screening_Location.php:31
 msgid "View Screening Locations"
-msgstr ""
+msgstr "Vorstellungsorte anzeigen"
 
 #: post_types/Screening_Location.php:32
 msgid "Search Screening Locations"
-msgstr ""
+msgstr "Vorstellungsort suchen"
 
 #: post_types/Screening_Location.php:33
 msgid "No Screening Locations found"
-msgstr ""
+msgstr "Keine Vorstellungsorte gefunden"
 
 #: post_types/Screening_Location.php:34
 msgid "No Screening Locations found in Trash"
-msgstr ""
+msgstr "Keine Vorstellungsorte im Papierkorb gefunden"
 
 #: post_types/Screening_Location.php:36
 msgid "Locations"
-msgstr ""
+msgstr "Orte"
 
 #: post_types/Screening_Location.php:37
 msgid "Location Attributes"
-msgstr ""
+msgstr "Attribute des Vorstellungsorts"
 
 #: post_types/Screening_Location.php:38
 msgid "Insert into screening location"
-msgstr ""
+msgstr "In den Vorstellungsort einfügen"
 
 #: post_types/Screening_Location.php:39
 msgid "Uploaded to this location"
-msgstr ""
+msgstr "Zu dem Vorstellungsort hochgeladen"
 
 #: post_types/Screening_Location.php:44
 msgid "Filter Screening Locations list"
-msgstr ""
+msgstr "Vorstellungsorte filtern"
 
 #: post_types/Screening_Location.php:45
 msgid "Screening Locations list navigation"
-msgstr ""
+msgstr "Navigation der Liste der  Vorstellungsorte"
 
 #: post_types/Screening_Location.php:46
 msgid "Screening Locations list"
-msgstr ""
+msgstr "Liste der Vorstellungsorte"
 
 #: post_types/Screening_Location.php:47
 msgid "Screening Location published"
-msgstr ""
+msgstr "Vorstellungsort veröffentlicht"
 
 #: post_types/Screening_Location.php:48
 msgid "Screening Location published privately"
-msgstr ""
+msgstr "Vorstellungsort privat veröffentlicht"
 
 #: post_types/Screening_Location.php:49
 msgid "Screening Location reverted to draft"
-msgstr ""
+msgstr "Vorstellungsort zum Entwurft zurückgewandelt"
 
 #: post_types/Screening_Location.php:50
 msgid "Screening Location trashed"
-msgstr ""
+msgstr "Vorstellungsort gelöscht"
 
 #: post_types/Screening_Location.php:51
 msgid "Screening Location scheduled"
-msgstr ""
+msgstr "Vorstellungsort geplant"
 
 #: post_types/Screening_Location.php:52
 msgid "Screening Location updated"
-msgstr ""
+msgstr "Vorstellungsort veröfentlicht"
 
 #: post_types/Screening_Location.php:53
 msgid "Screening Location link"
-msgstr ""
+msgstr "Link des Vorstellungsorts"
 
 #: post_types/Screening_Location.php:54
 msgid "Link to a screening location"
-msgstr ""
+msgstr "Link zu einem Vorstellungsort"
 
 #: post_types/Screening_Location.php:56
 msgid ""
 "Screening Locations help with generating markup for the schema data and "
 "allow for easier directions to the screening locations"
 msgstr ""
+"Vorstellungsorte helfen dabei schematische Daten für die Website zu "
+"erstellen und einfachere Anreisehinweise zu geben"
 
 #: post_types/Screening_Location.php:83
 msgid "Screening Location Data"
-msgstr ""
+msgstr "Daten des Vorstellungsorts"
 
 #: post_types/Screening_Location.php:93
 msgid "Address"
-msgstr ""
+msgstr "Adresse"
 
 #: post_types/Screening_Location.php:97
 msgid "Street"
-msgstr ""
+msgstr "Straße"
 
 #: post_types/Screening_Location.php:104
 msgid "Postal Code"
-msgstr ""
+msgstr "Postleitzahl"
 
 #: post_types/Screening_Location.php:111
 msgid "City"
-msgstr ""
+msgstr "Stadt"
 
 #: post_types/Screening_Location.php:118
 msgid "Country"
-msgstr ""
+msgstr "Staat"
 
 #: post_types/Screening_Location.php:129 post_types/Screening_Location.php:138
 msgid "Coordinates"
-msgstr ""
+msgstr "Koordinaten"
 
 #: post_types/Screening_Location.php:139
 msgid ""
 "The coordinates are used to generate links to that location that are usable "
 "by almost any map service"
 msgstr ""
+"Die eingegebenen Koordinaten werden genutzt um Links zu erstellen, die mit "
+"fast jeder Kartenanwendung funktionieren"
 
 #: post_types/Screening_Location.php:146
 msgid "Location Identifiers"
-msgstr ""
+msgstr "IDs für Orte"
 
 #: post_types/Screening_Location.php:155
 msgid "Place Identifiers"
-msgstr ""
+msgstr "IDs für Orte"
 
 #: post_types/Screening_Location.php:156
 msgid ""
 "The identifiers are used to build platform dependent links to map services "
 "which will always pinpoint this location if possible"
 msgstr ""
+"Diese IDs werden von Kartenanwendungen genutzt um automatisch auf den "
+"passenden Eintrag zu verweisen, falls möglich"
 
 #: post_types/Screening_Location.php:160
 msgid "Apple Place ID"
-msgstr ""
+msgstr "Apple PlaceID"
 
 #: post_types/Screening_Location.php:161
 msgid "Lookup Place ID for Apple Maps"
-msgstr ""
+msgstr "PlaceID für Apple Maps suchen"
 
 #: post_types/Screening_Location.php:167
 msgid "Google Place ID"
-msgstr ""
+msgstr "Google PlaceID"
 
 #: post_types/Screening_Location.php:168
 msgid "Lookup Place ID for Google Maps"
-msgstr ""
+msgstr "PlaceID für Google Maps suchen"
 
 #: post_types/Screening_Location.php:174
 msgid "OpenStreetMap Node ID"
-msgstr ""
+msgstr "OpenStreetMap Knoten ID"
 
 #: post_types/Screening_Location.php:175
 msgid "The node id for the screening location, if available"
-msgstr ""
+msgstr "Knoten für den Vorstellungsort, falls verfügbar"
 
 #: post_types/Screening_Location.php:181
 msgid "What3Word Address"
-msgstr ""
+msgstr "What3Words Adresse"
 
 #: post_types/Screening_Location.php:182
 msgid "Three words that describe the entrance to the screening location"
-msgstr ""
+msgstr "Drei Wörter, die den Eingang zum Vorstellungsort beschreiben"
 
 #: post_types/Sponsors.php:20
 msgid "Sponsor"
-msgstr ""
+msgstr "Sponsor*in"
 
 #: post_types/Sponsors.php:21 post_types/Sponsors.php:22
 msgid "Add Sponsor"
-msgstr ""
+msgstr "Sponsor*in hinzufügen"
 
 #: post_types/Sponsors.php:23
 msgid "Edit Sponsor"
-msgstr ""
+msgstr "Sponsor*in bearbeiten"
 
 #: post_types/Sponsors.php:24
 msgid "New Sponsor"
-msgstr ""
+msgstr "Neue*r Sponsor*in"
 
 #: post_types/Sponsors.php:25
 msgid "View Sponsor"
-msgstr ""
+msgstr "Sponsor*in anzeigen"
 
 #: post_types/Sponsors.php:26
 msgid "View Sponsors"
-msgstr ""
+msgstr "Sponsor*innen anzeigen"
 
 #: post_types/Sponsors.php:27
 msgid "Search Sponsors"
-msgstr ""
+msgstr "Sponsor*innen durchsuchen"
 
 #: post_types/Sponsors.php:28
 msgid "No Sponsors found"
-msgstr ""
+msgstr "Kein*e Sponsor*in gefunden"
 
 #: post_types/Sponsors.php:29
 msgid "No Sponsors found in Trash"
-msgstr ""
+msgstr "Kein*e Sponsor*in im Papierkorb gefunden"
 
 #: post_types/Sponsors.php:30
 msgid "All Sponsors"
-msgstr ""
+msgstr "Alle Sponsor*innen"
 
 #: post_types/Sponsors.php:31
 msgid "Sponsor Overview"
-msgstr ""
+msgstr "Übersicht der Sponsor*innen"
 
 #: post_types/Sponsors.php:32
 msgid "Sponsor Attributes"
-msgstr ""
+msgstr "Attribute des*der Sponsor*in"
 
 #: post_types/Sponsors.php:33
 msgid "Insert into Sponsor"
-msgstr ""
+msgstr "In Sponsor*in einfügen"
 
 #: post_types/Sponsors.php:34
 msgid "Uploaded to this sponsor"
-msgstr ""
+msgstr "Zum*Zur Sponsor*in hochgeladen"
 
 #: post_types/Sponsors.php:35
 msgid "Set Sponsor Logo"
-msgstr ""
+msgstr "Sponsor*innen Logo festlegen"
 
 #: post_types/Sponsors.php:36
 msgid "Remove sponsor logo"
-msgstr ""
+msgstr "Sponsor*innen Logo entfernen"
 
 #: post_types/Sponsors.php:37
 msgid "Use Sponsor Logo"
-msgstr ""
+msgstr "Sponsor*innen Logo verwenden"
 
 #: post_types/Sponsors.php:38
 msgid "Filter Sponsors list"
-msgstr ""
+msgstr "Sponsor*innen Liste filtern"
 
 #: post_types/Sponsors.php:39
 msgid "Sponsor list navigation"
-msgstr ""
+msgstr "Navigation der Sponsor*innen Liste"
 
 #: post_types/Sponsors.php:40
 msgid "Sponsor list"
-msgstr ""
+msgstr "Liste der Sponsor*innen"
 
 #: post_types/Sponsors.php:41
 msgid "Sponsor published"
-msgstr ""
+msgstr "Sponsor*in veröffentlicht"
 
 #: post_types/Sponsors.php:42
 msgid "Sponsor published privateley"
-msgstr ""
+msgstr "Sponsor*in privat veröffentlicht"
 
 #: post_types/Sponsors.php:43
 msgid "Sponsor reverted to draft"
-msgstr ""
+msgstr "Spondor*in als Entwurf gespeichert"
 
 #: post_types/Sponsors.php:44
 msgid "Sponsor trashed"
-msgstr ""
+msgstr "Sponsor*in gelöscht"
 
 #: post_types/Sponsors.php:45
 msgid "Sponsor scheduled"
-msgstr ""
+msgstr "Sponsor*in geplant"
 
 #: post_types/Sponsors.php:46
 msgid "Sponsor updated"
-msgstr ""
+msgstr "Sponsor*in aktualisiert"
 
 #: post_types/Sponsors.php:47
 msgid "Sponsor link"
-msgstr ""
+msgstr "Sponsor*in-Link"
 
 #: post_types/Sponsors.php:48
 msgid "Link to a sponsor"
-msgstr ""
+msgstr "Link zur Sponsor*in"
 
 #: taxonomies/Actor.php:24 taxonomies/Actor.php:37
 msgid "Actors"
-msgstr ""
+msgstr "Schauspielende"
 
 #: taxonomies/Actor.php:25
 msgid "Actor"
-msgstr ""
+msgstr "Schauspielende*r"
 
 #: taxonomies/Actor.php:26
 msgid "Search Actors"
-msgstr ""
+msgstr "Schauspielende suchen"
 
 #: taxonomies/Actor.php:27
 msgid "Popular Actors"
-msgstr ""
+msgstr "Oft verwendete Schauspielende"
 
 #: taxonomies/Actor.php:28
 msgid "All Actors"
-msgstr ""
+msgstr "Alle Schauspielende"
 
 #: taxonomies/Actor.php:29
 msgid "The full name of the Actor"
-msgstr ""
+msgstr "Vollständiger Name des*der Schauspielenden"
 
 #: taxonomies/Actor.php:30
 msgid "The slug for the Actor (auto-generated)"
-msgstr ""
+msgstr "Slug für den*die Schauspielenden (automatisch generiert)"
 
 #: taxonomies/Actor.php:31
 msgid ""
 "A short portrait about the Actor. This value might be shown depending on the "
 "used theme"
 msgstr ""
+"Kurzportrait über den*die Schauspielende*n. Dieser Wert wird je nach Design "
+"angezeigt"
 
 #: taxonomies/Actor.php:32
 msgid "Edit Actor"
-msgstr ""
+msgstr "Schauspielende*n bearbeiten"
 
 #: taxonomies/Actor.php:33
 msgid "View Actor"
-msgstr ""
+msgstr "Schauspielende*n anzeigen"
 
 #: taxonomies/Actor.php:34
 msgid "Update Actor"
-msgstr ""
+msgstr "Schauspielende*n aktualisieren"
 
 #: taxonomies/Actor.php:35
 msgid "Add New Actor"
-msgstr ""
+msgstr "Schauspielende*n hinzufügen"
 
 #: taxonomies/Actor.php:36
 msgid "New Actor"
-msgstr ""
+msgstr "Neue*r Schauspielende*r"
 
 #: taxonomies/Actor.php:38
 msgid "Separate Actors with commas"
-msgstr ""
+msgstr "Trenne Schauspielende mit einem Komma"
 
 #: taxonomies/Actor.php:39
 msgid "Add or remove Actors"
-msgstr ""
+msgstr "Schauspielende hinzufügen oder entfernen"
 
 #: taxonomies/Actor.php:40
 msgid "Choose from the most used Actors"
-msgstr ""
+msgstr "Wähle von den meistgenutzten Schauspielenden"
 
 #: taxonomies/Actor.php:41
 msgid "No Actors found. Maybe create one"
-msgstr ""
+msgstr "Keine Schauspielenden gefunden. Erstelle einen"
 
 #: taxonomies/Actor.php:42
 msgid "Filter by Actor"
-msgstr ""
+msgstr "Nach Schauspielenden filtern"
 
 #: taxonomies/Actor.php:43
 msgid "Back to Actors"
-msgstr ""
+msgstr "Zurück zu den Schauspielenden"
 
 #: taxonomies/Actor.php:44
 msgid "Actor Link"
-msgstr ""
+msgstr "Schauspielendenlink"
 
 #: taxonomies/Actor.php:45
 msgid "A link to a Actor"
-msgstr ""
+msgstr "Link zu einer*m Schauspielenden"
 
 #: taxonomies/Director.php:25
 msgid "Director"
-msgstr ""
+msgstr "Regisseur"
 
 #: taxonomies/Director.php:26
 msgid "Search Directors"
-msgstr ""
+msgstr "Suche Regisseur"
 
 #: taxonomies/Director.php:27
 msgid "Popular Directors"
-msgstr ""
+msgstr "Oft genutzte Regisseure"
 
 #: taxonomies/Director.php:28
 msgid "All Directors"
-msgstr ""
+msgstr "Alle Regisseure"
 
 #: taxonomies/Director.php:29
 msgid "The full name of the director"
-msgstr ""
+msgstr "Vollständiger Name des*der Regisseur*in"
 
 #: taxonomies/Director.php:30
 msgid "The slug for the director (auto-generated)"
-msgstr ""
+msgstr "Slug für den*die Regisseur*in (automatisch generiert)"
 
 #: taxonomies/Director.php:31
 msgid ""
 "A short portrait about the director. This value might be shown depending on "
 "the used theme"
-msgstr ""
+msgstr "Kein kurzes Portrait über den*die Regissuer*in"
 
 #: taxonomies/Director.php:32
 msgid "Edit Director"
-msgstr ""
+msgstr "Regisseur*in bearbeiten"
 
 #: taxonomies/Director.php:33
 msgid "View Director"
-msgstr ""
+msgstr "Regisseur*in anzeigen"
 
 #: taxonomies/Director.php:34
 msgid "Update Director"
-msgstr ""
+msgstr "Regisseur*in aktualisieren"
 
 #: taxonomies/Director.php:35
 msgid "Add New Director"
-msgstr ""
+msgstr "Neue*n Regisseur*in hinzufügen"
 
 #: taxonomies/Director.php:36
 msgid "New Director"
-msgstr ""
+msgstr "Neue*r Regisseur*in"
 
 #: taxonomies/Director.php:38
 msgid "Separate Directors with commas"
-msgstr ""
+msgstr "Trenne Regisseure mit einem Komma"
 
 #: taxonomies/Director.php:39
 msgid "Add or remove Directors"
-msgstr ""
+msgstr "Regisseur*in hinzufügen oder entfernen"
 
 #: taxonomies/Director.php:40
 msgid "Choose from the most used Directors"
-msgstr ""
+msgstr "Wähle aus den häufigsten Regisseur*innen aus"
 
 #: taxonomies/Director.php:41
 msgid "No directors found. Maybe create one"
-msgstr ""
+msgstr "Keine Regisseure gefunden. Erstelle einen"
 
 #: taxonomies/Director.php:42
 msgid "Filter by Director"
-msgstr ""
+msgstr "Nach Regesseur*in filtern"
 
 #: taxonomies/Director.php:43
 msgid "Back to Directors"
-msgstr ""
+msgstr "Zurück zu den Regisseur*inenn"
 
 #: taxonomies/Director.php:44
 msgid "Director Link"
-msgstr ""
+msgstr "Regisseur*in-Link"
 
 #: taxonomies/Director.php:45
 msgid "A link to a director"
-msgstr ""
+msgstr "Link zu einer*m Regisseur*in"
 
 #: taxonomies/Director.php:47
 msgid ""
@@ -1371,29 +1379,31 @@ msgstr ""
 #: taxonomies/Program_Series.php:20 taxonomies/Program_Series.php:21
 #: taxonomies/Program_Series.php:33
 msgid "Program Series"
-msgstr ""
+msgstr "Programmreihe"
 
 #: taxonomies/Program_Series.php:22
 msgid "Search Program Series"
-msgstr ""
+msgstr "Suche Programmreihe"
 
 #: taxonomies/Program_Series.php:23
 msgid "Popular Program Series"
-msgstr ""
+msgstr "Beliebte Programmreihen"
 
 #: taxonomies/Program_Series.php:24
 msgid "All Program Series"
-msgstr ""
+msgstr "Alle Programmreihen"
 
 #: taxonomies/Program_Series.php:25
 msgid "The name of the program series"
-msgstr ""
+msgstr "Name der Programmreihe"
 
 #: taxonomies/Program_Series.php:26
 msgid ""
 "The slug of the program series, which will be used to generate screening "
 "slugs if necessary"
 msgstr ""
+"Slug der Programmreihe. Der Slug wird genutzt um Vorstellungsslugs zu "
+"erstellen falls erforderlich"
 
 #: taxonomies/Program_Series.php:27
 msgid ""
@@ -1402,104 +1412,113 @@ msgid ""
 "provide general information like genres or other categories that influence "
 "the selection for the series"
 msgstr ""
+"Die Beschreibung der Programmreihe und ihrer Inhalte. Versuche, dich auf ein "
+"allgemeines Thema zu beziehen und keine konkreten Filme zu nennen, da diese "
+"Beschreibung allgemeine Informationen wie Genres oder andere Kategorien "
+"liefern soll, die die Auswahl für die Reihe beeinflussen"
 
 #: taxonomies/Program_Series.php:28
 msgid "Edit Program Series"
-msgstr ""
+msgstr "Programmreihe bearbeiten"
 
 #: taxonomies/Program_Series.php:29
 msgid "View Program Series"
-msgstr ""
+msgstr "Programmreihe anzeigen"
 
 #: taxonomies/Program_Series.php:30
 msgid "Update Program Series"
-msgstr ""
+msgstr "Programmreihe aktualisieren"
 
 #: taxonomies/Program_Series.php:31
 msgid "Add New Program Series"
-msgstr ""
+msgstr "Neue Programmreihe hinzufügen"
 
 #: taxonomies/Program_Series.php:32
 msgid "New Program Series Name"
-msgstr ""
+msgstr "Neuer Name der Programmreihe"
 
 #: taxonomies/Program_Series.php:34
 msgid "Separate program series with commas"
-msgstr ""
+msgstr "Trenne Programmreihen mit einem Komma"
 
 #: taxonomies/Program_Series.php:35
 msgid "Add or remove program series"
-msgstr ""
+msgstr "Programmreihe hinzufügen oder entfernen"
 
 #: taxonomies/Program_Series.php:36
 msgid "Choose from the most used program series"
-msgstr ""
+msgstr "Wähle aus den häufigsten Programmreihen aus"
 
 #: taxonomies/Program_Series.php:37
 msgid "No program series found."
-msgstr ""
+msgstr "Keine Programmreihen gefunden."
 
 #: taxonomies/Program_Series.php:38
 msgid "Filter by program series"
-msgstr ""
+msgstr "Nach Programmreihe filtern"
 
 #: taxonomies/Program_Series.php:39
 msgid "Back to program series"
-msgstr ""
+msgstr "Zurück zu den Programmreihen"
 
 #: taxonomies/Program_Series.php:40
 msgid "Link to program series"
-msgstr ""
+msgstr "Link zu Programmreihen"
 
 #: taxonomies/Program_Series.php:41
 msgid "Link to a program series"
-msgstr ""
+msgstr "Link zur Programmreihe"
 
 #: taxonomies/Program_Series.php:64
 msgid "Display Settings"
-msgstr ""
+msgstr "Anzeigeanstellungen"
 
 #: taxonomies/Program_Series.php:71
 msgid ""
 "These display settings are applied to screenings that have been tagged with "
 "this program series"
 msgstr ""
+"Diese Anzeigeeinstellungen werden auf alle Vorstellungen angewendet, die "
+"dieser Programmreihe zugewiesen sind"
 
 #: taxonomies/Program_Series.php:75
 msgid "Background for Pages"
-msgstr ""
+msgstr "Seitenhintergrund"
 
 #: taxonomies/Program_Series.php:80
 msgid "Font color"
-msgstr ""
+msgstr "Schriftfarbe"
 
 #: taxonomies/Semester.php:20 taxonomies/Semester.php:22
 #: taxonomies/Semester.php:33
 msgid "Semesters"
-msgstr ""
+msgstr "Semester"
 
 #: taxonomies/Semester.php:21
 msgid "Semester"
-msgstr ""
+msgstr "Semester"
 
 #: taxonomies/Semester.php:23
 msgid "Most Used Semesters"
-msgstr ""
+msgstr "Häufig genutzte Semester"
 
 #: taxonomies/Semester.php:24
 msgid "All Semesters"
-msgstr ""
+msgstr "Alle Semester"
 
 #: taxonomies/Semester.php:25
 msgid ""
 "The name of the semester. Often used values are \"Wintersemester 2026/2027\""
 msgstr ""
+"Der Name des Semesters. Häufig genutzte Namen sind \"Wintersemester "
+"2026/2027\" o.ä."
 
 #: taxonomies/Semester.php:26
 msgid ""
 "The slug for the semester. This will be included in the URLs for the "
 "screenings"
 msgstr ""
+"Der Slug für das Semester. Der Slug wird in der URL für Vorstellungen genuzt"
 
 #: taxonomies/Semester.php:27
 msgid ""
@@ -1509,63 +1528,63 @@ msgstr ""
 
 #: taxonomies/Semester.php:28
 msgid "Edit Semester"
-msgstr ""
+msgstr "Semester bearbeiten"
 
 #: taxonomies/Semester.php:29
 msgid "View Semester"
-msgstr ""
+msgstr "Semester anzeigen"
 
 #: taxonomies/Semester.php:30
 msgid "Update Semester"
-msgstr ""
+msgstr "Semester aktualisieren"
 
 #: taxonomies/Semester.php:31
 msgid "Add New Semester"
-msgstr ""
+msgstr "Neues Semester hinzufügen"
 
 #: taxonomies/Semester.php:32
 msgid "New Semester Name"
-msgstr ""
+msgstr "Neues Semester"
 
 #: taxonomies/Semester.php:34
 msgid "Separate Semesters with commas"
-msgstr ""
+msgstr "Trenne Semester mit einem Komma"
 
 #: taxonomies/Semester.php:35
 msgid "Add or remove Semesters"
-msgstr ""
+msgstr "Semester hinzufügen oder entfernen"
 
 #: taxonomies/Semester.php:36
 msgid "Choose from the most used Semesters"
-msgstr ""
+msgstr "Wähle aus häufig genutzten Semestern"
 
 #: taxonomies/Semester.php:37
 msgid "No Semesters found."
-msgstr ""
+msgstr "Keine Semester gefunden."
 
 #: taxonomies/Semester.php:38
 msgid "Filter by Semester"
-msgstr ""
+msgstr "Nach Semester filtern"
 
 #: taxonomies/Semester.php:39
 msgid "Back to Semesters"
-msgstr ""
+msgstr "Zurück zu den Semestern"
 
 #: taxonomies/Semester.php:40
 msgid "Semester Link"
-msgstr ""
+msgstr "Semester Link"
 
 #: taxonomies/Semester.php:41
 msgid "A link to a semester"
-msgstr ""
+msgstr "Link zu einem Semester"
 
 #: taxonomies/Semester.php:68
 msgid "Archival Data"
-msgstr ""
+msgstr "Archiveinträge"
 
 #: taxonomies/Semester.php:78
 msgid "Manual Archival Data"
-msgstr ""
+msgstr "Manuelle Archiveinträge"
 
 #: taxonomies/Semester.php:79
 msgid ""
@@ -1573,6 +1592,10 @@ msgid ""
 "screening has been created. This can be used to transfer or build up an "
 "archive without having to enter the full details for each movie."
 msgstr ""
+"Anhand der Archivdaten können Filme zum Semester hinzugefügt werden, auch "
+"wenn noch keine Vorführung angelegt wurde. Dies kann genutzt werden, um ein "
+"Archiv zu übertragen oder aufzubauen, ohne die vollständigen Angaben für "
+"jeden einzelnen Film eingeben zu müssen."
 
 #: taxonomies/Semester.php:103
 msgid "Screening Date"
