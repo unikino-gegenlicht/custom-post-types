@@ -1,11 +1,9 @@
-# Copyright (C) 2026 Jan Eike Suchard, Philip Kaufmann
-# This file is distributed under the EUPL-1.2.
 msgid ""
 msgstr ""
 "Project-Id-Version: CinemaPress CINEMA_PRESS_PLUGIN_VERSION\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/cinema-press\n"
 "POT-Creation-Date: 2026-10-17T10:53:20+00:00\n"
-"PO-Revision-Date: 2026-10-17 14:55+0200\n"
+"PO-Revision-Date: 2026-10-17 15:04+0200\n"
 "Last-Translator: Jan Eike Suchard <jan@suchard.cloud>\n"
 "Language-Team: \n"
 "Language: de_DE\n"
@@ -27,16 +25,8 @@ msgstr "https://github.com/unikino-gegenlicht/custom-post-types"
 
 #. Description of the plugin
 #: cinema-press.php
-msgid ""
-"CinemaPress is the go-to plugin for creating a website for your cinema. It "
-"features pre-made custom post types and taxonomies that make managing your "
-"website easier. This plugin is mainly targeted at smaller cinemas and "
-"university cinemas!"
-msgstr ""
-"CinemaPress ist das Plugin um eine Website für dein Kino zu gestalten. Das "
-"Plugin bringt benutzerdefinierte Typen und Kategorien, die es dir einfacher "
-"machen deine Website zu verwalten. Das Plugin ist geeignet für kommunale "
-"Kinos und Uuiversitäre Kinos!"
+msgid "CinemaPress is the go-to plugin for creating a website for your cinema. It features pre-made custom post types and taxonomies that make managing your website easier. This plugin is mainly targeted at smaller cinemas and university cinemas!"
+msgstr "CinemaPress ist das Plugin um eine Website für dein Kino zu gestalten. Das Plugin bringt benutzerdefinierte Typen und Kategorien, die es dir einfacher machen deine Website zu verwalten. Das Plugin ist geeignet für kommunale Kinos und Uuiversitäre Kinos!"
 
 #. Author of the plugin
 #: cinema-press.php
@@ -83,50 +73,32 @@ msgid "CinemaPress Features"
 msgstr "CinemaPress Features"
 
 #: cinema-press.php:184
-msgid ""
-"After changing one of the feature states, you need to reload the page for "
-"the changes to appear"
-msgstr ""
-"Nachdem ein Feature an- oder ausgeschaltet wurde, muss die Seite neugeladen "
-"werden, damit die Änderungen wirksam werden"
+msgid "After changing one of the feature states, you need to reload the page for the changes to appear"
+msgstr "Nachdem ein Feature an- oder ausgeschaltet wurde, muss die Seite neugeladen werden, damit die Änderungen wirksam werden"
 
 #: cinema-press.php:189
 msgid "Enable Team Features"
 msgstr "Team Featues aktivieren"
 
 #: cinema-press.php:190
-msgid ""
-"Team features include the display of team members, assigning screenings to "
-"be proposals by team members and providing personalizable pages for members"
-msgstr ""
-"Team Features ist die Darstellung der Teammitglieder auf personalisierten "
-"Seiten und die Möglichkeit, dass Teammitglieder bei Vorstellungen angezeigt "
-"werden, die den Film ausgesucht haben"
+msgid "Team features include the display of team members, assigning screenings to be proposals by team members and providing personalizable pages for members"
+msgstr "Team Features ist die Darstellung der Teammitglieder auf personalisierten Seiten und die Möglichkeit, dass Teammitglieder bei Vorstellungen angezeigt werden, die den Film ausgesucht haben"
 
 #: cinema-press.php:196
 msgid "Enable Cooperation Features"
 msgstr "Kooperations-Features aktivieren"
 
 #: cinema-press.php:197
-msgid ""
-"Cooperation features include the display of cooperation partners, displaying "
-"cooperations on screenings and providing a overview of previous cooperations"
-msgstr ""
-"Kooperations-Features enthalten die Anzeige der Kooperationspartner, deren "
-"frühere Kooperationen, und die Anzeige ob ein Film in Kooperation gezeigt "
-"wird"
+msgid "Cooperation features include the display of cooperation partners, displaying cooperations on screenings and providing a overview of previous cooperations"
+msgstr "Kooperations-Features enthalten die Anzeige der Kooperationspartner, deren frühere Kooperationen, und die Anzeige ob ein Film in Kooperation gezeigt wird"
 
 #: cinema-press.php:203
 msgid "Enable Sponsors features"
 msgstr "Sponsoren aktivieren"
 
 #: cinema-press.php:204
-msgid ""
-"This enables creating sponsors and giving them a shoutout on a special "
-"overview page."
-msgstr ""
-"Aktiviere die Anzeige der Sponsosen und die Anzeige auf einer gesonderten "
-"Seite."
+msgid "This enables creating sponsors and giving them a shoutout on a special overview page."
+msgstr "Aktiviere die Anzeige der Sponsosen und die Anzeige auf einer gesonderten Seite."
 
 #: cinema-press.php:211
 msgid "Team Settings"
@@ -141,23 +113,16 @@ msgid "Default Team Member Image"
 msgstr "Standardbild für Mitgliederbilder"
 
 #: cinema-press.php:231
-msgid ""
-"This image is used if a team member doesn't have an image set or uploaded."
-msgstr ""
-"Dieses Bild wird verwendet, wenn ein Teammitglied kein eigenes Bild gesetzt "
-"hat."
+msgid "This image is used if a team member doesn't have an image set or uploaded."
+msgstr "Dieses Bild wird verwendet, wenn ein Teammitglied kein eigenes Bild gesetzt hat."
 
 #: cinema-press.php:237
 msgid "Enable Teamie Screening Assignment"
 msgstr "Erlaube die Zuweisung von Mitgliedern zu Vorstellungen"
 
 #: cinema-press.php:238
-msgid ""
-"If checked you can assign teamies to a screening to show that they selected "
-"the movie for it"
-msgstr ""
-"Wenn aktiviert, können Teammitglieder einer Vorstellung zugewiesen werden um "
-"zu zeigen, dass der Film von ihnen ausgesucht wurde"
+msgid "If checked you can assign teamies to a screening to show that they selected the movie for it"
+msgstr "Wenn aktiviert, können Teammitglieder einer Vorstellung zugewiesen werden um zu zeigen, dass der Film von ihnen ausgesucht wurde"
 
 #: cinema-press.php:243
 msgid "Fallback Team Member Descriptions"
@@ -168,9 +133,7 @@ msgid "Available placeholders"
 msgstr "Verfügbare Platzhalter"
 
 #: cinema-press.php:250
-msgid ""
-"The following placeholders are available to be used in the fallback teamie "
-"description"
+msgid "The following placeholders are available to be used in the fallback teamie description"
 msgstr "Die folgenden Platzhalter sind in den Standardbeschreibungen verfügbar"
 
 #: cinema-press.php:255
@@ -287,12 +250,8 @@ msgid "Admission Type updated."
 msgstr "Kartentyp aktualisiert."
 
 #: post_types/Admission_Type.php:42
-msgid ""
-"Admission Types are used to setup ticket prices and possible restrictions on "
-"tickets"
-msgstr ""
-"Kartentypen werden verwendet, um Ticketpreise und Bedingungen für "
-"Ticketpreise einzustellen"
+msgid "Admission Types are used to setup ticket prices and possible restrictions on tickets"
+msgstr "Kartentypen werden verwendet, um Ticketpreise und Bedingungen für Ticketpreise einzustellen"
 
 #: post_types/Admission_Type.php:61
 msgid "Admission Details"
@@ -384,12 +343,8 @@ msgid "Cooperation Partner updated."
 msgstr "Kooperationspartner aktualisiert."
 
 #: post_types/Cooperation_Partners.php:42
-msgid ""
-"Cooperation Partners are entities that screen movies together with this "
-"cinema but are not members of the cinema"
-msgstr ""
-"Kooperationspartner sind Einrichtungen/Personen, die gemeinsam mit diesem "
-"Kino Filme zeigen, aber keine Mitglieder des Kinos sind"
+msgid "Cooperation Partners are entities that screen movies together with this cinema but are not members of the cinema"
+msgstr "Kooperationspartner sind Einrichtungen/Personen, die gemeinsam mit diesem Kino Filme zeigen, aber keine Mitglieder des Kinos sind"
 
 #: post_types/Movie.php:19 post_types/Movie.php:22 post_types/Screening.php:91
 msgid "Movie"
@@ -516,12 +471,8 @@ msgid "A link to a movie"
 msgstr "Link zu einem Film"
 
 #: post_types/Movie.php:54
-msgid ""
-"A movie stores the data about the release year, directors, actors, producers "
-"and other data that rarely changes"
-msgstr ""
-"Ein Film speichert die Basisdaten eines Filmes, die sich nicht ändern, damit "
-"diese Informationen nicht bei jeder Vorstellung neu eingetragen werden müssen"
+msgid "A movie stores the data about the release year, directors, actors, producers and other data that rarely changes"
+msgstr "Ein Film speichert die Basisdaten eines Filmes, die sich nicht ändern, damit diese Informationen nicht bei jeder Vorstellung neu eingetragen werden müssen"
 
 #: post_types/Movie.php:82
 msgid "Movie Data"
@@ -568,12 +519,8 @@ msgid "Release Year in the Country of Origin"
 msgstr "Veröffentlichungsjahr"
 
 #: post_types/Movie.php:146
-msgid ""
-"In case of multiple countries of origin, select the earliest year you can "
-"find."
-msgstr ""
-"Für den Fall, dass der Film mehrere Drehorte hat, gebe das frühste "
-"Veröffentlichungsjahr an."
+msgid "In case of multiple countries of origin, select the earliest year you can find."
+msgstr "Für den Fall, dass der Film mehrere Drehorte hat, gebe das frühste Veröffentlichungsjahr an."
 
 #: post_types/Movie.php:154
 msgid "Released In"
@@ -613,13 +560,8 @@ msgid "Age Rating"
 msgstr "Altersfreigabe"
 
 #: post_types/Movie.php:209
-msgid ""
-"Select the age rating for this movie. The official age ratings for movies "
-"are available with the <a href=\"https://fsk.de\">FSK</a>"
-msgstr ""
-"Wähle die Altersfreigabe für diesen Film aus. Die offiziellen "
-"Altersfreigaben für Deutschland sind bei der <a href=\"https://fsk.de\">FSK</"
-"a> abrufbar"
+msgid "Select the age rating for this movie. The official age ratings for movies are available with the <a href=\"https://fsk.de\">FSK</a>"
+msgstr "Wähle die Altersfreigabe für diesen Film aus. Die offiziellen Altersfreigaben für Deutschland sind bei der <a href=\"https://fsk.de\">FSK</a> abrufbar"
 
 #: post_types/Movie.php:213
 msgid "rating pending"
@@ -658,12 +600,8 @@ msgid "Content Advices by the FSK"
 msgstr "Zusatzhinweise"
 
 #: post_types/Movie.php:229
-msgid ""
-"Additional descriptors are published alongside the FSK age ratings for films "
-"and series."
-msgstr ""
-"Zusatzhinweise werden seit 2023 von der FSK gemeinsam mit den Alterfreigaben "
-"veröffentlicht."
+msgid "Additional descriptors are published alongside the FSK age ratings for films and series."
+msgstr "Zusatzhinweise werden seit 2023 von der FSK gemeinsam mit den Alterfreigaben veröffentlicht."
 
 #: post_types/Movie.php:233
 msgid "Sexual Violence"
@@ -895,9 +833,7 @@ msgid "Why is the movie worth to be seen?"
 msgstr "Warum ist der Film sehenswert?"
 
 #: post_types/Screening.php:210
-msgid ""
-"Below this field you can now enter why the movie is worth to be seen by your "
-"visitors"
+msgid "Below this field you can now enter why the movie is worth to be seen by your visitors"
 msgstr "Hier kannst du nun eingeben, warum der Film sehenswert ist"
 
 #: post_types/Screening_Location.php:24 post_types/Screening_Location.php:35
@@ -997,12 +933,8 @@ msgid "Link to a screening location"
 msgstr "Link zu einem Vorstellungsort"
 
 #: post_types/Screening_Location.php:56
-msgid ""
-"Screening Locations help with generating markup for the schema data and "
-"allow for easier directions to the screening locations"
-msgstr ""
-"Vorstellungsorte helfen dabei schematische Daten für die Website zu "
-"erstellen und einfachere Anreisehinweise zu geben"
+msgid "Screening Locations help with generating markup for the schema data and allow for easier directions to the screening locations"
+msgstr "Vorstellungsorte helfen dabei schematische Daten für die Website zu erstellen und einfachere Anreisehinweise zu geben"
 
 #: post_types/Screening_Location.php:83
 msgid "Screening Location Data"
@@ -1033,12 +965,8 @@ msgid "Coordinates"
 msgstr "Koordinaten"
 
 #: post_types/Screening_Location.php:139
-msgid ""
-"The coordinates are used to generate links to that location that are usable "
-"by almost any map service"
-msgstr ""
-"Die eingegebenen Koordinaten werden genutzt um Links zu erstellen, die mit "
-"fast jeder Kartenanwendung funktionieren"
+msgid "The coordinates are used to generate links to that location that are usable by almost any map service"
+msgstr "Die eingegebenen Koordinaten werden genutzt um Links zu erstellen, die mit fast jeder Kartenanwendung funktionieren"
 
 #: post_types/Screening_Location.php:146
 msgid "Location Identifiers"
@@ -1049,12 +977,8 @@ msgid "Place Identifiers"
 msgstr "IDs für Orte"
 
 #: post_types/Screening_Location.php:156
-msgid ""
-"The identifiers are used to build platform dependent links to map services "
-"which will always pinpoint this location if possible"
-msgstr ""
-"Diese IDs werden von Kartenanwendungen genutzt um automatisch auf den "
-"passenden Eintrag zu verweisen, falls möglich"
+msgid "The identifiers are used to build platform dependent links to map services which will always pinpoint this location if possible"
+msgstr "Diese IDs werden von Kartenanwendungen genutzt um automatisch auf den passenden Eintrag zu verweisen, falls möglich"
 
 #: post_types/Screening_Location.php:160
 msgid "Apple Place ID"
@@ -1229,12 +1153,8 @@ msgid "The slug for the Actor (auto-generated)"
 msgstr "Slug für den*die Schauspielenden (automatisch generiert)"
 
 #: taxonomies/Actor.php:31
-msgid ""
-"A short portrait about the Actor. This value might be shown depending on the "
-"used theme"
-msgstr ""
-"Kurzportrait über den*die Schauspielende*n. Dieser Wert wird je nach Design "
-"angezeigt"
+msgid "A short portrait about the Actor. This value might be shown depending on the used theme"
+msgstr "Kurzportrait über den*die Schauspielende*n. Dieser Wert wird je nach Design angezeigt"
 
 #: taxonomies/Actor.php:32
 msgid "Edit Actor"
@@ -1313,9 +1233,7 @@ msgid "The slug for the director (auto-generated)"
 msgstr "Slug für den*die Regisseur*in (automatisch generiert)"
 
 #: taxonomies/Director.php:31
-msgid ""
-"A short portrait about the director. This value might be shown depending on "
-"the used theme"
+msgid "A short portrait about the director. This value might be shown depending on the used theme"
 msgstr "Kein kurzes Portrait über den*die Regissuer*in"
 
 #: taxonomies/Director.php:32
@@ -1371,9 +1289,7 @@ msgid "A link to a director"
 msgstr "Link zu einer*m Regisseur*in"
 
 #: taxonomies/Director.php:47
-msgid ""
-"A Director is a person who controls a film's artistic and dramatic aspects "
-"and visualizes the screenplay "
+msgid "A Director is a person who controls a film's artistic and dramatic aspects and visualizes the screenplay "
 msgstr ""
 
 #: taxonomies/Program_Series.php:20 taxonomies/Program_Series.php:21
@@ -1398,24 +1314,12 @@ msgid "The name of the program series"
 msgstr "Name der Programmreihe"
 
 #: taxonomies/Program_Series.php:26
-msgid ""
-"The slug of the program series, which will be used to generate screening "
-"slugs if necessary"
-msgstr ""
-"Slug der Programmreihe. Der Slug wird genutzt um Vorstellungsslugs zu "
-"erstellen falls erforderlich"
+msgid "The slug of the program series, which will be used to generate screening slugs if necessary"
+msgstr "Slug der Programmreihe. Der Slug wird genutzt um Vorstellungsslugs zu erstellen falls erforderlich"
 
 #: taxonomies/Program_Series.php:27
-msgid ""
-"The description of the program series and it's contents. Try to refer to a "
-"generalized topic and not mention any movies as this description should "
-"provide general information like genres or other categories that influence "
-"the selection for the series"
-msgstr ""
-"Die Beschreibung der Programmreihe und ihrer Inhalte. Versuche, dich auf ein "
-"allgemeines Thema zu beziehen und keine konkreten Filme zu nennen, da diese "
-"Beschreibung allgemeine Informationen wie Genres oder andere Kategorien "
-"liefern soll, die die Auswahl für die Reihe beeinflussen"
+msgid "The description of the program series and it's contents. Try to refer to a generalized topic and not mention any movies as this description should provide general information like genres or other categories that influence the selection for the series"
+msgstr "Die Beschreibung der Programmreihe und ihrer Inhalte. Versuche, dich auf ein allgemeines Thema zu beziehen und keine konkreten Filme zu nennen, da diese Beschreibung allgemeine Informationen wie Genres oder andere Kategorien liefern soll, die die Auswahl für die Reihe beeinflussen"
 
 #: taxonomies/Program_Series.php:28
 msgid "Edit Program Series"
@@ -1474,12 +1378,8 @@ msgid "Display Settings"
 msgstr "Anzeigeanstellungen"
 
 #: taxonomies/Program_Series.php:71
-msgid ""
-"These display settings are applied to screenings that have been tagged with "
-"this program series"
-msgstr ""
-"Diese Anzeigeeinstellungen werden auf alle Vorstellungen angewendet, die "
-"dieser Programmreihe zugewiesen sind"
+msgid "These display settings are applied to screenings that have been tagged with this program series"
+msgstr "Diese Anzeigeeinstellungen werden auf alle Vorstellungen angewendet, die dieser Programmreihe zugewiesen sind"
 
 #: taxonomies/Program_Series.php:75
 msgid "Background for Pages"
@@ -1507,24 +1407,16 @@ msgid "All Semesters"
 msgstr "Alle Semester"
 
 #: taxonomies/Semester.php:25
-msgid ""
-"The name of the semester. Often used values are \"Wintersemester 2026/2027\""
-msgstr ""
-"Der Name des Semesters. Häufig genutzte Namen sind \"Wintersemester "
-"2026/2027\" o.ä."
+msgid "The name of the semester. Often used values are \"Wintersemester 2026/2027\""
+msgstr "Der Name des Semesters. Häufig genutzte Namen sind \"Wintersemester 2026/2027\" o.ä."
 
 #: taxonomies/Semester.php:26
-msgid ""
-"The slug for the semester. This will be included in the URLs for the "
-"screenings"
-msgstr ""
-"Der Slug für das Semester. Der Slug wird in der URL für Vorstellungen genuzt"
+msgid "The slug for the semester. This will be included in the URLs for the screenings"
+msgstr "Der Slug für das Semester. Der Slug wird in der URL für Vorstellungen genuzt"
 
 #: taxonomies/Semester.php:27
-msgid ""
-"The description of the semester or an opening message that will be shown on "
-"the semesters detail page"
-msgstr ""
+msgid "The description of the semester or an opening message that will be shown on the semesters detail page"
+msgstr "Die Beschreibung des Semesters oder eine Begrüßung, die auf der Detailseite des Semesters angezeigt wird"
 
 #: taxonomies/Semester.php:28
 msgid "Edit Semester"
@@ -1587,16 +1479,189 @@ msgid "Manual Archival Data"
 msgstr "Manuelle Archiveinträge"
 
 #: taxonomies/Semester.php:79
-msgid ""
-"The archival data can be used to add movies to the semester, even tough no "
-"screening has been created. This can be used to transfer or build up an "
-"archive without having to enter the full details for each movie."
-msgstr ""
-"Anhand der Archivdaten können Filme zum Semester hinzugefügt werden, auch "
-"wenn noch keine Vorführung angelegt wurde. Dies kann genutzt werden, um ein "
-"Archiv zu übertragen oder aufzubauen, ohne die vollständigen Angaben für "
-"jeden einzelnen Film eingeben zu müssen."
+msgid "The archival data can be used to add movies to the semester, even tough no screening has been created. This can be used to transfer or build up an archive without having to enter the full details for each movie."
+msgstr "Anhand der Archivdaten können Filme zum Semester hinzugefügt werden, auch wenn noch keine Vorführung angelegt wurde. Dies kann genutzt werden, um ein Archiv zu übertragen oder aufzubauen, ohne die vollständigen Angaben für jeden einzelnen Film eingeben zu müssen."
 
 #: taxonomies/Semester.php:103
 msgid "Screening Date"
+msgstr "Vorstellungsdatum"
+
+#: post_types/Team_Member.php:19 post_types/Team_Member.php:21
+msgid "Team Members"
+msgstr "Teammitglieder"
+
+#: post_types/Team_Member.php:22
+msgid "Team Member"
+msgstr "Teammitglied"
+
+#: post_types/Team_Member.php:23 post_types/Team_Member.php:24
+msgid "Add Team Member"
+msgstr "Teammitglied hinzufügen"
+
+#: post_types/Team_Member.php:25
+msgid "Edit Team Member"
+msgstr "Teammitglied bearbeiten"
+
+#: post_types/Team_Member.php:26
+msgid "New Team Member"
+msgstr "Neues Teammitglied"
+
+#: post_types/Team_Member.php:27
+msgid "View Team Member"
+msgstr "Teammitglied anzeigen"
+
+#: post_types/Team_Member.php:28
+msgid "View Team Members"
+msgstr "Temmitglieder anzeigen"
+
+#: post_types/Team_Member.php:29
+msgid "Search Team Members"
+msgstr "Teammitglied suchen"
+
+#: post_types/Team_Member.php:30
+msgid "No Team Members found"
+msgstr "Keine Teammitglieder gefunden"
+
+#: post_types/Team_Member.php:31
+msgid "No Team Members found in Trash"
+msgstr "Keine Teammitglieder im Papierkorb gefunden"
+
+#: post_types/Team_Member.php:32
+msgid "All Team Members"
+msgstr "Alle Teammitglieder"
+
+#: post_types/Team_Member.php:33
+msgid "The Team"
+msgstr "Das Team"
+
+#: post_types/Team_Member.php:34
+msgid "Member attributes"
+msgstr "Mitgliederattribute"
+
+#: post_types/Team_Member.php:35
+msgid "Insert into team members"
+msgstr "Im Teammitglied einfügen"
+
+#: post_types/Team_Member.php:36
+msgid "Uploaded to this team member"
+msgstr "Zu diesem Teammitglied hochgeladen"
+
+#: post_types/Team_Member.php:37
+msgid "Set Teamie image"
+msgstr "Mitgliederbild festlegen"
+
+#: post_types/Team_Member.php:38
+msgid "Remove Teamie image"
+msgstr "Mitgliederbild entfernen"
+
+#: post_types/Team_Member.php:39
+msgid "Use Teamie image"
+msgstr "Mitgliederbild benutzen"
+
+#: post_types/Team_Member.php:40
+msgid "Filter team members list"
+msgstr "Teammitglieder Filtern"
+
+#: post_types/Team_Member.php:41
+msgid "Team members list navigation"
+msgstr ""
+
+#: post_types/Team_Member.php:42
+msgid "Team members list"
+msgstr ""
+
+#: post_types/Team_Member.php:43
+msgid "Team member published"
+msgstr ""
+
+#: post_types/Team_Member.php:44
+msgid "Team member published privately"
+msgstr ""
+
+#: post_types/Team_Member.php:45
+msgid "Team member reverted to draft"
+msgstr ""
+
+#: post_types/Team_Member.php:46
+msgid "Team member trashed"
+msgstr ""
+
+#: post_types/Team_Member.php:47
+msgid "Team member scheduled"
+msgstr ""
+
+#: post_types/Team_Member.php:48
+msgid "Team member updated"
+msgstr ""
+
+#: post_types/Team_Member.php:49
+msgid "Team member linked"
+msgstr ""
+
+#: post_types/Team_Member.php:50
+msgid "Link to a team member"
+msgstr ""
+
+#: post_types/Team_Member.php:77 post_types/Team_Member.php:88
+msgid "Membership Status"
+msgstr ""
+
+#: post_types/Team_Member.php:93
+msgid "Status"
+msgstr ""
+
+#: post_types/Team_Member.php:95
+msgid "Active"
+msgstr ""
+
+#: post_types/Team_Member.php:96
+msgid "Former"
+msgstr ""
+
+#: post_types/Team_Member.php:97
+msgid "Honorary"
+msgstr ""
+
+#: post_types/Team_Member.php:103
+msgid "Membership Details"
+msgstr ""
+
+#: post_types/Team_Member.php:108
+msgid "Joined in"
+msgstr ""
+
+#: post_types/Team_Member.php:117
+msgid "Left in"
+msgstr ""
+
+#: post_types/Team_Member.php:126
+msgid "Honorary Member since"
+msgstr ""
+
+#: post_types/Team_Member.php:134
+msgid "Social Media Accounts"
+msgstr ""
+
+#: post_types/Team_Member.php:135
+msgid "If you enter a handle to a social media account the account might be linked in themes and schema data. The social media profiles listed here are the most commonly used ones. If you are missing one, just contact <a href=\"mailto:it@gegenlicht.net\">it@gegenlicht.net</a> and the social media profile might be added in a future release"
+msgstr ""
+
+#: post_types/Team_Member.php:140
+msgid "Letterboxd Username"
+msgstr ""
+
+#: post_types/Team_Member.php:147
+msgid "Instagram Username"
+msgstr ""
+
+#: post_types/Team_Member.php:154
+msgid "Trakt TV Username"
+msgstr ""
+
+#: post_types/Team_Member.php:160
+msgid "Personalized Teamie Descriptions"
+msgstr ""
+
+#: post_types/Team_Member.php:161
+msgid "The description that has been entered here will override the default text set in the plugin settings"
 msgstr ""

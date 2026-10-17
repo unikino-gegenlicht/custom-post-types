@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-10-17T10:53:20+00:00\n"
+"POT-Creation-Date: 2026-10-17T12:59:41+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: cinema-press\n"
@@ -1153,6 +1153,189 @@ msgstr ""
 
 #: post_types/Sponsors.php:48
 msgid "Link to a sponsor"
+msgstr ""
+
+#: post_types/Team_Member.php:19
+#: post_types/Team_Member.php:21
+msgid "Team Members"
+msgstr ""
+
+#: post_types/Team_Member.php:22
+msgid "Team Member"
+msgstr ""
+
+#: post_types/Team_Member.php:23
+#: post_types/Team_Member.php:24
+msgid "Add Team Member"
+msgstr ""
+
+#: post_types/Team_Member.php:25
+msgid "Edit Team Member"
+msgstr ""
+
+#: post_types/Team_Member.php:26
+msgid "New Team Member"
+msgstr ""
+
+#: post_types/Team_Member.php:27
+msgid "View Team Member"
+msgstr ""
+
+#: post_types/Team_Member.php:28
+msgid "View Team Members"
+msgstr ""
+
+#: post_types/Team_Member.php:29
+msgid "Search Team Members"
+msgstr ""
+
+#: post_types/Team_Member.php:30
+msgid "No Team Members found"
+msgstr ""
+
+#: post_types/Team_Member.php:31
+msgid "No Team Members found in Trash"
+msgstr ""
+
+#: post_types/Team_Member.php:32
+msgid "All Team Members"
+msgstr ""
+
+#: post_types/Team_Member.php:33
+msgid "The Team"
+msgstr ""
+
+#: post_types/Team_Member.php:34
+msgid "Member attributes"
+msgstr ""
+
+#: post_types/Team_Member.php:35
+msgid "Insert into team members"
+msgstr ""
+
+#: post_types/Team_Member.php:36
+msgid "Uploaded to this team member"
+msgstr ""
+
+#: post_types/Team_Member.php:37
+msgid "Set Teamie image"
+msgstr ""
+
+#: post_types/Team_Member.php:38
+msgid "Remove Teamie image"
+msgstr ""
+
+#: post_types/Team_Member.php:39
+msgid "Use Teamie image"
+msgstr ""
+
+#: post_types/Team_Member.php:40
+msgid "Filter team members list"
+msgstr ""
+
+#: post_types/Team_Member.php:41
+msgid "Team members list navigation"
+msgstr ""
+
+#: post_types/Team_Member.php:42
+msgid "Team members list"
+msgstr ""
+
+#: post_types/Team_Member.php:43
+msgid "Team member published"
+msgstr ""
+
+#: post_types/Team_Member.php:44
+msgid "Team member published privately"
+msgstr ""
+
+#: post_types/Team_Member.php:45
+msgid "Team member reverted to draft"
+msgstr ""
+
+#: post_types/Team_Member.php:46
+msgid "Team member trashed"
+msgstr ""
+
+#: post_types/Team_Member.php:47
+msgid "Team member scheduled"
+msgstr ""
+
+#: post_types/Team_Member.php:48
+msgid "Team member updated"
+msgstr ""
+
+#: post_types/Team_Member.php:49
+msgid "Team member linked"
+msgstr ""
+
+#: post_types/Team_Member.php:50
+msgid "Link to a team member"
+msgstr ""
+
+#: post_types/Team_Member.php:77
+#: post_types/Team_Member.php:88
+msgid "Membership Status"
+msgstr ""
+
+#: post_types/Team_Member.php:93
+msgid "Status"
+msgstr ""
+
+#: post_types/Team_Member.php:95
+msgid "Active"
+msgstr ""
+
+#: post_types/Team_Member.php:96
+msgid "Former"
+msgstr ""
+
+#: post_types/Team_Member.php:97
+msgid "Honorary"
+msgstr ""
+
+#: post_types/Team_Member.php:103
+msgid "Membership Details"
+msgstr ""
+
+#: post_types/Team_Member.php:108
+msgid "Joined in"
+msgstr ""
+
+#: post_types/Team_Member.php:117
+msgid "Left in"
+msgstr ""
+
+#: post_types/Team_Member.php:126
+msgid "Honorary Member since"
+msgstr ""
+
+#: post_types/Team_Member.php:134
+msgid "Social Media Accounts"
+msgstr ""
+
+#: post_types/Team_Member.php:135
+msgid "If you enter a handle to a social media account the account might be linked in themes and schema data. The social media profiles listed here are the most commonly used ones. If you are missing one, just contact <a href=\"mailto:it@gegenlicht.net\">it@gegenlicht.net</a> and the social media profile might be added in a future release"
+msgstr ""
+
+#: post_types/Team_Member.php:140
+msgid "Letterboxd Username"
+msgstr ""
+
+#: post_types/Team_Member.php:147
+msgid "Instagram Username"
+msgstr ""
+
+#: post_types/Team_Member.php:154
+msgid "Trakt TV Username"
+msgstr ""
+
+#: post_types/Team_Member.php:160
+msgid "Personalized Teamie Descriptions"
+msgstr ""
+
+#: post_types/Team_Member.php:161
+msgid "The description that has been entered here will override the default text set in the plugin settings"
 msgstr ""
 
 #: taxonomies/Actor.php:24

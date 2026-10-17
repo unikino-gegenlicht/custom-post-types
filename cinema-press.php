@@ -36,7 +36,7 @@ use CinemaPress\taxonomies\Semester;
  * Requires at least: 6.1
  * Requires PHP: 8.4
  * Author: Jan Eike Suchard, Philip Kaufmann
- * Author URI: https://gegenlicht.net/team/jan, https://gegenlicht.net/team/philip
+ * Author URI: https://gegenlicht.net/team/
  * License: EUPL-1.2
  * License URI: https://joinup.ec.europa.eu/sites/default/files/custom-page/attachment/2020-03/EUPL-1.2%20EN.txt
  * Update URI: false
@@ -118,6 +118,16 @@ add_action( 'init', function () {
 	add_action( 'rwmb_meta_boxes', array( Semester::class, 'meta_boxes' ) );
 	register_taxonomy( Program_Series::SLUG, [ Screening::SLUG ], Program_Series::register_data() );
 	add_action( 'rwmb_meta_boxes', array( Program_Series::class, 'meta_boxes' ) );
+
+	// preregister cinema press settings
+	if ( get_option( 'cinema-press' ) === false ) {
+		add_option( 'cinema-press', [
+			'enable_team'                        => 1,
+			'enable_cooperation_partners'        => 1,
+			'enable_sponsors'                    => 1,
+			'enable_teamie_screening_assignment' => 1,
+		] );
+	}
 } );
 
 /* Instantiate settings page to control features of the plugin */
@@ -171,7 +181,7 @@ add_action( 'rwmb_meta_boxes', function ( $meta_boxes ) {
 		'fields'         => array(
 			[
 				'type' => 'custom_html',
-				'std' => '<div class="notice notice-info">' . __('After changing one of the feature states, you need to reload the page for the changes to appear', 'cinema-press') . '</div>',
+				'std'  => '<div class="notice notice-info">' . __( 'After changing one of the feature states, you need to reload the page for the changes to appear', 'cinema-press' ) . '</div>',
 			],
 			[
 				'id'   => "enable_team",
