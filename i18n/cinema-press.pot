@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-10-17T12:59:41+00:00\n"
+"POT-Creation-Date: 2026-11-01T12:57:47+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: cinema-press\n"
@@ -49,8 +49,8 @@ msgid "Features"
 msgstr ""
 
 #: cinema-press.php:149
-#: post_types/Screening.php:19
 #: post_types/Screening.php:21
+#: post_types/Screening.php:23
 msgid "Screenings"
 msgstr ""
 
@@ -174,7 +174,7 @@ msgstr ""
 #: post_types/Admission_Type.php:16
 #: post_types/Admission_Type.php:18
 #: post_types/Admission_Type.php:29
-#: post_types/Screening.php:153
+#: post_types/Screening.php:244
 msgid "Admission Types"
 msgstr ""
 
@@ -358,7 +358,8 @@ msgstr ""
 
 #: post_types/Movie.php:19
 #: post_types/Movie.php:22
-#: post_types/Screening.php:91
+#: post_types/Screening.php:150
+#: post_types/Screening.php:167
 msgid "Movie"
 msgstr ""
 
@@ -497,7 +498,7 @@ msgstr ""
 
 #: post_types/Movie.php:97
 #: post_types/Movie.php:103
-#: taxonomies/Semester.php:88
+#: taxonomies/Semester.php:122
 msgid "German Title"
 msgstr ""
 
@@ -507,7 +508,7 @@ msgstr ""
 
 #: post_types/Movie.php:112
 #: post_types/Movie.php:118
-#: taxonomies/Semester.php:93
+#: taxonomies/Semester.php:127
 msgid "English Title"
 msgstr ""
 
@@ -516,7 +517,8 @@ msgid "The official English title of the movie"
 msgstr ""
 
 #: post_types/Movie.php:127
-#: taxonomies/Semester.php:98
+#: post_types/Movie.php:133
+#: taxonomies/Semester.php:132
 msgid "Original Title"
 msgstr ""
 
@@ -524,342 +526,383 @@ msgstr ""
 msgid "The original title of the movie"
 msgstr ""
 
-#: post_types/Movie.php:135
+#: post_types/Movie.php:142
 msgid "Country of Origin"
 msgstr ""
 
-#: post_types/Movie.php:136
+#: post_types/Movie.php:143
 msgid "Select the country/countries of origin for this movie"
 msgstr ""
 
-#: post_types/Movie.php:145
+#: post_types/Movie.php:152
 msgid "Release Year in the Country of Origin"
 msgstr ""
 
-#: post_types/Movie.php:146
+#: post_types/Movie.php:153
 msgid "In case of multiple countries of origin, select the earliest year you can find."
 msgstr ""
 
-#: post_types/Movie.php:154
+#: post_types/Movie.php:161
 msgid "Released In"
 msgstr ""
 
-#: post_types/Movie.php:163
+#: post_types/Movie.php:170
 msgid "Running Time"
 msgstr ""
 
-#: post_types/Movie.php:164
+#: post_types/Movie.php:171
 msgid "The movie's running time in minutes"
 msgstr ""
 
-#: post_types/Movie.php:173
+#: post_types/Movie.php:180
 #: taxonomies/Director.php:24
 #: taxonomies/Director.php:37
 msgid "Directors"
 msgstr ""
 
-#: post_types/Movie.php:174
+#: post_types/Movie.php:181
 msgid "Select the directors for the movie"
 msgstr ""
 
-#: post_types/Movie.php:175
+#: post_types/Movie.php:182
 msgid "Select one or more directors"
 msgstr ""
 
-#: post_types/Movie.php:189
+#: post_types/Movie.php:196
 msgid "Starring Actors"
 msgstr ""
 
-#: post_types/Movie.php:190
+#: post_types/Movie.php:197
 msgid "Select up to 5 actors for the movie"
 msgstr ""
 
-#: post_types/Movie.php:208
+#: post_types/Movie.php:215
 msgid "Age Rating"
 msgstr ""
 
-#: post_types/Movie.php:209
+#: post_types/Movie.php:216
 msgid "Select the age rating for this movie. The official age ratings for movies are available with the <a href=\"https://fsk.de\">FSK</a>"
 msgstr ""
 
-#: post_types/Movie.php:213
+#: post_types/Movie.php:220
 msgid "rating pending"
 msgstr ""
 
-#: post_types/Movie.php:214
+#: post_types/Movie.php:221
 msgid "unknown"
 msgstr ""
 
-#: post_types/Movie.php:215
+#: post_types/Movie.php:222
 msgid "unrated"
 msgstr ""
 
-#: post_types/Movie.php:216
+#: post_types/Movie.php:223
 msgid "FSK 0"
 msgstr ""
 
-#: post_types/Movie.php:217
+#: post_types/Movie.php:224
 msgid "FSK 6"
 msgstr ""
 
-#: post_types/Movie.php:218
+#: post_types/Movie.php:225
 msgid "FSK 12"
 msgstr ""
 
-#: post_types/Movie.php:219
+#: post_types/Movie.php:226
 msgid "FSK 16"
 msgstr ""
 
-#: post_types/Movie.php:220
+#: post_types/Movie.php:227
 msgid "FSK 18"
 msgstr ""
 
-#: post_types/Movie.php:228
+#: post_types/Movie.php:235
 msgid "Content Advices by the FSK"
 msgstr ""
 
-#: post_types/Movie.php:229
+#: post_types/Movie.php:236
 msgid "Additional descriptors are published alongside the FSK age ratings for films and series."
 msgstr ""
 
-#: post_types/Movie.php:233
+#: post_types/Movie.php:240
 msgid "Sexual Violence"
 msgstr ""
 
-#: post_types/Movie.php:234
+#: post_types/Movie.php:241
 msgid "Violence"
 msgstr ""
 
-#: post_types/Movie.php:235
+#: post_types/Movie.php:242
 msgid "Risky Behaviour and Self Harm"
 msgstr ""
 
-#: post_types/Movie.php:236
+#: post_types/Movie.php:243
 msgid "Drug Usage"
 msgstr ""
 
-#: post_types/Movie.php:237
+#: post_types/Movie.php:244
 msgid "Exclusion and Discrimination"
 msgstr ""
 
-#: post_types/Movie.php:238
+#: post_types/Movie.php:245
 msgid "Threats"
 msgstr ""
 
-#: post_types/Movie.php:239
+#: post_types/Movie.php:246
 msgid "Sexuality"
 msgstr ""
 
-#: post_types/Movie.php:240
+#: post_types/Movie.php:247
 msgid "Injury"
 msgstr ""
 
-#: post_types/Movie.php:241
+#: post_types/Movie.php:248
 msgid "Difficult Topics"
 msgstr ""
 
-#: post_types/Movie.php:242
+#: post_types/Movie.php:249
 msgid "Disturbing Scenes"
 msgstr ""
 
-#: post_types/Movie.php:243
+#: post_types/Movie.php:250
 msgid "Language"
 msgstr ""
 
-#: post_types/Movie.php:244
+#: post_types/Movie.php:251
 msgid "Nudity"
 msgstr ""
 
-#: post_types/Screening.php:22
+#: post_types/Screening.php:24
 msgid "Screening"
 msgstr ""
 
-#: post_types/Screening.php:23
-#: post_types/Screening.php:24
+#: post_types/Screening.php:25
+#: post_types/Screening.php:26
 msgid "Add Screening"
 msgstr ""
 
-#: post_types/Screening.php:25
+#: post_types/Screening.php:27
 msgid "Edit Screening"
 msgstr ""
 
-#: post_types/Screening.php:26
+#: post_types/Screening.php:28
 msgid "New Screening"
 msgstr ""
 
-#: post_types/Screening.php:27
+#: post_types/Screening.php:29
 msgid "View Screening"
 msgstr ""
 
-#: post_types/Screening.php:28
+#: post_types/Screening.php:30
 msgid "View Screenings"
 msgstr ""
 
-#: post_types/Screening.php:29
+#: post_types/Screening.php:31
 msgid "Search Screenings"
 msgstr ""
 
-#: post_types/Screening.php:30
+#: post_types/Screening.php:32
 msgid "No Screenings found"
 msgstr ""
 
-#: post_types/Screening.php:31
+#: post_types/Screening.php:33
 msgid "No Screenings found in Trash"
 msgstr ""
 
-#: post_types/Screening.php:32
+#: post_types/Screening.php:34
 msgid "All Screenings"
 msgstr ""
 
-#: post_types/Screening.php:33
+#: post_types/Screening.php:35
 msgid "Archive"
 msgstr ""
 
-#: post_types/Screening.php:34
+#: post_types/Screening.php:36
 msgid "Screening Attributes"
 msgstr ""
 
-#: post_types/Screening.php:35
+#: post_types/Screening.php:37
 msgid "Insert into screening"
 msgstr ""
 
-#: post_types/Screening.php:36
+#: post_types/Screening.php:38
 msgid "Uploaded to this screening"
 msgstr ""
 
-#: post_types/Screening.php:37
+#: post_types/Screening.php:39
 #: post_types/Screening_Location.php:40
 msgid "Featured Image"
 msgstr ""
 
-#: post_types/Screening.php:38
+#: post_types/Screening.php:40
 #: post_types/Screening_Location.php:41
 msgid "Set featured image"
 msgstr ""
 
-#: post_types/Screening.php:39
+#: post_types/Screening.php:41
 #: post_types/Screening_Location.php:42
 msgid "Remove featured image"
 msgstr ""
 
-#: post_types/Screening.php:40
+#: post_types/Screening.php:42
 #: post_types/Screening_Location.php:43
 msgid "Use as featured image"
 msgstr ""
 
-#: post_types/Screening.php:41
+#: post_types/Screening.php:43
 msgid "Filter Screenings list"
 msgstr ""
 
-#: post_types/Screening.php:42
+#: post_types/Screening.php:44
 msgid "Screening navigation"
 msgstr ""
 
-#: post_types/Screening.php:43
+#: post_types/Screening.php:45
 msgid "Screening list"
 msgstr ""
 
-#: post_types/Screening.php:44
+#: post_types/Screening.php:46
 msgid "Screening published"
 msgstr ""
 
-#: post_types/Screening.php:45
+#: post_types/Screening.php:47
 msgid "Screening published private"
 msgstr ""
 
-#: post_types/Screening.php:46
+#: post_types/Screening.php:48
 msgid "Screening reverted to draft"
 msgstr ""
 
-#: post_types/Screening.php:47
+#: post_types/Screening.php:49
 msgid "Screening trashed"
 msgstr ""
 
-#: post_types/Screening.php:48
+#: post_types/Screening.php:50
 msgid "Screening scheduled"
 msgstr ""
 
-#: post_types/Screening.php:49
+#: post_types/Screening.php:51
 msgid "Screening updated"
 msgstr ""
 
-#: post_types/Screening.php:50
+#: post_types/Screening.php:52
 msgid "Screening link"
 msgstr ""
 
-#: post_types/Screening.php:51
+#: post_types/Screening.php:53
 msgid "A link to a screening"
 msgstr ""
 
-#: post_types/Screening.php:53
+#: post_types/Screening.php:55
 msgid "A screening is used to instantiate a viewing of a movie"
 msgstr ""
 
-#: post_types/Screening.php:80
+#: post_types/Screening.php:139
 msgid "Screening Details"
 msgstr ""
 
-#: post_types/Screening.php:92
+#: post_types/Screening.php:151
 msgid "Select the movie that will be screened"
 msgstr ""
 
-#: post_types/Screening.php:93
+#: post_types/Screening.php:152
 msgid "Select a movie"
 msgstr ""
 
-#: post_types/Screening.php:110
+#: post_types/Screening.php:173
 msgid "Start Date and Time"
 msgstr ""
 
-#: post_types/Screening.php:111
+#: post_types/Screening.php:174
 msgid "The time the program for the screening starts"
 msgstr ""
 
-#: post_types/Screening.php:127
-#: post_types/Screening.php:144
+#: post_types/Screening.php:185
+msgid "Date and Time"
+msgstr ""
+
+#: post_types/Screening.php:191
+#: taxonomies/Semester.php:21
+msgid "Semester"
+msgstr ""
+
+#: post_types/Screening.php:192
+msgid "Choose the semester that the screening happens in"
+msgstr ""
+
+#: post_types/Screening.php:193
+msgid "Select a semester"
+msgstr ""
+
+#: post_types/Screening.php:218
+#: post_types/Screening.php:235
 #: post_types/Screening_Location.php:22
 #: post_types/Screening_Location.php:25
 msgid "Screening Location"
 msgstr ""
 
-#: post_types/Screening.php:128
+#: post_types/Screening.php:219
 msgid "The location the screening will happen in"
 msgstr ""
 
-#: post_types/Screening.php:129
+#: post_types/Screening.php:220
 msgid "Select a location"
 msgstr ""
 
-#: post_types/Screening.php:154
+#: post_types/Screening.php:245
 msgid "The admission types that are being offered for this screening"
 msgstr ""
 
-#: post_types/Screening.php:155
+#: post_types/Screening.php:246
 msgid "Select one or more admission types"
 msgstr ""
 
-#: post_types/Screening.php:170
-#: post_types/Screening.php:185
+#: post_types/Screening.php:261
+#: post_types/Screening.php:277
 msgid "Proposed By"
 msgstr ""
 
-#: post_types/Screening.php:171
+#: post_types/Screening.php:262
 msgid "Select the team member that has proposed the movie"
 msgstr ""
 
-#: post_types/Screening.php:196
+#: post_types/Screening.php:289
+msgid "Audio Language"
+msgstr ""
+
+#: post_types/Screening.php:290
+msgid "Select the audio language this screening will happen in"
+msgstr ""
+
+#: post_types/Screening.php:296
+msgid "Screening with Subtitles"
+msgstr ""
+
+#: post_types/Screening.php:297
+msgid "Yes"
+msgstr ""
+
+#: post_types/Screening.php:298
+msgid "No"
+msgstr ""
+
+#: post_types/Screening.php:303
+msgid "Subtitle Language"
+msgstr ""
+
+#: post_types/Screening.php:309
 msgid "Summary"
 msgstr ""
 
-#: post_types/Screening.php:197
+#: post_types/Screening.php:310
 msgid "Below this field you can now enter the movies summary for the screening"
 msgstr ""
 
-#: post_types/Screening.php:209
+#: post_types/Screening.php:322
 msgid "Why is the movie worth to be seen?"
 msgstr ""
 
-#: post_types/Screening.php:210
+#: post_types/Screening.php:323
 msgid "Below this field you can now enter why the movie is worth to be seen by your visitors"
 msgstr ""
 
@@ -1155,186 +1198,186 @@ msgstr ""
 msgid "Link to a sponsor"
 msgstr ""
 
-#: post_types/Team_Member.php:19
-#: post_types/Team_Member.php:21
+#: post_types/Team_Member.php:20
+#: post_types/Team_Member.php:22
 msgid "Team Members"
 msgstr ""
 
-#: post_types/Team_Member.php:22
+#: post_types/Team_Member.php:23
 msgid "Team Member"
 msgstr ""
 
-#: post_types/Team_Member.php:23
 #: post_types/Team_Member.php:24
+#: post_types/Team_Member.php:25
 msgid "Add Team Member"
 msgstr ""
 
-#: post_types/Team_Member.php:25
+#: post_types/Team_Member.php:26
 msgid "Edit Team Member"
 msgstr ""
 
-#: post_types/Team_Member.php:26
+#: post_types/Team_Member.php:27
 msgid "New Team Member"
 msgstr ""
 
-#: post_types/Team_Member.php:27
+#: post_types/Team_Member.php:28
 msgid "View Team Member"
 msgstr ""
 
-#: post_types/Team_Member.php:28
+#: post_types/Team_Member.php:29
 msgid "View Team Members"
 msgstr ""
 
-#: post_types/Team_Member.php:29
+#: post_types/Team_Member.php:30
 msgid "Search Team Members"
 msgstr ""
 
-#: post_types/Team_Member.php:30
+#: post_types/Team_Member.php:31
 msgid "No Team Members found"
 msgstr ""
 
-#: post_types/Team_Member.php:31
+#: post_types/Team_Member.php:32
 msgid "No Team Members found in Trash"
 msgstr ""
 
-#: post_types/Team_Member.php:32
+#: post_types/Team_Member.php:33
 msgid "All Team Members"
 msgstr ""
 
-#: post_types/Team_Member.php:33
+#: post_types/Team_Member.php:34
 msgid "The Team"
 msgstr ""
 
-#: post_types/Team_Member.php:34
+#: post_types/Team_Member.php:35
 msgid "Member attributes"
 msgstr ""
 
-#: post_types/Team_Member.php:35
+#: post_types/Team_Member.php:36
 msgid "Insert into team members"
 msgstr ""
 
-#: post_types/Team_Member.php:36
+#: post_types/Team_Member.php:37
 msgid "Uploaded to this team member"
 msgstr ""
 
-#: post_types/Team_Member.php:37
+#: post_types/Team_Member.php:38
 msgid "Set Teamie image"
 msgstr ""
 
-#: post_types/Team_Member.php:38
+#: post_types/Team_Member.php:39
 msgid "Remove Teamie image"
 msgstr ""
 
-#: post_types/Team_Member.php:39
+#: post_types/Team_Member.php:40
 msgid "Use Teamie image"
 msgstr ""
 
-#: post_types/Team_Member.php:40
+#: post_types/Team_Member.php:41
 msgid "Filter team members list"
 msgstr ""
 
-#: post_types/Team_Member.php:41
+#: post_types/Team_Member.php:42
 msgid "Team members list navigation"
 msgstr ""
 
-#: post_types/Team_Member.php:42
+#: post_types/Team_Member.php:43
 msgid "Team members list"
 msgstr ""
 
-#: post_types/Team_Member.php:43
+#: post_types/Team_Member.php:44
 msgid "Team member published"
 msgstr ""
 
-#: post_types/Team_Member.php:44
+#: post_types/Team_Member.php:45
 msgid "Team member published privately"
 msgstr ""
 
-#: post_types/Team_Member.php:45
+#: post_types/Team_Member.php:46
 msgid "Team member reverted to draft"
 msgstr ""
 
-#: post_types/Team_Member.php:46
+#: post_types/Team_Member.php:47
 msgid "Team member trashed"
 msgstr ""
 
-#: post_types/Team_Member.php:47
+#: post_types/Team_Member.php:48
 msgid "Team member scheduled"
 msgstr ""
 
-#: post_types/Team_Member.php:48
+#: post_types/Team_Member.php:49
 msgid "Team member updated"
 msgstr ""
 
-#: post_types/Team_Member.php:49
+#: post_types/Team_Member.php:50
 msgid "Team member linked"
 msgstr ""
 
-#: post_types/Team_Member.php:50
+#: post_types/Team_Member.php:51
 msgid "Link to a team member"
 msgstr ""
 
-#: post_types/Team_Member.php:77
-#: post_types/Team_Member.php:88
+#: post_types/Team_Member.php:78
+#: post_types/Team_Member.php:89
 msgid "Membership Status"
 msgstr ""
 
-#: post_types/Team_Member.php:93
+#: post_types/Team_Member.php:94
 msgid "Status"
 msgstr ""
 
-#: post_types/Team_Member.php:95
+#: post_types/Team_Member.php:96
 msgid "Active"
 msgstr ""
 
-#: post_types/Team_Member.php:96
+#: post_types/Team_Member.php:97
 msgid "Former"
 msgstr ""
 
-#: post_types/Team_Member.php:97
+#: post_types/Team_Member.php:98
 msgid "Honorary"
 msgstr ""
 
-#: post_types/Team_Member.php:103
+#: post_types/Team_Member.php:104
 msgid "Membership Details"
 msgstr ""
 
-#: post_types/Team_Member.php:108
+#: post_types/Team_Member.php:109
 msgid "Joined in"
 msgstr ""
 
-#: post_types/Team_Member.php:117
+#: post_types/Team_Member.php:118
 msgid "Left in"
 msgstr ""
 
-#: post_types/Team_Member.php:126
+#: post_types/Team_Member.php:127
 msgid "Honorary Member since"
 msgstr ""
 
-#: post_types/Team_Member.php:134
+#: post_types/Team_Member.php:135
 msgid "Social Media Accounts"
 msgstr ""
 
-#: post_types/Team_Member.php:135
+#: post_types/Team_Member.php:136
 msgid "If you enter a handle to a social media account the account might be linked in themes and schema data. The social media profiles listed here are the most commonly used ones. If you are missing one, just contact <a href=\"mailto:it@gegenlicht.net\">it@gegenlicht.net</a> and the social media profile might be added in a future release"
 msgstr ""
 
-#: post_types/Team_Member.php:140
+#: post_types/Team_Member.php:141
 msgid "Letterboxd Username"
 msgstr ""
 
-#: post_types/Team_Member.php:147
+#: post_types/Team_Member.php:148
 msgid "Instagram Username"
 msgstr ""
 
-#: post_types/Team_Member.php:154
+#: post_types/Team_Member.php:155
 msgid "Trakt TV Username"
 msgstr ""
 
-#: post_types/Team_Member.php:160
+#: post_types/Team_Member.php:161
 msgid "Personalized Teamie Descriptions"
 msgstr ""
 
-#: post_types/Team_Member.php:161
+#: post_types/Team_Member.php:162
 msgid "The description that has been entered here will override the default text set in the plugin settings"
 msgstr ""
 
@@ -1611,10 +1654,6 @@ msgstr ""
 msgid "Semesters"
 msgstr ""
 
-#: taxonomies/Semester.php:21
-msgid "Semester"
-msgstr ""
-
 #: taxonomies/Semester.php:23
 msgid "Most Used Semesters"
 msgstr ""
@@ -1688,17 +1727,29 @@ msgid "A link to a semester"
 msgstr ""
 
 #: taxonomies/Semester.php:68
+msgid "Semester Details"
+msgstr ""
+
+#: taxonomies/Semester.php:80
+msgid "First Screening Date"
+msgstr ""
+
+#: taxonomies/Semester.php:91
+msgid "Last Screening Date"
+msgstr ""
+
+#: taxonomies/Semester.php:102
 msgid "Archival Data"
 msgstr ""
 
-#: taxonomies/Semester.php:78
+#: taxonomies/Semester.php:112
 msgid "Manual Archival Data"
 msgstr ""
 
-#: taxonomies/Semester.php:79
+#: taxonomies/Semester.php:113
 msgid "The archival data can be used to add movies to the semester, even tough no screening has been created. This can be used to transfer or build up an archive without having to enter the full details for each movie."
 msgstr ""
 
-#: taxonomies/Semester.php:103
+#: taxonomies/Semester.php:137
 msgid "Screening Date"
 msgstr ""
