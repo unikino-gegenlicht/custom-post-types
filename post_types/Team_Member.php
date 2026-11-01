@@ -6,6 +6,7 @@
 namespace CinemaPress\post_types;
 
 use CinemaPress\interfaces\Post_Type;
+use WP_Post;
 
 class Team_Member implements Post_Type {
 
@@ -52,7 +53,7 @@ class Team_Member implements Post_Type {
 			'public'              => true,
 			'hierarchical'        => false,
 			'exclude_from_search' => true,
-			'publicly_queryable'  => false,
+			'publicly_queryable'  => true,
 			'show_in_nav_menus'   => true,
 			'show_in_rest'        => true,
 			'rest_namespace'      => 'cinema-press',
@@ -149,7 +150,7 @@ class Team_Member implements Post_Type {
 					'translation' => 'copy',
 				],
 				[
-					'id'          => 'trakt.tv_username',
+					'id'          => 'trakt_tv_username',
 					'type'        => 'text',
 					'name'        => __( 'Trakt TV Username', "cinema-press" ),
 					'prepend'     => "https://app.trakt.tv/profile/",
@@ -173,5 +174,41 @@ class Team_Member implements Post_Type {
 		);
 
 		return $meta_boxes;
+	}
+
+	public static function the_description( int|WP_Post $post = 0 ): void {
+		echo apply_filters( 'the_content', self::get_description( $post ) );
+	}
+
+	public static function get_description( int|WP_Post $post = 0 ): string {
+		$post = get_post( $post );
+		if ( ! empty( rwmb_get_value( 'description', post_id: $post->ID ) ) ) {
+			return rwmb_get_value( 'description', post_id: $post->ID );
+		} else {
+			$status = rwmb_get_value( 'status', post_id: $post->ID );
+			switch ( $status ) {
+				case 'active':
+					$fallback_template = rwmb_meta( 'teamie_fallback_description', [ 'object_type' => 'setting' ], 'cinema-press' );
+					break;
+				case 'former':
+					$fallback_template = rwmb_meta( 'former_teamie_fallback_description', [ 'object_type' => 'setting' ], 'cinema-press' );
+					break;
+				case 'honorary':
+					$fallback_template = rwmb_meta( 'honorary_teamie_fallback_description', [ 'object_type' => 'setting' ], 'cinema-press' );
+					break;
+				default:
+					$fallback_template = '';
+			}
+
+			$template_data = array(
+				'{joined-in}'        => rwmb_get_value( 'joined_in', post_id: $post->ID ),
+				'{left-in}'          => rwmb_get_value( 'left_in', post_id: $post->ID ),
+				'{name}'             => get_the_title( $post->ID ),
+				'{screenings-count}' => 0,
+			);
+
+			return str_replace( array_keys( $template_data ), array_values( $template_data ), $fallback_template );
+
+		}
 	}
 }
