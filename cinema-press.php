@@ -114,7 +114,7 @@ add_action( 'init', function () {
 
 	register_taxonomy( Actor::SLUG, [ Movie::SLUG ], Actor::register_data() );
 	register_taxonomy( Director::SLUG, [ Movie::SLUG ], Director::register_data() );
-	register_taxonomy( Semester::SLUG, [ Semester::SLUG ], Semester::register_data() );
+	register_taxonomy( Semester::SLUG, [ Screening::SLUG ], Semester::register_data() );
 	add_action( 'rwmb_meta_boxes', array( Semester::class, 'meta_boxes' ) );
 	register_taxonomy( Program_Series::SLUG, [ Screening::SLUG ], Program_Series::register_data() );
 	add_action( 'rwmb_meta_boxes', array( Program_Series::class, 'meta_boxes' ) );
