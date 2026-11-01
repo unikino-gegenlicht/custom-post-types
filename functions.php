@@ -18,4 +18,15 @@ function cp_county_mapping(): array {
 	return $map;
 }
 
+function cp_language_mapping(): array {
+	$iso_codes = iso_codes();
+	$map = array();
+	foreach ($iso_codes->getLanguages() as $language) {
+		$map[$language->getAlpha3()] = $language->getLocalName();
+	}
+	$collator = collator_create(get_user_locale());
+	collator_asort($collator, $map);
+	return $map;
+}
+
 
