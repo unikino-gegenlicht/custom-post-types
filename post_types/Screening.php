@@ -6,6 +6,8 @@
 namespace CinemaPress\post_types;
 
 use CinemaPress\interfaces\Post_Type;
+use WP_Query;
+use function CinemaPress\cp_language_mapping;
 
 class Screening implements Post_Type {
 
@@ -58,7 +60,7 @@ class Screening implements Post_Type {
 			'show_in_rest'        => true,
 			'rest_namespace'      => 'cinema-press',
 			'supports'            => array( 'revisions', 'thumbnail', 'autosave', 'authors' ),
-			'has_archive'         => true,
+			'has_archive'         => 'archiv',
 			'rewrite'             => array(
 				'slug'       => 'screening',
 				'with_front' => false,
@@ -76,6 +78,63 @@ class Screening implements Post_Type {
 	 * @inheritDoc
 	 */
 	public static function meta_boxes( array $meta_boxes ): array {
+
+		add_filter( "rwmb_ajax_get_posts", function ( $items, $field, $request ) {
+			/*var_dump( $items );
+			var_dump($field);
+			var_dump( $request );*/
+			if ( $field["id"] !== 'movie' ) {
+				return $items;
+			}
+
+			$args               = $field["query_args"];
+			unset($args["s"]);
+			$args['meta_query'] = array(
+				'relation' => 'OR',
+				array(
+					'key'     => 'original_title',
+					'compare' => 'LIKE',
+					'value'   => $field["query_args"]['s'],
+				),
+				array(
+					'key'     => 'german_title',
+					'compare' => 'LIKE',
+					'value'   => $field["query_args"]['s'],
+				),
+				array(
+					'key'     => 'english_title',
+					'compare' => 'LIKE',
+					'value'   => $field["query_args"]['s'],
+				)
+			);
+			$query = new WP_Query( $args );
+			$posts = $query->posts;
+
+			$locale = get_user_locale(get_current_user_id());
+
+			$options = [];
+			foreach ( $posts as $post ) {
+				if ( ! current_user_can( 'read_post', $post->ID ) ) {
+					continue;
+				}
+
+				$label = str_starts_with( $locale, "de" ) ? rwmb_get_value( 'german_title', post_id: $post->ID ) : rwmb_get_value( 'english_title', post_id: $post->ID );
+				$label .= " (".rwmb_get_value('release_year', post_id: $post->ID).")";
+
+				$option = [
+					'value'  => $post->ID,
+					'label'  => $label,
+					'parent' => $post->post_parent,
+				];
+
+				$options[ $post->ID ] = $option;
+			}
+
+			return array_values( $options );
+		}, 99, 3 );
+
+
+
 		$meta_boxes[] = array(
 			'title'      => __( 'Screening Details', 'cinema-press' ),
 			'id'         => 'cinema_press-screening_details',
@@ -96,13 +155,17 @@ class Screening implements Post_Type {
 					'post_type'         => 'movie',
 					'query_args'        => array(
 						'post_status'    => 'publish',
-						'posts_per_page' => 10
+						'posts_per_page' => 10,
 					),
 					'js_options'        => [
 						'minimumInputLength' => 1,
 					],
 					'ajax'              => true,
 					'add_new'           => true,
+					'admin_columns'     => array(
+						'position' => 'replace title',
+						'title'    => __( 'Movie', 'cinema-press' ),
+					)
 				],
 				[
 					'id'                => 'screening_start',
@@ -117,9 +180,37 @@ class Screening implements Post_Type {
 					),
 					'save_format'       => 'Y-m-d H:i',
 					'admin_columns'     => array(
-						'position' => "replace date",
-						'sort'     => "numeric"
+						'position' => 'before movie',
+						'sort'     => 'numeric',
+						'title'    => __( 'Date and Time', 'cinema-press' ),
 					)
+				],
+				[
+					'id'                => 'semester',
+					'type'              => 'taxonomy',
+					'name'              => __( 'Semester', 'cinema-press' ),
+					'label_description' => __( 'Choose the semester that the screening happens in', 'cinema-press' ),
+					'placeholder'       => __( 'Select a semester', 'cinema-press' ),
+					'required'          => true,
+					'revision'          => true,
+					'taxonomy'          => 'semester',
+					'query_args'        => [
+						'number'   => 5,
+						'orderby'  => 'meta_value',
+						'meta_key' => 'semester_start',
+						'order'    => 'desc'
+					],
+					'std'               => count( get_terms( 'semester', [
+						'number'   => 1,
+						'orderby'  => 'meta_value',
+						'meta_key' => 'semester_start',
+						'order'    => 'desc'
+					] ) ) > 0 ? get_terms( 'semester', [
+						'number'   => 1,
+						'orderby'  => 'meta_value',
+						'meta_key' => 'semester_start',
+						'order'    => 'desc'
+					] )[0]->term_id : null,
 				],
 				[
 					'id'                => 'location',
@@ -164,7 +255,7 @@ class Screening implements Post_Type {
 					'multiple'          => true,
 					'admin_columns'     => 'after screening_location'
 				],
-				(get_option( 'cinema-press' )["enable_teamie_screening_assignment"] ?? 0) === 1 ? [
+				( get_option( 'cinema-press' )["enable_teamie_screening_assignment"] ?? 0 ) === 1 ? [
 					'id'                => 'proposed_by',
 					'type'              => 'post',
 					'name'              => __( 'Proposed By', 'cinema-press' ),
@@ -180,6 +271,7 @@ class Screening implements Post_Type {
 					],
 					'ajax'              => true,
 					'add_new'           => true,
+					'multiple'          => true,
 					'admin_columns'     => array(
 						'position'   => 'after date',
 						'title'      => __( "Proposed By", 'cinema-press' ),
@@ -190,6 +282,27 @@ class Screening implements Post_Type {
 				] : [
 					'type' => 'custom_html',
 					'std'  => ""
+				],
+				[
+					'id'      => 'audio_language',
+					'type'    => 'select_advanced',
+					'name'    => __( 'Audio Language', 'cinema-press' ),
+					'desc'    => __( 'Select the audio language this screening will happen in', 'cinema-press' ),
+					'options' => cp_language_mapping()
+				],
+				[
+					'id'        => 'has_subtitles',
+					'type'      => 'switch',
+					'name'      => __( 'Screening with Subtitles', 'cinema-press' ),
+					'on_label'  => __( 'Yes', 'cinema-press' ),
+					'off_label' => __( 'No', 'cinema-press' )
+				],
+				[
+					'id'      => 'subtitle_language',
+					'type'    => 'select_advanced',
+					'name'    => __( 'Subtitle Language', 'cinema-press' ),
+					'options' => cp_language_mapping(),
+					'visible' => [ 'has_subtitles' ]
 				],
 				[
 					'type' => 'heading',
