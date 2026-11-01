@@ -128,6 +128,13 @@ class Movie implements Post_Type {
 					'desc'     => __( 'The original title of the movie', 'cinema-press' ),
 					'required' => true,
 					'revision' => true,
+					'admin_columns' => array(
+						'position'   => 'replace title',
+						'title'      => __( 'Original Title', 'cinema-press' ),
+						'sort'       => false,
+						'searchable' => true,
+						'link'       => 'edit'
+					)
 				],
 				[
 					'id'       => "country_of_origin",
