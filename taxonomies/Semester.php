@@ -65,6 +65,40 @@ class Semester implements Taxonomy {
 	 */
 	public static function meta_boxes( array $meta_boxes ): array {
 		$meta_boxes[] = array(
+			'title'      => __( 'Semester Details', 'cinema-press' ),
+			'id'         => 'cinema_press-semester_details',
+			'taxonomies' => [ self::SLUG ],
+			'style'      => 'seamless',
+			'autosave'   => true,
+			'revision'   => true,
+			'fields'     => array(
+				[
+					'id'          => 'semester_start',
+					'type'        => 'date',
+					'revision'    => true,
+					'timestamp'   => false,
+					'name'        => __( 'First Screening Date', 'cinema-press' ),
+					'js_options'  => array(
+						'dateFormat' => 'dd.mm.yy'
+					),
+					'save_format' => 'Y-m-d H:i',
+				],
+				[
+					'id'          => 'semester_end',
+					'type'        => 'date',
+					'revision'    => true,
+					'timestamp'   => false,
+					'name'        => __( 'Last Screening Date', 'cinema-press' ),
+					'js_options'  => array(
+						'dateFormat' => 'dd.mm.yy'
+					),
+					'save_format' => 'Y-m-d H:i',
+				]
+
+			)
+		);
+
+		$meta_boxes[] = array(
 			'title'      => __( 'Archival Data', 'cinema-press' ),
 			'id'         => 'cinema_press-historic_data',
 			'taxonomies' => [ self::SLUG ],
