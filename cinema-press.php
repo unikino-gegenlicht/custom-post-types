@@ -339,3 +339,49 @@ add_filter( "enter_title_here", function ( $title ) {
 
 	return $title;
 } );
+
+add_filter( 'rwmb_movie_choice_label', function ( $label, $field, $post ) {
+	return ( str_starts_with( get_user_locale( get_current_user_id() ), "de" ) ? rwmb_get_value( 'german_title', post_id: $post->ID ) : rwmb_get_value( 'english_title', post_id: $post->ID ) ) . ' (' . rwmb_get_value( 'release_year', post_id: $post->ID ) . ')';
+}, 10, 3 );
+
+add_filter( 'rwmb_the_value', function ( $value, $field, $args, $post_id ) {
+
+	if ( ! is_admin() ) {
+		return $value;
+	}
+
+	switch ( $field['id'] ) {
+		default:
+			return $value;
+		case 'movie':
+			$movie = get_post( rwmb_get_value( 'movie', post_id: $post_id ) );
+
+			return ( str_starts_with( get_user_locale( get_current_user_id() ), "de" ) ? rwmb_get_value( 'german_title', post_id: $movie->ID ) : rwmb_get_value( 'english_title', post_id: $movie->ID ) ) . ' (' . rwmb_get_value( 'release_year', post_id: $movie->ID ) . ')';
+		case 'screening_start':
+			$date = date_create( $value );
+
+			return $date->format( CINEMA_PRESS__DATE_FORMAT . " " . CINEMA_PRESS__TIME_FORMAT );
+	}
+
+}, 99, 4 );
+
+
+function cinema_press_add_postid_to_screening( $post_id ): void {
+	$parent_id = wp_is_post_revision( $post_id );
+
+	if ( false !== $parent_id ) {
+		$post_id = $parent_id;
+	}
+	$post          = get_post( $post_id );
+	$movie_title   = rwmb_get_value( 'original_title', post_id: rwmb_get_value( 'movie', post_id: $post->ID ) );
+	$starting_time = $_POST['screening_start'];
+	$dt            = date_create_from_format( "d.m.Y H:i", $starting_time );
+	remove_action( 'save_post_screening', 'CinemaPress\cinema_press_add_postid_to_screening' );
+	wp_update_post( array(
+		'ID'        => $post_id,
+		'post_name' => "$movie_title-" . $dt->format( "Ymd" )
+	) );
+	add_action( 'save_post_screening', "CinemaPress\cinema_press_add_postid_to_screening" );
+}
+
+add_action( 'save_post_screening', "CinemaPress\cinema_press_add_postid_to_screening" );
