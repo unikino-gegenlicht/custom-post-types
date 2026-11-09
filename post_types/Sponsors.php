@@ -28,7 +28,7 @@ class Sponsors implements Post_Type {
 				'not_found'                 => __( 'No Sponsors found', 'cinema-press' ),
 				'not_found_in_trash'        => __( 'No Sponsors found in Trash', 'cinema-press' ),
 				'all_items'                 => __( 'All Sponsors', 'cinema-press' ),
-				'archives'                  => __( 'Sponsor Overview', 'cinema-press' ),
+				'archives'                  => __( 'Our Sponsors', 'cinema-press' ),
 				'attributes'                => __( 'Sponsor Attributes', 'cinema-press' ),
 				'insert_into_item'          => __( 'Insert into Sponsor', 'cinema-press' ),
 				'uploaded_to_this_item'     => __( 'Uploaded to this sponsor', 'cinema-press' ),
@@ -51,7 +51,7 @@ class Sponsors implements Post_Type {
 			'hierarchical'   => false,
 			'show_in_rest'   => true,
 			'rest_namespace' => 'cinema-press',
-			'supports'       => array( 'title', 'thumbnail', 'editor' ),
+			'supports'       => array( 'title', 'editor' ),
 			'has_archive'    => "sponsors",
 			'rewrite'        => array(
 				'slug'       => 'sponsor',
@@ -68,6 +68,37 @@ class Sponsors implements Post_Type {
 	 * @inheritDoc
 	 */
 	public static function meta_boxes( array $meta_boxes ): array {
-		// TODO: Implement meta_boxes() method.
+		$meta_boxes[] = array(
+			'title'      => __( 'Logo', 'cinema-press' ),
+			'id'         => 'cinema-press_sponsor-logo',
+			'context'    => 'side',
+			'style'      => 'seamless',
+			'post_types' => array( self::SLUG ),
+			'autosave'   => true,
+			'revision'   => true,
+			'fields'     => array(
+				[
+					"type" => "heading",
+					"name" => __( 'Logos', 'cinema-press' ),
+				],
+				[
+					'id'      => 'logo',
+					'type'    => 'single_image',
+					'name'    => __( 'Logo', 'cinema-press' ),
+					'desc'    => __( 'The logo of the sponsor for display in light mode conditions', 'cinema-press' ),
+					'image_size' => 'original'
+				],
+				[
+					'id'      => 'logo_dark',
+					'type'    => 'single_image',
+					'name'    => __( 'Logo (Dark Mode)', 'cinema-press' ),
+					'desc'    => __( 'The logo of the sponsor for display in dark mode conditions', 'cinema-press' ),
+					'image_size' => 'original'
+				],
+
+			)
+		);
+
+		return $meta_boxes;
 	}
 }
