@@ -27,6 +27,7 @@ class Cooperation_Partners implements Post_Type {
 				'not_found'              => __( 'No Cooperation Partners found.', 'cinema-press' ),
 				'not_found_in_trash'     => __( 'No Cooperation Partners found in Trash.', 'cinema-press' ),
 				'all_items'              => __( 'All Cooperation Partners', 'cinema-press' ),
+				'archives'               => __( 'Our Cooperation Partners', 'cinema-press' ),
 				'attributes'             => __( 'Cooperation Partner Attributes', 'cinema-press' ),
 				'insert_ino_item'        => __( 'Insert into Cooperation Partner', 'cinema-press' ),
 				'uploaded_to_this_item'  => __( 'Uploaded to this Cooperation Partner', 'cinema-press' ),
@@ -45,9 +46,16 @@ class Cooperation_Partners implements Post_Type {
 			'has_archive'    => 'cooperations',
 			'show_in_rest'   => true,
 			'rest_namespace' => 'cinema-press',
-			'supports'       => array( 'title', 'editor', 'thumbnail' ),
+			'supports'       => array( 'title', 'editor' ),
 			'menu_position'  => - 20,
 			'menu_icon'      => 'dashicons-networking',
+			'rewrite'        => array(
+				'slug'         => 'cooperation-partner',
+				'with_front'   => false,
+				'hierarchical' => false,
+				'feeds'        => false,
+				'pages'        => false,
+			)
 		);
 	}
 
@@ -55,6 +63,82 @@ class Cooperation_Partners implements Post_Type {
 	 * @inheritDoc
 	 */
 	public static function meta_boxes( array $meta_boxes ): array {
+
+		$meta_boxes[] = array(
+			'title'      => __( 'Social Medias', 'cinema-press' ),
+			'id'         => 'cinema-press_cooperation_socials',
+			'context'    => 'after_title',
+			'style'      => 'seamless',
+			'post_types' => array( self::SLUG ),
+			'autosave'   => true,
+			'revision'   => true,
+			'fields'     => array(
+				[
+					'type' => 'heading',
+					'name' => __( 'External Links', 'cinema-press' ),
+					'desc' => __( 'If you want to link the pages of the cooperation partner, you can set the usernames and links here', 'cinema-press' ),
+				],
+				[
+					'id'          => 'website',
+					'type'        => 'url',
+					'name'        => __( 'Website', 'cinema-press' ),
+					'translation' => 'copy'
+				],
+				[
+					'id'          => 'instagram_username',
+					'type'        => 'text',
+					'name'        => __( 'Instagram Username', "cinema-press" ),
+					'prepend'     => "https://instagram.com/",
+					'translation' => 'copy',
+				],
+				[
+					'id'          => 'mastodon_profile_url',
+					'type'        => 'text',
+					'name'        => __( 'Mastodon Profile URL', "cinema-press" ),
+					'prepend'     => 'https://',
+					'translation' => 'copy',
+				],
+				[
+					'id'          => 'bluesky_username',
+					'type'        => 'text',
+					'name'        => __( 'Bluesky Username', "cinema-press" ),
+					'prepend'     => 'https://bsky.app/profile/',
+					'translation' => 'copy',
+				],
+			)
+		);
+
+		$meta_boxes[] = array(
+			'title'      => __( 'Logo', 'cinema-press' ),
+			'id'         => 'cinema-press_cooperation-logo',
+			'context'    => 'after_title',
+			'style'      => 'seamless',
+			'post_types' => array( self::SLUG ),
+			'autosave'   => true,
+			'revision'   => true,
+			'fields'     => array(
+				[
+					"type" => "heading",
+					"name" => __( 'Logo', 'cinema-press' ),
+				],
+				[
+					'id'      => 'logo',
+					'type'    => 'single_image',
+					'name'    => __( 'Logo', 'cinema-press' ),
+					'desc'    => __( 'The logo of the cooperation partner for display in light mode conditions', 'cinema-press' ),
+					'columns' => 6
+				],
+				[
+					'id'      => 'logo_dark',
+					'type'    => 'single_image',
+					'name'    => __( 'Logo (Dark Mode)', 'cinema-press' ),
+					'desc'    => __( 'The logo of the cooperation partner for display in dark mode conditions', 'cinema-press' ),
+					'columns' => 6
+				],
+
+			)
+		);
+
 		return $meta_boxes;
 	}
 }
