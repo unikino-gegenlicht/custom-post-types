@@ -110,6 +110,7 @@ add_action( 'init', function () {
 
 	if ( ( get_option( 'cinema-press' )['enable_sponsors'] ?? false ) === 1 ) {
 		register_post_type( Sponsors::SLUG, Sponsors::register_data() );
+		add_action( 'rwmb_meta_boxes', array( Sponsors::class, 'meta_boxes' ) );
 	}
 
 
@@ -289,6 +290,30 @@ add_action( 'rwmb_meta_boxes', function ( $meta_boxes ) {
 		)
 	);
 
+	$meta_boxes[] = array(
+		'id'             => 'cinema-press_coop_settings',
+		'title'          => __( 'Cooperation Settings', 'cinema-press' ),
+		'settings_pages' => 'cinema-press',
+		'context'        => 'normal',
+		'tab'            => 'cooperation-partners',
+		'fields'         => array(
+			[
+				'id'      => 'coop_disabled_hint',
+				'type'    => 'custom_html',
+				'std'     => '<p class="notice notice-info">' . esc_html__( 'The cooperation features have been disabled!', 'cinema-press' ) . '</p>',
+				'visible' => [ 'enable_cooperation_partners', false ]
+			],
+			[
+				'id'                => 'enable_cooperation_screening_assignment',
+				'type'              => 'checkbox',
+				'name'              => __( 'Enable Cooperation Screening Assignment', 'cinema-press' ),
+				'label_description' => __( 'If checked you can assign cooperation partners to a screening to show that they selected the movie for it', 'cinema-press' ),
+				'visible'           => [ 'enable_cooperation_partners', true ]
+			],
+		)
+	);
+
+
 	add_filter( 'rwmb_outside_conditions', function ( $conditions ) {
 		$condition                                                  = array(
 			'hidden' => array( 'enable_team', false ),
@@ -375,14 +400,32 @@ function cinema_press_add_postid_to_screening( $post_id ): void {
 	}
 	$post          = get_post( $post_id );
 	$movie_title   = rwmb_get_value( 'original_title', post_id: rwmb_get_value( 'movie', post_id: $post->ID ) );
-	$starting_time = $_POST['screening_start'];
+	$starting_time = $_POST['screening_start'] ?? "01.01.1970 00:00";
 	$dt            = date_create_from_format( "d.m.Y H:i", $starting_time );
 	remove_action( 'save_post_screening', 'CinemaPress\cinema_press_add_postid_to_screening' );
 	wp_update_post( array(
 		'ID'        => $post_id,
-		'post_name' => "$movie_title-" . $dt->format( "Ymd" )
+		'post_name' => sanitize_title( "$movie_title-" . $dt->format( "Ymd" ) )
 	) );
 	add_action( 'save_post_screening', "CinemaPress\cinema_press_add_postid_to_screening" );
 }
 
 add_action( 'save_post_screening', "CinemaPress\cinema_press_add_postid_to_screening" );
+
+function cinema_press_add_release_year_to_movie_slug( $post_id ): void {
+	$parent_id = wp_is_post_revision( $post_id );
+
+	if ( false !== $parent_id ) {
+		$post_id = $parent_id;
+	}
+	$release_year = $_POST['release_year'] ?? "";
+	$title        = $_POST['original_title'] ?? "";
+	remove_action( 'save_post_movie', 'CinemaPress\cinema_press_add_release_year_to_movie_slug' );
+	wp_update_post( array(
+		'ID'        => $post_id,
+		'post_name' => sanitize_title( "$title-$release_year" )
+	) );
+	add_action( 'save_post_movie', "CinemaPress\cinema_press_add_release_year_to_movie_slug" );
+}
+
+add_action( 'save_post_movie', "CinemaPress\cinema_press_add_release_year_to_movie_slug" );
