@@ -55,12 +55,12 @@ class Movie implements Post_Type {
 			'public'              => true,
 			'hierarchical'        => false,
 			'exclude_from_search' => true,
-			'publicly_queryable'  => false,
+			'publicly_queryable'  => true,
 			'show_in_nav_menus'   => false,
 			'show_in_rest'        => true,
 			'rest_namespace'      => 'cinema-press',
-			'supports'            => array( 'revisions', 'thumbnail', 'autosave' ),
-			'has_archive'         => true,
+			'supports'            => array( 'revisions', 'autosave' ),
+			'has_archive'         => 'movies',
 			'rewrite'             => array(
 				'slug'       => 'movie',
 				'with_front' => false,
@@ -122,12 +122,12 @@ class Movie implements Post_Type {
 					)
 				],
 				[
-					'id'       => "original_title",
-					'type'     => 'text',
-					'name'     => __( 'Original Title', 'cinema-press' ),
-					'desc'     => __( 'The original title of the movie', 'cinema-press' ),
-					'required' => true,
-					'revision' => true,
+					'id'            => "original_title",
+					'type'          => 'text',
+					'name'          => __( 'Original Title', 'cinema-press' ),
+					'desc'          => __( 'The original title of the movie', 'cinema-press' ),
+					'required'      => true,
+					'revision'      => true,
 					'admin_columns' => array(
 						'position'   => 'replace title',
 						'title'      => __( 'Original Title', 'cinema-press' ),
@@ -147,32 +147,22 @@ class Movie implements Post_Type {
 					'multiple' => true,
 				],
 				[
-					'id'       => 'release_year',
-					'type'     => 'number',
-					'name'     => __( 'Release Year in the Country of Origin', 'cinema-press' ),
-					'desc'     => __( 'In case of multiple countries of origin, select the earliest year you can find.', 'cinema-press' ),
-					'required' => true,
-					'revision' => true,
-					'std'      => intval( date( 'Y' ) ),
-					'min'      => 0,
-					'step'     => 1,
-                    'admin_columns' => array(
-                        'position'   => 'replace date',
-                        'title'      => __( 'Released In', 'cinema-press' ),
-                        'sort'       => true,
-                        'searchable' => true,
-                        'link'       => false
-                    )
-				],
-				[
-					'id'       => 'running_time',
-					'type'     => 'number',
-					'name'     => __( 'Running Time', 'cinema-press' ),
-					'desc'     => __( 'The movie\'s running time in minutes', 'cinema-press' ),
-					'required' => true,
-					'revision' => true,
-					'min'      => 1,
-					'step'     => 1
+					'id'            => 'release_year',
+					'type'          => 'number',
+					'name'          => __( 'Release Year in the Country of Origin', 'cinema-press' ),
+					'desc'          => __( 'In case of multiple countries of origin, select the earliest year you can find.', 'cinema-press' ),
+					'required'      => true,
+					'revision'      => true,
+					'std'           => intval( date( 'Y' ) ),
+					'min'           => 0,
+					'step'          => 1,
+					'admin_columns' => array(
+						'position'   => 'replace date',
+						'title'      => __( 'Released In', 'cinema-press' ),
+						'sort'       => true,
+						'searchable' => true,
+						'link'       => false
+					)
 				],
 				[
 					'id'          => 'directors',
@@ -251,10 +241,96 @@ class Movie implements Post_Type {
 						'nudity'                    => __( 'Nudity', 'cinema-press' ),
 					),
 					'visible'  => [ 'age_rating', '>', 0 ]
+				],
+				[
+					"type" => "heading",
+					"name" => __( "Technical Information", 'cinema-press' ),
+				],
+				[
+					'id'       => 'running_time',
+					'type'     => 'number',
+					'name'     => __( 'Running Time', 'cinema-press' ),
+					'desc'     => __( 'The movie\'s running time in minutes', 'cinema-press' ),
+					'required' => true,
+					'revision' => true,
+					'min'      => 1,
+					'step'     => 1
+				],
+				[
+					'id'       => 'aspect_ratio',
+					'type'     => 'select',
+					'name'     => __( 'Aspect Ratio', 'cinema-press' ),
+					'desc'     => __( 'The movie\'s aspect ratio', 'cinema-press' ),
+					'required' => true,
+					'revision' => true,
+					'options'  => array(
+						"1.33:1"  => "4:3 (1.33:1)",
+						"1.375:1" => "Academy (1.375:1)",
+						"1.43:1"  => "IMAX 70mm (1.43:1)",
+						"1.66:1"  => __( "European Widescreen", 'cinema-press' ) . " (1.66:1)",
+						"1.78:1"  => "16:9 (1.78:1)",
+						"1.85:1"  => "Widescreen (1.85:1)",
+						"1.90:1"  => "IMAX Digital (1.90:1)",
+						"2.00:1"  => "Univisium (2.00:1)",
+						"2.20:1"  => "Todd-AO / 70mm (2.20:1)",
+						"2.35:1"  => "CinemaScope (2.35:1)",
+						"2.39:1"  => "Anamorph (2.39:1)",
+						"2.76:1"  => "Ultra Panavision 70 (2.76:1)",
+						"other"   => __( 'Other', 'cinema-press' )
+					)
+				],
+				[
+					'id'      => 'manual_aspect_ratio',
+					'type'    => 'text',
+					'name'    => __( 'Manual Aspect Ratio', 'cinema-press' ),
+					'visible' => [ 'aspect_ratio', 'other' ]
+				],
+				[
+					'id'   => 'tmdb_id',
+					'type' => 'text',
+					'name' => __( 'TMDB ID', 'cinema-press' ),
+					'desc' => __( 'The movie\'s TMDB ID. It\'s usually the number in the TMDB page url', 'cinema-press' ),
+				],
+				[
+					'id'   => 'imdb_id',
+					'type' => 'text',
+					'name' => __( 'IMDB ID', 'cinema-press' ),
+					'desc' => __( 'The movie\'s IMDB ID. The ID usually starts with <code>tt</code>', 'cinema-press' ),
+				]
+			)
+		);
+
+		$meta_boxes[] = array(
+			'title'      => __( 'Movie Logos', 'cinema-press' ),
+			'id'         => 'cinema_press-movie_logos',
+			'context'    => 'side',
+			'style'      => 'seamless',
+			'post_types' => array( 'movie' ),
+			'autosave'   => true,
+			'revision'   => true,
+			'fields'     => array(
+				[
+					'type' => 'heading',
+					'name' => __( 'Logos', 'cinema-press' ),
+				],
+				[
+					'id'         => "logo",
+					'type'       => 'single_image',
+					'name'       => __( 'Light Mode', 'cinema-press' ),
+					'desc'       => __( 'Select the movies logo for the light mode display', 'cinema-press' ),
+					'image_size' => 'original'
+				],
+				[
+					'id'         => "logo_dark",
+					'type'       => 'single_image',
+					'name'       => __( 'Dark Mode', 'cinema-press' ),
+					'desc'       => __( 'Select the movies logo for the dark mode display', 'cinema-press' ),
+					'image_size' => 'original'
 				]
 			)
 		);
 
 		return $meta_boxes;
 	}
+
 }
