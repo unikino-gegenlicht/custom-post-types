@@ -87,8 +87,8 @@ class Screening implements Post_Type {
 				return $items;
 			}
 
-			$args               = $field["query_args"];
-			unset($args["s"]);
+			$args = $field["query_args"];
+			unset( $args["s"] );
 			$args['meta_query'] = array(
 				'relation' => 'OR',
 				array(
@@ -107,10 +107,10 @@ class Screening implements Post_Type {
 					'value'   => $field["query_args"]['s'],
 				)
 			);
-			$query = new WP_Query( $args );
-			$posts = $query->posts;
+			$query              = new WP_Query( $args );
+			$posts              = $query->posts;
 
-			$locale = get_user_locale(get_current_user_id());
+			$locale = get_user_locale( get_current_user_id() );
 
 			$options = [];
 			foreach ( $posts as $post ) {
@@ -119,7 +119,7 @@ class Screening implements Post_Type {
 				}
 
 				$label = str_starts_with( $locale, "de" ) ? rwmb_get_value( 'german_title', post_id: $post->ID ) : rwmb_get_value( 'english_title', post_id: $post->ID );
-				$label .= " (".rwmb_get_value('release_year', post_id: $post->ID).")";
+				$label .= " (" . rwmb_get_value( 'release_year', post_id: $post->ID ) . ")";
 
 				$option = [
 					'value'  => $post->ID,
@@ -134,6 +134,13 @@ class Screening implements Post_Type {
 		}, 99, 3 );
 
 
+		$available_proposer_types = [
+			( get_option( 'cinema-press' )["enable_teamie_screening_assignment"] ?? 0 ) === 1 ? 'team_member' : null,
+			( get_option( 'cinema-press' )["enable_cooperation_screening_assignment"] ?? 0 ) === 1 ? 'cooperation_partner' : null
+		];
+		$available_proposer_types = array_filter( $available_proposer_types, function ( $type ) {
+			return $type !== null;
+		} );
 
 		$meta_boxes[] = array(
 			'title'      => __( 'Screening Details', 'cinema-press' ),
@@ -186,6 +193,17 @@ class Screening implements Post_Type {
 					)
 				],
 				[
+					'id'                => 'program_series',
+					'type'              => 'taxonomy',
+					'name'              => __( 'Program Series', 'cinema-press' ),
+					'label_description' => __( 'Select the program series the screening is accounted to. The default value is the main program series.', 'cinema-press' ),
+					'placeholder'       => __( 'Select a program series', 'cinema-press' ),
+					'required'          => true,
+					'revision'          => true,
+					'taxonomy'          => 'program_series',
+					'std'               => get_term_by( 'slug', get_taxonomy('program_series')->default_term['slug'], 'program_series')->term_id,
+				],
+				[
 					'id'                => 'semester',
 					'type'              => 'taxonomy',
 					'name'              => __( 'Semester', 'cinema-press' ),
@@ -225,9 +243,6 @@ class Screening implements Post_Type {
 						'post_status'    => 'publish',
 						'posts_per_page' => 10
 					),
-					'js_options'        => [
-						'minimumInputLength' => 1,
-					],
 					'ajax'              => true,
 					'add_new'           => true,
 					'admin_columns'     => array(
@@ -255,20 +270,17 @@ class Screening implements Post_Type {
 					'multiple'          => true,
 					'admin_columns'     => 'after screening_location'
 				],
-				( get_option( 'cinema-press' )["enable_teamie_screening_assignment"] ?? 0 ) === 1 ? [
+				( ! empty( $available_proposer_types ) ) ? [
 					'id'                => 'proposed_by',
 					'type'              => 'post',
 					'name'              => __( 'Proposed By', 'cinema-press' ),
-					'label_description' => __( 'Select the team member that has proposed the movie', 'cinema-press' ),
-					'post_type'         => 'team_member',
+					'label_description' => __( 'Select the team member and/or cooperation partner that has proposed the movie', 'cinema-press' ),
+					'post_type'         => $available_proposer_types,
 					'field_type'        => 'select_advanced',
 					'query_args'        => array(
 						'post_status'    => 'publish',
 						'posts_per_page' => 10
 					),
-					'js_options'        => [
-						'minimumInputLength' => 1,
-					],
 					'ajax'              => true,
 					'add_new'           => true,
 					'multiple'          => true,
