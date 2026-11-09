@@ -42,6 +42,7 @@ use CinemaPress\taxonomies\Semester;
  * Update URI: false
  * Text Domain: cinema-press
  * Domain Path: /i18n
+ * Requires Plugins: classic-editor
  */
 
 const GGL_CPT__WYSIWYG_OPTIONS = [

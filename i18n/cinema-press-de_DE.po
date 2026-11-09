@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: CinemaPress CINEMA_PRESS_PLUGIN_VERSION\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/cinema-press\n"
 "POT-Creation-Date: 2026-10-17T10:53:20+00:00\n"
-"PO-Revision-Date: 2026-11-01 13:59+0100\n"
+"PO-Revision-Date: 2026-11-09 15:57+0100\n"
 "Last-Translator: Jan Eike Suchard <jan@suchard.cloud>\n"
 "Language-Team: \n"
 "Language: de_DE\n"
@@ -38,134 +38,134 @@ msgstr "Jan Eike Suchard, Philip Kaufmann"
 msgid "https://gegenlicht.net/team/"
 msgstr "https://gegenlicht.net/team"
 
-#: cinema-press.php:137 cinema-press.php:138
+#: cinema-press.php:139 cinema-press.php:140
 msgid "CinemaPress Settings"
 msgstr "CinemaPress Einstellungen"
 
-#: cinema-press.php:145
+#: cinema-press.php:147
 msgid "Features"
 msgstr "Features"
 
-#: cinema-press.php:149 post_types/Screening.php:21 post_types/Screening.php:23
+#: cinema-press.php:151 post_types/Screening.php:21 post_types/Screening.php:23
 msgid "Screenings"
 msgstr "Vorstellungen"
 
-#: cinema-press.php:153
+#: cinema-press.php:155
 msgid "Events"
 msgstr "Veranstaltungen"
 
-#: cinema-press.php:157
+#: cinema-press.php:159
 msgid "Team"
 msgstr "Team"
 
-#: cinema-press.php:161 post_types/Cooperation_Partners.php:16
+#: cinema-press.php:163 post_types/Cooperation_Partners.php:16
 #: post_types/Cooperation_Partners.php:18
 #: post_types/Cooperation_Partners.php:19
 msgid "Cooperation Partners"
 msgstr "Kooperationspartner"
 
-#: cinema-press.php:165 post_types/Sponsors.php:17 post_types/Sponsors.php:19
+#: cinema-press.php:167 post_types/Sponsors.php:17 post_types/Sponsors.php:19
 msgid "Sponsors"
 msgstr "Sponsor*innen"
 
-#: cinema-press.php:177
+#: cinema-press.php:179
 msgid "CinemaPress Features"
 msgstr "CinemaPress Features"
 
-#: cinema-press.php:184
+#: cinema-press.php:186
 msgid "After changing one of the feature states, you need to reload the page for the changes to appear"
 msgstr "Nachdem ein Feature an- oder ausgeschaltet wurde, muss die Seite neugeladen werden, damit die Änderungen wirksam werden"
 
-#: cinema-press.php:189
+#: cinema-press.php:191
 msgid "Enable Team Features"
 msgstr "Team Featues aktivieren"
 
-#: cinema-press.php:190
+#: cinema-press.php:192
 msgid "Team features include the display of team members, assigning screenings to be proposals by team members and providing personalizable pages for members"
 msgstr "Team Features ist die Darstellung der Teammitglieder auf personalisierten Seiten und die Möglichkeit, dass Teammitglieder bei Vorstellungen angezeigt werden, die den Film ausgesucht haben"
 
-#: cinema-press.php:196
+#: cinema-press.php:198
 msgid "Enable Cooperation Features"
 msgstr "Kooperations-Features aktivieren"
 
-#: cinema-press.php:197
+#: cinema-press.php:199
 msgid "Cooperation features include the display of cooperation partners, displaying cooperations on screenings and providing a overview of previous cooperations"
 msgstr "Kooperations-Features enthalten die Anzeige der Kooperationspartner, deren frühere Kooperationen, und die Anzeige ob ein Film in Kooperation gezeigt wird"
 
-#: cinema-press.php:203
+#: cinema-press.php:205
 msgid "Enable Sponsors features"
 msgstr "Sponsoren aktivieren"
 
-#: cinema-press.php:204
+#: cinema-press.php:206
 msgid "This enables creating sponsors and giving them a shoutout on a special overview page."
 msgstr "Aktiviere die Anzeige der Sponsosen und die Anzeige auf einer gesonderten Seite."
 
-#: cinema-press.php:211
+#: cinema-press.php:213
 msgid "Team Settings"
 msgstr "Team Einstellungen"
 
-#: cinema-press.php:224
+#: cinema-press.php:226
 msgid "The team management features have been disabled!"
 msgstr "Die Mitglieder-Features wurden deaktiviert!"
 
-#: cinema-press.php:230
+#: cinema-press.php:232
 msgid "Default Team Member Image"
 msgstr "Standardbild für Mitgliederbilder"
 
-#: cinema-press.php:231
+#: cinema-press.php:233
 msgid "This image is used if a team member doesn't have an image set or uploaded."
 msgstr "Dieses Bild wird verwendet, wenn ein Teammitglied kein eigenes Bild gesetzt hat."
 
-#: cinema-press.php:237
+#: cinema-press.php:239
 msgid "Enable Teamie Screening Assignment"
 msgstr "Erlaube die Zuweisung von Mitgliedern zu Vorstellungen"
 
-#: cinema-press.php:238
+#: cinema-press.php:240
 msgid "If checked you can assign teamies to a screening to show that they selected the movie for it"
 msgstr "Wenn aktiviert, können Teammitglieder einer Vorstellung zugewiesen werden um zu zeigen, dass der Film von ihnen ausgesucht wurde"
 
-#: cinema-press.php:243
+#: cinema-press.php:245
 msgid "Fallback Team Member Descriptions"
 msgstr "Standardmäßige Teammitgliederbeschreibung"
 
-#: cinema-press.php:249
+#: cinema-press.php:251
 msgid "Available placeholders"
 msgstr "Verfügbare Platzhalter"
 
-#: cinema-press.php:250
+#: cinema-press.php:252
 msgid "The following placeholders are available to be used in the fallback teamie description"
 msgstr "Die folgenden Platzhalter sind in den Standardbeschreibungen verfügbar"
 
-#: cinema-press.php:255
+#: cinema-press.php:257
 msgid "The year the member joined the cinema"
 msgstr "Das Jahr in dem das Mitglied beigetreten ist"
 
-#: cinema-press.php:257
+#: cinema-press.php:259
 msgid "The year the member left the cinema"
 msgstr "Das Jahr in dem das Mitglied das Kino verlsssen hat"
 
-#: cinema-press.php:259
+#: cinema-press.php:261
 msgid "The members name"
 msgstr "Name des Mitglieds"
 
-#: cinema-press.php:261
+#: cinema-press.php:263
 msgid "The number of screenings the team member hosted"
 msgstr "Anzahl der Vorstellungen, die von dem Mitglied organisiert wurden"
 
-#: cinema-press.php:331
+#: cinema-press.php:357
 msgid "DO NOT ENTER A VALUE HERE"
 msgstr "HIER KEINEN WERT EINTRAGEN"
 
-#: cinema-press.php:334
+#: cinema-press.php:360
 msgid "Name of the screening venue"
 msgstr "Name des Vorstellungsortes"
 
-#: cinema-press.php:337
+#: cinema-press.php:363
 msgid "Name of the team member"
 msgstr "Name des Teammitglieds"
 
 #: post_types/Admission_Type.php:16 post_types/Admission_Type.php:18
-#: post_types/Admission_Type.php:29 post_types/Screening.php:244
+#: post_types/Admission_Type.php:29 post_types/Screening.php:262
 msgid "Admission Types"
 msgstr "Kartentypen"
 
@@ -298,56 +298,56 @@ msgstr "Keine Kooperationspartner im Papierkorb gefunden."
 msgid "All Cooperation Partners"
 msgstr "Alle Kooperationspartner"
 
-#: post_types/Cooperation_Partners.php:30
+#: post_types/Cooperation_Partners.php:31
 msgid "Cooperation Partner Attributes"
 msgstr "Attribute der Kooperationspartner"
 
-#: post_types/Cooperation_Partners.php:31
+#: post_types/Cooperation_Partners.php:32
 msgid "Insert into Cooperation Partner"
 msgstr "Im Kooperationspartner einfügen"
 
-#: post_types/Cooperation_Partners.php:32
+#: post_types/Cooperation_Partners.php:33
 msgid "Uploaded to this Cooperation Partner"
 msgstr "Zu diesem Kooperationspartner hochgeladen"
 
-#: post_types/Cooperation_Partners.php:33
+#: post_types/Cooperation_Partners.php:34
 msgid "Cooperation Partner list navigation"
 msgstr "Listennavigation der Kooperationspartner"
 
-#: post_types/Cooperation_Partners.php:34
+#: post_types/Cooperation_Partners.php:35
 msgid "Cooperation Partner list"
 msgstr "Liste der Kooperationspartner"
 
-#: post_types/Cooperation_Partners.php:35
+#: post_types/Cooperation_Partners.php:36
 msgid "Cooperation Partner published."
 msgstr "Kooperationspartner veröffentlicht."
 
-#: post_types/Cooperation_Partners.php:36
+#: post_types/Cooperation_Partners.php:37
 msgid "Cooperation Partner published private."
 msgstr "Kooperationspartner privat veröffentlicht."
 
-#: post_types/Cooperation_Partners.php:37
+#: post_types/Cooperation_Partners.php:38
 msgid "Cooperation Partner reverted to draft."
 msgstr "Kooperationspartner zum Entwurf zurückgewandelt."
 
-#: post_types/Cooperation_Partners.php:38
+#: post_types/Cooperation_Partners.php:39
 msgid "Cooperation Partner trashed."
 msgstr "Kooperationspartner gelöscht."
 
-#: post_types/Cooperation_Partners.php:39
+#: post_types/Cooperation_Partners.php:40
 msgid "Cooperation Partner scheduled."
 msgstr "Kooperationspartner geplant."
 
-#: post_types/Cooperation_Partners.php:40
+#: post_types/Cooperation_Partners.php:41
 msgid "Cooperation Partner updated."
 msgstr "Kooperationspartner aktualisiert."
 
-#: post_types/Cooperation_Partners.php:42
+#: post_types/Cooperation_Partners.php:43
 msgid "Cooperation Partners are entities that screen movies together with this cinema but are not members of the cinema"
 msgstr "Kooperationspartner sind Einrichtungen/Personen, die gemeinsam mit diesem Kino Filme zeigen, aber keine Mitglieder des Kinos sind"
 
-#: post_types/Movie.php:19 post_types/Movie.php:22 post_types/Screening.php:150
-#: post_types/Screening.php:167
+#: post_types/Movie.php:19 post_types/Movie.php:22 post_types/Screening.php:157
+#: post_types/Screening.php:174
 msgid "Movie"
 msgstr "Film"
 
@@ -529,128 +529,128 @@ msgstr "Für den Fall, dass der Film mehrere Drehorte hat, gebe das frühste Ver
 msgid "Released In"
 msgstr "Veröffentlicht"
 
-#: post_types/Movie.php:170
+#: post_types/Movie.php:252
 msgid "Running Time"
 msgstr "Laufzeit"
 
-#: post_types/Movie.php:171
+#: post_types/Movie.php:253
 msgid "The movie's running time in minutes"
 msgstr "In Minuten"
 
-#: post_types/Movie.php:180 taxonomies/Director.php:24
+#: post_types/Movie.php:170 taxonomies/Director.php:24
 #: taxonomies/Director.php:37
 msgid "Directors"
 msgstr "Regisseure"
 
-#: post_types/Movie.php:181
+#: post_types/Movie.php:171
 msgid "Select the directors for the movie"
 msgstr "Wähle die Regisseure für den Film aus"
 
-#: post_types/Movie.php:182
+#: post_types/Movie.php:172
 msgid "Select one or more directors"
 msgstr "Wähle einen oder mehrere Regisseure aus"
 
-#: post_types/Movie.php:196
+#: post_types/Movie.php:186
 msgid "Starring Actors"
 msgstr "Schauspielende"
 
-#: post_types/Movie.php:197
+#: post_types/Movie.php:187
 msgid "Select up to 5 actors for the movie"
 msgstr "Wähle bis zu fünf Schauspielende aus für den Film"
 
-#: post_types/Movie.php:215
+#: post_types/Movie.php:205
 msgid "Age Rating"
 msgstr "Altersfreigabe"
 
-#: post_types/Movie.php:216
+#: post_types/Movie.php:206
 msgid "Select the age rating for this movie. The official age ratings for movies are available with the <a href=\"https://fsk.de\">FSK</a>"
 msgstr "Wähle die Altersfreigabe für diesen Film aus. Die offiziellen Altersfreigaben für Deutschland sind bei der <a href=\"https://fsk.de\">FSK</a> abrufbar"
 
-#: post_types/Movie.php:220
+#: post_types/Movie.php:210
 msgid "rating pending"
 msgstr "Bewertung ausstehend"
 
-#: post_types/Movie.php:221
+#: post_types/Movie.php:211
 msgid "unknown"
 msgstr "unbekannt"
 
-#: post_types/Movie.php:222
+#: post_types/Movie.php:212
 msgid "unrated"
 msgstr "kein Kennzeichen"
 
-#: post_types/Movie.php:223
+#: post_types/Movie.php:213
 msgid "FSK 0"
 msgstr "ab 0 freigegeben"
 
-#: post_types/Movie.php:224
+#: post_types/Movie.php:214
 msgid "FSK 6"
 msgstr "ab 6 freigegeben"
 
-#: post_types/Movie.php:225
+#: post_types/Movie.php:215
 msgid "FSK 12"
 msgstr "ab 12 freigegeben"
 
-#: post_types/Movie.php:226
+#: post_types/Movie.php:216
 msgid "FSK 16"
 msgstr "ab 16 freigegeben"
 
-#: post_types/Movie.php:227
+#: post_types/Movie.php:217
 msgid "FSK 18"
 msgstr "ab 18 freigegeben"
 
-#: post_types/Movie.php:235
+#: post_types/Movie.php:225
 msgid "Content Advices by the FSK"
 msgstr "Zusatzhinweise"
 
-#: post_types/Movie.php:236
+#: post_types/Movie.php:226
 msgid "Additional descriptors are published alongside the FSK age ratings for films and series."
 msgstr "Zusatzhinweise werden seit 2023 von der FSK gemeinsam mit den Alterfreigaben veröffentlicht."
 
-#: post_types/Movie.php:240
+#: post_types/Movie.php:230
 msgid "Sexual Violence"
 msgstr "Sexualisierte Gewalt"
 
-#: post_types/Movie.php:241
+#: post_types/Movie.php:231
 msgid "Violence"
 msgstr "Gewalt"
 
-#: post_types/Movie.php:242
+#: post_types/Movie.php:232
 msgid "Risky Behaviour and Self Harm"
 msgstr "Risikoverhalten, Selbstschädigung"
 
-#: post_types/Movie.php:243
+#: post_types/Movie.php:233
 msgid "Drug Usage"
 msgstr "Drogenkonsum"
 
-#: post_types/Movie.php:244
+#: post_types/Movie.php:234
 msgid "Exclusion and Discrimination"
 msgstr "Ausgrenzung, Diskriminierung"
 
-#: post_types/Movie.php:245
+#: post_types/Movie.php:235
 msgid "Threats"
 msgstr "Bedrohung"
 
-#: post_types/Movie.php:246
+#: post_types/Movie.php:236
 msgid "Sexuality"
 msgstr "Sexualität"
 
-#: post_types/Movie.php:247
+#: post_types/Movie.php:237
 msgid "Injury"
 msgstr "Verletzung"
 
-#: post_types/Movie.php:248
+#: post_types/Movie.php:238
 msgid "Difficult Topics"
 msgstr "Belastende Themen"
 
-#: post_types/Movie.php:249
+#: post_types/Movie.php:239
 msgid "Disturbing Scenes"
 msgstr "Belastende Szenen"
 
-#: post_types/Movie.php:250
+#: post_types/Movie.php:240
 msgid "Language"
 msgstr "Sprache"
 
-#: post_types/Movie.php:251
+#: post_types/Movie.php:241
 msgid "Nudity"
 msgstr "Nacktheit"
 
@@ -774,68 +774,64 @@ msgstr "Link zur Vorstellung"
 msgid "A screening is used to instantiate a viewing of a movie"
 msgstr "Eine Vorstellung legt eine Vorführung eines Films an auf der Website"
 
-#: post_types/Screening.php:139
+#: post_types/Screening.php:146
 msgid "Screening Details"
 msgstr "Vorstellungsdetails"
 
-#: post_types/Screening.php:151
+#: post_types/Screening.php:158
 msgid "Select the movie that will be screened"
 msgstr "Wähle den Film aus, der gezeigt wird"
 
-#: post_types/Screening.php:152
+#: post_types/Screening.php:159
 msgid "Select a movie"
 msgstr "Wähle einen Film"
 
-#: post_types/Screening.php:173
+#: post_types/Screening.php:180
 msgid "Start Date and Time"
 msgstr "Startdatum und -uhrzeit der Vorstellung"
 
-#: post_types/Screening.php:174
+#: post_types/Screening.php:181
 msgid "The time the program for the screening starts"
 msgstr "Die Uhrzeit bei der das Vorprogramm der Vorstellung beginnt"
 
-#: post_types/Screening.php:218 post_types/Screening.php:235
+#: post_types/Screening.php:236 post_types/Screening.php:253
 #: post_types/Screening_Location.php:22 post_types/Screening_Location.php:25
 msgid "Screening Location"
 msgstr "Vorstellungsort"
 
-#: post_types/Screening.php:219
+#: post_types/Screening.php:237
 msgid "The location the screening will happen in"
 msgstr "Ort an dem die Vorstellung stattfindet"
 
-#: post_types/Screening.php:220
+#: post_types/Screening.php:238
 msgid "Select a location"
 msgstr "Ort auswählen"
 
-#: post_types/Screening.php:245
+#: post_types/Screening.php:263
 msgid "The admission types that are being offered for this screening"
 msgstr "Die Kartentypen die für diese Vorstellung angeboten werden"
 
-#: post_types/Screening.php:246
+#: post_types/Screening.php:264
 msgid "Select one or more admission types"
 msgstr "Wähle einen oder mehrere Kartentypen aus"
 
-#: post_types/Screening.php:261 post_types/Screening.php:277
+#: post_types/Screening.php:279 post_types/Screening.php:292
 msgid "Proposed By"
 msgstr "Vorgeschlagen von"
 
-#: post_types/Screening.php:262
-msgid "Select the team member that has proposed the movie"
-msgstr "Wähle die Mitglieder aus, die den Film vorgeschlagen haben"
-
-#: post_types/Screening.php:309
+#: post_types/Screening.php:324
 msgid "Summary"
 msgstr "Inhaltszusammenfassung"
 
-#: post_types/Screening.php:310
+#: post_types/Screening.php:325
 msgid "Below this field you can now enter the movies summary for the screening"
 msgstr "Hier kannst du nun eine Zusammenfassung des Filmes eingeben"
 
-#: post_types/Screening.php:322
+#: post_types/Screening.php:337
 msgid "Why is the movie worth to be seen?"
 msgstr "Warum ist der Film sehenswert?"
 
-#: post_types/Screening.php:323
+#: post_types/Screening.php:338
 msgid "Below this field you can now enter why the movie is worth to be seen by your visitors"
 msgstr "Hier kannst du nun eingeben, warum der Film sehenswert ist"
 
@@ -1054,10 +1050,6 @@ msgstr "Kein*e Sponsor*in im Papierkorb gefunden"
 #: post_types/Sponsors.php:30
 msgid "All Sponsors"
 msgstr "Alle Sponsor*innen"
-
-#: post_types/Sponsors.php:31
-msgid "Sponsor Overview"
-msgstr "Übersicht der Sponsor*innen"
 
 #: post_types/Sponsors.php:32
 msgid "Sponsor Attributes"
@@ -1295,8 +1287,8 @@ msgstr "Link zu einer*m Regisseur*in"
 msgid "A Director is a person who controls a film's artistic and dramatic aspects and visualizes the screenplay "
 msgstr "Ein Regisseur ist eine Person die die artistische und dramaturgische Umsetzung des Filmes kontrolliert "
 
-#: taxonomies/Program_Series.php:20 taxonomies/Program_Series.php:21
-#: taxonomies/Program_Series.php:33
+#: post_types/Screening.php:198 taxonomies/Program_Series.php:20
+#: taxonomies/Program_Series.php:21 taxonomies/Program_Series.php:33
 msgid "Program Series"
 msgstr "Programmreihe"
 
@@ -1376,19 +1368,19 @@ msgstr "Link zu Programmreihen"
 msgid "Link to a program series"
 msgstr "Link zur Programmreihe"
 
-#: taxonomies/Program_Series.php:64
+#: taxonomies/Program_Series.php:93
 msgid "Display Settings"
 msgstr "Anzeigeanstellungen"
 
-#: taxonomies/Program_Series.php:71
+#: taxonomies/Program_Series.php:100
 msgid "These display settings are applied to screenings that have been tagged with this program series"
 msgstr "Diese Anzeigeeinstellungen werden auf alle Vorstellungen angewendet, die dieser Programmreihe zugewiesen sind"
 
-#: taxonomies/Program_Series.php:75
+#: taxonomies/Program_Series.php:104
 msgid "Background for Pages"
 msgstr "Seitenhintergrund"
 
-#: taxonomies/Program_Series.php:80
+#: taxonomies/Program_Series.php:109
 msgid "Font color"
 msgstr "Schriftfarbe"
 
@@ -1397,7 +1389,7 @@ msgstr "Schriftfarbe"
 msgid "Semesters"
 msgstr "Semester"
 
-#: post_types/Screening.php:191 taxonomies/Semester.php:21
+#: post_types/Screening.php:209 taxonomies/Semester.php:21
 msgid "Semester"
 msgstr "Semester"
 
@@ -1647,13 +1639,13 @@ msgstr "Social Media Accounts"
 
 #: post_types/Team_Member.php:136
 msgid "If you enter a handle to a social media account the account might be linked in themes and schema data. The social media profiles listed here are the most commonly used ones. If you are missing one, just contact <a href=\"mailto:it@gegenlicht.net\">it@gegenlicht.net</a> and the social media profile might be added in a future release"
-msgstr "Wenn du einen Handle für ein Social-Media-Konto eingibst, wird das Konto möglicherweise in den Themen und Schema-Daten verknüpft. Die hier aufgeführten Social-Media-Profile sind die am häufigsten verwendeten. Sollte ein Profil fehlen, wende dich sich einfach an <a href=\"mailto:it@gegenlicht.net\">it@gegenlicht.net</a> – das Social-Media-Profil wird dann möglicherweise in einer zukünftigen Version hinzugefügt."
+msgstr "Wenn du einen Handle für ein Social-Media-Konto eingibst, wird das Konto möglicherweise in den Themen und Schema-Daten verknüpft. Die hier aufgeführten Social-Media-Profile sind die am häufigsten verwendeten. Sollte ein Profil fehlen, wende dich sich einfach an <a href=\"mailto:it@gegenlicht.net\">it@gegenlicht.net</a> – das Social-Media-Profil wird dann möglicherweise in einer zukünftigen Version hinzugefügt"
 
 #: post_types/Team_Member.php:141
 msgid "Letterboxd Username"
 msgstr "Letterboxd Benutzername"
 
-#: post_types/Team_Member.php:148
+#: post_types/Cooperation_Partners.php:90 post_types/Team_Member.php:148
 msgid "Instagram Username"
 msgstr "Instagram Benutzername"
 
@@ -1669,39 +1661,39 @@ msgstr "Personalisierte Teamie Beschreibungen"
 msgid "The description that has been entered here will override the default text set in the plugin settings"
 msgstr "Die hier eingegebene Beschreibung überschreibt den Standardtext aus den Plugin Einstellungen"
 
-#: post_types/Screening.php:289
+#: post_types/Screening.php:304
 msgid "Audio Language"
 msgstr "Tonspur"
 
-#: post_types/Screening.php:290
+#: post_types/Screening.php:305
 msgid "Select the audio language this screening will happen in"
 msgstr "Die Sprache in der die Tonspur sein wird. Das Feld kann für Stummfilme entweder leer gelassen werden oder \"Kein sprachlicher Inhalt\" kann ausgewählt werden"
 
-#: post_types/Screening.php:296
+#: post_types/Screening.php:311
 msgid "Screening with Subtitles"
 msgstr "Vorstellung mit Untertiteln"
 
-#: post_types/Screening.php:297
+#: post_types/Screening.php:312
 msgid "Yes"
 msgstr "Ja"
 
-#: post_types/Screening.php:298
+#: post_types/Screening.php:313
 msgid "No"
 msgstr "Nein"
 
-#: post_types/Screening.php:303
+#: post_types/Screening.php:318
 msgid "Subtitle Language"
 msgstr "Untertitelsprache"
 
-#: post_types/Screening.php:185
+#: post_types/Screening.php:192
 msgid "Date and Time"
 msgstr "Datum und Uhrzeit"
 
-#: post_types/Screening.php:192
+#: post_types/Screening.php:210
 msgid "Choose the semester that the screening happens in"
 msgstr "Wähle das Semester aus in dem die Vorstellung stattfindet"
 
-#: post_types/Screening.php:193
+#: post_types/Screening.php:211
 msgid "Select a semester"
 msgstr "Wähle ein Semester aus"
 
@@ -1716,3 +1708,162 @@ msgstr "Erstes Vorstellungsdatum"
 #: taxonomies/Semester.php:91
 msgid "Last Screening Date"
 msgstr "Letztes Vorstellungsdatum"
+
+#: cinema-press.php:295
+msgid "Cooperation Settings"
+msgstr "Kooperationseinstellungen"
+
+#: cinema-press.php:303
+msgid "The cooperation features have been disabled!"
+msgstr "Die Kooperationsfeatures wurden deaktiviert!"
+
+#: cinema-press.php:309
+msgid "Enable Cooperation Screening Assignment"
+msgstr "Erlaube die Zuordnung von Kooperationspartnern zu Vorstellungen"
+
+#: cinema-press.php:310
+msgid "If checked you can assign cooperation partners to a screening to show that they selected the movie for it"
+msgstr "Wenn aktiviert, können Kooperationspartner:innen einer Vorstellung zugewiesen werden um zu zeigen, dass der Film von ihnen ausgesucht wurde"
+
+#: post_types/Cooperation_Partners.php:30
+msgid "Our Cooperation Partners"
+msgstr "Unsere Kooperationspartner:innen"
+
+#: post_types/Cooperation_Partners.php:112
+#: post_types/Cooperation_Partners.php:122
+#: post_types/Cooperation_Partners.php:127 post_types/Sponsors.php:72
+#: post_types/Sponsors.php:87 taxonomies/Program_Series.php:69
+msgid "Logo"
+msgstr "Logo"
+
+#: post_types/Cooperation_Partners.php:128
+msgid "The logo of the cooperation partner for display in light mode conditions"
+msgstr "Das Logo des Kooperationspartners für den hellen Modus"
+
+#: post_types/Cooperation_Partners.php:134 post_types/Sponsors.php:94
+msgid "Logo (Dark Mode)"
+msgstr "Logo (Dunkler Modus)"
+
+#: post_types/Cooperation_Partners.php:135
+msgid "The logo of the cooperation partner for display in dark mode conditions"
+msgstr "Das Logo des Kooperationspartners für den dunklen Modus"
+
+#: post_types/Movie.php:247
+msgid "Technical Information"
+msgstr "Technische Details"
+
+#: post_types/Movie.php:262
+msgid "Aspect Ratio"
+msgstr "Seitenverhältnis"
+
+#: post_types/Movie.php:263
+msgid "The movie's aspect ratio"
+msgstr "Das Seitenverhältnis des Films"
+
+#: post_types/Movie.php:270
+msgid "European Widescreen"
+msgstr "Europäischer Widescreen"
+
+#: post_types/Movie.php:279
+msgid "Other"
+msgstr "Anderes Seitenverhältnis"
+
+#: post_types/Movie.php:285
+msgid "Manual Aspect Ratio"
+msgstr "Manuelles Seitenverhältnis"
+
+#: post_types/Movie.php:291
+msgid "TMDB ID"
+msgstr "TMDB ID"
+
+#: post_types/Movie.php:292
+msgid "The movie's TMDB ID. It's usually the number in the TMDB page url"
+msgstr "Die ID des Filmes in der TMDB. Die ID ist normalerweise die Zahl in der URL"
+
+#: post_types/Movie.php:297
+msgid "IMDB ID"
+msgstr "IMDB ID"
+
+#: post_types/Movie.php:298
+msgid "The movie's IMDB ID. The ID usually starts with <code>tt</code>"
+msgstr "Die ID des Filmes in der IMDB. Die ID startet normalerweise mit <code>tt</code>"
+
+#: post_types/Movie.php:304
+msgid "Movie Logos"
+msgstr "Filmlogos"
+
+#: post_types/Movie.php:314 post_types/Sponsors.php:82
+msgid "Logos"
+msgstr "Logos"
+
+#: post_types/Movie.php:319 taxonomies/Program_Series.php:77
+msgid "Light Mode"
+msgstr "Heller Modus"
+
+#: post_types/Movie.php:320
+msgid "Select the movies logo for the light mode display"
+msgstr "Das Filmlogo für den hellen Modus"
+
+#: post_types/Movie.php:326 taxonomies/Program_Series.php:84
+msgid "Dark Mode"
+msgstr "Dunkler Modus"
+
+#: post_types/Movie.php:327
+msgid "Select the movies logo for the dark mode display"
+msgstr "Das Filmlogo für den dunklen Modus"
+
+#: post_types/Screening.php:280
+msgid "Select the team member and/or cooperation partner that has proposed the movie"
+msgstr "Wähle das Teammitglied und/oder die Kooperationspartner aus, die den Film vorgeschlagen haben"
+
+#: post_types/Sponsors.php:88
+msgid "The logo of the sponsor for display in light mode conditions"
+msgstr "Das Logo des Sponsors für den hellen Modus"
+
+#: post_types/Sponsors.php:95
+msgid "The logo of the sponsor for display in dark mode conditions"
+msgstr "Das Logo des Sponsors für den dunklen Modus"
+
+#: post_types/Sponsors.php:31
+msgid "Our Sponsors"
+msgstr "Unsere Sponsor:innen"
+
+#: post_types/Cooperation_Partners.php:68
+msgid "Social Medias"
+msgstr "Social Media"
+
+#: post_types/Cooperation_Partners.php:78
+msgid "External Links"
+msgstr "Externe Verlinkungen"
+
+#: post_types/Cooperation_Partners.php:79
+msgid "If you want to link the pages of the cooperation partner, you can set the usernames and links here"
+msgstr "Wenn du die Seiten des Kooperationspartners verlinken willst, kannst du hier die Benutzernamen und Links einstellen"
+
+#: post_types/Cooperation_Partners.php:84
+msgid "Website"
+msgstr "Website"
+
+#: post_types/Cooperation_Partners.php:97
+msgid "Mastodon Profile URL"
+msgstr "Mastodon Profil URL"
+
+#: post_types/Cooperation_Partners.php:104
+msgid "Bluesky Username"
+msgstr "Bluesky Benutzername"
+
+#: post_types/Screening.php:199
+msgid "Select the program series the screening is accounted to. The default value is the main program series."
+msgstr "Wähle die Programmreihe aus, zu der diese Vorstellung gehört. Der Standardwert ist das Hauptprogramm."
+
+#: post_types/Screening.php:200
+msgid "Select a program series"
+msgstr "Wähle eine Programmreihe aus"
+
+#: taxonomies/Program_Series.php:78
+msgid "The logo of the program series for display in light mode conditions"
+msgstr "Logo der Programmreihe für die Darstellung im Light Mode"
+
+#: taxonomies/Program_Series.php:85
+msgid "The logo of the program series for display in dark mode conditions"
+msgstr "Logo der Programmreihe für die Darstellung im Dark Mode"
