@@ -52,6 +52,11 @@ class Program_Series implements Taxonomy {
 				'with_front' => false,
 			),
 			'meta_box_cb'        => false,
+			'default_term' => array(
+				'name' => 'Hauptprogramm',
+				'slug' => 'main',
+				'description' => "Jede Vorstellung, die keine gesonderte Programmreihe zugewiesen hat, wird dem Hauptprogramm zugerechnet"
+			)
 		);
 	}
 
@@ -59,6 +64,30 @@ class Program_Series implements Taxonomy {
 	 * @inheritDoc
 	 */
 	public static function meta_boxes( array $meta_boxes ): array {
+		$meta_boxes[] = array(
+			'id' => 'program_series_logos',
+			'title' => __("Logo", 'cinema-press'),
+			'revision' => true,
+			'autosave' => true,
+			'taxonomies' => self::SLUG,
+			'fields' => array(
+				[
+					'id'      => 'logo',
+					'type'    => 'single_image',
+					'name'    => __( 'Light Mode', 'cinema-press' ),
+					'desc'    => __( 'The logo of the program series for display in light mode conditions', 'cinema-press' ),
+					'image_size' => 'original'
+				],
+				[
+					'id'      => 'logo_dark',
+					'type'    => 'single_image',
+					'name'    => __( 'Dark Mode', 'cinema-press' ),
+					'desc'    => __( 'The logo of the program series for display in dark mode conditions', 'cinema-press' ),
+					'image_size' => 'original'
+				],
+			)
+		);
+
 		$meta_boxes[] = array(
 			'id'         => 'program_series_settings',
 			'title'      => __( 'Display Settings', 'cinema-press' ),
@@ -73,7 +102,7 @@ class Program_Series implements Taxonomy {
 				[
 					'id'   => 'background',
 					'name' => __( 'Background for Pages', 'cinema-press' ),
-					'type' => 'background'
+					'type' => 'color'
 				],
 				[
 					'id'   => 'font_color',
