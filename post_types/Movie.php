@@ -6,6 +6,7 @@
 namespace CinemaPress\post_types;
 
 use CinemaPress\interfaces\Post_Type;
+use WP_Post;
 use function CinemaPress\cp_county_mapping;
 
 class Movie implements Post_Type {
@@ -332,5 +333,92 @@ class Movie implements Post_Type {
 
 		return $meta_boxes;
 	}
+
+	public static function title( WP_Post|int $post = 0 ): string {
+		$post   = get_post( $post );
+		$locale = get_user_locale();
+
+		return str_starts_with( $locale, "de" ) ? rwmb_meta( 'german_title', post_id: $post->ID ) : rwmb_meta( 'english_title', post_id: $post->ID );
+	}
+
+	public static function original_title( WP_Post|int $post = 0 ): string {
+		$post = get_post( $post );
+
+		return rwmb_meta( 'original_title', post_id: $post->ID );
+	}
+
+
+	/**
+	 * Get the
+	 *
+	 * @param WP_Post|int $post
+	 * @param string $format
+	 *
+	 * @return iterable
+	 */
+	public static function countries( WP_Post|int $post = 0, string $format = 'alpha2' ): iterable {
+		$post        = get_post( $post );
+		$countries   = rwmb_meta( 'country_of_origin', post_id: $post->ID );
+		$codeFactory = iso_codes()->getCountries();
+		foreach ( $countries as $country ) {
+			$c = $codeFactory->getByNumericCode( $country );
+			switch ( $format ) {
+				case 'alpha2':
+					yield $c->getAlpha2();
+					break;
+				case 'alpha3':
+					yield $c->getAlpha3();
+					break;
+				case 'flag':
+					yield $c->getFlag();
+					break;
+				case 'numeric':
+					yield $country;
+					break;
+				case 'name':
+					yield $c->getLocalName();
+					break;
+				default:
+					yield null;
+			}
+		}
+	}
+
+	public static function release_year( WP_Post|int $post = 0 ): int {
+		$post = get_post( $post );
+
+		return intval( rwmb_meta( 'release_year', post_id: $post->ID ) );
+	}
+
+	public static function directors( WP_Post|int $post = 0, $as_term = false ): iterable {
+		$post  = get_post( $post );
+		$terms = rwmb_meta( 'directors', post_id: $post->ID );
+		foreach ( $terms as $director ) {
+			if ( $as_term ) {
+				yield $director;
+			} else {
+				yield $director->name;
+			}
+		}
+	}
+
+	public static function actors( WP_Post|int $post = 0, $as_term = false ): iterable {
+		$post  = get_post( $post );
+		$terms = rwmb_meta( 'actors', post_id: $post->ID );
+		foreach ( $terms as $actor ) {
+			if ( $as_term ) {
+				yield $actor;
+			} else {
+				yield $actor->name;
+			}
+		}
+	}
+
+	public static function age_rating( WP_Post|int $post = 0 ): string {
+		$post = get_post( $post );
+
+		return rwmb_the_value( 'age_rating', post_id: $post->ID, echo: false );
+	}
+
 
 }
