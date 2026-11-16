@@ -6,6 +6,8 @@ namespace CinemaPress;
  * Copyright (c) 2026. Unikino GEGENLICHT. Licensed under the EUPL v1.2 or later
  */
 
+use Sokil\IsoCodes\IsoCodesFactory;
+
 function cp_county_mapping(): array {
 	$iso_codes = iso_codes();
 	$map = array();
@@ -30,3 +32,6 @@ function cp_language_mapping(): array {
 }
 
 
+function get_iso_codes(): IsoCodesFactory {
+	return iso_codes();
+}
