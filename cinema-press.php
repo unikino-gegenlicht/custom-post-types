@@ -209,6 +209,23 @@ add_action( 'rwmb_meta_boxes', function ( $meta_boxes ) {
 	);
 
 	$meta_boxes[] = array(
+		'id' => 'cinema-press_screening_settings',
+		'title' => __( 'Screening Settings', 'cinema-press' ),
+		'settings_pages' => 'cinema-press',
+		'context' => 'normal',
+		'tab' => 'screenings',
+		'fields' => array(
+			[
+				'id' => 'enable_worth_to_see',
+				'type' => 'checkbox',
+				'name' => __( 'Enable Worth to See Section', 'cinema-press' ),
+				'label_description' => __('As long as this is enabled the plugin will allow entering content in the worth to see section and '),
+				'std'  => 1,
+			]
+		)
+	);
+
+	$meta_boxes[] = array(
 		'id'             => 'cinema-press_team_settings',
 		'title'          => __( 'Team Settings', 'cinema-press' ),
 		'settings_pages' => 'cinema-press',
