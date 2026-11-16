@@ -333,11 +333,16 @@ class Screening implements Post_Type {
 					'options'               => CinemaPress_WYSIWYG_OPTIONS,
 					'revision'              => true,
 				],
+				( ( get_option( 'cinema-press' )["enable_worth_to_see"] ?? 1 ) == 1 ? (
 				[
 					'type' => 'heading',
 					'name' => __( "Why is the movie worth to be seen?", 'cinema-press' ),
 					'desc' => __( 'Below this field you can now enter why the movie is worth to be seen by your visitors', 'cinema-press' ),
-				],
+				] ) : [
+					'type' => 'custom_html',
+					'std'  => ""
+				] ),
+				( ( get_option( 'cinema-press' )["enable_worth_to_see"] ?? 1 ) == 1 ? (
 				[
 					'id'                    => 'worth_to_be_seen',
 					'type'                  => 'wysiwyg',
@@ -345,7 +350,11 @@ class Screening implements Post_Type {
 					'add_to_wpseo_analysis' => true,
 					'options'               => CinemaPress_WYSIWYG_OPTIONS,
 					'revision'              => true,
-				],
+				] ) : [
+					'type' => 'custom_html',
+					'std'  => ""
+				] ),
+
 			)
 		);
 
