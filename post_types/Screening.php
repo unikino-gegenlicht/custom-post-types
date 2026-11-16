@@ -201,7 +201,10 @@ class Screening implements Post_Type {
 					'required'          => true,
 					'revision'          => true,
 					'taxonomy'          => 'program_series',
-					'std'               => get_term_by( 'slug', get_taxonomy('program_series')->default_term['slug'], 'program_series')->term_id,
+					'query_args'        => array(
+						'hide_empty' => false,
+					),
+					'std'               => get_term_by( 'slug', get_taxonomy( 'program_series' )->default_term['slug'], 'program_series' )->term_id,
 				],
 				[
 					'id'                => 'semester',
@@ -213,10 +216,11 @@ class Screening implements Post_Type {
 					'revision'          => true,
 					'taxonomy'          => 'semester',
 					'query_args'        => [
-						'number'   => 5,
-						'orderby'  => 'meta_value',
-						'meta_key' => 'semester_start',
-						'order'    => 'desc'
+						'number'     => 5,
+						'orderby'    => 'meta_value',
+						'meta_key'   => 'semester_start',
+						'order'      => 'desc',
+						'hide_empty' => false
 					],
 					'std'               => count( get_terms( 'semester', [
 						'number'   => 1,
