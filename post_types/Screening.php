@@ -6,7 +6,10 @@
 namespace CinemaPress\post_types;
 
 use CinemaPress\interfaces\Post_Type;
+use DateTime;
+use WP_Post;
 use WP_Query;
+use WP_Term;
 use function CinemaPress\cp_language_mapping;
 
 class Screening implements Post_Type {
@@ -360,4 +363,145 @@ class Screening implements Post_Type {
 
 		return $meta_boxes;
 	}
+
+	public static function movie( WP_Post|int $post = 0 ): WP_Post {
+		$post = get_post( $post );
+
+		return get_post( rwmb_meta( 'movie', post_id: $post->ID ) );
+	}
+
+	public static function screening_start( WP_Post|int $post = 0, string|null $format = null ): DateTime|string|false {
+		$post = get_post( $post );
+
+		$meta = rwmb_meta( 'screening_start', post_id: $post->ID );
+		$date = date_create_from_format( 'Y-m-d H:i', $meta );
+		if ( $format ) {
+			return $date->format( $format );
+		} else {
+			return $date;
+		}
+	}
+
+	public static function program_series( WP_Post|int $post = 0 ): WP_Term {
+		$post = get_post( $post );
+
+		return rwmb_meta( 'program_series', post_id: $post->ID );
+	}
+
+	public static function semester( WP_Post|int $post = 0 ): WP_Term {
+		$post = get_post( $post );
+
+		return rwmb_meta( 'semester', post_id: $post->ID );
+	}
+
+	public static function screening_location( WP_Post|int $post = 0 ): WP_Post {
+		$post = get_post( $post );
+
+		return get_post( rwmb_meta( 'location', post_id: $post->ID ) );
+	}
+
+	/**
+	 * @param WP_Post|int $post The screening for which the data is to be pulled.
+	 *  Defaults to current $post
+	 *
+	 * @return WP_Post[] The admission types for the screening
+	 */
+	public static function admission_types( WP_Post|int $post = 0 ): array {
+		$post = get_post( $post );
+
+		return rwmb_meta( 'admission_types', post_id: $post->ID );
+	}
+
+	/**
+	 * @param WP_Post|int $post The screening for which the data is to be pulled.
+	 *   Defaults to current $post
+	 *
+	 * @return WP_Post[]|null The entities that proposed the movie
+	 */
+	public static function proposed_by( WP_Post|int $post = 0 ): array|null {
+		$post = get_post( $post );
+
+		return rwmb_meta( 'proposed_by', post_id: $post->ID );
+	}
+
+	/**
+	 * @param WP_Post|int $post
+	 * @param bool $as_code
+	 *
+	 * @return string|null Returns null for no selection or selecting "zxx" which
+	 *      means that there is no linguistic content. Otherwise returns the language
+	 *      or it's alpha 3 code
+	 */
+	public static function audio_language( WP_Post|int $post = 0, bool $as_code = true ): string|null {
+		$post = get_post( $post );
+
+		$language_code = rwmb_meta( 'audio_language', post_id: $post->ID );
+		if ( $language_code == "zxx" ) {
+			return null;
+		}
+
+		if ( $as_code ) {
+			return $language_code;
+		}
+
+		return rwmb_the_value( 'audio_language', post_id: $post->ID, echo: false );
+	}
+
+	/**
+	 * @param WP_Post|int $post
+	 * @param $as_code
+	 *
+	 * @return string|null Returns null for no selection or selecting "zxx" which
+	 *      means that there is no linguistic content. Otherwise returns the language
+	 *      or it's alpha 3 code
+	 */
+	public static function subtitle_language( WP_Post|int $post = 0, $as_code = true ): string|null {
+		$post = get_post( $post );
+
+		if ( ! rwmb_meta( 'has_subtitles', post_id: $post->ID ) ) {
+			return null;
+		}
+
+		if ( rwmb_meta( 'subtitle_language', post_id: $post->ID ) == "zxx" ) {
+			return null;
+		}
+
+		if ( $as_code ) {
+			return rwmb_meta( 'subtitle_language', post_id: $post->ID );
+		}
+
+		return rwmb_the_value( 'subtitle_language', post_id: $post->ID, echo: false );
+
+	}
+
+	public static function summary( WP_Post|int $post = 0, bool $display = false ): string|null {
+		$post    = get_post( $post );
+		$summary = rwmb_meta( 'summary', post_id: $post->ID );
+
+		if ( ! $display ) {
+			return $summary;
+		}
+
+		echo wpautop( $summary );
+
+		return null;
+	}
+
+	public static function worth_to_see( WP_Post|int $post = 0, bool $display = false ): string|null {
+		if ( ( get_option( 'cinema-press' )["enable_worth_to_see"] ?? 1 ) != 1 ) {
+			return null;
+		}
+
+		$post         = get_post( $post );
+		$worth_to_see = rwmb_meta( 'worth_to_be_seen', post_id: $post->ID );
+
+		if ( ! $display ) {
+			return $worth_to_see;
+		}
+		echo wpautop( $worth_to_see );
+
+		return null;
+	}
+
+
 }
